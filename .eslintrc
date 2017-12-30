@@ -1,0 +1,57 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["airbnb", "plugin:import/errors", "plugin:import/warnings"],
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+  "plugins": ["jest"],
+  "globals": {
+    "__DEV__": true,
+    "__TEST__": true,
+    "__API__": true,
+    "shallow": true,
+    "productInstance": true
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack.dev.config.babel.js"
+      }
+    }
+  },
+  "rules": {
+    "function-paren-newline": ["error", "multiline"],
+
+    "import/extensions": 0,
+
+    "jsx-a11y/href-no-hash": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+
+    "no-nested-ternary": 0,
+    "no-confusing-arrow": 0,
+    "object-curly-newline": [
+      "error",
+      {
+        "ObjectExpression": {
+          "consistent": true
+        },
+        "ObjectPattern": {
+          "multiline": true
+        }
+      }
+    ],
+
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "react/no-array-index-key": 0,
+    "react/forbid-prop-types": 0,
+
+    "semi": [2, "never"]
+  }
+}
