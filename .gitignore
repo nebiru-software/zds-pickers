@@ -3,8 +3,5 @@ node_modules/
 /npm-debug.log
 /db
 
-yarn.lock
-yarn-error.log
-
 build
 coverage

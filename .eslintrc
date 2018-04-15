@@ -1,18 +1,16 @@
 {
   "parser": "babel-eslint",
-  "extends": ["airbnb", "plugin:import/errors", "plugin:import/warnings"],
+  "extends": ["airbnb"],
   "env": {
     "browser": true,
     "node": true,
     "jest": true
   },
-  "plugins": ["jest"],
+  "plugins": [],
   "globals": {
     "__DEV__": true,
     "__TEST__": true,
-    "__API__": true,
-    "shallow": true,
-    "productInstance": true
+    "__API__": true
   },
   "settings": {
     "import/resolver": {

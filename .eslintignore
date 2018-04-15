@@ -3,4 +3,3 @@ coverage/
 node_modules
 **/*.svg.js
 **/*.scss
-__tests__/__assets__
