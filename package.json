@@ -1,6 +1,6 @@
 {
   "name": "zds-pickers",
-  "version": "1.1.10",
+  "version": "1.1.12",
   "description": "Picker controls that are common to ZendrumStudio apps",
   "main": "build/index.js",
   "scripts": {
@@ -41,7 +41,8 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "eslint-watch": "^3.1.4",
-    "polished": "^1.9.2"
+    "polished": "^1.9.2",
+    "webpack": "^3.10.0"
   },
   "dependencies": {
     "autosuggest-highlight": "^3.1.1",
@@ -53,6 +54,7 @@
     "react": "^16.3.1",
     "react-autosuggest": "^9.3.4",
     "react-dom": "^16.3.1",
+    "react-file-picker": "^0.0.5",
     "styled-components": "^3.2.5"
   }
 }
