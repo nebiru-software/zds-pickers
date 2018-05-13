@@ -1,6 +1,6 @@
 {
   "name": "zds-pickers",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "description": "Picker controls that are common to ZendrumStudio apps",
   "main": "build/index.js",
   "scripts": {
@@ -30,31 +30,30 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "eslint": "^4.19.1",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0",
+    "eslint-plugin-react": "^7.8.1",
     "eslint-watch": "^3.1.4",
-    "polished": "^1.9.2",
-    "webpack": "^3.10.0"
+    "polished": "^1.9.2"
   },
   "dependencies": {
     "autosuggest-highlight": "^3.1.1",
     "classnames": "^2.2.5",
     "eslint-config-airbnb": "^16.1.0",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.10",
     "material-ui": "^1.0.0-beta.25",
+    "npm-check-updates": "^2.14.2",
     "prop-types": "^15.6.1",
-    "react": "^16.3.1",
+    "react": "^16.3.2",
     "react-autosuggest": "^9.3.4",
-    "react-dom": "^16.3.1",
-    "react-file-picker": "^0.0.5",
-    "styled-components": "^3.2.5"
+    "react-dom": "^16.3.2",
+    "styled-components": "^3.2.6"
   }
 }

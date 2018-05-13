@@ -1,2 +1,6 @@
+.eslintignore
+.eslintrc
 .babelrc
 lib
+yarn-error.log
+yarn.lock
