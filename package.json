@@ -1,6 +1,6 @@
 {
   "name": "zds-pickers",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Picker controls that are common to ZendrumStudio apps",
   "main": "build/index.js",
   "scripts": {
