@@ -1,10 +1,14 @@
 {
-  presets: ['react', 'env', 'stage-0'],
-  plugins: [],
-  retainLines: true,
-  env: {
-    development: {
-      plugins: [],
-    },
-  },
+  presets: ['@babel/preset-env', '@babel/preset-react'],
+  plugins: [
+    ['@babel/plugin-proposal-class-properties', { loose: false }],
+    ['@babel/plugin-proposal-decorators', { legacy: true }],
+    '@babel/plugin-proposal-export-default-from',
+    '@babel/plugin-proposal-export-namespace-from',
+    '@babel/plugin-syntax-async-generators',
+    '@babel/plugin-syntax-dynamic-import',
+    '@babel/plugin-syntax-import-meta',
+    '@babel/plugin-transform-regenerator'
+  ],
+  retainLines: true
 }
