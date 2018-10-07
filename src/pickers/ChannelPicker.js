@@ -26,12 +26,11 @@ const styles = theme => ({
   },
 })
 
-const Items = classes =>
-  arraySequence(16).map(i => (
-    <MenuItem key={i} value={i} classes={classes}>
-      {i + 1}
-    </MenuItem>
-  ))
+const Items = classes => arraySequence(16).map(i => (
+  <MenuItem key={i} value={i} classes={classes}>
+    {i + 1}
+  </MenuItem>
+))
 
 const ChannelPicker = (props) => {
   const { channel: value, onChange, classes } = props

@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types'
+import { shape, string, number } from 'prop-types'
 
-export const mappingShape = {
-  note: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  group: PropTypes.string.isRequired,
-}
+export const mappingShape = shape({
+  note: number.isRequired,
+  name: string.isRequired,
+  group: string.isRequired,
+})
 
 export default mappingShape

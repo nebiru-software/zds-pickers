@@ -9,7 +9,7 @@ import TextField from '@material-ui/core/TextField'
 import Paper from '@material-ui/core/Paper'
 import MenuItem from '@material-ui/core/MenuItem'
 import { withStyles } from '@material-ui/core/styles'
-import { mappingsShape } from '../shapes'
+import { mappingShape } from '../shapes'
 
 const renderedName = item => `#${item.note} ${item.name.length ? '-' : ''} ${item.name}`
 
@@ -38,16 +38,15 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
   return (
     <MenuItem selected={isHighlighted} component="div">
       <div>
-        {parts.map((part, index) =>
-            part.highlight ? (
-              <span key={String(index)} style={{ fontWeight: 300 }}>
-                {part.text}
-              </span>
-            ) : (
-              <strong key={String(index)} style={{ fontWeight: 500 }}>
-                {part.text}
-              </strong>
-            ))}
+        {parts.map((part, index) => part.highlight ? (
+          <span key={String(index)} style={{ fontWeight: 300 }}>
+            {part.text}
+          </span>
+        ) : (
+          <strong key={String(index)} style={{ fontWeight: 500 }}>
+            {part.text}
+          </strong>
+        ))}
       </div>
     </MenuItem>
   )
@@ -133,7 +132,8 @@ class NotePicker extends React.Component {
   }
 
   handleSuggestionSelected = (event, { suggestion }) => {
-    this.props.onChange(this.source.indexOf(suggestion) + 1)
+    const { onChange } = this.props
+    onChange(this.source.indexOf(suggestion) + 1)
     this.setState({
       value: suggestion,
     })
@@ -141,6 +141,7 @@ class NotePicker extends React.Component {
 
   render() {
     const { classes, disabled } = this.props
+    const { suggestions, value } = this.state
 
     return (
       <Autosuggest
@@ -151,7 +152,7 @@ class NotePicker extends React.Component {
           suggestion: classes.suggestion,
         }}
         renderInputComponent={renderInput}
-        suggestions={this.state.suggestions}
+        suggestions={suggestions}
         onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
         onSuggestionSelected={this.handleSuggestionSelected}
@@ -162,7 +163,7 @@ class NotePicker extends React.Component {
           autoFocus: false,
           classes,
           placeholder: 'Note # or instrument name',
-          value: this.state.value,
+          value,
           onChange: this.handleChange,
           disabled,
           onFocus: ({ target }) => target.select(),
@@ -174,7 +175,7 @@ class NotePicker extends React.Component {
 
 NotePicker.propTypes = {
   classes: PropTypes.object.isRequired,
-  mapping: PropTypes.arrayOf(PropTypes.shape(mappingsShape)).isRequired,
+  mapping: PropTypes.arrayOf(mappingShape).isRequired,
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   value: PropTypes.number,
