@@ -4,10 +4,10 @@
   "description": "Picker controls that are common to ZendrumStudio apps",
   "main": "dist/index.js",
   "scripts": {
-    "build": "babel lib -d dist --ignore __config__,**/*.spec.js",
-    "build:watch": "babel lib -w -d dist",
+    "build": "babel src -d dist --ignore __config__,**/*.spec.js",
+    "build:watch": "babel src -w -d dist",
     "prepublish": "npm run build",
-    "lint": "eslint 'lib/**'",
+    "lint": "eslint 'src/**'",
     "lint:fix": "npm run lint -- --fix",
     "test": "TZ=America/Los_Angeles NODE_ENV=test jest --env=jsdom",
     "test:watch": "TZ=America/Los_Angeles NODE_ENV=test jest --watchAll",

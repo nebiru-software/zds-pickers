@@ -1,6 +1,6 @@
 .eslintignore
 .eslintrc
 .babelrc
-lib
+src
 yarn-error.log
 yarn.lock
