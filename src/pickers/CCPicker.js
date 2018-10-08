@@ -4,9 +4,9 @@ import omit from 'lodash/omit'
 import classNames from 'classnames'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
-import CCValues from '../midi/ccValues'
+import ccValues from '../midi/ccValues'
 
-const source = CCValues.map(({ value, label }) => (
+const source = ccValues.map(({ value, label }) => (
   <MenuItem key={value} value={value}>
     {label}
   </MenuItem>

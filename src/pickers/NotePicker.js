@@ -11,10 +11,10 @@ import MenuItem from '@material-ui/core/MenuItem'
 import { withStyles } from '@material-ui/core/styles'
 import { mappingShape } from '../shapes'
 
-const renderedName = item => `#${item.note} ${item.name.length ? '-' : ''} ${item.name}`
+const renderedName = item => `${item.note} ${item.name.length ? '-' : ''} ${item.name}`
 
 function renderInput(inputProps) {
-  const { classes, disabled, autoFocus, value, ref, ...other } = inputProps
+  const { classes, disabled, autoFocus, value, ref, ...rest } = inputProps
 
   return (
     <TextField
@@ -25,7 +25,7 @@ function renderInput(inputProps) {
       inputRef={ref}
       FormHelperTextProps={{ className: classes.whiteLabel }}
       InputProps={{
-        ...other,
+        ...rest,
       }}
     />
   )
@@ -104,6 +104,23 @@ const styles = theme => ({
 })
 
 class NotePicker extends React.Component {
+  static propTypes = {
+    classes: PropTypes.object.isRequired,
+    mapping: PropTypes.arrayOf(mappingShape).isRequired,
+    onChange: PropTypes.func.isRequired,
+    disabled: PropTypes.bool,
+    value: PropTypes.number,
+    autoFocus: PropTypes.bool,
+    inputRef: PropTypes.any,
+  }
+
+  static defaultProps = {
+    disabled: false,
+    value: undefined,
+    autoFocus: false,
+    inputRef: null,
+  }
+
   constructor(props) {
     super(props)
     this.source = props.mapping.map(renderedName)
@@ -139,12 +156,21 @@ class NotePicker extends React.Component {
     })
   }
 
+  storeInputReference = (element) => {
+    this.textInput = element
+    const { inputRef } = this.props
+    if (inputRef) {
+      inputRef.current = element
+    }
+  }
+
   render() {
-    const { classes, disabled } = this.props
+    const { classes, mapping, onChange, value: propValue, inputRef, ...rest } = this.props
     const { suggestions, value } = this.state
 
     return (
       <Autosuggest
+        ref={this.storeInputReference}
         theme={{
           container: classes.container,
           suggestionsContainerOpen: classes.suggestionsContainerOpen,
@@ -160,30 +186,16 @@ class NotePicker extends React.Component {
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
         inputProps={{
-          autoFocus: false,
           classes,
           placeholder: 'Note # or instrument name',
           value,
           onChange: this.handleChange,
-          disabled,
           onFocus: ({ target }) => target.select(),
+          ...rest,
         }}
       />
     )
   }
-}
-
-NotePicker.propTypes = {
-  classes: PropTypes.object.isRequired,
-  mapping: PropTypes.arrayOf(mappingShape).isRequired,
-  onChange: PropTypes.func.isRequired,
-  disabled: PropTypes.bool,
-  value: PropTypes.number,
-}
-
-NotePicker.defaultProps = {
-  disabled: false,
-  value: undefined,
 }
 
 export default withStyles(styles)(NotePicker)
