@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper'
 import MenuItem from '@material-ui/core/MenuItem'
 import { withStyles } from '@material-ui/core/styles'
 import { mappingShape } from '../shapes'
+import { assertRange } from '..'
 
 const renderedName = item => `${item.note} ${item.name.length ? '-' : ''} ${item.name}`
 
@@ -72,7 +73,7 @@ function getSuggestions(source, value) {
   const inputLength = inputValue.length
 
   return inputLength === 0
-    ? []
+    ? source
     : source.filter(suggestion => suggestion.toLowerCase().includes(inputValue))
 }
 
@@ -143,6 +144,11 @@ class NotePicker extends React.Component {
   }
 
   handleChange = (event, { newValue }) => {
+    const { onChange } = this.props
+    const possibleNoteNumber = assertRange(newValue, 128, 0)
+    if (possibleNoteNumber > 0) {
+      onChange(possibleNoteNumber)
+    }
     this.setState({
       value: newValue,
     })
@@ -179,6 +185,7 @@ class NotePicker extends React.Component {
         }}
         renderInputComponent={renderInput}
         suggestions={suggestions}
+        shouldRenderSuggestions={() => true}
         onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
         onSuggestionSelected={this.handleSuggestionSelected}
