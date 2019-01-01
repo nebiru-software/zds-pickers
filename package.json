@@ -1,6 +1,6 @@
 {
   "name": "zds-pickers",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Picker controls that are common to ZendrumStudio apps",
   "main": "dist/index.js",
   "scripts": {
@@ -26,9 +26,6 @@
     "url": "https://github.com/dkadrios/zds-pickers/issues"
   },
   "homepage": "https://github.com/dkadrios/zds-pickers#readme",
-  "engines": {
-    "node": "^8.7.0"
-  },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.6",
