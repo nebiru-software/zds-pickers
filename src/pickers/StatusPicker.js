@@ -8,7 +8,10 @@ const StatusPicker = (props) => {
   const { className, status, onChange, mini, statuses } = props
 
   const source = statuses.map(({ value, label }) => (
-    <MenuItem key={value} value={value}>
+    <MenuItem
+      key={value}
+      value={value}
+    >
       {label}
     </MenuItem>
   ))

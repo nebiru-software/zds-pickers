@@ -21,7 +21,10 @@ const PolarityPicker = (props) => {
     disableUnderline: true,
   }
   return (
-    <Select {...dropdownProps} {...passedProps}>
+    <Select
+      {...dropdownProps}
+      {...passedProps}
+    >
       <MenuItem value={0}>{labelOff}</MenuItem>
       <MenuItem value={1}>{labelOn}</MenuItem>
     </Select>

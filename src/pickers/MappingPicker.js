@@ -12,7 +12,10 @@ const MappingPicker = (props) => {
     disableUnderline: true,
   }
   return (
-    <Select {...dropdownProps} {...passedProps}>
+    <Select
+      {...dropdownProps}
+      {...passedProps}
+    >
       {menuSource}
     </Select>
   )

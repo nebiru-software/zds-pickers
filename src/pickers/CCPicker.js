@@ -7,7 +7,10 @@ import MenuItem from '@material-ui/core/MenuItem'
 import ccValues from '../midi/ccValues'
 
 const source = ccValues.map(({ value, label }) => (
-  <MenuItem key={value} value={value}>
+  <MenuItem
+    key={value}
+    value={value}
+  >
     {label}
   </MenuItem>
 ))
@@ -22,7 +25,10 @@ const CCPicker = (props) => {
     disableUnderline: true,
   }
   return (
-    <Select {...dropdownProps} {...passedProps}>
+    <Select
+      {...dropdownProps}
+      {...passedProps}
+    >
       {source}
     </Select>
   )

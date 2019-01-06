@@ -14,7 +14,10 @@ const LatchPicker = (props) => {
     disableUnderline: true,
   }
   return (
-    <Select {...dropdownProps} {...passedProps}>
+    <Select
+      {...dropdownProps}
+      {...passedProps}
+    >
       <MenuItem value={1}>Latching</MenuItem>
       <MenuItem value={0}>Momentary</MenuItem>
     </Select>
