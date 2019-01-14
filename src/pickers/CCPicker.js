@@ -1,7 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import omit from 'lodash/omit'
-import classNames from 'classnames'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import ccValues from '../midi/ccValues'
@@ -16,18 +14,16 @@ const source = ccValues.map(({ value, label }) => (
 ))
 
 const CCPicker = (props) => {
-  const { onChange, className } = props
-  const passedProps = omit(props, ['onChange', 'className'])
+  const { onChange, className, ...rest } = props
 
   const dropdownProps = {
-    className: classNames(className),
     onChange: ({ target }) => onChange(target.value),
     disableUnderline: true,
   }
   return (
     <Select
       {...dropdownProps}
-      {...passedProps}
+      {...rest}
     >
       {source}
     </Select>
