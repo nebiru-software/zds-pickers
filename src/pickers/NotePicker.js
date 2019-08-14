@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Select from 'react-select'
 import { mappingShape } from '../shapes'
-import { assertRange } from '..'
+import { assertRange } from '../utils'
 
 const formattedMapEntry = ({ note, name }) => `${note} ${name.length ? '-' : ''} ${name}`
 const formattedListEntry = (label, idx) => ({ label, value: idx + 1 })

@@ -1,49 +1,30 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import omit from 'lodash/omit'
-import Input from '@material-ui/core/Input'
 
-class ValuePicker extends Component {
-  static propTypes = {
-    className: PropTypes.string,
-    value: PropTypes.number.isRequired,
-    onChange: PropTypes.func.isRequired,
-    autoFocus: PropTypes.bool,
-  }
+const ValuePicker = (props) => {
+  // const inputRef = useRef()
 
-  static defaultProps = {
-    className: '',
-    autoFocus: false,
-  }
+  // const focus = () => {
+  //   inputRef.focus()
+  // }
 
-  focus = () => {
-    this.inputRef.focus()
-  }
+  const { onChange, ...rest } = props
 
-  render() {
-    const { onChange } = this.props
-    const passedProps = omit(this.props, ['onChange'])
-    const inputProps = {
-      disableUnderline: true,
-      type: 'number',
-      onChange: ({ target }) => {
+  return (
+    <input
+      // ref={inputRef}
+      type="number"
+      onChange={({ target }) => {
         onChange(target.value)
-      },
-      onFocus: ({ target }) => {
+      }}
+      onFocus={({ target }) => {
         target.select()
-      },
-    }
-
-    return (
-      <Input
-        {...inputProps}
-        {...passedProps}
-        inputRef={(input) => {
-          this.inputRef = input
-        }}
-      />
-    )
-  }
+      }}
+      {...rest}
+    />
+  )
 }
+
+ValuePicker.propTypes = { onChange: PropTypes.func.isRequired }
 
 export default ValuePicker
