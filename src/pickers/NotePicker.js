@@ -3,71 +3,51 @@ import PropTypes from 'prop-types'
 import Select from 'react-select'
 import { mappingShape } from '../shapes'
 import { assertRange } from '../utils'
+import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
 
 const formattedMapEntry = ({ note, name }) => `${note} ${name.length ? '-' : ''} ${name}`
 const formattedListEntry = (label, idx) => ({ label, value: idx + 1 })
 
-class NotePicker extends React.Component {
-  static propTypes = {
-    mapping: PropTypes.arrayOf(mappingShape).isRequired,
-    onChange: PropTypes.func.isRequired,
-    disabled: PropTypes.bool,
-    value: PropTypes.number,
-    inputRef: PropTypes.any,
-    channel: PropTypes.number.isRequired,
-    status: PropTypes.number.isRequired,
-  }
+const NotePicker = (props) => {
+  const { channel, disabled, mapping, onChange, status, value: initialValue, ...rest } = props
+  const options = mapping.map(formattedMapEntry).map(formattedListEntry)
+  const [value, setValue] = useStateWithDynamicDefault(initialValue)
 
-  static defaultProps = {
-    disabled: false,
-    value: undefined,
-    inputRef: null,
-  }
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: props.value,
-    }
-  }
-
-  handleChange = (event) => {
-    const { value } = event
-    const { onChange } = this.props
-    const possibleNoteNumber = assertRange(value, 128, 0)
+  const handleChange = (event) => {
+    const { value: v } = event
+    const possibleNoteNumber = assertRange(v, 128, 0)
 
     if (possibleNoteNumber > 0) {
       onChange(possibleNoteNumber)
     }
-    this.setState({
-      value,
-    })
+    setValue(v)
   }
 
-  storeInputReference = (element) => {
-    this.textInput = element
-    const { inputRef } = this.props
-    if (inputRef) {
-      inputRef.current = element
-    }
-  }
+  return (
+    <Select
+      isDisabled={disabled}
+      options={options}
+      value={options[value - 1]}
+      onChange={handleChange}
+      {...rest}
+    />
+  )
+}
 
-  render() {
-    const { mapping, onChange, inputRef, disabled, channel, status, value: propValue, ...rest } = this.props
-    const { value } = this.state
-    const options = mapping.map(formattedMapEntry).map(formattedListEntry)
+NotePicker.propTypes = {
+  mapping: PropTypes.arrayOf(mappingShape).isRequired,
+  onChange: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
+  value: PropTypes.number,
+  inputRef: PropTypes.any,
+  channel: PropTypes.number.isRequired,
+  status: PropTypes.number.isRequired,
+}
 
-    return (
-      <Select
-        ref={this.storeInputReference}
-        isDisabled={disabled}
-        options={options}
-        defaultValue={options[value - 1]}
-        onChange={this.handleChange}
-        {...rest}
-      />
-    )
-  }
+NotePicker.defaultProps = {
+  disabled: false,
+  value: undefined,
+  inputRef: null,
 }
 
 export default NotePicker
