@@ -1,0 +1,447 @@
+/*
+    E E P R O M   M E M O R Y   M A P
+
+    0
+        Version number.  We store this in memory to compare to the hardcoded
+        value later on.  This is to be able to detect firmware upgrades and
+        take any necessary actions.
+
+    1 - 14
+        Serial number
+
+    15 - 19
+        15 is settings flags, rest are reserved
+
+    20 - 49
+        Input controls.  Six controls are stored sequentially.  These currently
+        consume 5 bytes each, for a total of 30.
+
+    50 - ~512
+        Groups, 4 total. Each group needs three bytes for the number of entries,
+        channel # and CC #.  Whatever's left (460B) is devoted to entries.
+        Each entry needs 4 bytes which gives us a max of 115 entries.
+        We've capped it at 112 in order to give us a little breathing room at
+        the end.
+ */
+
+#include <Arduino.h>
+#include <EEPROM.h>
+#include <SoftReset.h>
+#include "settings.h"
+#include "controlHandler.h"
+#include "shifterTypes.h"
+#include "sysExHandler.h"
+#include "midiLED.h"
+#include "initializeEEPROM.h"
+#include "controlDefaults.h"
+#include "groupDefaults.h"
+
+#define SETTINGS_DEBUG_MODE false
+
+#define CHANNEL_MASK 0x0F // 00001111 (from analog_input->status)
+#define STATUS_MASK 0xF0  // 11110000 (from analog_input->status)
+
+#define LATCHING_MASK 1            // 00000001 (from analog_input->flags)
+#define POLARITY_MASK 2            // 00000010 (from analog_input->flags)
+#define CURVE_MASK 28              // 00011100 (from analog_input->flags)
+#define CONTROL_TYPE_MASK 96       // 01100000 (from analog_input->flags)
+#define ACTIVITY_LED_MASK 3        // 00000011
+#define SERIAL_MIDI_ENABLED_MASK 4 // 00000100
+#define USB_MIDI_ENABLED_MASK 8    // 00001000
+
+analog_input  analog_inputs[MAX_ANALOG_INPUTS];
+
+shifter_group shifter_groups[MAX_SHIFTER_GROUPS];
+
+bool          proModel = false;
+bool          engineActive = false;
+bool          clientIsConnected = false;
+
+bool          serialMidiEnabled = true;
+bool          usbMidiEnabled = true;
+
+static int    eepromIndex = 0;
+
+void reset()
+{
+   soft_restart();
+}
+
+void hardReset(bool preserveSerial)
+{
+   if (preserveSerial)
+   {
+      for (uint16_t i = LOCATION_OF_CONTROLS; i < 512; i++)
+      {
+         EEPROM.update(i, 255);
+      }
+   }
+   else
+   {
+      for (uint16_t i = 0; i < 512; i++)
+      {
+         EEPROM.update(i, 255);
+      }
+   }
+}
+
+static uint8_t nextByte()
+{
+   return EEPROM.read(eepromIndex++);
+}
+
+static void writeNextByte(uint8_t value)
+{
+   EEPROM.update(eepromIndex++, value);
+}
+
+static void loadMIDIMessage(midi_message *message)
+{
+   message->status = nextByte();
+   message->data = nextByte();
+}
+
+#if SETTINGS_DEBUG_MODE
+static void dumpMIDIMessage(midi_message *message)
+{
+   Serial.print(" Channel:");
+   Serial.print(message->status & CHANNEL_MASK);
+   Serial.print(" Status:");
+   Serial.print(message->status & STATUS_MASK);
+   Serial.print(" Value:");
+   Serial.print(message->data);
+}
+
+#endif // if SETTINGS_DEBUG_MODE
+
+static bool loadInput(analog_input *jack, uint8_t idx)
+{
+   loadMIDIMessage(jack);
+
+   jack->idx = idx;
+
+   jack->flags = nextByte();
+   jack->calibrationLow = nextByte();
+   jack->calibrationHigh = nextByte();
+   jack->active = (idx < 2) || proModel;
+   jack->latching = jack->flags & LATCHING_MASK;
+   jack->polarity = (jack->flags & POLARITY_MASK) >> 1;
+   jack->curve = (jack->flags & CURVE_MASK) >> 2;
+   jack->controlType = (jack->flags & CONTROL_TYPE_MASK) >> 5;
+
+   jack->prevState = NULL;
+   jack->state = 0;
+   jack->latched = false;
+   jack->ledLit = false;
+
+   if (jack->latching)
+   {
+      jack->latched = !jack->polarity;
+   }
+
+   switch (idx)
+   {
+   case 0:
+      jack->dataPin = 14;
+      jack->ledPin = 7;
+      break;
+   case 1:
+      jack->dataPin = 16;
+      jack->ledPin = 8;
+      break;
+   case 2:
+      jack->dataPin = 10;
+      jack->ledPin = 9;
+      break;
+   case 3:
+      jack->dataPin = 21;
+      jack->ledPin = 255;
+      break;
+   case 4:
+      jack->dataPin = 20;
+      jack->ledPin = 255;
+      break;
+   case 5:
+      jack->dataPin = 19;
+      jack->ledPin = 255;
+      break;
+   }
+
+   return true;
+}
+
+static void loadInputs()
+{
+#if SETTINGS_DEBUG_MODE
+   Serial.print("Loading ");
+   Serial.print(MAX_ANALOG_INPUTS);
+   Serial.print(" inputs...  ");
+#endif // if SETTINGS_DEBUG_MODE
+
+   for (uint8_t i = 0; i < MAX_ANALOG_INPUTS; i++)
+   {
+      if (!loadInput(&analog_inputs[i], i))
+      {
+         break;
+      }
+
+#if SETTINGS_DEBUG_MODE
+      Serial.print("Input #");
+      Serial.print(i);
+      dumpMIDIMessage(&analog_inputs[i]);
+      Serial.print(" Flags:");
+      Serial.println(analog_inputs[i].flags);
+#endif // if SETTINGS_DEBUG_MODE
+   }
+
+#if SETTINGS_DEBUG_MODE
+   Serial.println("Done.");
+#endif // if SETTINGS_DEBUG_MODE
+}
+
+shifter_entry createEntry()
+{
+   shifter_entry entry;
+
+   return entry;
+}
+
+static void loadShifterEntry(shifter_entry *entry)
+{
+   loadMIDIMessage(&entry->input);
+   loadMIDIMessage(&entry->output);
+}
+
+static void loadShifterEntries(shifter_entry *entries, const uint8_t count)
+{
+#if SETTINGS_DEBUG_MODE
+   Serial.print("Loading ");
+   Serial.print(count);
+   Serial.print(" entries...  ");
+#endif // if SETTINGS_DEBUG_MODE
+
+   for (uint8_t i = 0; i < count; i++)
+   {
+      entries[i] = createEntry();
+      loadShifterEntry(&entries[i]);
+
+#if SETTINGS_DEBUG_MODE
+      Serial.print("Input #");
+      Serial.print(i);
+      dumpMIDIMessage(&entries[i].input);
+      Serial.print("  Output: ");
+      dumpMIDIMessage(&entries[i].output);
+      Serial.println("");
+#endif // if SETTINGS_DEBUG_MODE
+   }
+
+#if SETTINGS_DEBUG_MODE
+   Serial.println("Done.");
+#endif // if SETTINGS_DEBUG_MODE
+}
+
+static void loadGroups()
+{
+   uint8_t        i;
+   shifter_group *group;
+
+   for (i = 0; i < MAX_SHIFTER_GROUPS; i++)
+   {
+      group = &shifter_groups[i];
+      group->num_entries = nextByte();
+      group->entries = new shifter_entry[group->num_entries];
+   }
+
+   for (i = 0; i < MAX_SHIFTER_GROUPS; i++)
+   {
+      group = &shifter_groups[i];
+      group->channel = nextByte();
+   }
+
+   for (i = 0; i < MAX_SHIFTER_GROUPS; i++)
+   {
+      group = &shifter_groups[i];
+      group->cc_number = nextByte();
+   }
+
+   for (i = 0; i < MAX_SHIFTER_GROUPS; i++)
+   {
+      group = &shifter_groups[i];
+      loadShifterEntries(group->entries, group->num_entries);
+
+      group->active = false;
+   }
+}
+
+void saveGroups()
+{
+   uint8_t i, j;
+
+   eepromIndex = LOCATION_OF_GROUPS;
+
+   for (i = 0; i < MAX_SHIFTER_GROUPS; i++)
+   {
+      writeNextByte(shifter_groups[i].num_entries);
+   }
+
+   for (i = 0; i < MAX_SHIFTER_GROUPS; i++)
+   {
+      writeNextByte(shifter_groups[i].channel);
+   }
+
+   for (i = 0; i < MAX_SHIFTER_GROUPS; i++)
+   {
+      writeNextByte(shifter_groups[i].cc_number);
+   }
+
+   for (i = 0; i < MAX_SHIFTER_GROUPS; i++)
+   {
+      for (j = 0; j < shifter_groups[i].num_entries; j++)
+      {
+         writeNextByte(shifter_groups[i].entries[j].input.status);
+         writeNextByte(shifter_groups[i].entries[j].input.data);
+         writeNextByte(shifter_groups[i].entries[j].output.status);
+         writeNextByte(shifter_groups[i].entries[j].output.data);
+      }
+   }
+}
+
+void loadSettings()
+{
+   const uint8_t PRO_PIN = 2;
+
+   pinMode(PRO_PIN, INPUT_PULLUP);
+
+   proModel = digitalRead(PRO_PIN) == 0;
+
+   eepromIndex = LOCATION_OF_GROUPS;
+   loadGroups();
+
+   eepromIndex = LOCATION_OF_CONTROLS;
+   loadInputs();
+
+   uint8_t flags = EEPROM.read(LOCATION_OF_FLAGS);
+
+   setupMidiLed(flags & ACTIVITY_LED_MASK);
+
+   serialMidiEnabled = flags & SERIAL_MIDI_ENABLED_MASK;
+   usbMidiEnabled = flags & USB_MIDI_ENABLED_MASK;
+}
+
+void startup()
+{
+   engineActive = false;
+
+   loadSettings();
+
+   delay(200);
+
+   initControls();
+
+   engineActive = true;
+}
+
+void resetSettings(bool andRestart)
+{
+   uint16_t i;
+   uint8_t  start = LOCATION_OF_CONTROLS;
+
+   // To ensure we never send a value exceeding 127 over sysex, set all bytes
+   // to 0 (leave serial intact)
+   for (i = start; i < 512; i++)
+   {
+      EEPROM.update(i, 0);
+   }
+
+   resetControls();
+
+   resetGroups();
+
+   EEPROM.update(LOCATION_OF_FLAGS, 12);      // 00001100
+
+   if (andRestart)
+   {
+      reset();
+   }
+}
+
+void initSettings()
+{
+   engineActive = false;
+
+   delay(200);
+
+   if (initEEPROM())
+   {
+      resetSettings(true);
+   }
+   else
+   {
+      startup();
+   }
+
+   engineActive = true;
+}
+
+void getSerialNumber(uint8_t *serial)
+{
+   if (serial == NULL)
+      return;
+
+   for (uint8_t i = 0; i < SERIAL_NUMBER_SIZE; i++)
+   {
+      serial[i] = EEPROM.read(LOCATION_OF_SERIAL_NUMBER + i);
+   }
+}
+
+bool isRegistered()
+{
+   uint8_t val;
+   bool    result = false;
+   bool    badBytes = false;
+
+   for (uint8_t i = 0; i < SERIAL_NUMBER_SIZE; i++)
+   {
+      val = EEPROM.read(LOCATION_OF_SERIAL_NUMBER + i);
+
+      /**
+       * TODO
+       * Is it worth pulling in the std::regexp library for this?
+       * Serial numbers should match /[a-z]|[A-Z]|[\d-_]/g
+       */
+
+      if (val > 0)
+      {
+         if ((val == 45) || (val == 95) || ((val >= 65) && (val <= 90)) ||
+             ((val >= 97) && (val <= 122)) || ((val >= 48) && (val <= 57)))
+         {
+            result = true;
+         }
+         else
+         {
+            badBytes = true;
+         }
+      }
+   }
+   return result && !badBytes;
+}
+
+void registerSerialNumber(uint8_t *data, uint8_t start)
+{
+   for (uint8_t i = 0; i < SERIAL_NUMBER_SIZE; i++)
+   {
+      EEPROM.update(LOCATION_OF_SERIAL_NUMBER + i, data[start + i]);
+   }
+}
+
+void validateFirmwareVersion()
+{
+   uint8_t stored_version = EEPROM.read(0);
+
+   if (stored_version != CURRENT_VERSION)
+   {
+      // Here we can take any required actions during an upgrade.
+
+      EEPROM.update(0, CURRENT_VERSION);
+   }
+}
