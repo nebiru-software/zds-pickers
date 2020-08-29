@@ -21,7 +21,7 @@ const int16_t LOCATION_OF_FLAGS         = 15;
 const uint8_t LOCATION_OF_CONTROLS      = 20;
 const uint8_t LOCATION_OF_GROUPS        = 50;
 
-extern analog_input analog_inputs[MAX_ANALOG_INPUTS];
+extern analog_input  analog_inputs[MAX_ANALOG_INPUTS];
 extern shifter_group shifter_groups[MAX_SHIFTER_GROUPS];
 
 extern bool engineActive;
@@ -39,10 +39,9 @@ void          validateFirmwareVersion();
 void          saveGroups();
 shifter_entry createEntry();
 
-bool          isProModel();
-void          getSerialNumber(uint8_t *serial);
-bool          isRegistered();
-void          registerSerialNumber(uint8_t *serial,
-                                   uint8_t start);
+bool isProModel();
+void getSerialNumber(uint8_t* serial);
+bool isRegistered();
+void registerSerialNumber(uint8_t* serial, uint8_t start);
 
 #endif // ifndef settings_h

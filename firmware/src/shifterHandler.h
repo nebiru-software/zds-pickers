@@ -3,6 +3,6 @@
 
 #include "shifterTypes.h"
 
-bool shiftPacket(midi_packet *packet);
+bool shiftPacket(midi_packet* packet);
 
 #endif // ifndef shifterHandler_h

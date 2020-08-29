@@ -1,9 +1,8 @@
+#include "initializeEEPROM.h"
 #include <Arduino.h>
 #include <EEPROM.h>
-#include "initializeEEPROM.h"
 
-bool initEEPROM()
-{
+bool initEEPROM() {
   // Byte zero is firmware -- check byte 1 for first run
 
   /*
@@ -14,14 +13,14 @@ bool initEEPROM()
   if ((EEPROM.read(0) == 255) || (EEPROM.read(511) == 255)) {
     // First time ran
 
-    #if SETTINGS_DEBUG_MODE
-      Serial.println("first run -- clearing EEPROM.");
-    #endif // if SETTINGS_DEBUG_MODE
+#if SETTINGS_DEBUG_MODE
+    Serial.println("first run -- clearing EEPROM.");
+#endif // if SETTINGS_DEBUG_MODE
 
     // To ensure we never send a value exceeding 127 over sysex,
     // set all bytes to 0
     for (uint16_t i = 1; i < MAX_BYTES; i++) {
-        EEPROM.update(i, 0);
+      EEPROM.update(i, 0);
     }
 
     return true;

@@ -1,6 +1,6 @@
 #include "controlHandler.h"
-#include "settings.h"
 #include "midiHandler.h"
+#include "settings.h"
 #include "sysExHandler.h"
 
 #define CONTROLS_DEBUG_MODE false
@@ -18,11 +18,10 @@
 #define CC_ON 127
 
 unsigned long lastDebounceTime = 0;
-unsigned long debounceDelay = 50;
+unsigned long debounceDelay    = 50;
 
 #if CONTROLS_DEBUG_MODE
-static void dumpControl(analog_input *jack)
-{
+static void dumpControl(analog_input* jack) {
   Serial.print("Jack # ");
   Serial.println(jack->idx);
   Serial.print("Flags ");
@@ -59,8 +58,7 @@ static void dumpControl(analog_input *jack)
 
 #endif // if CONTROLS_DEBUG_MODE
 
-static void broadcastCcMessage(analog_input *jack, midi::DataByte value)
-{
+static void broadcastCcMessage(analog_input* jack, midi::DataByte value) {
 #if CONTROLS_DEBUG_MODE
   Serial.print("Broadcast CC ");
   Serial.print(jack->status & 0xF0);
@@ -78,16 +76,15 @@ static void broadcastCcMessage(analog_input *jack, midi::DataByte value)
 
   packet.msgType = (midi::MidiType)(jack->status & 0xF0);
   packet.channel = (jack->status & 0x0F) + 1;
-  packet.data1 = jack->data;
-  packet.data2 = value;
+  packet.data1   = jack->data;
+  packet.data2   = value;
 
   handleControlChange(&packet);
   processSerialPacket(&packet);
 }
 
-static void buttonStateChanged(analog_input *jack)
-{
-  bool lightLED = false;
+static void buttonStateChanged(analog_input* jack) {
+  bool lightLED     = false;
   bool stateChanged = false;
 
 #if CONTROLS_DEBUG_MODE
@@ -97,100 +94,80 @@ static void buttonStateChanged(analog_input *jack)
   Serial.println(jack->idx);
 #endif // if CONTROLS_DEBUG_MODE
 
-  switch (jack->latching)
-  {
-  case MOMENTARY:
+  switch (jack->latching) {
+    case MOMENTARY:
 
-    switch (jack->polarity)
-    {
-    case NORMALLY_OFF:
-        lightLED = jack->state == BUTTON_DOWN;
-        broadcastCcMessage(jack,
-                          jack->state == BUTTON_DOWN
-                          ? CC_ON
-                          : CC_OFF);
-        stateChanged = true;
-        break;
-    case NORMALLY_ON:
-        lightLED = jack->state == BUTTON_UP;
-        broadcastCcMessage(jack,
-                          jack->state == BUTTON_UP
-                          ? CC_ON
-                          : CC_OFF);
-        stateChanged = true;
-        break;
-    }
-    break;
+      switch (jack->polarity) {
+        case NORMALLY_OFF:
+          lightLED = jack->state == BUTTON_DOWN;
+          broadcastCcMessage(jack, jack->state == BUTTON_DOWN ? CC_ON : CC_OFF);
+          stateChanged = true;
+          break;
+        case NORMALLY_ON:
+          lightLED = jack->state == BUTTON_UP;
+          broadcastCcMessage(jack, jack->state == BUTTON_UP ? CC_ON : CC_OFF);
+          stateChanged = true;
+          break;
+      }
+      break;
 
-  case LATCHING:
+    case LATCHING:
 
-    // Only change state on button up
-    if (jack->state == BUTTON_UP)
-    {
+      // Only change state on button up
+      if (jack->state == BUTTON_UP) {
         jack->latched = !jack->latched;
 
         lightLED = jack->latched;
         broadcastCcMessage(jack, jack->latched ? CC_ON : CC_OFF);
         stateChanged = true;
-    }
-    break;
+      }
+      break;
   }
 
-  if (stateChanged)
-  {
+  if (stateChanged) {
     digitalWrite(jack->ledPin, lightLED);
     jack->ledLit = lightLED;
 
-    if (clientIsConnected)
-    {
-        sendInternalState();
+    if (clientIsConnected) {
+      sendInternalState();
     }
   }
 }
 
-static void crankJack(analog_input *jack)
-{
-  switch (jack->controlType)
-  {
-  case CONTROL_TYPE_BUTTON:
-    bool pinReading = digitalRead(jack->dataPin);
+static void crankJack(analog_input* jack) {
+  switch (jack->controlType) {
+    case CONTROL_TYPE_BUTTON:
+      bool pinReading = digitalRead(jack->dataPin);
 
-    if (pinReading != jack->prevState)
-    {
+      if (pinReading != jack->prevState) {
         lastDebounceTime = millis();
-    }
+      }
 
-    if ((millis() - lastDebounceTime) > debounceDelay)
-    {
-        if (pinReading != jack->state)
-        {
+      if ((millis() - lastDebounceTime) > debounceDelay) {
+        if (pinReading != jack->state) {
           jack->state = pinReading;
 
           // fire action
           buttonStateChanged(jack);
         }
-    }
-    jack->prevState = pinReading;
-    break;
+      }
+      jack->prevState = pinReading;
+      break;
   }
 }
 
-void initControls()
-{
-  analog_input *jack;
+void initControls() {
+  analog_input* jack;
 
-  for (uint8_t i = 0; i < MAX_ANALOG_INPUTS; i++)
-  {
+  for (uint8_t i = 0; i < MAX_ANALOG_INPUTS; i++) {
     jack = &analog_inputs[i];
 
-    if (jack->active)
-    {
-        pinMode(jack->dataPin, INPUT_PULLUP);
+    if (jack->active) {
+      pinMode(jack->dataPin, INPUT_PULLUP);
 
-        if (jack->ledPin != 255)
-        {
-          pinMode(jack->ledPin, OUTPUT);
-        }
+      if (jack->ledPin != 255) {
+        pinMode(jack->ledPin, OUTPUT);
+      }
     }
 
 #if CONTROLS_DEBUG_MODE
@@ -202,17 +179,14 @@ void initControls()
   sendInternalState();
 }
 
-void crankInputJacks()
-{
-  analog_input *jack;
+void crankInputJacks() {
+  analog_input* jack;
 
-  for (uint8_t i = 0; i < MAX_ANALOG_INPUTS; i++)
-  {
+  for (uint8_t i = 0; i < MAX_ANALOG_INPUTS; i++) {
     jack = &analog_inputs[i];
 
-    if (jack->active)
-    {
-        crankJack(jack);
+    if (jack->active) {
+      crankJack(jack);
     }
   }
 }
