@@ -20,12 +20,12 @@ void resetControls() {
     jack.data   = 110 + i;
 
     // jack.flags = 1;
-    jack.calibrationLow = 0;
-    jack.calibrationLow = 127;
-    jack.latching       = false;
-    jack.polarity       = false;
-    jack.curve          = 0;
-    jack.controlType    = CONTROL_TYPE_BUTTON;
+    jack.calibrationLow  = 0;
+    jack.calibrationHigh = 127;
+    jack.latching        = false;
+    jack.polarity        = false;
+    jack.curve           = 0;
+    jack.controlType     = CONTROL_TYPE_BUTTON;
 
     switch (i) {
       case 0:

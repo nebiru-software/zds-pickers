@@ -153,7 +153,7 @@ static void crankJack(analog_input *jack)
   switch (jack->controlType)
   {
   case CONTROL_TYPE_BUTTON:
-    int pinReading = digitalRead(jack->dataPin);
+    bool pinReading = digitalRead(jack->dataPin);
 
     if (pinReading != jack->prevState)
     {
