@@ -25,21 +25,18 @@ extern analog_input  analog_inputs[MAX_ANALOG_INPUTS];
 extern shifter_group shifter_groups[MAX_SHIFTER_GROUPS];
 
 extern bool engineActive;
-extern bool proModel;
 extern bool clientIsConnected;
 
 extern bool serialMidiEnabled;
 extern bool usbMidiEnabled;
 
-void          initSettings();
-void          resetSettings(bool restartToo);
-void          reset();
-void          hardReset(bool preserveSerial);
-void          validateFirmwareVersion();
-void          saveGroups();
-shifter_entry createEntry();
+void initSettings();
+void resetSettings(bool restartToo);
+void reset();
+void hardReset(bool preserveSerial);
+void validateFirmwareVersion();
+void saveGroups();
 
-bool isProModel();
 void getSerialNumber(uint8_t* serial);
 bool isRegistered();
 void registerSerialNumber(uint8_t* serial, uint8_t start);

@@ -33,15 +33,15 @@ void resetControls() {
         break;
 
       case 2:
-        jack.active = proModel;
+        // jack.active = proModel;
         break;
 
       case 3:
       case 4:
       case 5:
         jack.controlType = CONTROL_TYPE_TRIGGER;
-        jack.active      = proModel;
-        jack.status      = NOTE_ON;
+        // jack.active      = true;
+        jack.status = NOTE_ON;
         break;
     }
 

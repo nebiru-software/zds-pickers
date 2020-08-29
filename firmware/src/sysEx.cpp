@@ -67,7 +67,7 @@ static void unpackByte(uint8_t b) {
       // Start of the run Get the high bits
       highBits = b;
     } else {
-      rawData[pushIndex] = b | (highBits & (1 << (rank - 1)) ? 0x80 : 0);
+      rawData[pushIndex] = b | ((highBits & (1 << (rank - 1))) ? 0x80 : 0);
       ++pushIndex;
     }
   } else {

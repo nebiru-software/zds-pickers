@@ -94,34 +94,30 @@ static void buttonStateChanged(analog_input* jack) {
   Serial.println(jack->idx);
 #endif // if CONTROLS_DEBUG_MODE
 
-  switch (jack->latching) {
-    case MOMENTARY:
+  if (!jack->latching) { // MOMENTARY:
 
-      switch (jack->polarity) {
-        case NORMALLY_OFF:
-          lightLED = jack->state == BUTTON_DOWN;
-          broadcastCcMessage(jack, jack->state == BUTTON_DOWN ? CC_ON : CC_OFF);
-          stateChanged = true;
-          break;
-        case NORMALLY_ON:
-          lightLED = jack->state == BUTTON_UP;
-          broadcastCcMessage(jack, jack->state == BUTTON_UP ? CC_ON : CC_OFF);
-          stateChanged = true;
-          break;
-      }
-      break;
-
-    case LATCHING:
-
-      // Only change state on button up
-      if (jack->state == BUTTON_UP) {
-        jack->latched = !jack->latched;
-
-        lightLED = jack->latched;
-        broadcastCcMessage(jack, jack->latched ? CC_ON : CC_OFF);
+    switch (jack->polarity) {
+      case NORMALLY_OFF:
+        lightLED = jack->state == BUTTON_DOWN;
+        broadcastCcMessage(jack, jack->state == BUTTON_DOWN ? CC_ON : CC_OFF);
         stateChanged = true;
-      }
-      break;
+        break;
+      case NORMALLY_ON:
+        lightLED = jack->state == BUTTON_UP;
+        broadcastCcMessage(jack, jack->state == BUTTON_UP ? CC_ON : CC_OFF);
+        stateChanged = true;
+        break;
+    }
+  } else { // LATCHING:
+
+    // Only change state on button up
+    if (jack->state == BUTTON_UP) {
+      jack->latched = !jack->latched;
+
+      lightLED = jack->latched;
+      broadcastCcMessage(jack, jack->latched ? CC_ON : CC_OFF);
+      stateChanged = true;
+    }
   }
 
   if (stateChanged) {
@@ -157,10 +153,8 @@ static void crankJack(analog_input* jack) {
 }
 
 void initControls() {
-  analog_input* jack;
-
   for (uint8_t i = 0; i < MAX_ANALOG_INPUTS; i++) {
-    jack = &analog_inputs[i];
+    analog_input* jack = &analog_inputs[i];
 
     if (jack->active) {
       pinMode(jack->dataPin, INPUT_PULLUP);
@@ -180,10 +174,8 @@ void initControls() {
 }
 
 void crankInputJacks() {
-  analog_input* jack;
-
   for (uint8_t i = 0; i < MAX_ANALOG_INPUTS; i++) {
-    jack = &analog_inputs[i];
+    analog_input* jack = &analog_inputs[i];
 
     if (jack->active) {
       crankJack(jack);

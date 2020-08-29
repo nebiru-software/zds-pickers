@@ -21,7 +21,7 @@ struct analog_input : midi_message {
   uint8_t idx;
 
   bool    latching;
-  bool    polarity;
+  uint8_t polarity;
   uint8_t curve;
 
   uint8_t dataPin;

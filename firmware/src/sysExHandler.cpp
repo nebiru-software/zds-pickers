@@ -19,7 +19,7 @@ static void sendModel() {
 #if SYSEX_HANDLER_DEBUG_MODE
   Serial.println("Sending model.");
 #endif // if SYSEX_HANDLER_DEBUG_MODE
-  sendSimpleMessage(SYSEX_MSG_RECEIVE_MODEL, proModel);
+  sendSimpleMessage(SYSEX_MSG_RECEIVE_MODEL, 2);
 }
 
 static void sendVersion(midi::DataByte* data, int size) {
@@ -397,9 +397,6 @@ void processMessage(midi::DataByte* data, size_t size) {
 
           delete[] group->entries;
           group->entries = newArr;
-
-          // Initialize the new entry
-          group->entries[entryId] = createEntry();
         }
 
         group->entries[entryId].input.status  = data[3];

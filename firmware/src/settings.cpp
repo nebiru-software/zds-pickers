@@ -53,7 +53,6 @@ analog_input analog_inputs[MAX_ANALOG_INPUTS];
 
 shifter_group shifter_groups[MAX_SHIFTER_GROUPS];
 
-bool proModel          = false;
 bool engineActive      = false;
 bool clientIsConnected = false;
 
@@ -66,6 +65,7 @@ void reset() {
   soft_restart();
 }
 
+// cppcheck-suppress unusedFunction
 void hardReset(bool preserveSerial) {
   if (preserveSerial) {
     for (uint16_t i = LOCATION_OF_CONTROLS; i < 512; i++) {
@@ -111,7 +111,7 @@ static bool loadInput(analog_input* jack, uint8_t idx) {
   jack->flags           = nextByte();
   jack->calibrationLow  = nextByte();
   jack->calibrationHigh = nextByte();
-  jack->active          = (idx < 2) || proModel;
+  jack->active          = (idx < 2); // || proModel;
   jack->latching        = jack->flags & LATCHING_MASK;
   jack->polarity        = (jack->flags & POLARITY_MASK) >> 1;
   jack->curve           = (jack->flags & CURVE_MASK) >> 2;
@@ -182,12 +182,6 @@ static void loadInputs() {
 #endif // if SETTINGS_DEBUG_MODE
 }
 
-shifter_entry createEntry() {
-  shifter_entry entry;
-
-  return entry;
-}
-
 static void loadShifterEntry(shifter_entry* entry) {
   loadMIDIMessage(&entry->input);
   loadMIDIMessage(&entry->output);
@@ -201,7 +195,6 @@ static void loadShifterEntries(shifter_entry* entries, const uint8_t count) {
 #endif // if SETTINGS_DEBUG_MODE
 
   for (uint8_t i = 0; i < count; i++) {
-    entries[i] = createEntry();
     loadShifterEntry(&entries[i]);
 
 #if SETTINGS_DEBUG_MODE
@@ -275,12 +268,6 @@ void saveGroups() {
 }
 
 void loadSettings() {
-  const uint8_t PRO_PIN = 2;
-
-  pinMode(PRO_PIN, INPUT_PULLUP);
-
-  proModel = digitalRead(PRO_PIN) == 0;
-
   eepromIndex = LOCATION_OF_GROUPS;
   loadGroups();
 
@@ -352,12 +339,11 @@ void getSerialNumber(uint8_t* serial) {
 }
 
 bool isRegistered() {
-  uint8_t val;
-  bool    result   = false;
-  bool    badBytes = false;
+  bool result   = false;
+  bool badBytes = false;
 
   for (uint8_t i = 0; i < SERIAL_NUMBER_SIZE; i++) {
-    val = EEPROM.read(LOCATION_OF_SERIAL_NUMBER + i);
+    uint8_t val = EEPROM.read(LOCATION_OF_SERIAL_NUMBER + i);
 
     /**
      * TODO

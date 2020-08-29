@@ -69,18 +69,16 @@ bool crankUsbMidi() { // return true to have midi LED flash
 bool handleControlChange(midi_packet* packet) {
   bool result = false;
 
-  uint8_t        i;
   shifter_group* group;
 
-  for (i = 0; i < MAX_SHIFTER_GROUPS; i++) {
+  for (uint8_t i = 0; i < MAX_SHIFTER_GROUPS; i++) {
     group = &shifter_groups[i];
     if ((group->channel + 1 == packet->channel) && (group->cc_number == packet->data1)) {
       group->active = packet->data2 != 0;
       result        = true;
 
-      analog_input* jack;
-      for (uint8_t i = 0; i < MAX_ANALOG_INPUTS; i++) {
-        jack = &analog_inputs[i];
+      for (uint8_t j = 0; j < MAX_ANALOG_INPUTS; j++) {
+        analog_input* jack = &analog_inputs[j];
 
 #if MIDI_HANDLER_DEBUG_MODE
         if (jack->active) {

@@ -9,6 +9,7 @@
 #include "midiHandler.h"
 #include "settings.h"
 
+// cppcheck-suppress unusedFunction
 void setup() {
 #if PERFORM_HARD_RESET
   hardReset(PRESERVE_SERIAL);
@@ -23,6 +24,7 @@ void setup() {
 #endif // if PERFORM_HARD_RESET
 }
 
+// cppcheck-suppress unusedFunction
 void loop() {
 #if !PERFORM_HARD_RESET
   if (engineActive) {
