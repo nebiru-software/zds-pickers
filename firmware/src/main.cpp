@@ -6,6 +6,7 @@
 #endif // if PERFORM_HARD_RESET
 
 #include "controlHandler.h"
+#include "initializeEEPROM.h"
 #include "midiHandler.h"
 #include "settings.h"
 
@@ -20,6 +21,7 @@ void setup() {
 
   setupMidi();
 
+  delay(2000);
   initSettings();
 #endif // if PERFORM_HARD_RESET
 }
@@ -40,7 +42,7 @@ void loop() {
    */
   delay(5000);
 
-  for (uint16_t i = 1; i < 512; i++) {
+  for (uint16_t i = 1; i < MAX_BYTES; i++) {
     Serial.print(EEPROM.read(i));
     Serial.print(" ");
   }

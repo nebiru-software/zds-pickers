@@ -77,8 +77,8 @@ bool handleControlChange(midi_packet* packet) {
       group->active = packet->data2 != 0;
       result        = true;
 
-      for (uint8_t j = 0; j < MAX_ANALOG_INPUTS; j++) {
-        analog_input* jack = &analog_inputs[j];
+      for (uint8_t j = 0; j < MAX_INPUT_CONTROLS; j++) {
+        input_control* jack = &input_controls[j];
 
 #if MIDI_HANDLER_DEBUG_MODE
         if (jack->active) {

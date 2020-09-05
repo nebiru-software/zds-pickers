@@ -113,22 +113,22 @@ void sendGroups() {
 }
 
 void sendInternalState() {
-  const size_t length = 3 + (MAX_ANALOG_INPUTS * 2) + MAX_SHIFTER_GROUPS;
+  const size_t length = 3 + (MAX_INPUT_CONTROLS * 2) + MAX_SHIFTER_GROUPS;
   uint8_t      i, j;
 
   midi::DataByte data[length];
 
   data[0] = SYSEX_MSG_GET_STATE;
-  data[1] = MAX_ANALOG_INPUTS;
+  data[1] = MAX_INPUT_CONTROLS;
 
   j = 2;
 
-  for (i = 0; i < MAX_ANALOG_INPUTS; i++) {
-    data[j++] = analog_inputs[i].active;
+  for (i = 0; i < MAX_INPUT_CONTROLS; i++) {
+    data[j++] = input_controls[i].active;
   }
 
-  for (i = 0; i < MAX_ANALOG_INPUTS; i++) {
-    data[j++] = analog_inputs[i].ledLit;
+  for (i = 0; i < MAX_INPUT_CONTROLS; i++) {
+    data[j++] = input_controls[i].ledLit;
   }
 
   for (i = 0; i < MAX_SHIFTER_GROUPS; i++) {

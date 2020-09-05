@@ -7,7 +7,7 @@
 #define CONTROL_TYPE_POT 1
 #define CONTROL_TYPE_TRIGGER 2
 
-struct analog_input : midi_message {
+struct input_control : midi_message {
   // 5 bytes total (2 inherited from midi_message)
 
   // Stored items (EEPROM)
@@ -29,10 +29,17 @@ struct analog_input : midi_message {
 
   uint8_t controlType;
 
-  bool prevState;
-  bool state;
-  bool latched;
-  bool ledLit;
+  bool     prevState;
+  bool     state;
+  uint16_t reading;
+  bool     latched;
+  bool     ledLit;
+
+  unsigned long lastStartHitTime;
+  unsigned long lastEndHitTime;
+  uint16_t      loopTimes;
+  uint8_t       maskTime;
+  uint8_t       scanTime;
 };
 
 extern void initControls();

@@ -36,20 +36,20 @@
 #include <EEPROM.h>
 #include <SoftReset.h>
 
-#define SETTINGS_DEBUG_MODE false
+#define SETTINGS_DEBUG_MODE true
 
-#define CHANNEL_MASK 0x0F // 00001111 (from analog_input->status)
-#define STATUS_MASK 0xF0  // 11110000 (from analog_input->status)
+#define CHANNEL_MASK 0x0F // 00001111 (from input_control->status)
+#define STATUS_MASK 0xF0  // 11110000 (from input_control->status)
 
-#define LATCHING_MASK 1            // 00000001 (from analog_input->flags)
-#define POLARITY_MASK 2            // 00000010 (from analog_input->flags)
-#define CURVE_MASK 28              // 00011100 (from analog_input->flags)
-#define CONTROL_TYPE_MASK 96       // 01100000 (from analog_input->flags)
+#define LATCHING_MASK 1            // 00000001 (from input_control->flags)
+#define POLARITY_MASK 2            // 00000010 (from input_control->flags)
+#define CURVE_MASK 28              // 00011100 (from input_control->flags)
+#define CONTROL_TYPE_MASK 96       // 01100000 (from input_control->flags)
 #define ACTIVITY_LED_MASK 3        // 00000011
 #define SERIAL_MIDI_ENABLED_MASK 4 // 00000100
 #define USB_MIDI_ENABLED_MASK 8    // 00001000
 
-analog_input analog_inputs[MAX_ANALOG_INPUTS];
+input_control input_controls[MAX_INPUT_CONTROLS];
 
 shifter_group shifter_groups[MAX_SHIFTER_GROUPS];
 
@@ -68,11 +68,11 @@ void reset() {
 // cppcheck-suppress unusedFunction
 void hardReset(bool preserveSerial) {
   if (preserveSerial) {
-    for (uint16_t i = LOCATION_OF_CONTROLS; i < 512; i++) {
+    for (uint16_t i = LOCATION_OF_CONTROLS; i < MAX_BYTES; i++) {
       EEPROM.update(i, 255);
     }
   } else {
-    for (uint16_t i = 0; i < 512; i++) {
+    for (uint16_t i = 0; i < MAX_BYTES; i++) {
       EEPROM.update(i, 255);
     }
   }
@@ -103,7 +103,7 @@ static void dumpMIDIMessage(midi_message* message) {
 
 #endif // if SETTINGS_DEBUG_MODE
 
-static bool loadInput(analog_input* jack, uint8_t idx) {
+static bool loadInput(input_control* jack, uint8_t idx) {
   loadMIDIMessage(jack);
 
   jack->idx = idx;
@@ -111,7 +111,7 @@ static bool loadInput(analog_input* jack, uint8_t idx) {
   jack->flags           = nextByte();
   jack->calibrationLow  = nextByte();
   jack->calibrationHigh = nextByte();
-  jack->active          = (idx < 2); // || proModel;
+  jack->active          = true; //(idx < 4); // || proModel;
   jack->latching        = jack->flags & LATCHING_MASK;
   jack->polarity        = (jack->flags & POLARITY_MASK) >> 1;
   jack->curve           = (jack->flags & CURVE_MASK) >> 2;
@@ -119,6 +119,7 @@ static bool loadInput(analog_input* jack, uint8_t idx) {
 
   jack->prevState = NULL;
   jack->state     = 0;
+  jack->reading   = 0;
   jack->latched   = false;
   jack->ledLit    = false;
 
@@ -148,8 +149,13 @@ static bool loadInput(analog_input* jack, uint8_t idx) {
       jack->ledPin  = 255;
       break;
     case 5:
-      jack->dataPin = 19;
-      jack->ledPin  = 255;
+      jack->dataPin          = 19;
+      jack->ledPin           = 255;
+      jack->maskTime         = 60;
+      jack->scanTime         = 20;
+      jack->lastStartHitTime = 0;
+      jack->lastEndHitTime   = 0;
+      jack->loopTimes        = 0;
       break;
   }
 
@@ -159,21 +165,23 @@ static bool loadInput(analog_input* jack, uint8_t idx) {
 static void loadInputs() {
 #if SETTINGS_DEBUG_MODE
   Serial.print("Loading ");
-  Serial.print(MAX_ANALOG_INPUTS);
-  Serial.print(" inputs...  ");
+  Serial.print(MAX_INPUT_CONTROLS);
+  Serial.println(" inputs...  ");
 #endif // if SETTINGS_DEBUG_MODE
 
-  for (uint8_t i = 0; i < MAX_ANALOG_INPUTS; i++) {
-    if (!loadInput(&analog_inputs[i], i)) {
+  for (uint8_t i = 0; i < MAX_INPUT_CONTROLS; i++) {
+    if (!loadInput(&input_controls[i], i)) {
       break;
     }
 
 #if SETTINGS_DEBUG_MODE
     Serial.print("Input #");
     Serial.print(i);
-    dumpMIDIMessage(&analog_inputs[i]);
+    dumpMIDIMessage(&input_controls[i]);
+    Serial.print(" Active:");
+    Serial.print(input_controls[i].active);
     Serial.print(" Flags:");
-    Serial.println(analog_inputs[i].flags);
+    Serial.println(input_controls[i].flags);
 #endif // if SETTINGS_DEBUG_MODE
   }
 
@@ -300,7 +308,7 @@ void resetSettings(bool andRestart) {
 
   // To ensure we never send a value exceeding 127 over sysex, set all bytes
   // to 0 (leave serial intact)
-  for (i = start; i < 512; i++) {
+  for (i = start; i < MAX_BYTES; i++) {
     EEPROM.update(i, 0);
   }
 

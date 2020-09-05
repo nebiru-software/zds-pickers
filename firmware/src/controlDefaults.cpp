@@ -10,10 +10,10 @@ void resetControls() {
   const uint8_t NOTE_ON = 0x09;
   const uint8_t CC      = 0x0B;
 
-  analog_input jack;
-  uint8_t      eepromIndex = LOCATION_OF_CONTROLS;
+  input_control jack;
+  uint8_t       eepromIndex = LOCATION_OF_CONTROLS;
 
-  for (uint8_t i = 0; i < MAX_ANALOG_INPUTS; i++) {
+  for (uint8_t i = 0; i < MAX_INPUT_CONTROLS; i++) {
     jack.idx    = i;
     jack.active = true;
     jack.status = CC;
@@ -25,23 +25,24 @@ void resetControls() {
     jack.latching        = false;
     jack.polarity        = false;
     jack.curve           = 0;
-    jack.controlType     = CONTROL_TYPE_BUTTON;
 
     switch (i) {
       case 0:
       case 1:
-        break;
-
       case 2:
-        // jack.active = proModel;
+        jack.controlType = CONTROL_TYPE_BUTTON;
+        jack.status      = CC;
         break;
 
       case 3:
       case 4:
+        jack.controlType = CONTROL_TYPE_POT;
+        jack.status      = CC;
+        break;
+
       case 5:
         jack.controlType = CONTROL_TYPE_TRIGGER;
-        // jack.active      = true;
-        jack.status = NOTE_ON;
+        jack.status      = NOTE_ON;
         break;
     }
 

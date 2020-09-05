@@ -6,7 +6,7 @@
 
 const uint8_t SERIAL_NUMBER_SIZE = 14;
 
-#define MAX_ANALOG_INPUTS 6
+#define MAX_INPUT_CONTROLS 6
 #define MAX_SHIFTER_GROUPS 4
 #define MAX_SHIFTER_RECORDS 112
 
@@ -21,7 +21,7 @@ const int16_t LOCATION_OF_FLAGS         = 15;
 const uint8_t LOCATION_OF_CONTROLS      = 20;
 const uint8_t LOCATION_OF_GROUPS        = 50;
 
-extern analog_input  analog_inputs[MAX_ANALOG_INPUTS];
+extern input_control input_controls[MAX_INPUT_CONTROLS];
 extern shifter_group shifter_groups[MAX_SHIFTER_GROUPS];
 
 extern bool engineActive;
