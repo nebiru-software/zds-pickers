@@ -8,8 +8,8 @@
 .pioenvs/sparkfun_promicro16/*
 !.pioenvs/sparkfun_promicro16/firmware.hex
 
-board.b#*
-board.s#*
+*.b#*
+*.s#*
 .vscode/c_cpp_properties.json
 .vscode/.browse.c_cpp.db*
 .vscode/launch.json
