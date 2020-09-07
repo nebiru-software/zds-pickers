@@ -20,11 +20,11 @@ void resetControls() {
     jack.data   = 110 + i;
 
     // jack.flags = 1;
-    jack.calibrationLow  = 0;
-    jack.calibrationHigh = 127;
-    jack.latching        = false;
-    jack.polarity        = false;
-    jack.curve           = 0;
+    jack.threshold   = 2;
+    jack.sensitivity = 127;
+    jack.latching    = false;
+    jack.polarity    = false;
+    jack.curve       = 0;
 
     switch (i) {
       case 0:
@@ -38,11 +38,13 @@ void resetControls() {
       case 4:
         jack.controlType = CONTROL_TYPE_POT;
         jack.status      = CC;
+        jack.threshold   = 8;
         break;
 
       case 5:
         jack.controlType = CONTROL_TYPE_TRIGGER;
         jack.status      = NOTE_ON;
+        jack.threshold   = 8;
         break;
     }
 
@@ -54,7 +56,7 @@ void resetControls() {
     EEPROM.update(eepromIndex++, jack.status);
     EEPROM.update(eepromIndex++, jack.data);
     EEPROM.update(eepromIndex++, jack.flags);
-    EEPROM.update(eepromIndex++, jack.calibrationLow);
-    EEPROM.update(eepromIndex++, jack.calibrationHigh);
+    EEPROM.update(eepromIndex++, jack.threshold);
+    EEPROM.update(eepromIndex++, jack.sensitivity);
   }
 }

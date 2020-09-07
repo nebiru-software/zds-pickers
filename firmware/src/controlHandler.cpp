@@ -3,7 +3,7 @@
 #include "settings.h"
 #include "sysExHandler.h"
 
-#define CONTROLS_DEBUG_MODE true
+#define CONTROLS_DEBUG_MODE false
 
 #define NORMALLY_OFF 0
 #define NORMALLY_ON 1
@@ -20,6 +20,13 @@
 unsigned long lastDebounceTime = 0;
 unsigned long debounceDelay    = 50;
 
+unsigned long lastStartHitTime = 0;
+unsigned long lastEndHitTime   = 0;
+uint16_t      loopTimes        = 0;
+const uint8_t triggerMaskTime  = 100;
+const uint8_t pedalMaskTime    = 255;
+const uint8_t scanTime         = 20;
+
 #if CONTROLS_DEBUG_MODE
 static void dumpControl(input_control* jack) {
   Serial.print("Jack # ");
@@ -27,9 +34,9 @@ static void dumpControl(input_control* jack) {
   Serial.print("Flags ");
   Serial.println(jack->flags);
   Serial.print("Cal High ");
-  Serial.println(jack->calibrationHigh);
+  Serial.println(jack->sensitivity);
   Serial.print("Cal Low ");
-  Serial.println(jack->calibrationLow);
+  Serial.println(jack->threshold);
   Serial.print("Active ");
   Serial.println(jack->active);
   Serial.print("Latching ");
@@ -144,89 +151,106 @@ static void buttonStateChanged(input_control* jack) {
   }
 }
 
+static void crankButton(input_control* jack) {
+  bool pinReading = digitalRead(jack->dataPin);
+
+  if (pinReading != jack->prevState) {
+    lastDebounceTime = millis();
+  }
+
+  if ((millis() - lastDebounceTime) > debounceDelay) {
+    if (pinReading != jack->state) {
+      jack->state = pinReading;
+
+      // fire action
+      buttonStateChanged(jack);
+    }
+  }
+  jack->prevState = pinReading;
+}
+
+static void crankExpressionPedal(input_control* jack) {
+  // Analog inputs have an LSB (out of 10 bits) or so of noise,
+  // leading to "chatter" in the change detector logic.
+  // Shifting off the 2 LSBs to remove it
+  // This also brings the value into the range 0-128
+  uint16_t apinReading = analogRead(jack->dataPin);
+
+  if ((apinReading > jack->rawThreshold) && (loopTimes == 0) &&
+      (lastStartHitTime - lastEndHitTime < pedalMaskTime)) {
+    uint16_t ccValue = map(apinReading, jack->rawThreshold, jack->rawSensitivity, 0, 127);
+    if (abs(ccValue - jack->reading) > 1) {
+      jack->reading = ccValue;
+
+      Serial.print(" C ");
+      Serial.print(ccValue);
+
+      // fire action
+      // buttonStateChanged(jack);
+    }
+  }
+}
+
 static void crankTrigger(input_control* jack) {
-  const uint16_t THRESHOLD   = 20;
-  uint16_t       apinReading = analogRead(jack->dataPin);
+  uint16_t apinReading = analogRead(jack->dataPin);
 
-  if (apinReading > THRESHOLD) {
-    if (jack->loopTimes == 0) {
-      jack->lastStartHitTime = millis();
+  if (apinReading > jack->rawThreshold) {
+    if (loopTimes == 0) {
+      lastStartHitTime = millis();
 
-      if (jack->lastStartHitTime - jack->lastEndHitTime < jack->maskTime) {
+      if (lastStartHitTime - lastEndHitTime < triggerMaskTime) {
         // We're still within the mask time from the last hit.
         // Ignore to avoid double hits
         return;
       } else {
-        jack->reading   = apinReading; // first peak
-        jack->loopTimes = 1;           // start scan trigger
+        jack->reading = apinReading; // first peak
+        loopTimes     = 1;           // start scan trigger
       }
     }
   }
 
   // peak scan start
-  if (jack->loopTimes > 0) {
+  if (loopTimes > 0) {
     if (apinReading > jack->reading) {
       jack->reading = apinReading;
     }
-    jack->loopTimes++;
+    loopTimes++;
 
     // scan end
-    if (millis() - jack->lastStartHitTime >= jack->scanTime) {
-      jack->lastEndHitTime = millis();
+    if (millis() - lastStartHitTime >= scanTime) {
+      lastEndHitTime = millis();
+      // jack->reading =
+      //     map(jack->reading, jack->rawThreshold, jack->rawSensitivity, 0, 127);
+
 #if CONTROLS_DEBUG_MODE
       Serial.print("[Hit] velocity : ");
       Serial.print(jack->reading);
       Serial.print(", loopTimes : ");
-      Serial.print(jack->loopTimes);
+      Serial.print(loopTimes);
       Serial.print(", ScanTime(ms) : ");
-      Serial.println((jack->lastEndHitTime - jack->lastStartHitTime));
+      Serial.println((lastEndHitTime - lastStartHitTime));
 #endif // if CONTROLS_DEBUG_MODE
 
+      Serial.print(" T ");
+      Serial.print(jack->reading);
+
       // fire action
+      // TODO: map() sensitivity
       buttonStateChanged(jack);
 
-      jack->loopTimes = 0;
+      loopTimes = 0;
     }
   }
 }
 
 static void crankJack(input_control* jack) {
-  bool     pinReading;
-  uint16_t apinReading;
   switch (jack->controlType) {
     case CONTROL_TYPE_BUTTON:
-      pinReading = digitalRead(jack->dataPin);
-
-      if (pinReading != jack->prevState) {
-        lastDebounceTime = millis();
-      }
-
-      if ((millis() - lastDebounceTime) > debounceDelay) {
-        if (pinReading != jack->state) {
-          jack->state = pinReading;
-
-          // fire action
-          buttonStateChanged(jack);
-        }
-      }
-      jack->prevState = pinReading;
+      crankButton(jack);
       break;
 
     case CONTROL_TYPE_POT:
-      // Analog inputs have an LSB (out of 10 bits) or so of noise,
-      // leading to "chatter" in the change detector logic.
-      // Shifting off the 2 LSBs to remove it
-      // This also brings the value into the range 0-128
-      apinReading = analogRead(jack->dataPin) >> 3;
-      if (apinReading != jack->reading) {
-        jack->reading = apinReading;
-        if (jack->idx == 5) {
-          Serial.print(apinReading);
-          Serial.print(" ");
-        }
-        // fire action
-        buttonStateChanged(jack);
-      }
+      crankExpressionPedal(jack);
       break;
 
     case CONTROL_TYPE_TRIGGER:
@@ -264,10 +288,30 @@ void initControls() {
 }
 
 void crankInputJacks() {
+  input_control* jack;
   for (uint8_t i = 0; i < MAX_INPUT_CONTROLS; i++) {
-    input_control* jack = &input_controls[i];
+    switch (i) {
+      case 0:
+        jack = &input_controls[0];
+        break;
+      case 1:
+        jack = &input_controls[3];
+        break;
+      case 2:
+        jack = &input_controls[1];
+        break;
+      case 3:
+        jack = &input_controls[4];
+        break;
+      case 4:
+        jack = &input_controls[2];
+        break;
+      case 5:
+        jack = &input_controls[5];
+        break;
+    }
 
-    if (jack->active && jack->idx == 5) {
+    if (jack->active) {
       crankJack(jack);
     }
   }

@@ -12,10 +12,10 @@ struct input_control : midi_message {
 
   // Stored items (EEPROM)
   uint8_t flags;
-  uint8_t calibrationLow;
-  uint8_t calibrationHigh;
+  uint8_t threshold;
+  uint8_t sensitivity;
 
-  // Not stored.  Activates based on the "pro" pin jumper.
+  // Nothing below is stored
   bool active;
 
   uint8_t idx;
@@ -35,11 +35,14 @@ struct input_control : midi_message {
   bool     latched;
   bool     ledLit;
 
-  unsigned long lastStartHitTime;
-  unsigned long lastEndHitTime;
-  uint16_t      loopTimes;
-  uint8_t       maskTime;
-  uint8_t       scanTime;
+  // unsigned long lastStartHitTime;
+  // unsigned long lastEndHitTime;
+  // uint16_t      loopTimes;
+  // uint8_t       maskTime;
+  // uint8_t       scanTime;
+
+  uint16_t rawThreshold;
+  uint16_t rawSensitivity;
 };
 
 extern void initControls();

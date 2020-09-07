@@ -36,7 +36,7 @@
 #include <EEPROM.h>
 #include <SoftReset.h>
 
-#define SETTINGS_DEBUG_MODE true
+#define SETTINGS_DEBUG_MODE false
 
 #define CHANNEL_MASK 0x0F // 00001111 (from input_control->status)
 #define STATUS_MASK 0xF0  // 11110000 (from input_control->status)
@@ -108,14 +108,14 @@ static bool loadInput(input_control* jack, uint8_t idx) {
 
   jack->idx = idx;
 
-  jack->flags           = nextByte();
-  jack->calibrationLow  = nextByte();
-  jack->calibrationHigh = nextByte();
-  jack->active          = true; //(idx < 4); // || proModel;
-  jack->latching        = jack->flags & LATCHING_MASK;
-  jack->polarity        = (jack->flags & POLARITY_MASK) >> 1;
-  jack->curve           = (jack->flags & CURVE_MASK) >> 2;
-  jack->controlType     = (jack->flags & CONTROL_TYPE_MASK) >> 5;
+  jack->flags       = nextByte();
+  jack->threshold   = nextByte();
+  jack->sensitivity = nextByte();
+  jack->active      = true; //(idx < 4); // || proModel;
+  jack->latching    = jack->flags & LATCHING_MASK;
+  jack->polarity    = (jack->flags & POLARITY_MASK) >> 1;
+  jack->curve       = (jack->flags & CURVE_MASK) >> 2;
+  jack->controlType = (jack->flags & CONTROL_TYPE_MASK) >> 5;
 
   jack->prevState = NULL;
   jack->state     = 0;
@@ -149,15 +149,18 @@ static bool loadInput(input_control* jack, uint8_t idx) {
       jack->ledPin  = 255;
       break;
     case 5:
-      jack->dataPin          = 19;
-      jack->ledPin           = 255;
-      jack->maskTime         = 60;
-      jack->scanTime         = 20;
-      jack->lastStartHitTime = 0;
-      jack->lastEndHitTime   = 0;
-      jack->loopTimes        = 0;
+      jack->dataPin = 19;
+      jack->ledPin  = 255;
+      // jack->maskTime         = 60;
+      // jack->scanTime         = 20;
+      // jack->lastStartHitTime = 0;
+      // jack->lastEndHitTime   = 0;
+      // jack->loopTimes        = 0;
       break;
   }
+
+  jack->rawThreshold   = map(jack->threshold, 0, 127, 0, 1023);
+  jack->rawSensitivity = map(jack->sensitivity, 0, 127, 0, 1023);
 
   return true;
 }
@@ -174,15 +177,21 @@ static void loadInputs() {
       break;
     }
 
-#if SETTINGS_DEBUG_MODE
+    // #if SETTINGS_DEBUG_MODE
     Serial.print("Input #");
     Serial.print(i);
-    dumpMIDIMessage(&input_controls[i]);
+    // dumpMIDIMessage(&input_controls[i]);
     Serial.print(" Active:");
     Serial.print(input_controls[i].active);
     Serial.print(" Flags:");
-    Serial.println(input_controls[i].flags);
-#endif // if SETTINGS_DEBUG_MODE
+    Serial.print(input_controls[i].flags);
+    Serial.print(" Type:");
+    Serial.print(input_controls[i].controlType);
+    Serial.print(" Threshold:");
+    Serial.print(input_controls[i].rawThreshold);
+    Serial.print(" Sensitivity:");
+    Serial.println(input_controls[i].rawSensitivity);
+    // #endif // if SETTINGS_DEBUG_MODE
   }
 
 #if SETTINGS_DEBUG_MODE
