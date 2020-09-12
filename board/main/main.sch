@@ -589,99 +589,6 @@ W = angled&lt;p&gt;
 </deviceset>
 </devicesets>
 </library>
-<library name="con-jack">
-<description>&lt;b&gt;Jacks&lt;/b&gt;&lt;p&gt;
-Power Connectors&lt;br&gt;
-Phone Connectors&lt;br&gt;
-Cinch Connectors&lt;br&gt;
-&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
-<packages>
-<package name="DCJ0202">
-<description>&lt;b&gt;DC POWER JACK&lt;/b&gt;&lt;p&gt;
-Source: DCJ0202.pdf</description>
-<wire x1="1.65" y1="2.6" x2="-1.65" y2="2.6" width="0" layer="46"/>
-<wire x1="-1.65" y1="2.6" x2="-1.65" y2="3.6" width="0" layer="46"/>
-<wire x1="-1.65" y1="3.6" x2="1.65" y2="3.6" width="0" layer="46"/>
-<wire x1="1.65" y1="3.6" x2="1.65" y2="2.6" width="0" layer="46"/>
-<wire x1="5.3" y1="1.4" x2="4.3" y2="1.4" width="0" layer="46"/>
-<wire x1="4.3" y1="1.4" x2="4.3" y2="-1.4" width="0" layer="46"/>
-<wire x1="4.3" y1="-1.4" x2="5.3" y2="-1.4" width="0" layer="46"/>
-<wire x1="5.3" y1="-1.4" x2="5.3" y2="1.4" width="0" layer="46"/>
-<wire x1="1.4" y1="-3.5" x2="-1.4" y2="-3.5" width="0" layer="46"/>
-<wire x1="-1.4" y1="-3.5" x2="-1.4" y2="-2.5" width="0" layer="46"/>
-<wire x1="-1.4" y1="-2.5" x2="1.4" y2="-2.5" width="0" layer="46"/>
-<wire x1="1.4" y1="-2.5" x2="1.4" y2="-3.5" width="0" layer="46"/>
-<wire x1="-4.3" y1="-10.4" x2="4.3" y2="-10.4" width="0.2032" layer="21"/>
-<wire x1="4.3" y1="-10.4" x2="4.3" y2="3.9" width="0.2032" layer="51"/>
-<wire x1="4.3" y1="3.9" x2="-4.3" y2="3.9" width="0.2032" layer="51"/>
-<wire x1="-4.3" y1="3.9" x2="-4.3" y2="-10.4" width="0.2032" layer="21"/>
-<wire x1="-2.7" y1="3.9" x2="-4.3" y2="3.9" width="0.2032" layer="21"/>
-<wire x1="4.3" y1="3.9" x2="2.7" y2="3.9" width="0.2032" layer="21"/>
-<wire x1="-3" y1="-10.275" x2="-3" y2="-3" width="0.2032" layer="51" style="shortdash"/>
-<wire x1="3" y1="-10.3" x2="3" y2="-3" width="0.2032" layer="51" style="shortdash"/>
-<wire x1="3" y1="-3" x2="-3" y2="-3" width="0.2032" layer="51" style="shortdash"/>
-<wire x1="-0.9" y1="-9" x2="-0.9" y2="-4.5" width="0.2032" layer="51" style="shortdash"/>
-<wire x1="0.9" y1="-9" x2="0.9" y2="-4.5" width="0.2032" layer="51" style="shortdash"/>
-<wire x1="-0.9" y1="-9" x2="0.9" y2="-9" width="0.2032" layer="51" curve="166.57811"/>
-<wire x1="4.3" y1="-10.4" x2="4.3" y2="-2.45" width="0.2032" layer="21"/>
-<wire x1="4.3" y1="2.3" x2="4.3" y2="3.9" width="0.2032" layer="21"/>
-<pad name="1" x="0" y="3.1" drill="1" diameter="2" shape="long" rot="R180"/>
-<pad name="3" x="0" y="-3" drill="1" diameter="2" shape="long" rot="R180"/>
-<pad name="2" x="4.8" y="0" drill="1" diameter="2" shape="long" rot="R90"/>
-<text x="-3.81" y="5.08" size="1.27" layer="25">&gt;NAME</text>
-<text x="-5.08" y="-10.16" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
-</package>
-</packages>
-<symbols>
-<symbol name="DC-JACK-SWITCH">
-<wire x1="5.08" y1="2.54" x2="-2.54" y2="2.54" width="0.1524" layer="94"/>
-<wire x1="-2.54" y1="2.54" x2="-2.54" y2="1.27" width="0.1524" layer="94"/>
-<wire x1="5.08" y1="0" x2="2.54" y2="0" width="0.1524" layer="94"/>
-<wire x1="2.54" y1="0" x2="2.54" y2="-2.54" width="0.1524" layer="94"/>
-<wire x1="5.08" y1="-2.54" x2="2.54" y2="-2.54" width="0.1524" layer="94"/>
-<wire x1="2.54" y1="-2.54" x2="0.762" y2="-2.54" width="0.1524" layer="94"/>
-<wire x1="0.762" y1="-2.54" x2="0" y2="-1.016" width="0.1524" layer="94"/>
-<wire x1="0" y1="-1.016" x2="-0.762" y2="-2.54" width="0.1524" layer="94"/>
-<text x="-2.54" y="3.81" size="1.778" layer="95">&gt;NAME</text>
-<text x="-2.54" y="-6.35" size="1.778" layer="96">&gt;VALUE</text>
-<rectangle x1="-3.302" y1="-2.54" x2="-1.778" y2="1.27" layer="94"/>
-<pin name="1" x="7.62" y="2.54" visible="pad" length="short" direction="pas" rot="R180"/>
-<pin name="2" x="7.62" y="0" visible="pad" length="short" direction="pas" rot="R180"/>
-<pin name="3" x="7.62" y="-2.54" visible="pad" length="short" direction="pas" rot="R180"/>
-<polygon width="0.1524" layer="94">
-<vertex x="2.54" y="-2.54"/>
-<vertex x="2.032" y="-1.27"/>
-<vertex x="3.048" y="-1.27"/>
-</polygon>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="DCJ0202" prefix="J">
-<description>&lt;b&gt;DC POWER JACK&lt;/b&gt;&lt;p&gt;
-Source: DCJ0202.pdf</description>
-<gates>
-<gate name="G$1" symbol="DC-JACK-SWITCH" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="DCJ0202">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-<connect gate="G$1" pin="3" pad="3"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="MF" value="" constant="no"/>
-<attribute name="MPN" value="" constant="no"/>
-<attribute name="OC_FARNELL" value="unknown" constant="no"/>
-<attribute name="OC_NEWARK" value="unknown" constant="no"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="SparkFun-Switches" urn="urn:adsk.eagle:library:535">
 <description>&lt;h3&gt;SparkFun Switches, Buttons, Encoders&lt;/h3&gt;
 In this library you'll find switches, buttons, joysticks, and anything that moves to create or disrupt an electrical connection.
@@ -11798,6 +11705,127 @@ part number 2062-2P from STA</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="PJ-066A">
+<packages>
+<package name="CUI_PJ-066A">
+<text x="-0.3435625" y="6.51666875" size="1.27208125" layer="25">&gt;NAME</text>
+<text x="-0.059084375" y="-7.18123125" size="1.271809375" layer="27">&gt;VALUE</text>
+<wire x1="-0.35" y1="-1.15" x2="-0.35" y2="1.15" width="0.0001" layer="46"/>
+<wire x1="0.35" y1="1.15" x2="0.35" y2="-1.15" width="0.0001" layer="46"/>
+<circle x="-1.78" y="-0.01" radius="0.2" width="0.4" layer="21"/>
+<wire x1="-0.35" y1="1.15" x2="0" y2="1.5" width="0.0001" layer="46" curve="-90"/>
+<wire x1="0" y1="1.5" x2="0.35" y2="1.15" width="0.0001" layer="46" curve="-90"/>
+<wire x1="0" y1="-1.5" x2="-0.35" y2="-1.15" width="0.0001" layer="46" curve="-90"/>
+<wire x1="0.35" y1="-1.15" x2="0" y2="-1.5" width="0.0001" layer="46" curve="-90"/>
+<wire x1="14.2" y1="5.5" x2="14.2" y2="4" width="0.127" layer="51"/>
+<wire x1="14.2" y1="4" x2="14.2" y2="-4" width="0.127" layer="51"/>
+<wire x1="14.2" y1="-4" x2="14.2" y2="-5.5" width="0.127" layer="51"/>
+<wire x1="14.2" y1="-5.5" x2="0" y2="-5.5" width="0.127" layer="51"/>
+<wire x1="0" y1="-5.5" x2="0" y2="5.5" width="0.127" layer="51"/>
+<wire x1="0" y1="5.5" x2="14.2" y2="5.5" width="0.127" layer="51"/>
+<wire x1="19.9" y1="4" x2="19.9" y2="-4" width="0.127" layer="51"/>
+<wire x1="19.9" y1="-4" x2="14.2" y2="-4" width="0.127" layer="51"/>
+<wire x1="19.9" y1="4" x2="14.2" y2="4" width="0.127" layer="51"/>
+<wire x1="5.75" y1="-1.15" x2="5.75" y2="1.15" width="0.0001" layer="46"/>
+<wire x1="6.45" y1="1.15" x2="6.45" y2="-1.15" width="0.0001" layer="46"/>
+<wire x1="5.75" y1="1.15" x2="6.1" y2="1.5" width="0.0001" layer="46" curve="-90"/>
+<wire x1="6.1" y1="1.5" x2="6.45" y2="1.15" width="0.0001" layer="46" curve="-90"/>
+<wire x1="6.1" y1="-1.5" x2="5.75" y2="-1.15" width="0.0001" layer="46" curve="-90"/>
+<wire x1="6.45" y1="-1.15" x2="6.1" y2="-1.5" width="0.0001" layer="46" curve="-90"/>
+<wire x1="4.15" y1="4.45" x2="1.85" y2="4.45" width="0.0001" layer="46"/>
+<wire x1="1.85" y1="5.15" x2="4.15" y2="5.15" width="0.0001" layer="46"/>
+<wire x1="1.85" y1="4.45" x2="1.5" y2="4.8" width="0.0001" layer="46" curve="-90"/>
+<wire x1="1.5" y1="4.8" x2="1.85" y2="5.15" width="0.0001" layer="46" curve="-90"/>
+<wire x1="4.5" y1="4.8" x2="4.15" y2="4.45" width="0.0001" layer="46" curve="-90"/>
+<wire x1="4.15" y1="5.15" x2="4.5" y2="4.8" width="0.0001" layer="46" curve="-90"/>
+<wire x1="14.2" y1="5.5" x2="14.2" y2="4" width="0.127" layer="21"/>
+<wire x1="14.2" y1="4" x2="14.2" y2="-4" width="0.127" layer="21"/>
+<wire x1="14.2" y1="-4" x2="14.2" y2="-5.5" width="0.127" layer="21"/>
+<wire x1="14.2" y1="-5.5" x2="0" y2="-5.5" width="0.127" layer="21"/>
+<wire x1="19.9" y1="4" x2="19.9" y2="-4" width="0.127" layer="21"/>
+<wire x1="19.9" y1="-4" x2="14.2" y2="-4" width="0.127" layer="21"/>
+<wire x1="19.9" y1="4" x2="14.2" y2="4" width="0.127" layer="21"/>
+<wire x1="14.45" y1="5.75" x2="14.45" y2="4.25" width="0.05" layer="39"/>
+<wire x1="14.45" y1="-4.25" x2="14.45" y2="-5.75" width="0.05" layer="39"/>
+<wire x1="14.45" y1="-5.75" x2="-0.25" y2="-5.75" width="0.05" layer="39"/>
+<wire x1="-0.25" y1="-5.75" x2="-0.25" y2="-2.4" width="0.05" layer="39"/>
+<wire x1="-0.25" y1="2.3" x2="-0.25" y2="5.75" width="0.05" layer="39"/>
+<wire x1="-0.25" y1="5.75" x2="0.8" y2="5.75" width="0.05" layer="39"/>
+<wire x1="4.9" y1="5.75" x2="14.45" y2="5.75" width="0.05" layer="39"/>
+<wire x1="20.15" y1="4.25" x2="20.15" y2="-4.25" width="0.05" layer="39"/>
+<wire x1="20.15" y1="-4.25" x2="14.45" y2="-4.25" width="0.05" layer="39"/>
+<wire x1="20.15" y1="4.25" x2="14.45" y2="4.25" width="0.05" layer="39"/>
+<wire x1="4.9" y1="5.75" x2="4.9" y2="6.2" width="0.05" layer="39"/>
+<wire x1="4.9" y1="6.2" x2="0.8" y2="6.2" width="0.05" layer="39"/>
+<wire x1="0.8" y1="6.2" x2="0.8" y2="5.75" width="0.05" layer="39"/>
+<wire x1="-0.25" y1="2.3" x2="-1.4" y2="2.3" width="0.05" layer="39"/>
+<wire x1="-1.4" y1="2.3" x2="-1.4" y2="-2.4" width="0.05" layer="39"/>
+<wire x1="-1.4" y1="-2.4" x2="-0.25" y2="-2.4" width="0.05" layer="39"/>
+<wire x1="5.2" y1="5.5" x2="14.2" y2="5.5" width="0.127" layer="21"/>
+<wire x1="0" y1="5.5" x2="0.9" y2="5.5" width="0.127" layer="21"/>
+<wire x1="0" y1="2.4" x2="0" y2="5.5" width="0.127" layer="21"/>
+<wire x1="0" y1="-5.5" x2="0" y2="-2.4" width="0.127" layer="21"/>
+<pad name="1" x="0" y="0" drill="0.7" diameter="2" shape="long" rot="R90" first="yes"/>
+<pad name="3" x="3" y="4.8" drill="0.7" diameter="2" shape="long" rot="R180"/>
+<pad name="2" x="6.1" y="0" drill="0.7" diameter="2" shape="long" rot="R90"/>
+</package>
+</packages>
+<symbols>
+<symbol name="PJ-066A">
+<wire x1="-5.715" y1="1.27" x2="-5.715" y2="3.81" width="0.1524" layer="94" curve="-180"/>
+<wire x1="-5.715" y1="3.81" x2="-1.27" y2="3.81" width="0.1524" layer="94"/>
+<wire x1="-1.27" y1="3.81" x2="-1.27" y2="1.27" width="0.1524" layer="94"/>
+<wire x1="-1.27" y1="1.27" x2="-5.715" y2="1.27" width="0.1524" layer="94"/>
+<wire x1="-1.27" y1="1.27" x2="-1.27" y2="0.635" width="0.1524" layer="94"/>
+<wire x1="-1.27" y1="0.635" x2="0" y2="0.635" width="0.1524" layer="94"/>
+<wire x1="0" y1="0.635" x2="0" y2="4.445" width="0.1524" layer="94"/>
+<wire x1="0" y1="4.445" x2="-1.27" y2="4.445" width="0.1524" layer="94"/>
+<wire x1="-1.27" y1="4.445" x2="-1.27" y2="3.81" width="0.1524" layer="94"/>
+<wire x1="0" y1="-2.54" x2="-3.175" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="-3.175" y1="-2.54" x2="-3.81" y2="-1.27" width="0.1524" layer="94"/>
+<wire x1="-3.81" y1="-1.27" x2="-4.445" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="0" y1="0" x2="0" y2="-2.54" width="0.1524" layer="94"/>
+<text x="-7.633059375" y="5.0887" size="1.78105" layer="95">&gt;NAME</text>
+<text x="-7.633790625" y="-5.089190625" size="1.78121875" layer="96">&gt;VALUE</text>
+<polygon width="0.1524" layer="94">
+<vertex x="0" y="-2.54"/>
+<vertex x="-0.508" y="-1.27"/>
+<vertex x="0.508" y="-1.27"/>
+</polygon>
+<pin name="1" x="5.08" y="2.54" visible="pad" length="middle" direction="pas" rot="R180"/>
+<pin name="3" x="5.08" y="0" visible="pad" length="middle" direction="pas" rot="R180"/>
+<pin name="2" x="5.08" y="-2.54" visible="pad" length="middle" direction="pas" rot="R180"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="PJ-066A" prefix="J">
+<description>24 VDC 5 A Right Angle Through Hole 2 Conductors 3 Contacts Male Power Jack</description>
+<gates>
+<gate name="G$1" symbol="PJ-066A" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="CUI_PJ-066A">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+<connect gate="G$1" pin="3" pad="3"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="CUI_PURCHASE_URL" value="https://www.cui.com/product/interconnect/dc-power-connectors/jacks/2.0-mm-center-pin/pj-066a?utm_source=snapeda.com&amp;utm_medium=referral&amp;utm_campaign=snapedaBOM"/>
+<attribute name="DESCRIPTION" value=" 24 VDC 5 A Right Angle Through Hole 2 Conductors 3 Contacts Male Power Jack "/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="CP-066A-ND"/>
+<attribute name="DIGI-KEY_PURCHASE_URL" value="https://www.digikey.com/product-detail/en/cui-inc/PJ-066A/CP-066A-ND/2627225?utm_source=snapeda&amp;utm_medium=aggregator&amp;utm_campaign=symbol"/>
+<attribute name="MF" value="CUI Inc."/>
+<attribute name="MP" value="PJ-066A"/>
+<attribute name="PACKAGE" value="None"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 <attribute name="CNAME" value="ZDS Shifter Pro"/>
@@ -11807,9 +11835,13 @@ part number 2062-2P from STA</description>
 <variantdefs>
 </variantdefs>
 <classes>
-<class number="0" name="default" width="0.4064" drill="0">
+<class number="0" name="default" width="0.254" drill="0">
 </class>
-<class number="2" name="GND" width="0.6096" drill="0">
+<class number="1" name="VCC" width="0.6" drill="0">
+</class>
+<class number="2" name="GND" width="0.6" drill="0">
+</class>
+<class number="3" name="RAW" width="1" drill="0">
 </class>
 </classes>
 <parts>
@@ -11834,7 +11866,7 @@ part number 2062-2P from STA</description>
 <part name="FS3_LED" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_02" device="" package3d_urn="urn:adsk.eagle:package:38039/1"/>
 <part name="GND1" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="GND2" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="PWR" library="con-jack" deviceset="DCJ0202" device="" value="DCJ0202"/>
+<part name="PWR" library="PJ-066A" deviceset="PJ-066A" device="" value="PJ-066A"/>
 <part name="MICRO" library="con-lstb" deviceset="MA04-1" device="" value="PINS"/>
 <part name="USB" library="SparkFun-Connectors" deviceset="USB_B" device="_PTH" value=""/>
 <part name="RESET" library="SparkFun-Switches" library_urn="urn:adsk.eagle:library:535" deviceset="MOMENTARY-SWITCH-SPST" device="-PTH-6.0MM" package3d_urn="urn:adsk.eagle:package:40163/1" value=""/>
@@ -11867,9 +11899,9 @@ part number 2062-2P from STA</description>
 <part name="R9" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="RESISTOR" device="1206" package3d_urn="urn:adsk.eagle:package:39654/1" value="100"/>
 <part name="GND12" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="GND13" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="J1" library="ACJS-MHOM" deviceset="ACJS-MHOM" device=""/>
-<part name="J2" library="ACJS-MHOM" deviceset="ACJS-MHOM" device=""/>
-<part name="J3" library="ACJS-MHOM" deviceset="ACJS-MHOM" device=""/>
+<part name="EXP1" library="ACJS-MHOM" deviceset="ACJS-MHOM" device=""/>
+<part name="EXP2" library="ACJS-MHOM" deviceset="ACJS-MHOM" device=""/>
+<part name="TRIG" library="ACJS-MHOM" deviceset="ACJS-MHOM" device=""/>
 <part name="C5" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="C-EU" device="C1206" package3d_urn="urn:adsk.eagle:package:23618/2" value="0.1uF"/>
 <part name="GND14" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="R10" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="RESISTOR" device="1206" package3d_urn="urn:adsk.eagle:package:39654/1" value="1M"/>
@@ -11881,6 +11913,9 @@ part number 2062-2P from STA</description>
 <sheet>
 <plain>
 <text x="17.78" y="162.56" size="1.778" layer="91">These are in TRS format (the most common)</text>
+<text x="186.436" y="21.336" size="2.54" layer="91">ZDS Shifter Pro</text>
+<text x="231.648" y="11.43" size="2.54" layer="91">D. Kadrioski</text>
+<text x="240.03" y="6.35" size="2.54" layer="91">A</text>
 </plain>
 <instances>
 <instance part="PRO_MICRO" gate="G$1" x="226.06" y="154.94" smashed="yes">
@@ -12070,15 +12105,15 @@ part number 2062-2P from STA</description>
 <instance part="GND13" gate="GND" x="38.1" y="55.88" smashed="yes">
 <attribute name="VALUE" x="35.56" y="53.34" size="1.778" layer="96"/>
 </instance>
-<instance part="J1" gate="G$1" x="17.78" y="149.86" smashed="yes" rot="MR180">
+<instance part="EXP1" gate="G$1" x="17.78" y="149.86" smashed="yes" rot="MR180">
 <attribute name="NAME" x="12.7" y="141.732" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="12.7" y="157.48" size="1.778" layer="96" rot="MR180"/>
 </instance>
-<instance part="J2" gate="G$1" x="17.78" y="114.3" smashed="yes" rot="MR180">
+<instance part="EXP2" gate="G$1" x="17.78" y="114.3" smashed="yes" rot="MR180">
 <attribute name="NAME" x="12.7" y="106.172" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="12.7" y="121.92" size="1.778" layer="96" rot="MR180"/>
 </instance>
-<instance part="J3" gate="G$1" x="17.78" y="81.28" smashed="yes" rot="MR180">
+<instance part="TRIG" gate="G$1" x="17.78" y="81.28" smashed="yes" rot="MR180">
 <attribute name="NAME" x="12.7" y="73.152" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="12.7" y="88.9" size="1.778" layer="96" rot="MR180"/>
 </instance>
@@ -12159,8 +12194,8 @@ part number 2062-2P from STA</description>
 <pinref part="IC1" gate="A1" pin="GND"/>
 <wire x1="147.32" y1="132.08" x2="147.32" y2="144.78" width="0.1524" layer="91"/>
 <pinref part="PWR" gate="G$1" pin="3"/>
-<wire x1="99.06" y1="147.32" x2="101.6" y2="147.32" width="0.1524" layer="91"/>
-<wire x1="101.6" y1="147.32" x2="101.6" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="96.52" y1="149.86" x2="101.6" y2="149.86" width="0.1524" layer="91"/>
+<wire x1="101.6" y1="149.86" x2="101.6" y2="132.08" width="0.1524" layer="91"/>
 <wire x1="101.6" y1="132.08" x2="119.38" y2="132.08" width="0.1524" layer="91"/>
 <junction x="147.32" y="132.08"/>
 <pinref part="C2" gate="G$1" pin="-"/>
@@ -12205,8 +12240,8 @@ part number 2062-2P from STA</description>
 <pinref part="GND4" gate="GND" pin="GND"/>
 <wire x1="38.1" y1="137.16" x2="38.1" y2="134.62" width="0.1524" layer="91"/>
 <junction x="38.1" y="137.16"/>
-<pinref part="J1" gate="G$1" pin="EARTH"/>
-<pinref part="J1" gate="G$1" pin="TIP-NORM"/>
+<pinref part="EXP1" gate="G$1" pin="EARTH"/>
+<pinref part="EXP1" gate="G$1" pin="TIP-NORM"/>
 <wire x1="30.48" y1="142.24" x2="30.48" y2="149.86" width="0.1524" layer="91"/>
 <wire x1="30.48" y1="149.86" x2="22.86" y2="149.86" width="0.1524" layer="91"/>
 <junction x="30.48" y="142.24"/>
@@ -12224,9 +12259,9 @@ part number 2062-2P from STA</description>
 <pinref part="GND12" gate="GND" pin="GND"/>
 <wire x1="38.1" y1="101.6" x2="38.1" y2="99.06" width="0.1524" layer="91"/>
 <junction x="38.1" y="101.6"/>
-<pinref part="J2" gate="G$1" pin="EARTH"/>
+<pinref part="EXP2" gate="G$1" pin="EARTH"/>
 <wire x1="38.1" y1="106.68" x2="30.48" y2="106.68" width="0.1524" layer="91"/>
-<pinref part="J2" gate="G$1" pin="TIP-NORM"/>
+<pinref part="EXP2" gate="G$1" pin="TIP-NORM"/>
 <wire x1="30.48" y1="106.68" x2="22.86" y2="106.68" width="0.1524" layer="91"/>
 <wire x1="30.48" y1="106.68" x2="30.48" y2="114.3" width="0.1524" layer="91"/>
 <wire x1="30.48" y1="114.3" x2="22.86" y2="114.3" width="0.1524" layer="91"/>
@@ -12241,8 +12276,8 @@ part number 2062-2P from STA</description>
 <pinref part="GND13" gate="GND" pin="GND"/>
 <wire x1="38.1" y1="63.5" x2="38.1" y2="58.42" width="0.1524" layer="91"/>
 <junction x="38.1" y="63.5"/>
-<pinref part="J3" gate="G$1" pin="EARTH"/>
-<pinref part="J3" gate="G$1" pin="TIP-NORM"/>
+<pinref part="TRIG" gate="G$1" pin="EARTH"/>
+<pinref part="TRIG" gate="G$1" pin="TIP-NORM"/>
 <wire x1="30.48" y1="73.66" x2="30.48" y2="81.28" width="0.1524" layer="91"/>
 <wire x1="30.48" y1="81.28" x2="22.86" y2="81.28" width="0.1524" layer="91"/>
 <junction x="30.48" y="73.66"/>
@@ -12334,7 +12369,7 @@ part number 2062-2P from STA</description>
 <label x="63.5" y="147.32" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="VCC" class="0">
+<net name="VCC" class="1">
 <segment>
 <pinref part="PRO_MICRO" gate="G$1" pin="VCC"/>
 <wire x1="238.76" y1="162.56" x2="243.84" y2="162.56" width="0.1524" layer="91"/>
@@ -12363,7 +12398,7 @@ part number 2062-2P from STA</description>
 <wire x1="38.1" y1="157.48" x2="35.56" y2="157.48" width="0.1524" layer="91"/>
 <junction x="38.1" y="157.48"/>
 <label x="35.56" y="157.48" size="1.016" layer="95" rot="R180" xref="yes"/>
-<pinref part="J1" gate="G$1" pin="RING"/>
+<pinref part="EXP1" gate="G$1" pin="RING"/>
 <wire x1="38.1" y1="152.4" x2="22.86" y2="152.4" width="0.1524" layer="91"/>
 </segment>
 <segment>
@@ -12374,7 +12409,7 @@ part number 2062-2P from STA</description>
 <wire x1="38.1" y1="121.92" x2="35.56" y2="121.92" width="0.1524" layer="91"/>
 <junction x="38.1" y="121.92"/>
 <label x="35.56" y="121.92" size="1.016" layer="95" rot="R180" xref="yes"/>
-<pinref part="J2" gate="G$1" pin="RING"/>
+<pinref part="EXP2" gate="G$1" pin="RING"/>
 <wire x1="38.1" y1="116.84" x2="22.86" y2="116.84" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -12393,7 +12428,7 @@ part number 2062-2P from STA</description>
 </segment>
 <segment>
 <label x="63.5" y="78.74" size="1.016" layer="95" xref="yes"/>
-<pinref part="J3" gate="G$1" pin="TIP"/>
+<pinref part="TRIG" gate="G$1" pin="TIP"/>
 <pinref part="Z1" gate="G$1" pin="K"/>
 <wire x1="22.86" y1="78.74" x2="45.72" y2="78.74" width="0.1524" layer="91"/>
 <pinref part="R10" gate="G$1" pin="2"/>
@@ -12579,10 +12614,10 @@ part number 2062-2P from STA</description>
 <segment>
 <pinref part="PWR" gate="G$1" pin="1"/>
 <pinref part="D2" gate="G$1" pin="A"/>
-<wire x1="99.06" y1="152.4" x2="106.68" y2="152.4" width="0.1524" layer="91"/>
+<wire x1="96.52" y1="152.4" x2="106.68" y2="152.4" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="RAW" class="0">
+<net name="RAW" class="3">
 <segment>
 <pinref part="PRO_MICRO" gate="G$1" pin="RAW"/>
 <wire x1="238.76" y1="170.18" x2="243.84" y2="170.18" width="0.1524" layer="91"/>
@@ -12620,14 +12655,14 @@ part number 2062-2P from STA</description>
 <segment>
 <pinref part="R5" gate="G$1" pin="1"/>
 <wire x1="22.86" y1="147.32" x2="43.18" y2="147.32" width="0.1524" layer="91"/>
-<pinref part="J1" gate="G$1" pin="TIP"/>
+<pinref part="EXP1" gate="G$1" pin="TIP"/>
 </segment>
 </net>
 <net name="N$9" class="0">
 <segment>
 <pinref part="R9" gate="G$1" pin="1"/>
 <wire x1="22.86" y1="111.76" x2="43.18" y2="111.76" width="0.1524" layer="91"/>
-<pinref part="J2" gate="G$1" pin="TIP"/>
+<pinref part="EXP2" gate="G$1" pin="TIP"/>
 </segment>
 </net>
 <net name="N$15" class="0">
