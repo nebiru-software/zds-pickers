@@ -2,24 +2,24 @@ EAGLE AutoRouter Statistics:
 
 Job           : /Users/darin/git/zds-shifter-pro/board/main/main.brd
 
-Start at      : 16:38:59 (9/7/20)
-End at        : 16:41:17 (9/7/20)
-Elapsed time  : 00:02:12
+Start at      : 15:45:52 (10/4/20)
+End at        : 15:46:20 (10/4/20)
+Elapsed time  : 00:00:01
 
-Signals       :    33   RoutingGrid: 4 mil  Layers: 2
-Connections   :    81   predefined:  32 ( 0 Vias )
+Signals       :    37   RoutingGrid: 19.685 mil  Layers: 2
+Connections   :    90   predefined:  15 ( 0 Vias )
 
-Router memory :   2775040
+Router memory :   125552
 
-Passname          : TopRouter     Route Optimize1 Optimize2 Optimize3 Optimize4 Optimize5 Optimize6 Optimize7 Optimize8 Optimize9Optimize10Optimize11Optimize12
+Passname          :    Busses     Route Optimize1 Optimize2 Optimize3 Optimize4
 
-Time per pass     :  00:01:15  00:00:04  00:00:04  00:00:05  00:00:04  00:00:05  00:00:04  00:00:04  00:00:05  00:00:04  00:00:05  00:00:04  00:00:05  00:00:04
-Number of Ripups  :         0         0         0         0         0         0         0         0         0         0         0         0         0         0
-max. Level        :         0         0         0         0         0         0         0         0         0         0         0         0         0         0
-max. Total        :         0         0         0         0         0         0         0         0         0         0         0         0         0         0
+Time per pass     :  00:00:00  00:00:00  00:00:00  00:00:01  00:00:00  00:00:00
+Number of Ripups  :         0         0         0         0         0         0
+max. Level        :         0         0         0         0         0         0
+max. Total        :         0         0         0         0         0         0
 
-Routed            :         8        49        49        49        49        49        49        49        49        49        49        49        49        49
-Vias              :         0        28        25        25        25        25        25        25        18        18        18        18        18        18
-Resolution        :    49.4 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %
+Routed            :         5        75        75        75        75        75
+Vias              :         0       109        39        35        32        32
+Resolution        :    22.2 %   100.0 %   100.0 %   100.0 %   100.0 %   100.0 %
 
 Final             : 100.0% finished

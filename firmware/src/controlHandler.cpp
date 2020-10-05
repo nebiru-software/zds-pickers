@@ -1,7 +1,10 @@
 #include "controlHandler.h"
 #include "midiHandler.h"
+#include "midiLED.h"
 #include "settings.h"
-#include "sysExHandler.h"
+#include "sysEx.h"
+#include <Metro.h>
+#include <ResponsiveAnalogRead.h>
 
 #define CONTROLS_DEBUG_MODE false
 
@@ -25,7 +28,12 @@ unsigned long lastEndHitTime   = 0;
 uint16_t      loopTimes        = 0;
 const uint8_t triggerMaskTime  = 100;
 const uint8_t pedalMaskTime    = 255;
-const uint8_t scanTime         = 20;
+const uint8_t scanTime         = 60; // 20;
+
+/**
+ * We don't check the analog jacks on every loop.
+ */
+static class Metro analog_check_metro(20);
 
 #if CONTROLS_DEBUG_MODE
 static void dumpControl(input_control* jack) {
@@ -65,9 +73,9 @@ static void dumpControl(input_control* jack) {
 
 #endif // if CONTROLS_DEBUG_MODE
 
-static void broadcastCcMessage(input_control* jack, midi::DataByte value) {
+static void broadcastMidiMessage(input_control* jack, midi::DataByte value) {
 #if CONTROLS_DEBUG_MODE
-  Serial.print("Broadcast CC ");
+  Serial.print("Broadcast CC/Note ");
   Serial.print(jack->status & 0xF0);
   Serial.print(" for input ");
   Serial.print(jack->idx);
@@ -86,7 +94,10 @@ static void broadcastCcMessage(input_control* jack, midi::DataByte value) {
   packet.data1   = jack->data;
   packet.data2   = value;
 
-  handleControlChange(&packet);
+  if (jack->status == CC) {
+    handleControlChange(&packet);
+  }
+
   processSerialPacket(&packet);
 }
 
@@ -108,12 +119,12 @@ static void buttonStateChanged(input_control* jack) {
         switch (jack->polarity) {
           case NORMALLY_OFF:
             lightLED = jack->state == BUTTON_DOWN;
-            broadcastCcMessage(jack, jack->state == BUTTON_DOWN ? CC_ON : CC_OFF);
+            broadcastMidiMessage(jack, jack->state == BUTTON_DOWN ? CC_ON : CC_OFF);
             stateChanged = true;
             break;
           case NORMALLY_ON:
             lightLED = jack->state == BUTTON_UP;
-            broadcastCcMessage(jack, jack->state == BUTTON_UP ? CC_ON : CC_OFF);
+            broadcastMidiMessage(jack, jack->state == BUTTON_UP ? CC_ON : CC_OFF);
             stateChanged = true;
             break;
         }
@@ -124,18 +135,20 @@ static void buttonStateChanged(input_control* jack) {
           jack->latched = !jack->latched;
 
           lightLED = jack->latched;
-          broadcastCcMessage(jack, jack->latched ? CC_ON : CC_OFF);
+          broadcastMidiMessage(jack, jack->latched ? CC_ON : CC_OFF);
           stateChanged = true;
         }
       }
       break;
 
     case CONTROL_TYPE_POT:
-      broadcastCcMessage(jack, jack->reading);
+      broadcastMidiMessage(jack, jack->reading);
       stateChanged = true;
       break;
 
     case CONTROL_TYPE_TRIGGER:
+      broadcastMidiMessage(jack, jack->reading);
+      activityDetected();
       break;
   }
 
@@ -170,75 +183,68 @@ static void crankButton(input_control* jack) {
 }
 
 static void crankExpressionPedal(input_control* jack) {
-  // Analog inputs have an LSB (out of 10 bits) or so of noise,
-  // leading to "chatter" in the change detector logic.
-  // Shifting off the 2 LSBs to remove it
-  // This also brings the value into the range 0-128
-  uint16_t apinReading = analogRead(jack->dataPin);
+  jack->analog.update();
 
-  if ((apinReading > jack->rawThreshold) && (loopTimes == 0) &&
-      (lastStartHitTime - lastEndHitTime < pedalMaskTime)) {
-    uint16_t ccValue = map(apinReading, jack->rawThreshold, jack->rawSensitivity, 0, 127);
-    if (abs(ccValue - jack->reading) > 1) {
-      jack->reading = ccValue;
+  if (jack->analog.hasChanged()) {
+    uint16_t apinReading = jack->analog.getValue();
+    jack->reading = map(apinReading, jack->rawThreshold, jack->rawSensitivity, 0, 127);
 
-      Serial.print(" C ");
-      Serial.print(ccValue);
+    // fire action
+    buttonStateChanged(jack);
 
-      // fire action
-      // buttonStateChanged(jack);
-    }
+#if CONTROLS_DEBUG_MODE
+    Serial.print(apinReading);
+    Serial.print("\tCC ");
+    Serial.print(jack->reading);
+    Serial.println("");
+#endif // if CONTROLS_DEBUG_MODE
   }
 }
 
 static void crankTrigger(input_control* jack) {
   uint16_t apinReading = analogRead(jack->dataPin);
 
-  if (apinReading > jack->rawThreshold) {
-    if (loopTimes == 0) {
-      lastStartHitTime = millis();
-
-      if (lastStartHitTime - lastEndHitTime < triggerMaskTime) {
-        // We're still within the mask time from the last hit.
-        // Ignore to avoid double hits
-        return;
-      } else {
-        jack->reading = apinReading; // first peak
-        loopTimes     = 1;           // start scan trigger
-      }
+  if (jack->scanState == 0) {
+    // IDLE state: if any reading is above a threshold, begin peak
+    if (apinReading > jack->rawThreshold) {
+      jack->scanState = 1;
+      jack->scanPeak  = apinReading;
+      jack->scanTime  = 0;
     }
-  }
-
-  // peak scan start
-  if (loopTimes > 0) {
-    if (apinReading > jack->reading) {
-      jack->reading = apinReading;
+  } else if (jack->scanState == 1) {
+    // Peak Tracking state: for 10 ms, capture largest reading
+    if (apinReading > jack->scanPeak) {
+      jack->scanPeak = apinReading;
     }
-    loopTimes++;
-
-    // scan end
-    if (millis() - lastStartHitTime >= scanTime) {
-      lastEndHitTime = millis();
-      // jack->reading =
-      //     map(jack->reading, jack->rawThreshold, jack->rawSensitivity, 0, 127);
+    if (jack->scanTime >= 10) {
+      jack->reading =
+          map(jack->scanPeak, jack->rawThreshold, jack->rawSensitivity, 0, 127);
+      jack->scanState = 2;
+      jack->scanTime  = 0;
 
 #if CONTROLS_DEBUG_MODE
-      Serial.print("[Hit] velocity : ");
+      Serial.print("[Hit] ");
+      Serial.print("pin: ");
+      Serial.print(jack->dataPin);
+      Serial.print(", raw: ");
+      Serial.print(jack->scanPeak);
+      Serial.print(", thresh: ");
+      Serial.print(jack->rawThreshold);
+      Serial.print(", sens: ");
+      Serial.print(jack->rawSensitivity);
+      Serial.print(", velocity: ");
       Serial.print(jack->reading);
-      Serial.print(", loopTimes : ");
-      Serial.print(loopTimes);
-      Serial.print(", ScanTime(ms) : ");
-      Serial.println((lastEndHitTime - lastStartHitTime));
+      Serial.println();
 #endif // if CONTROLS_DEBUG_MODE
 
-      Serial.print(" T ");
-      Serial.print(jack->reading);
-
-      // fire action
-      // TODO: map() sensitivity
       buttonStateChanged(jack);
-
-      loopTimes = 0;
+    }
+  } else {
+    // Ignore Aftershock state: wait for things to be quiet again
+    if (apinReading > jack->rawThreshold) {
+      jack->scanTime = 0; // keep resetting timer if above threshold
+    } else if (jack->scanTime > 30) {
+      jack->scanState = 0; // go back to idle after 30 ms below threshold
     }
   }
 }
@@ -250,7 +256,9 @@ static void crankJack(input_control* jack) {
       break;
 
     case CONTROL_TYPE_POT:
-      crankExpressionPedal(jack);
+      if (analog_check_metro.check()) {
+        crankExpressionPedal(jack);
+      }
       break;
 
     case CONTROL_TYPE_TRIGGER:
@@ -273,14 +281,12 @@ void initControls() {
           break;
         case CONTROL_TYPE_TRIGGER:
         case CONTROL_TYPE_POT:
-          pinMode(jack->dataPin, INPUT);
           break;
       }
     }
 
 #if CONTROLS_DEBUG_MODE
-
-// dumpControl(jack);
+    dumpControl(jack);
 #endif // if CONTROLS_DEBUG_MODE
   }
 
@@ -308,6 +314,9 @@ void crankInputJacks() {
         break;
       case 5:
         jack = &input_controls[5];
+        break;
+      case 6:
+        jack = &input_controls[6];
         break;
     }
 

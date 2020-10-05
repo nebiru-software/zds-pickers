@@ -31,10 +31,10 @@
 #include "initializeEEPROM.h"
 #include "midiLED.h"
 #include "shifterTypes.h"
-#include "sysExHandler.h"
+#include "sysEx.h"
 #include <Arduino.h>
 #include <EEPROM.h>
-#include <SoftReset.h>
+#include <ResponsiveAnalogRead.h>
 
 #define SETTINGS_DEBUG_MODE false
 
@@ -60,10 +60,6 @@ bool serialMidiEnabled = true;
 bool usbMidiEnabled    = true;
 
 static int eepromIndex = 0;
-
-void reset() {
-  soft_restart();
-}
 
 // cppcheck-suppress unusedFunction
 void hardReset(bool preserveSerial) {
@@ -91,7 +87,7 @@ static void loadMIDIMessage(midi_message* message) {
   message->data   = nextByte();
 }
 
-#if SETTINGS_DEBUG_MODE
+// #if SETTINGS_DEBUG_MODE
 static void dumpMIDIMessage(midi_message* message) {
   Serial.print(" Channel:");
   Serial.print(message->status & CHANNEL_MASK);
@@ -101,7 +97,7 @@ static void dumpMIDIMessage(midi_message* message) {
   Serial.print(message->data);
 }
 
-#endif // if SETTINGS_DEBUG_MODE
+// #endif // if SETTINGS_DEBUG_MODE
 
 static bool loadInput(input_control* jack, uint8_t idx) {
   loadMIDIMessage(jack);
@@ -129,33 +125,40 @@ static bool loadInput(input_control* jack, uint8_t idx) {
 
   switch (idx) {
     case 0:
-      jack->dataPin = 14;
-      jack->ledPin  = 7;
+      jack->dataPin = 2;
+      jack->ledPin  = 5;
       break;
     case 1:
-      jack->dataPin = 16;
-      jack->ledPin  = 8;
+      jack->dataPin = 3;
+      jack->ledPin  = 6;
       break;
     case 2:
-      jack->dataPin = 10;
-      jack->ledPin  = 9;
+      jack->dataPin = 4;
+      jack->ledPin  = 7;
       break;
     case 3:
-      jack->dataPin = 21;
+      jack->dataPin = 15;
       jack->ledPin  = 255;
+      jack->analog  = ResponsiveAnalogRead(15, true);
+      jack->analog.setAnalogResolution(1023);
+      jack->analog.enableEdgeSnap();
       break;
     case 4:
-      jack->dataPin = 20;
+      jack->dataPin = 16;
       jack->ledPin  = 255;
+      jack->analog  = ResponsiveAnalogRead(16, true);
+      jack->analog.setAnalogResolution(1023);
+      jack->analog.enableEdgeSnap();
       break;
     case 5:
-      jack->dataPin = 19;
-      jack->ledPin  = 255;
-      // jack->maskTime         = 60;
-      // jack->scanTime         = 20;
-      // jack->lastStartHitTime = 0;
-      // jack->lastEndHitTime   = 0;
-      // jack->loopTimes        = 0;
+      jack->dataPin   = 17;
+      jack->ledPin    = 255;
+      jack->scanState = 0;
+      break;
+    case 6:
+      jack->dataPin   = 18;
+      jack->ledPin    = 255;
+      jack->scanState = 0;
       break;
   }
 
@@ -180,7 +183,7 @@ static void loadInputs() {
     // #if SETTINGS_DEBUG_MODE
     Serial.print("Input #");
     Serial.print(i);
-    // dumpMIDIMessage(&input_controls[i]);
+    dumpMIDIMessage(&input_controls[i]);
     Serial.print(" Active:");
     Serial.print(input_controls[i].active);
     Serial.print(" Flags:");
@@ -284,7 +287,7 @@ void saveGroups() {
   }
 }
 
-void loadSettings() {
+void loadSettings(bool dueToReset) {
   eepromIndex = LOCATION_OF_GROUPS;
   loadGroups();
 
@@ -297,18 +300,36 @@ void loadSettings() {
 
   serialMidiEnabled = flags & SERIAL_MIDI_ENABLED_MASK;
   usbMidiEnabled    = flags & USB_MIDI_ENABLED_MASK;
+
+  if (dueToReset) {
+#if SETTINGS_DEBUG_MODE
+    Serial.println("Sending settings via SysEx");
+#endif // if SETTINGS_DEBUG_MODE
+
+    // Send basic settings out over SysEx so client app refreshes
+    sendInternalState();
+  }
 }
 
 void startup() {
   engineActive = false;
 
-  loadSettings();
+  loadSettings(false);
 
   delay(200);
 
   initControls();
 
   engineActive = true;
+}
+
+void restart(bool dueToReset) {
+  loadSettings(dueToReset);
+  delay(200);
+#if SETTINGS_DEBUG_MODE
+  Serial.println("Initializing controls");
+#endif // if SETTINGS_DEBUG_MODE
+       // init_controls();
 }
 
 void resetSettings(bool andRestart) {
@@ -328,7 +349,7 @@ void resetSettings(bool andRestart) {
   EEPROM.update(LOCATION_OF_FLAGS, 12); // 00001100
 
   if (andRestart) {
-    reset();
+    restart(true);
   }
 }
 

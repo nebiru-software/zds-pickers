@@ -4,26 +4,40 @@
 #include <Arduino.h>
 #include <MidiBridge.h>
 
-#define SYSEX_DEBUG_MODE false
+#define SYSEX_MSG_GET_VERSION 0x01      // 1
+#define SYSEX_MSG_RECEIVE_VERSION 0x02  // 2
+#define SYSEX_MSG_GET_CONTROLS 0x03     // 3
+#define SYSEX_MSG_RECEIVE_CONTROLS 0x04 // 4
+#define SYSEX_MSG_GET_GROUPS 0x05       // 5
+// Only use SYSEX_MSG_RECEIVE_GROUPS for receiving a full dump
+// e.g. restoring from a backup file
+#define SYSEX_MSG_RECEIVE_GROUPS 0x06       // 6
+#define SYSEX_MSG_GET_MODEL 0x07            // 7
+#define SYSEX_MSG_RECEIVE_MODEL 0x08        // 8
+#define SYSEX_MSG_GET_STATE 0x09            // 9
+#define SYSEX_MSG_RECEIVE_FLAGS 0x0A        // 10
+#define SYSEX_MSG_CHANGE_GROUP_CHANNEL 0x0B // 11
+#define SYSEX_MSG_CHANGE_GROUP_VALUE 0x0C   // 12
+#define SYSEX_MSG_SAVE_ENTRY_EDIT 0x0D      // 13
+#define SYSEX_MSG_REMOVE_ENTRY 0x0E         // 14
+#define SYSEX_MSG_AVAILABILITY 0x0F         // 15
+#define SYSEX_MSG_BACKUP 0x10               // 16
+#define SYSEX_MSG_RESTORE 0x11              // 17
 
-typedef void (*packetFunction)(midiEventPacket_t);
-typedef void (*sysexFunction)(byte* data, size_t size);
+#define SYSEX_MSG_RESTART 0x7D       // 125
+#define SYSEX_MSG_FACTORY_RESET 0x7E // 126
+
+const uint8_t SHIFTER_PRO_DEVICE_ID = 110;
 
 const uint8_t START_BYTE = 0xF0;
 const uint8_t STOP_BYTE  = 0xF7;
 
-void setupSysex(uint8_t deviceId, uint8_t deviceByte, packetFunction transmitByte, sysexFunction transmitSysex);
+void processMessage(uint8_t* data, size_t size);
 
-void sysexStart();
+void sendSimpleMessage(midi::DataByte msg, midi::DataByte value);
 
-bool processUsbByte(midiEventPacket_t rx);
+void sendInternalState();
 
-void sendSysEx(uint8_t* data, size_t size);
-
-void assembleAndTransmitSysex(uint8_t* data, size_t size);
-
-#if SYSEX_DEBUG_MODE
-void dumpDataToSerial(uint8_t* data, size_t size);
-#endif // if SYSEX_DEBUG_MODE
+void sysexReceiveByte(uint8_t value);
 
 #endif // ifndef sysEx_h

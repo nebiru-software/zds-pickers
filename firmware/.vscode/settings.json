@@ -6,5 +6,16 @@
   "editor.formatOnSave": true,
   "cSpell.words": [
     "Parens"
-  ]
+  ],
+  "files.associations": {
+    ".babelrc": "json5",
+    ".jestrc": "json5",
+    "*.tcc": "cpp",
+    "array": "cpp",
+    "string": "cpp",
+    "initializer_list": "cpp",
+    "utility": "cpp",
+    "functional": "cpp",
+    "system_error": "cpp"
+  }
 }

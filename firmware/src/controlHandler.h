@@ -2,6 +2,7 @@
 #define controlHandler_h
 
 #include "shifterTypes.h"
+#include <ResponsiveAnalogRead.h>
 
 #define CONTROL_TYPE_BUTTON 0
 #define CONTROL_TYPE_POT 1
@@ -43,6 +44,12 @@ struct input_control : midi_message {
 
   uint16_t rawThreshold;
   uint16_t rawSensitivity;
+
+  uint8_t       scanState;
+  uint16_t      scanPeak;
+  elapsedMillis scanTime;
+
+  ResponsiveAnalogRead analog;
 };
 
 extern void initControls();

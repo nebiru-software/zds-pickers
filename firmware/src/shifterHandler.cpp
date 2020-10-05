@@ -2,7 +2,6 @@
 #include "midiHandler.h"
 #include "settings.h"
 #include "shifterTypes.h"
-#include "sysExHandler.h"
 
 #define SHIFTER_HANDLER_DEBUG_MODE false
 

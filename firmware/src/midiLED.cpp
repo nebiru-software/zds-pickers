@@ -3,7 +3,7 @@
 #include <Arduino.h>
 #include <Metro.h>
 
-#define MIDI_LED_PIN 4
+#define MIDI_LED_PIN 8
 
 static class Metro midi_led_metro(25); // LED blink interval timer
 

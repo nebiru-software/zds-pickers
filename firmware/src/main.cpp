@@ -1,5 +1,5 @@
 #define PERFORM_HARD_RESET false
-#define PRESERVE_SERIAL false
+#define PRESERVE_SERIAL true
 
 #if PERFORM_HARD_RESET
 #  include <EEPROM.h>

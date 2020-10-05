@@ -1,0 +1,181 @@
+# NetScript
+# 
+# Exported from main.sch at 9/12/20 2:15 PM
+# 
+# EAGLE Version 9.6.2 Copyright (c) 1988-2020 Autodesk, Inc.
+# 
+Change Class 0;
+Signal '3.3V'     'B1'       '3.3V' \
+                  ;
+Change Class 0;
+Signal '3V'       'B1'       '3V' \
+                  ;
+Change Class 0;
+Signal 'ACT_LED'  'B1'       '8' \
+                  'R6'       '1' \
+                  ;
+Change Class 0;
+Signal 'AGND'     'B1'       'AGND' \
+                  ;
+Change Class 0;
+Signal 'FS1'      'B1'       '2' \
+                  'FS1'      '2' \
+                  ;
+Change Class 0;
+Signal 'FS1_LED'  'B1'       '5' \
+                  'FS1_LED'  '2' \
+                  ;
+Change Class 0;
+Signal 'FS2'      'B1'       '3' \
+                  'FS2'      '2' \
+                  ;
+Change Class 0;
+Signal 'FS2_LED'  'B1'       '6' \
+                  'FS2_LED'  '2' \
+                  ;
+Change Class 0;
+Signal 'FS3'      'B1'       '4' \
+                  'FS3'      '2' \
+                  ;
+Change Class 0;
+Signal 'FS3_LED'  'B1'       '7' \
+                  'FS3_LED'  '2' \
+                  ;
+Change Class 2;
+Signal 'GND'      'ACT'      'K' \
+                  'B1'       'GND' \
+                  'B1'       'GND1' \
+                  'C1'       '2' \
+                  'C2'       '-' \
+                  'C3'       '2' \
+                  'C4'       '-' \
+                  'C5'       '2' \
+                  'D5'       'A' \
+                  'D7'       'A' \
+                  'EXP1'     'S' \
+                  'EXP1'     'TN' \
+                  'EXP2'     'S' \
+                  'EXP2'     'TN' \
+                  'FS1'      '1' \
+                  'FS1_LED'  '1' \
+                  'FS2'      '1' \
+                  'FS2_LED'  '1' \
+                  'FS3'      '1' \
+                  'FS3_LED'  '1' \
+                  'IC1'      '3' \
+                  'MIDI_IN'  '1' \
+                  'MIDI_OUT' '2' \
+                  'PWR'      '3' \
+                  'R10'      '1' \
+                  'R4'       '2' \
+                  'TRIG'     'S' \
+                  'TRIG'     'TN' \
+                  'U2'       '5' \
+                  'USB'      'GND' \
+                  'Z1'       '2' \
+                  ;
+Change Class 0;
+Signal 'JACK1'    'B1'       '15' \
+                  'D4'       'A' \
+                  'D5'       'C' \
+                  'R5'       '2' \
+                  ;
+Change Class 0;
+Signal 'JACK2'    'B1'       '16' \
+                  'D6'       'A' \
+                  'D7'       'C' \
+                  'R9'       '2' \
+                  ;
+Change Class 0;
+Signal 'JACK3'    'B1'       '17' \
+                  'R10'      '2' \
+                  'TRIG'     'T' \
+                  'Z1'       '1' \
+                  ;
+Change Class 0;
+Signal 'N$1'      'ACT'      'A' \
+                  'R6'       '2' \
+                  ;
+Change Class 0;
+Signal 'N$2'      'D1'       'A' \
+                  'MIDI_IN'  '5' \
+                  'U2'       '3' \
+                  ;
+Change Class 0;
+Signal 'N$3'      'MIDI_IN'  '4' \
+                  'R1'       '2' \
+                  ;
+Change Class 0;
+Signal 'N$4'      'B1'       '14' \
+                  'C5'       '1' \
+                  ;
+Change Class 0;
+Signal 'N$5'      'D3'       'C' \
+                  'MIDI_IN'  '3' \
+                  ;
+Change Class 0;
+Signal 'N$7'      'D2'       'A' \
+                  'PWR'      '1' \
+                  ;
+Change Class 0;
+Signal 'N$8'      'MIDI_OUT' '4' \
+                  'R3'       '2' \
+                  ;
+Change Class 0;
+Signal 'N$9'      'EXP2'     'T' \
+                  'R9'       '1' \
+                  ;
+Change Class 0;
+Signal 'N$10'     'MICRO'    '3' \
+                  'USB'      'D+' \
+                  ;
+Change Class 0;
+Signal 'N$11'     'R4'       '1' \
+                  'U2'       '7' \
+                  ;
+Change Class 0;
+Signal 'N$13'     'MICRO'    '2' \
+                  'USB'      'D-' \
+                  ;
+Change Class 0;
+Signal 'N$14'     'EXP1'     'T' \
+                  'R5'       '1' \
+                  ;
+Change Class 0;
+Signal 'N$16'     'D1'       'C' \
+                  'R1'       '1' \
+                  'U2'       '2' \
+                  ;
+Change Class 3;
+Signal 'RAW'      'C1'       '1' \
+                  'C2'       '+' \
+                  'D2'       'C' \
+                  'D3'       'A' \
+                  'IC1'      '1' \
+                  ;
+Change Class 0;
+Signal 'RX'       'B1'       '0' \
+                  'R2'       '1' \
+                  'U2'       '6' \
+                  ;
+Change Class 0;
+Signal 'TX'       'B1'       '1' \
+                  'MIDI_OUT' '5' \
+                  ;
+Change Class 0;
+Signal 'VBAT'     'B1'       'VBAT' \
+                  ;
+Change Class 0;
+Signal 'VBUS'     'USB'      'VBUS' \
+                  ;
+Change Class 0;
+Signal 'VIN'      'B1'       'VIN' \
+                  'C3'       '1' \
+                  'C4'       '+' \
+                  'IC1'      '2' \
+                  'R2'       '2' \
+                  'U2'       '8' \
+                  ;
+Change Class 0;
+Signal 'VUSB'     'B1'       'VUSB' \
+                  ;

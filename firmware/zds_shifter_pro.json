@@ -1,26 +1,18 @@
 {
   "build": {
     "core": "arduino",
-    "extra_flags": "-DARDUINO_ARCH_AVR -DARDUINO_AVR_PROMICRO16",
-    "f_cpu": "16000000L",
+    "extra_flags": "-DARDUINO_AVR_PROMICRO8",
+    "f_cpu": "8000000L",
     "hwids": [
-      [
-        "0x1209",
-        "0x007E"
-      ],
-      [
-        "0x1209",
-        "0x007F"
-      ]
+      ["0x1209", "0x007E"],
+      ["0x1209", "0x007F"]
     ],
     "mcu": "atmega32u4",
     "usb_product": "ZDS Shifter Pro",
     "variant": "sparkfun_promicro"
   },
-  "frameworks": [
-    "arduino"
-  ],
-  "name": "Shifter v2",
+  "frameworks": ["arduino"],
+  "name": "Shifter Pro",
   "upload": {
     "disable_flushing": true,
     "maximum_ram_size": 2560,

@@ -1,14 +1,13 @@
 // #include <MIDI.h>
 #include "controlDefaults.h"
 #include "controlHandler.h"
+#include "midiHandler.h"
 #include "settings.h"
 #include "shifterTypes.h"
 #include <EEPROM.h>
 
 void resetControls() {
   const uint8_t CHANNEL = 9;
-  const uint8_t NOTE_ON = 0x09;
-  const uint8_t CC      = 0x0B;
 
   input_control jack;
   uint8_t       eepromIndex = LOCATION_OF_CONTROLS;
@@ -38,13 +37,14 @@ void resetControls() {
       case 4:
         jack.controlType = CONTROL_TYPE_POT;
         jack.status      = CC;
-        jack.threshold   = 8;
+        jack.threshold   = 0;
         break;
 
       case 5:
+      case 6:
         jack.controlType = CONTROL_TYPE_TRIGGER;
         jack.status      = NOTE_ON;
-        jack.threshold   = 8;
+        jack.threshold   = 2;
         break;
     }
 
