@@ -1,0 +1,48 @@
+$color-text: black;
+$color-background: #ddd;
+$color-background-light: #eee;
+$color-background-dark: black;
+$color-link: #1055ca;
+
+$color-text-dark: $color-text;
+$color-text-dimmer: #333;
+$color-text-mid: #666;
+$color-text-light: #999;
+
+$color-shifter-red: #7e0018;
+$color-shifter-text: white;
+$color-shifter-red-accent: #91263b;
+$color-shifter-red-dark: darken($color-shifter-red, 2);
+
+$color-appbar-background: white;
+$color-appbar-text: $color-text-dark;
+
+$color-grid-background: white;
+$color-grid-row-odd: $color-grid-background;
+$color-grid-row-even: $color-background-light;
+
+$color-highlight: $color-shifter-red;
+
+$color-border: $color-shifter-red;
+$color-shadow: #555;
+$color-focus: desaturate($color-highlight, 50);
+
+$color-button-alert: #ffcb01;
+$color-text-alert: #ff0000;
+
+$color-led-switches: #8dbdf1;
+$color-led-activity: #f54141;
+
+$height-header: 77px;
+$input-controls-height: 280px;
+$height-tabs: 48px;
+$height-grid-controls: 62px;
+$height-footer: 30px;
+$viewport-margin: 30px;
+$tab-border-width: 4px;
+
+$viewport-width: 800px;
+
+$grid-height: $height-header + $input-controls-height + $height-tabs +
+  $height-grid-controls + $height-footer + $viewport-margin + $tab-border-width *
+  2 + 42;

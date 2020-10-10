@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`sysexOutput processing removeShiftEntry - multiple entries 1`] = `
+Array [
+  Object {
+    "payload": Object {
+      "data": Array [
+        240,
+        108,
+        0,
+        14,
+        1,
+        3,
+        247,
+      ],
+      "device": -1,
+      "timestamp": 0,
+    },
+    "type": "redux-midi/midi/SEND_MIDI_MESSAGE",
+  },
+  Object {
+    "payload": Object {
+      "data": Array [
+        240,
+        108,
+        0,
+        14,
+        1,
+        9,
+        247,
+      ],
+      "device": -1,
+      "timestamp": 0,
+    },
+    "type": "redux-midi/midi/SEND_MIDI_MESSAGE",
+  },
+]
+`;
+
+exports[`sysexOutput processing saveShiftEntry 1`] = `
+Array [
+  Object {
+    "payload": Object {
+      "data": Array [
+        240,
+        108,
+        40,
+        13,
+        0,
+        0,
+        25,
+        1,
+        25,
+        1,
+        247,
+      ],
+      "device": -1,
+      "timestamp": 0,
+    },
+    "type": "redux-midi/midi/SEND_MIDI_MESSAGE",
+  },
+]
+`;
+
+exports[`sysexOutput processing saveShiftEntry 2`] = `
+Array [
+  Object {
+    "payload": Object {
+      "data": Array [
+        240,
+        108,
+        44,
+        13,
+        0,
+        127,
+        25,
+        2,
+        25,
+        2,
+        247,
+      ],
+      "device": -1,
+      "timestamp": 0,
+    },
+    "type": "redux-midi/midi/SEND_MIDI_MESSAGE",
+  },
+]
+`;
+
+exports[`sysexOutput processing transmitControls should work 1`] = `
+Array [
+  Object {
+    "payload": Object {
+      "data": Array [
+        240,
+        108,
+        66,
+        4,
+        58,
+        110,
+        0,
+        0,
+        127,
+        58,
+        16,
+        111,
+        1,
+        0,
+        127,
+        26,
+        110,
+        0,
+        4,
+        0,
+        127,
+        26,
+        110,
+        0,
+        0,
+        127,
+        33,
+        26,
+        110,
+        0,
+        0,
+        127,
+        26,
+        110,
+        0,
+        0,
+        0,
+        127,
+        247,
+      ],
+      "device": -1,
+      "timestamp": 0,
+    },
+    "type": "redux-midi/midi/SEND_MIDI_MESSAGE",
+  },
+]
+`;

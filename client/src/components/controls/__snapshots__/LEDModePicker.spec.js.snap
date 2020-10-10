@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LEDModePicker tests renders correctly 1`] = `
+<Fragment>
+  <WithStyles(IconButton)
+    aria-haspopup="true"
+    aria-owns={null}
+    onClick={[Function]}
+  >
+    <WithStyles(Tooltip)
+      enterDelay={250}
+      placement="top"
+      title="LED mode"
+    >
+      <div
+        style={
+          Object {
+            "display": "flex",
+            "flexFlow": "row nowrap",
+          }
+        }
+      >
+        <pure(ArrowDropDownIcon) />
+      </div>
+    </WithStyles(Tooltip)>
+  </WithStyles(IconButton)>
+  <WithStyles(Menu)
+    anchorEl={null}
+    id="simple-menu"
+    onClose={[Function]}
+    open={false}
+  >
+    <WithStyles(MenuItem)
+      key="0"
+      onClick={[Function]}
+      selected={true}
+      tag="miValue0"
+    >
+      Flicker on activity; Normally ON
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="1"
+      onClick={[Function]}
+      selected={false}
+      tag="miValue1"
+    >
+      Flicker on activity; Normally OFF
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="2"
+      onClick={[Function]}
+      selected={false}
+      tag="miValue2"
+    >
+      Always ON
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="3"
+      onClick={[Function]}
+      selected={false}
+      tag="miValue3"
+    >
+      Always OFF
+    </WithStyles(MenuItem)>
+  </WithStyles(Menu)>
+</Fragment>
+`;

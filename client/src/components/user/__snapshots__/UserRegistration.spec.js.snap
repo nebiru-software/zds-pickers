@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserRegistration tests renders correctly 1`] = `
+<Dialog
+  disableBackdropClick={true}
+  disableEscapeKeyDown={true}
+  onClose={[MockFunction]}
+  open={true}
+>
+  <WithStyles(DialogTitle)>
+    ZDS Shifter Registration
+  </WithStyles(DialogTitle)>
+  <WithStyles(DialogContent)>
+    <WithStyles(DialogContentText)>
+      Register yourself as the owner of this Shifter
+      <br />
+      Serial number:
+      <strong>
+         
+        serial-num
+      </strong>
+    </WithStyles(DialogContentText)>
+    <Connect(ReduxForm) />
+    <div>
+      <GravatarLink
+        content={
+          <WithStyles(SvgIcon)>
+            <test-file-stub />
+          </WithStyles(SvgIcon)>
+        }
+      />
+      <GravatarLink
+        content="We use Gravatar for displaying profile images, based on your email address"
+      />
+    </div>
+  </WithStyles(DialogContent)>
+  <WithStyles(DialogActions)>
+    <WithStyles(Button)
+      autoFocus={true}
+      color="primary"
+      onClick={[MockFunction]}
+      tag="btnRegister"
+      variant="contained"
+    >
+      Register
+    </WithStyles(Button)>
+  </WithStyles(DialogActions)>
+</Dialog>
+`;
+
+exports[`UserRegistration tests renders gravatar correctly 1`] = `
+<a
+  href="https://en.gravatar.com/"
+  rel="noopener noreferrer"
+  target="_blank"
+>
+  content
+</a>
+`;

@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImportSettings should render 1`] = `
+<Fragment>
+  <Dialog
+    onClose={[Function]}
+    open={false}
+  >
+    <WithStyles(DialogTitle)>
+      Restore Settings
+    </WithStyles(DialogTitle)>
+    <WithStyles(DialogContent)>
+      <ImportSettingsForm
+        handleSubmit={null}
+      />
+    </WithStyles(DialogContent)>
+    <WithStyles(DialogActions)>
+      <WithStyles(Button)
+        onClick={[Function]}
+        tag="btnCancel"
+      >
+        Cancel
+      </WithStyles(Button)>
+      <WithStyles(Button)
+        color="primary"
+        disabled={true}
+        onClick={[MockFunction]}
+        tag="btnLoad"
+        variant="contained"
+      >
+        Load
+      </WithStyles(Button)>
+    </WithStyles(DialogActions)>
+  </Dialog>
+  <Dialog
+    open={false}
+  >
+    <WithStyles(DialogTitle)>
+      Restore In Progress
+    </WithStyles(DialogTitle)>
+    <WithStyles(DialogContent)>
+      <WithStyles(DialogContentText)>
+        Please wait. This will take a few moments...
+      </WithStyles(DialogContentText)>
+      <WithStyles(LinearProgress) />
+    </WithStyles(DialogContent)>
+    <WithStyles(DialogActions)>
+      <WithStyles(Button)
+        onClick={[MockFunction]}
+      >
+        Close
+      </WithStyles(Button)>
+    </WithStyles(DialogActions)>
+  </Dialog>
+  <InvalidSettingsFile
+    acknowledgeInvalidFile={[MockFunction]}
+    invalidSettingsFile={null}
+  />
+</Fragment>
+`;

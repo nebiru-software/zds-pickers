@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormInput tests renders correctly 1`] = `
+<TextField
+  error={false}
+  helperText={null}
+  label=""
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  required={false}
+  select={false}
+  type="input"
+  value=""
+  variant="standard"
+/>
+`;
+
+exports[`FormInput tests should render a warning when touched 1`] = `
+<TextField
+  error={true}
+  helperText="warning"
+  label=""
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  required={false}
+  select={false}
+  type="input"
+  value=""
+  variant="standard"
+/>
+`;
+
+exports[`FormInput tests should render an error when touched 1`] = `
+<TextField
+  error={true}
+  helperText="error"
+  label=""
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  required={false}
+  select={false}
+  type="input"
+  value=""
+  variant="standard"
+/>
+`;

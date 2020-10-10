@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MidiMenu tests renders correctly 1`] = `
+<Fragment>
+  <WithStyles(IconButton)
+    aria-haspopup="true"
+    aria-owns={null}
+    disabled={false}
+    onClick={[Function]}
+  >
+    <WithStyles(Tooltip)
+      enterDelay={250}
+      placement="top"
+      title="MIDI out mode"
+    >
+      <div
+        style={
+          Object {
+            "alignItems": "center",
+            "display": "flex",
+            "flexFlow": "row nowrap",
+          }
+        }
+      >
+        <test-file-stub
+          width={18}
+        />
+        <pure(AddIcon)
+          style={
+            Object {
+              "left": 3,
+              "position": "relative",
+              "width": 15,
+            }
+          }
+        />
+        <pure(UsbIcon) />
+        <span
+          style={
+            Object {
+              "padding": "5px 5px 0",
+            }
+          }
+        >
+          Both DIN and USB
+        </span>
+        <pure(ArrowDropDownIcon) />
+      </div>
+    </WithStyles(Tooltip)>
+  </WithStyles(IconButton)>
+  <WithStyles(Menu)
+    anchorEl={null}
+    id="simple-menu"
+    onClose={[Function]}
+    open={false}
+  >
+    <WithStyles(MenuItem)
+      key="4"
+      onClick={[Function]}
+      selected={false}
+      tag="miDinOut"
+    >
+      Enable MIDI Out on DIN
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="8"
+      onClick={[Function]}
+      selected={false}
+      tag="miUsbOut"
+    >
+      Enable MIDI Out on USB
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="12"
+      onClick={[Function]}
+      selected={true}
+      tag="miBothOut"
+    >
+      Enable Both DIN AND USB
+    </WithStyles(MenuItem)>
+  </WithStyles(Menu)>
+</Fragment>
+`;
+
+exports[`MidiMenu tests renders correctly in alternate modes 1`] = `
+<Fragment>
+  <WithStyles(IconButton)
+    aria-haspopup="true"
+    aria-owns={null}
+    disabled={false}
+    onClick={[Function]}
+  >
+    <WithStyles(Tooltip)
+      enterDelay={250}
+      placement="top"
+      title="MIDI out mode"
+    >
+      <div
+        style={
+          Object {
+            "alignItems": "center",
+            "display": "flex",
+            "flexFlow": "row nowrap",
+          }
+        }
+      >
+        <span
+          style={
+            Object {
+              "padding": "5px 5px 0",
+            }
+          }
+        >
+          USB Only
+        </span>
+        <pure(ArrowDropDownIcon) />
+      </div>
+    </WithStyles(Tooltip)>
+  </WithStyles(IconButton)>
+  <WithStyles(Menu)
+    anchorEl={null}
+    id="simple-menu"
+    onClose={[Function]}
+    open={false}
+  >
+    <WithStyles(MenuItem)
+      key="4"
+      onClick={[Function]}
+      selected={false}
+      tag="miDinOut"
+    >
+      Enable MIDI Out on DIN
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="8"
+      onClick={[Function]}
+      selected={false}
+      tag="miUsbOut"
+    >
+      Enable MIDI Out on USB
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="12"
+      onClick={[Function]}
+      selected={false}
+      tag="miBothOut"
+    >
+      Enable Both DIN AND USB
+    </WithStyles(MenuItem)>
+  </WithStyles(Menu)>
+</Fragment>
+`;

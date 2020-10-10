@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CCControl tests renders alternate mode correctly 1`] = `
+<div>
+  <Led
+    disabled={false}
+    isMidiActivity={false}
+    label="FS4"
+    latching={0}
+    layout="left"
+    lit={false}
+    polarity={1}
+    value={12}
+  />
+  <WithStyles(CCPicker)
+    latching={0}
+    onChange={[Function]}
+    polarity={1}
+    value={12}
+  />
+  <WithStyles(ChannelPicker)
+    latching={0}
+    onChange={[Function]}
+    polarity={1}
+    value={12}
+  />
+  <LatchPicker
+    latching={0}
+    onChange={[Function]}
+    polarity={1}
+    value={12}
+  />
+  <PolarityPicker
+    labelOff="Normally Off"
+    labelOn="Normally On"
+    latching={0}
+    onChange={[Function]}
+    polarity={1}
+    value={12}
+  />
+</div>
+`;
+
+exports[`CCControl tests renders correctly 1`] = `
+<div>
+  <Led
+    disabled={false}
+    isMidiActivity={false}
+    label="FS4"
+    latching={1}
+    layout="left"
+    lit={false}
+    polarity={0}
+    value={12}
+  />
+  <WithStyles(CCPicker)
+    latching={1}
+    onChange={[Function]}
+    polarity={0}
+    value={12}
+  />
+  <WithStyles(ChannelPicker)
+    latching={1}
+    onChange={[Function]}
+    polarity={0}
+    value={12}
+  />
+  <LatchPicker
+    latching={1}
+    onChange={[Function]}
+    polarity={0}
+    value={12}
+  />
+  <PolarityPicker
+    labelOff="Initially Off"
+    labelOn="Initially On"
+    latching={1}
+    onChange={[Function]}
+    polarity={0}
+    value={12}
+  />
+</div>
+`;

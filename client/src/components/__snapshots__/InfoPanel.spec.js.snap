@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InfoPanel tests renders correctly 1`] = `
+<footer>
+  <div>
+    © Copyright 
+    <a
+      href="https://zendrumstudio.com"
+    >
+      Zendrum Studio
+    </a>
+    , 
+    2019
+  </div>
+  <div>
+    <span>
+      Client: 
+      v0.3
+    </span>
+    <span>
+      Firmware: 
+      v0.1
+    </span>
+  </div>
+</footer>
+`;
+
+exports[`InfoPanel tests renders correctly when there is no attached device 1`] = `
+<footer>
+  <div>
+    © Copyright 
+    <a
+      href="https://zendrumstudio.com"
+    >
+      Zendrum Studio
+    </a>
+    , 
+    2019
+  </div>
+  <div>
+    <span>
+      Client: 
+      v0.3
+    </span>
+    <span>
+      Firmware: 
+      N/A
+    </span>
+  </div>
+</footer>
+`;

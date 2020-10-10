@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PrimaryNav tests renders correctly 1`] = `
+<div>
+  <div>
+    <test-file-stub />
+    <section>
+      <Connect(UserInfo) />
+      <Documentation />
+      <Connect(MainMenu) />
+    </section>
+  </div>
+  <section>
+    <Connect(InputControls) />
+    <Connect(ShiftGroups) />
+    <Connect(EditEntryDlg) />
+    <Connect(ErrorDialog) />
+  </section>
+</div>
+`;

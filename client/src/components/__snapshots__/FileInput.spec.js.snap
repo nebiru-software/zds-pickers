@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileInput tests renders correctly 1`] = `
+<div>
+  <input
+    accept="text/plain"
+    onBlur={[Function]}
+    onChange={[Function]}
+    type="file"
+  />
+  <p />
+</div>
+`;
+
+exports[`FileInput tests should render a warning when touched 1`] = `
+<div>
+  <input
+    accept="text/plain"
+    onBlur={[Function]}
+    onChange={[Function]}
+    type="file"
+  />
+  <p>
+    warning
+  </p>
+</div>
+`;
+
+exports[`FileInput tests should render an error when touched 1`] = `
+<div>
+  <input
+    accept="text/plain"
+    onBlur={[Function]}
+    onChange={[Function]}
+    type="file"
+  />
+  <p>
+    error
+  </p>
+</div>
+`;

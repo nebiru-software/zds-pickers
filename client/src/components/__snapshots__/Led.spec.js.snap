@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Led tests renders correctly 1`] = `
+<figure
+  style={
+    Object {
+      "justifyContent": "flex-start",
+    }
+  }
+>
+  <div
+    className=""
+  />
+  <header>
+    label
+  </header>
+</figure>
+`;
+
+exports[`Led tests should render when lit 1`] = `
+<figure
+  style={
+    Object {
+      "justifyContent": "flex-start",
+    }
+  }
+>
+  <div
+    className=""
+  />
+  <header>
+    label
+  </header>
+</figure>
+`;

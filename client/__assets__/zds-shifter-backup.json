@@ -1,0 +1,430 @@
+{
+  "shifter": {
+    "exportFilename": "filename",
+    "exportBuffer": [
+      127,
+      0,
+      10,
+      0,
+      0,
+      0,
+      0,
+      11,
+      110,
+      127,
+      0,
+      10,
+      1,
+      0,
+      1,
+      0,
+      11,
+      111,
+      127,
+      0,
+      10,
+      2,
+      0,
+      0,
+      0,
+      9,
+      110,
+      127,
+      0,
+      10,
+      3,
+      0,
+      0,
+      0,
+      9,
+      110,
+      127,
+      0,
+      10,
+      4,
+      0,
+      0,
+      0,
+      9,
+      110,
+      127,
+      0,
+      10,
+      5,
+      0,
+      0,
+      0,
+      9,
+      110,
+      4,
+      10,
+      110,
+      10,
+      9,
+      1,
+      10,
+      9,
+      1,
+      10,
+      9,
+      2,
+      10,
+      9,
+      2,
+      10,
+      9,
+      3,
+      10,
+      9,
+      3,
+      10,
+      9,
+      4,
+      10,
+      9,
+      4,
+      3,
+      10,
+      111,
+      10,
+      9,
+      5,
+      10,
+      9,
+      5,
+      10,
+      9,
+      6,
+      10,
+      9,
+      6,
+      10,
+      9,
+      7,
+      10,
+      9,
+      7,
+      2,
+      10,
+      112,
+      10,
+      9,
+      8,
+      10,
+      9,
+      8,
+      10,
+      9,
+      9,
+      10,
+      9,
+      9,
+      1,
+      10,
+      113,
+      10,
+      9,
+      10,
+      10,
+      9,
+      10
+    ]
+  },
+  "version": {
+    "firmware": 10,
+    "proModel": false
+  },
+  "inputControls": [
+    {
+      "controlId": 0,
+      "channel": 10,
+      "calibrationLow": 0,
+      "calibrationHigh": 127,
+      "curve": 0,
+      "polarity": 0,
+      "latching": 0,
+      "status": 11,
+      "value": 110
+    },
+    {
+      "controlId": 1,
+      "channel": 10,
+      "calibrationLow": 0,
+      "calibrationHigh": 127,
+      "curve": 0,
+      "polarity": 0,
+      "latching": 1,
+      "status": 11,
+      "value": 111
+    },
+    {
+      "controlId": 2,
+      "channel": 10,
+      "calibrationLow": 0,
+      "calibrationHigh": 127,
+      "curve": 0,
+      "polarity": 0,
+      "latching": 0,
+      "status": 9,
+      "value": 110
+    },
+    {
+      "controlId": 3,
+      "channel": 10,
+      "calibrationLow": 0,
+      "calibrationHigh": 127,
+      "curve": 0,
+      "polarity": 0,
+      "latching": 0,
+      "status": 9,
+      "value": 110
+    },
+    {
+      "controlId": 4,
+      "channel": 10,
+      "calibrationLow": 0,
+      "calibrationHigh": 127,
+      "curve": 0,
+      "polarity": 0,
+      "latching": 0,
+      "status": 9,
+      "value": 110
+    },
+    {
+      "controlId": 5,
+      "channel": 10,
+      "calibrationLow": 0,
+      "calibrationHigh": 127,
+      "curve": 0,
+      "polarity": 0,
+      "latching": 0,
+      "status": 9,
+      "value": 110
+    }
+  ],
+  "shiftGroups": {
+    "selectedGroupIdx": 0,
+    "maxEntries": 112,
+    "totalEntries": 12,
+    "groups": [
+      {
+        "groupId": 0,
+        "label": "Group A",
+        "value": 110,
+        "channel": 10,
+        "entries": [
+          {
+            "entryId": 0,
+            "input": {
+              "value": 1,
+              "status": 9,
+              "channel": 10
+            },
+            "output": {
+              "value": 1,
+              "status": 9,
+              "channel": 10
+            }
+          },
+          {
+            "entryId": 1,
+            "input": {
+              "value": 2,
+              "status": 9,
+              "channel": 10
+            },
+            "output": {
+              "value": 2,
+              "status": 9,
+              "channel": 10
+            }
+          },
+          {
+            "entryId": 2,
+            "input": {
+              "value": 3,
+              "status": 9,
+              "channel": 10
+            },
+            "output": {
+              "value": 3,
+              "status": 9,
+              "channel": 10
+            }
+          },
+          {
+            "entryId": 3,
+            "input": {
+              "value": 4,
+              "status": 9,
+              "channel": 10
+            },
+            "output": {
+              "value": 4,
+              "status": 9,
+              "channel": 10
+            }
+          }
+        ],
+        "editing": false,
+        "editQueue": {
+          "entryId": -1,
+          "input": {
+            "channel": 10,
+            "status": 9,
+            "value": 0
+          },
+          "output": {
+            "channel": 10,
+            "status": 9,
+            "value": 0
+          }
+        }
+      },
+      {
+        "groupId": 1,
+        "label": "Group B",
+        "value": 111,
+        "channel": 10,
+        "entries": [
+          {
+            "entryId": 0,
+            "input": {
+              "value": 5,
+              "status": 9,
+              "channel": 10
+            },
+            "output": {
+              "value": 5,
+              "status": 9,
+              "channel": 10
+            }
+          },
+          {
+            "entryId": 1,
+            "input": {
+              "value": 6,
+              "status": 9,
+              "channel": 10
+            },
+            "output": {
+              "value": 6,
+              "status": 9,
+              "channel": 10
+            }
+          },
+          {
+            "entryId": 2,
+            "input": {
+              "value": 7,
+              "status": 9,
+              "channel": 10
+            },
+            "output": {
+              "value": 7,
+              "status": 9,
+              "channel": 10
+            }
+          }
+        ],
+        "editing": false,
+        "editQueue": {
+          "entryId": -1,
+          "input": {
+            "channel": 10,
+            "status": 9,
+            "value": 0
+          },
+          "output": {
+            "channel": 10,
+            "status": 9,
+            "value": 0
+          }
+        }
+      },
+      {
+        "groupId": 2,
+        "label": "Group C",
+        "value": 112,
+        "channel": 10,
+        "entries": [
+          {
+            "entryId": 0,
+            "input": {
+              "value": 8,
+              "status": 9,
+              "channel": 10
+            },
+            "output": {
+              "value": 8,
+              "status": 9,
+              "channel": 10
+            }
+          },
+          {
+            "entryId": 1,
+            "input": {
+              "value": 9,
+              "status": 9,
+              "channel": 10
+            },
+            "output": {
+              "value": 9,
+              "status": 9,
+              "channel": 10
+            }
+          }
+        ],
+        "editing": false,
+        "editQueue": {
+          "entryId": -1,
+          "input": {
+            "channel": 10,
+            "status": 9,
+            "value": 0
+          },
+          "output": {
+            "channel": 10,
+            "status": 9,
+            "value": 0
+          }
+        }
+      },
+      {
+        "groupId": 3,
+        "label": "Group D",
+        "value": 113,
+        "channel": 10,
+        "entries": [
+          {
+            "entryId": 0,
+            "input": {
+              "value": 10,
+              "status": 9,
+              "channel": 10
+            },
+            "output": {
+              "value": 10,
+              "status": 9,
+              "channel": 10
+            }
+          }
+        ],
+        "editing": false,
+        "editQueue": {
+          "entryId": -1,
+          "input": {
+            "channel": 10,
+            "status": 9,
+            "value": 0
+          },
+          "output": {
+            "channel": 10,
+            "status": 9,
+            "value": 0
+          }
+        }
+      }
+    ]
+  }
+}

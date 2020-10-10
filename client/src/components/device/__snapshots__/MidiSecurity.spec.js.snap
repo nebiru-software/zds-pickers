@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MidiSecurity tests renders correctly 1`] = `
+<Dialog
+  open={false}
+>
+  <WithStyles(DialogTitle)>
+    Your Permission Is Required
+  </WithStyles(DialogTitle)>
+  <WithStyles(DialogContent)>
+    <WithStyles(DialogContentText)>
+      This application requires special permissions before it can use SysEx and connect to your ZDS Shifter.
+    </WithStyles(DialogContentText)>
+    <WithStyles(DialogContentText)>
+      <br />
+    </WithStyles(DialogContentText)>
+    <WithStyles(DialogContentText)>
+      Please select 'Allow' when prompted by your browser.
+    </WithStyles(DialogContentText)>
+  </WithStyles(DialogContent)>
+</Dialog>
+`;
+
+exports[`MidiSecurity tests renders correctly when shifter is available but we can\`t access it 1`] = `
+<Dialog
+  open={true}
+>
+  <WithStyles(DialogTitle)>
+    Your Permission Is Required
+  </WithStyles(DialogTitle)>
+  <WithStyles(DialogContent)>
+    <WithStyles(DialogContentText)>
+      This application requires special permissions before it can use SysEx and connect to your ZDS Shifter.
+    </WithStyles(DialogContentText)>
+    <WithStyles(DialogContentText)>
+      <br />
+    </WithStyles(DialogContentText)>
+    <WithStyles(DialogContentText)>
+      Please select 'Allow' when prompted by your browser.
+    </WithStyles(DialogContentText)>
+  </WithStyles(DialogContent)>
+</Dialog>
+`;

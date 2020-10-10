@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputControl tests renders correctly 1`] = `
+<CCControl
+  active={true}
+  calibrationHigh={127}
+  calibrationLow={0}
+  changeInputControlChannel={[MockFunction]}
+  changeInputControlLatching={[MockFunction]}
+  changeInputControlPolarity={[MockFunction]}
+  changeInputControlValue={[MockFunction]}
+  channel={10}
+  controlId={0}
+  curve={0}
+  disabled={false}
+  latching={0}
+  lit={true}
+  polarity={0}
+  status={11}
+  value={110}
+/>
+`;
+
+exports[`InputControl tests renders correctly for controls outside the current range 1`] = `
+<div>
+  control #
+  3
+</div>
+`;

@@ -1,0 +1,5 @@
+{
+  "terminal.integrated.env.osx": {
+    "PATH": "/Users/darin/.platformio/penv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/CrossPack-AVR/bin:~/.platformio/penv/bin:/usr/local/bin"
+  }
+}

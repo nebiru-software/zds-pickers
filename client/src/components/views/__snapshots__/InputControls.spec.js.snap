@@ -1,0 +1,311 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputControls tests renders correctly 1`] = `
+<div>
+  <div>
+    <WithStyles(Grid)
+      alignItems="center"
+      container={true}
+      justify="space-between"
+    >
+      <WithStyles(Grid)
+        item={true}
+      >
+        <div>
+          <LEDModePicker
+            selectedValue={0}
+            serialMidiOutEnabled={true}
+            setFlags={[MockFunction]}
+            usbMidiOutEnabled={true}
+          >
+            <Connect(MidiActivity)
+              label="PWR/Midi"
+            />
+          </LEDModePicker>
+        </div>
+      </WithStyles(Grid)>
+      <WithStyles(Grid)
+        item={true}
+      >
+        <div
+          style={
+            Object {
+              "marginRight": 10,
+            }
+          }
+        >
+          <Connect(MidiMenu) />
+        </div>
+      </WithStyles(Grid)>
+    </WithStyles(Grid)>
+    <section>
+      <InputControl
+        active={true}
+        calibrationHigh={127}
+        calibrationLow={0}
+        channel={10}
+        controlId={0}
+        curve={0}
+        inputControls={
+          Array [
+            Object {
+              "active": true,
+              "calibrationHigh": 127,
+              "calibrationLow": 0,
+              "channel": 10,
+              "controlId": 0,
+              "curve": 0,
+              "latching": 0,
+              "lit": true,
+              "polarity": 0,
+              "status": 11,
+              "value": 110,
+            },
+            Object {
+              "active": false,
+              "calibrationHigh": 127,
+              "calibrationLow": 0,
+              "channel": 10,
+              "controlId": 1,
+              "curve": 0,
+              "latching": 1,
+              "lit": false,
+              "polarity": 0,
+              "status": 11,
+              "value": 111,
+            },
+            Object {
+              "active": true,
+              "calibrationHigh": 127,
+              "calibrationLow": 0,
+              "channel": 10,
+              "controlId": 2,
+              "curve": 0,
+              "latching": 0,
+              "lit": false,
+              "polarity": 0,
+              "status": 9,
+              "value": 110,
+            },
+            Object {
+              "active": true,
+              "calibrationHigh": 127,
+              "calibrationLow": 0,
+              "channel": 10,
+              "controlId": 3,
+              "curve": 0,
+              "latching": 0,
+              "lit": true,
+              "polarity": 0,
+              "status": 9,
+              "value": 110,
+            },
+            Object {
+              "active": true,
+              "calibrationHigh": 127,
+              "calibrationLow": 0,
+              "channel": 10,
+              "controlId": 4,
+              "curve": 0,
+              "latching": 0,
+              "lit": true,
+              "polarity": 0,
+              "status": 9,
+              "value": 110,
+            },
+            Object {
+              "active": true,
+              "calibrationHigh": 127,
+              "calibrationLow": 0,
+              "channel": 10,
+              "controlId": 5,
+              "curve": 0,
+              "latching": 0,
+              "lit": false,
+              "polarity": 0,
+              "status": 9,
+              "value": 110,
+            },
+          ]
+        }
+        key="0"
+        latching={0}
+        layout="left"
+        lit={true}
+        polarity={0}
+        setFlags={[MockFunction]}
+        shifter={
+          Object {
+            "accessGranted": true,
+            "errorMessage": "",
+            "errorVisible": false,
+            "exportBuffer": Array [],
+            "exportDialogVisible": false,
+            "exportFilename": "zds-shifter-backup.txt",
+            "found": true,
+            "hardwareTestVisible": true,
+            "importDialogVisible": false,
+            "importInProcess": false,
+            "invalidSettingsFile": null,
+            "midiActivityLEDMode": 0,
+            "midiInActivity": false,
+            "midiOutActivity": false,
+            "ready": true,
+            "resetInProcess": false,
+            "responding": true,
+            "searchedForShifter": true,
+            "serialMidiOutEnabled": true,
+            "showResetDialog": false,
+            "testInterfaceFound": false,
+            "usbMidiOutEnabled": true,
+          }
+        }
+        status={11}
+        value={110}
+        version={
+          Object {
+            "checked": false,
+            "checking": false,
+            "client": 2.5,
+            "firmware": 1.5,
+            "proModel": false,
+          }
+        }
+      />
+      <InputControl
+        active={false}
+        calibrationHigh={127}
+        calibrationLow={0}
+        channel={10}
+        controlId={1}
+        curve={0}
+        inputControls={
+          Array [
+            Object {
+              "active": true,
+              "calibrationHigh": 127,
+              "calibrationLow": 0,
+              "channel": 10,
+              "controlId": 0,
+              "curve": 0,
+              "latching": 0,
+              "lit": true,
+              "polarity": 0,
+              "status": 11,
+              "value": 110,
+            },
+            Object {
+              "active": false,
+              "calibrationHigh": 127,
+              "calibrationLow": 0,
+              "channel": 10,
+              "controlId": 1,
+              "curve": 0,
+              "latching": 1,
+              "lit": false,
+              "polarity": 0,
+              "status": 11,
+              "value": 111,
+            },
+            Object {
+              "active": true,
+              "calibrationHigh": 127,
+              "calibrationLow": 0,
+              "channel": 10,
+              "controlId": 2,
+              "curve": 0,
+              "latching": 0,
+              "lit": false,
+              "polarity": 0,
+              "status": 9,
+              "value": 110,
+            },
+            Object {
+              "active": true,
+              "calibrationHigh": 127,
+              "calibrationLow": 0,
+              "channel": 10,
+              "controlId": 3,
+              "curve": 0,
+              "latching": 0,
+              "lit": true,
+              "polarity": 0,
+              "status": 9,
+              "value": 110,
+            },
+            Object {
+              "active": true,
+              "calibrationHigh": 127,
+              "calibrationLow": 0,
+              "channel": 10,
+              "controlId": 4,
+              "curve": 0,
+              "latching": 0,
+              "lit": true,
+              "polarity": 0,
+              "status": 9,
+              "value": 110,
+            },
+            Object {
+              "active": true,
+              "calibrationHigh": 127,
+              "calibrationLow": 0,
+              "channel": 10,
+              "controlId": 5,
+              "curve": 0,
+              "latching": 0,
+              "lit": false,
+              "polarity": 0,
+              "status": 9,
+              "value": 110,
+            },
+          ]
+        }
+        key="1"
+        latching={1}
+        layout="right"
+        lit={false}
+        polarity={0}
+        setFlags={[MockFunction]}
+        shifter={
+          Object {
+            "accessGranted": true,
+            "errorMessage": "",
+            "errorVisible": false,
+            "exportBuffer": Array [],
+            "exportDialogVisible": false,
+            "exportFilename": "zds-shifter-backup.txt",
+            "found": true,
+            "hardwareTestVisible": true,
+            "importDialogVisible": false,
+            "importInProcess": false,
+            "invalidSettingsFile": null,
+            "midiActivityLEDMode": 0,
+            "midiInActivity": false,
+            "midiOutActivity": false,
+            "ready": true,
+            "resetInProcess": false,
+            "responding": true,
+            "searchedForShifter": true,
+            "serialMidiOutEnabled": true,
+            "showResetDialog": false,
+            "testInterfaceFound": false,
+            "usbMidiOutEnabled": true,
+          }
+        }
+        status={11}
+        value={111}
+        version={
+          Object {
+            "checked": false,
+            "checking": false,
+            "client": 2.5,
+            "firmware": 1.5,
+            "proModel": false,
+          }
+        }
+      />
+    </section>
+  </div>
+</div>
+`;

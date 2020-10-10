@@ -1,0 +1,504 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShiftGroups tests renders correctly 1`] = `
+<div>
+  <div>
+    <WithStyles(Tabs)
+      disabled={false}
+      onChange={[Function]}
+      value={0}
+    >
+      <DropTarget(WithStyles(GroupTab))
+        active={false}
+        controlLabels={Array []}
+        groupId={0}
+        key="0"
+        label="Group A"
+      />
+      <DropTarget(WithStyles(GroupTab))
+        active={false}
+        controlLabels={Array []}
+        groupId={1}
+        key="1"
+        label="Group B"
+      />
+      <DropTarget(WithStyles(GroupTab))
+        active={false}
+        controlLabels={Array []}
+        groupId={2}
+        key="2"
+        label="Group C"
+      />
+      <DropTarget(WithStyles(GroupTab))
+        active={false}
+        controlLabels={Array []}
+        groupId={3}
+        key="3"
+        label="Group D"
+      />
+    </WithStyles(Tabs)>
+  </div>
+  <div>
+    <ShiftGroup
+      acknowledgeInvalidFile={[Function]}
+      active={false}
+      addEntry={[Function]}
+      askForGroups={[Function]}
+      cancelEntryEdit={[Function]}
+      changeGroupChannel={[Function]}
+      changeGroupValue={[Function]}
+      changeMapping={[Function]}
+      changeSelectedGroup={[Function]}
+      changeSort={[Function]}
+      channel={9}
+      clearAllSelections={[Function]}
+      confirmFactoryReset={[Function]}
+      controlLabels={Array []}
+      deleteMapping={[Function]}
+      disabled={false}
+      dismissError={[Function]}
+      editEntry={[Function]}
+      editQueue={
+        Object {
+          "entryId": -1,
+          "input": Object {
+            "channel": 9,
+            "status": 9,
+            "value": 0,
+          },
+          "output": Object {
+            "channel": 9,
+            "status": 9,
+            "value": 0,
+          },
+        }
+      }
+      editing={false}
+      entries={Array []}
+      exportSettings={[Function]}
+      groupId={0}
+      handleEntryClick={[Function]}
+      hideHardwareTestDialog={[Function]}
+      hideMappingsDialog={[Function]}
+      hideUserMappingsDialog={[Function]}
+      importMapping={[Function]}
+      importSettings={[Function]}
+      inputControls={
+        Array [
+          Object {
+            "active": true,
+            "calibrationHigh": 127,
+            "calibrationLow": 0,
+            "channel": 10,
+            "controlId": 0,
+            "curve": 0,
+            "latching": 0,
+            "lit": true,
+            "polarity": 0,
+            "status": 11,
+            "value": 110,
+          },
+          Object {
+            "active": false,
+            "calibrationHigh": 127,
+            "calibrationLow": 0,
+            "channel": 10,
+            "controlId": 1,
+            "curve": 0,
+            "latching": 1,
+            "lit": false,
+            "polarity": 0,
+            "status": 11,
+            "value": 111,
+          },
+          Object {
+            "active": true,
+            "calibrationHigh": 127,
+            "calibrationLow": 0,
+            "channel": 10,
+            "controlId": 2,
+            "curve": 0,
+            "latching": 0,
+            "lit": false,
+            "polarity": 0,
+            "status": 9,
+            "value": 110,
+          },
+          Object {
+            "active": true,
+            "calibrationHigh": 127,
+            "calibrationLow": 0,
+            "channel": 10,
+            "controlId": 3,
+            "curve": 0,
+            "latching": 0,
+            "lit": true,
+            "polarity": 0,
+            "status": 9,
+            "value": 110,
+          },
+          Object {
+            "active": true,
+            "calibrationHigh": 127,
+            "calibrationLow": 0,
+            "channel": 10,
+            "controlId": 4,
+            "curve": 0,
+            "latching": 0,
+            "lit": true,
+            "polarity": 0,
+            "status": 9,
+            "value": 110,
+          },
+          Object {
+            "active": true,
+            "calibrationHigh": 127,
+            "calibrationLow": 0,
+            "channel": 10,
+            "controlId": 5,
+            "curve": 0,
+            "latching": 0,
+            "lit": false,
+            "polarity": 0,
+            "status": 9,
+            "value": 110,
+          },
+        ]
+      }
+      key="0"
+      label="Group A"
+      mappings={
+        Object {
+          "channels": Array [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            "BFD3",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+          ],
+          "dialogVisible": false,
+          "stockMappings": Array [
+            "2box",
+            "Addictive Drums",
+            "Alesis DM Pro",
+            "Alesis DM10",
+            "Alesis DM5",
+            "BFD2",
+            "BFD3",
+            "Battery 3",
+            "E-MU Protean Acoustic",
+            "E-MU Protean Bread n Butter",
+            "E-MU Protean Studio",
+            "E-MU Protean Synth",
+            "EZ Drummer The Classic EZX",
+            "EZDrummer",
+            "EZDrummer Jazz Kit",
+            "EZDrummer Latin Percussion",
+            "General MIDI",
+            "Infinite Instruments",
+            "John Emrich - Articulations 1",
+            "Kontakt 2",
+            "Ocean Way Drums",
+            "Pearl Redbox",
+            "Roland HandSonic 15",
+            "Roland TD-10",
+            "Roland TD-10 Perc 1",
+            "Roland TD-10 Perc 2",
+            "Roland TD-10 Perc 3",
+            "Roland TD-10 Perc 4",
+            "Roland TD-12",
+            "Roland TD-12 Perc 1 (Latin)",
+            "Roland TD-12 Perc 2 (Indian)",
+            "Roland TD-12 Perc 3 (African)",
+            "Roland TD-12 Perc 4 (Salsa)",
+            "Roland TD-12 Perc 5 (SFX)",
+            "Roland TD-12 Perc 6-8 (User)",
+            "Roland TD-20",
+            "Roland TD-20 Perc",
+            "Roland TD-3",
+            "Roland TD-30",
+            "Roland TD-30 Perc 1 (Latin)",
+            "Roland TD-30 Perc 2 (Indian)",
+            "Roland TD-30 Perc 3 (African)",
+            "Roland TD-30 Perc 4 (Salsa)",
+            "Roland TD-30 Perc 5 (SFX)",
+            "Roland TD-30 Perc 6-8 (User)",
+            "Roland TD-5",
+            "Roland TD-6",
+            "Roland TD-6 Perc 1",
+            "Roland TD-6 Perc 10 (Special)",
+            "Roland TD-6 Perc 2",
+            "Roland TD-6 Perc 3 (Room)",
+            "Roland TD-6 Perc 4 (Power)",
+            "Roland TD-6 Perc 5 (Elec)",
+            "Roland TD-6 Perc 6 (808)",
+            "Roland TD-6 Perc 7 (Jazz)",
+            "Roland TD-6 Perc 8 (Brush)",
+            "Roland TD-6 Perc 9 (Perc)",
+            "Roland TD-7",
+            "Roland TD-8",
+            "Roland TD-8 Perc 1",
+            "Roland TD-8 Perc 10 (Special)",
+            "Roland TD-8 Perc 2",
+            "Roland TD-8 Perc 3 (Room)",
+            "Roland TD-8 Perc 4 (Power)",
+            "Roland TD-8 Perc 5 (Elec)",
+            "Roland TD-8 Perc 6 (808)",
+            "Roland TD-8 Perc 7 (Jazz)",
+            "Roland TD-8 Perc 8 (Brush)",
+            "Roland TD-8 Perc 9 (Perc)",
+            "Roland TD-9",
+            "Roland TD-9 Perc",
+            "Simmons SD1000",
+            "Simmons SD5X",
+            "Simmons SD7",
+            "Simmons SD7PK",
+            "Simmons SD9K",
+            "Sonic Reality iMap Extended",
+            "Sonic Reality iMap Standard",
+            "Studio ProFiles",
+            "Superior Drummer",
+            "Yamaha DTX 700",
+            "Yamaha DTXplorer",
+            "Zendrum Stompblock",
+            "Zendrum TRS",
+            "Zendrum TRS 2.0",
+          ],
+          "userDialogVisible": false,
+          "userImportDialogVisible": false,
+          "userMappings": Array [
+            "BFD3 Custom ZenEdit",
+            "reaper",
+          ],
+        }
+      }
+      maxEntries={112}
+      midiInActivityChanged={[Function]}
+      midiOutActivityChanged={[Function]}
+      notResponding={[Function]}
+      performFactoryReset={[Function]}
+      receivedAvailability={[Function]}
+      receivedExportPacket={[Function]}
+      receivedGroups={[Function]}
+      removeEntry={[Function]}
+      reportError={[Function]}
+      restart={[Function]}
+      saveEntryEdit={[Function]}
+      searchedForShifter={[Function]}
+      selectAllEntries={[Function]}
+      selectShiftEntry={[Function]}
+      selectedEntryId={NaN}
+      selectedRows={Array []}
+      setFlags={[Function]}
+      settingsFileInvalid={[Function]}
+      shiftGroups={
+        Object {
+          "groups": Array [
+            Object {
+              "active": false,
+              "channel": 9,
+              "editQueue": Object {
+                "entryId": -1,
+                "input": Object {
+                  "channel": 9,
+                  "status": 9,
+                  "value": 0,
+                },
+                "output": Object {
+                  "channel": 9,
+                  "status": 9,
+                  "value": 0,
+                },
+              },
+              "editing": false,
+              "entries": Array [],
+              "groupId": 0,
+              "label": "Group A",
+              "selectedEntryId": NaN,
+              "selectedRows": Array [],
+              "sortBy": "SORT_BY_ALL",
+              "sortDir": 1,
+              "sortOn": 0,
+              "value": 110,
+            },
+            Object {
+              "active": false,
+              "channel": 9,
+              "editQueue": Object {
+                "entryId": -1,
+                "input": Object {
+                  "channel": 9,
+                  "status": 9,
+                  "value": 0,
+                },
+                "output": Object {
+                  "channel": 9,
+                  "status": 9,
+                  "value": 0,
+                },
+              },
+              "editing": false,
+              "entries": Array [],
+              "groupId": 1,
+              "label": "Group B",
+              "selectedEntryId": NaN,
+              "selectedRows": Array [],
+              "sortBy": "SORT_BY_ALL",
+              "sortDir": 1,
+              "sortOn": 0,
+              "value": 111,
+            },
+            Object {
+              "active": false,
+              "channel": 9,
+              "editQueue": Object {
+                "entryId": -1,
+                "input": Object {
+                  "channel": 9,
+                  "status": 9,
+                  "value": 0,
+                },
+                "output": Object {
+                  "channel": 9,
+                  "status": 9,
+                  "value": 0,
+                },
+              },
+              "editing": false,
+              "entries": Array [],
+              "groupId": 2,
+              "label": "Group C",
+              "selectedEntryId": NaN,
+              "selectedRows": Array [],
+              "sortBy": "SORT_BY_ALL",
+              "sortDir": 1,
+              "sortOn": 0,
+              "value": 112,
+            },
+            Object {
+              "active": false,
+              "channel": 9,
+              "editQueue": Object {
+                "entryId": -1,
+                "input": Object {
+                  "channel": 9,
+                  "status": 9,
+                  "value": 0,
+                },
+                "output": Object {
+                  "channel": 9,
+                  "status": 9,
+                  "value": 0,
+                },
+              },
+              "editing": false,
+              "entries": Array [],
+              "groupId": 3,
+              "label": "Group D",
+              "selectedEntryId": NaN,
+              "selectedRows": Array [],
+              "sortBy": "SORT_BY_ALL",
+              "sortDir": 1,
+              "sortOn": 0,
+              "value": 113,
+            },
+          ],
+          "maxEntries": 112,
+          "selectedGroupIdx": 0,
+          "totalEntries": 10,
+        }
+      }
+      shifter={
+        Object {
+          "accessGranted": true,
+          "errorMessage": "",
+          "errorVisible": false,
+          "exportBuffer": Array [],
+          "exportDialogVisible": false,
+          "exportFilename": "zds-shifter-backup.txt",
+          "found": true,
+          "hardwareTestVisible": true,
+          "importDialogVisible": false,
+          "importInProcess": false,
+          "invalidSettingsFile": null,
+          "midiActivityLEDMode": 0,
+          "midiInActivity": false,
+          "midiOutActivity": false,
+          "ready": true,
+          "resetInProcess": false,
+          "responding": true,
+          "searchedForShifter": true,
+          "serialMidiOutEnabled": true,
+          "showResetDialog": false,
+          "testInterfaceFound": false,
+          "usbMidiOutEnabled": true,
+        }
+      }
+      shifterFound={[Function]}
+      shifterMissing={[Function]}
+      showExportDialog={[Function]}
+      showHardwareTestDialog={[Function]}
+      showImportDialog={[Function]}
+      showMappingsDialog={[Function]}
+      showUserMappingsDialog={[Function]}
+      sortBy="SORT_BY_ALL"
+      sortDir={1}
+      sortOn={0}
+      submitExportForm={[Function]}
+      submitImportForm={[Function]}
+      testInterfaceFound={[Function]}
+      testInterfaceMissing={[Function]}
+      totalEntries={10}
+      user={
+        Object {
+          "checkedRegistration": true,
+          "dialogVisible": false,
+          "email": "dkadrios@gmail.com",
+          "firstName": "Darin",
+          "lastName": "Kadrioski",
+          "registered": true,
+          "serialNumber": "rkJdMJGt7",
+        }
+      }
+      value={110}
+      version={
+        Object {
+          "checked": false,
+          "checking": false,
+          "client": 2.5,
+          "firmware": 1.5,
+          "proModel": false,
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`ShiftGroups tests renders correctly while still loading 1`] = `
+<div>
+  <div>
+    <WithStyles(Tabs)
+      disabled={false}
+      onChange={[Function]}
+      value={0}
+    />
+  </div>
+  <div>
+    <div>
+      Searching for attached ZDS Shifter...
+    </div>
+  </div>
+</div>
+`;

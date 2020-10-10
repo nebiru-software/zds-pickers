@@ -1,0 +1,66 @@
+@import 'variables';
+@import 'mixins';
+
+:local {
+  .gridHeader {
+    background-color: $color-grid-background;
+    color: $color-shadow;
+    text-align: center;
+
+    header,
+    footer {
+      border-bottom: 1px solid $color-shadow;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-around;
+
+      section {
+        width: 50%;
+        padding: 4px 0;
+        box-sizing: border-box;
+      }
+
+      section:first-child {
+        border-right: 1px solid $color-shadow;
+      }
+    }
+
+    header {
+      font-weight: bold;
+    }
+
+    footer {
+      section {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+
+        > div:first-of-type {
+          // Message
+          @include absWidth(100px);
+          text-align: center;
+        }
+
+        > div:nth-of-type(2) {
+          // Channel
+          @include absWidth(75px);
+        }
+        > div:nth-of-type(3) {
+          // Value
+          @include absWidth(160px);
+          text-align: left;
+        }
+      }
+
+      section:first-child {
+        padding-left: 55px;
+        padding-right: 25px;
+      }
+
+      section:nth-child(2) {
+        padding-left: 30px;
+        padding-right: 37px;
+      }
+    }
+  }
+}

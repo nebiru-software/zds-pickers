@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserMappingsDialog tests renders correctly 1`] = `
+<Dialog
+  onClose={[MockFunction]}
+  open={false}
+>
+  <WithStyles(DialogTitle)>
+    Imported Mappings
+  </WithStyles(DialogTitle)>
+  <WithStyles(DialogContent)>
+    <section>
+      <article
+        key="mp_0"
+      >
+        <aside>
+          <WithStyles(Tooltip)
+            enterDelay={250}
+            placement="left"
+            title="Delete entry"
+          >
+            <i
+              className="material-icons"
+              onClick={[Function]}
+            >
+              delete_forever
+            </i>
+          </WithStyles(Tooltip)>
+        </aside>
+        <div>
+          BFD3 Custom ZenEdit
+        </div>
+      </article>
+      <article
+        key="mp_1"
+      >
+        <aside>
+          <WithStyles(Tooltip)
+            enterDelay={250}
+            placement="left"
+            title="Delete entry"
+          >
+            <i
+              className="material-icons"
+              onClick={[Function]}
+            >
+              delete_forever
+            </i>
+          </WithStyles(Tooltip)>
+        </aside>
+        <div>
+          reaper
+        </div>
+      </article>
+    </section>
+  </WithStyles(DialogContent)>
+  <WithStyles(DialogActions)>
+    <t
+      extensions={
+        Array [
+          "txt",
+        ]
+      }
+      maxSize={2}
+      onChange={[Function]}
+      onError={[MockFunction]}
+    >
+      <WithStyles(Button)>
+        Import Mapping...
+      </WithStyles(Button)>
+    </t>
+    <WithStyles(Button)
+      autoFocus={true}
+      color="primary"
+      onClick={[MockFunction]}
+      variant="contained"
+    >
+      Close
+    </WithStyles(Button)>
+  </WithStyles(DialogActions)>
+</Dialog>
+`;
+
+exports[`UserMappingsDialog tests renders correctly when there are no user mappings 1`] = `
+<Dialog
+  onClose={[MockFunction]}
+  open={false}
+>
+  <WithStyles(DialogTitle)>
+    Imported Mappings
+  </WithStyles(DialogTitle)>
+  <WithStyles(DialogContent)>
+    <section>
+      <div>
+        You've not imported any custom mappings yet
+      </div>
+    </section>
+  </WithStyles(DialogContent)>
+  <WithStyles(DialogActions)>
+    <t
+      extensions={
+        Array [
+          "txt",
+        ]
+      }
+      maxSize={2}
+      onChange={[Function]}
+      onError={[MockFunction]}
+    >
+      <WithStyles(Button)>
+        Import Mapping...
+      </WithStyles(Button)>
+    </t>
+    <WithStyles(Button)
+      autoFocus={true}
+      color="primary"
+      onClick={[MockFunction]}
+      variant="contained"
+    >
+      Close
+    </WithStyles(Button)>
+  </WithStyles(DialogActions)>
+</Dialog>
+`;

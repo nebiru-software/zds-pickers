@@ -1,0 +1,16 @@
+jest.mock('../../src/midi/sysexOutput', () => ({
+  askForBackup: jest.fn(),
+  askForControls: jest.fn(),
+  askForGroups: jest.fn(),
+  askForModel: jest.fn(),
+  askForVersion: jest.fn(),
+  performFactoryReset: jest.fn(),
+  removeShiftEntry: jest.fn(),
+  restart: jest.fn(),
+  saveShiftEntry: jest.fn(),
+  setFlags: jest.fn(),
+  transmitBackup: jest.fn(),
+  transmitControls: jest.fn(),
+  transmitShiftGroupChannel: jest.fn(),
+  transmitShiftGroupValue: jest.fn(),
+}))

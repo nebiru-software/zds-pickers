@@ -1,0 +1,26 @@
+36:Kicks|Kick
+41:Snares|Snare
+42:Snares|Snare Rim
+45:Hats|HH Bow
+46:Hats|HH Edge
+47:Hats|HH Splash
+50:Toms|Tom1
+51:Toms|Tom1 Rim
+53:Toms|Tom2
+54:Toms|Tom2 Rim
+57:Toms|Tom3
+58:Toms|Tom3 Rim
+60:Toms|Tom4
+61:Toms|Tom4 Rim
+64:Cymbals|Cym 1 Bell
+65:Cymbals|Cym 1 Bow
+66:Cymbals|Cym 1 Edge
+67:Cymbals|Cym 1 Choke
+71:Cymbals|Cym 2 Bell
+72:Cymbals|Cym 2 Bow
+73:Cymbals|Cym 2 Edge
+74:Cymbals|Cym 2 Choke
+76:Cymbals|Cym 3 Bell
+77:Cymbals|Cym 3 Bow
+78:Cymbals|Cym 3 Edge
+79:Cymbals|Cym 3 Choke

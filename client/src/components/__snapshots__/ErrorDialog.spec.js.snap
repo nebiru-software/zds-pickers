@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorDialog tests renders correctly 1`] = `
+<Dialog
+  onClose={[MockFunction]}
+  open={false}
+>
+  <WithStyles(DialogTitle)>
+    Error
+  </WithStyles(DialogTitle)>
+  <WithStyles(DialogContent)>
+    <WithStyles(DialogContentText) />
+  </WithStyles(DialogContent)>
+  <WithStyles(DialogActions)>
+    <WithStyles(Button)
+      autoFocus={true}
+      color="primary"
+      onClick={[MockFunction]}
+      variant="contained"
+    >
+      OK
+    </WithStyles(Button)>
+  </WithStyles(DialogActions)>
+</Dialog>
+`;

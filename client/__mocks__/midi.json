@@ -1,0 +1,23 @@
+{
+  "devices": [
+    {
+      "id": "-1325431060",
+      "manufacturer": "Zendrum Studio",
+      "name": "ZDS Shifter",
+      "type": "output",
+      "version": "",
+      "state": "connected",
+      "connection": "open"
+    },
+    {
+      "id": "-312145282",
+      "manufacturer": "Zendrum Studio",
+      "name": "ZDS Shifter",
+      "type": "input",
+      "version": "",
+      "state": "connected",
+      "connection": "open"
+    }
+  ],
+  "listeningDevices": ["-312145282"]
+}

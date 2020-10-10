@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShiftEntriesGrid tests renders correctly 1`] = `
+<div
+  onKeyDown={[Function]}
+  role="menuitem"
+  tabIndex={0}
+>
+  <div>
+     
+    <DragSource(GridRow)
+      channels={Array []}
+      clickHandler={[Function]}
+      disabled={false}
+      editEntry={[MockFunction]}
+      entry={
+        Object {
+          "entryId": 0,
+          "input": Object {
+            "channel": 9,
+            "status": 9,
+            "value": 1,
+          },
+          "output": Object {
+            "channel": 9,
+            "status": 9,
+            "value": 1,
+          },
+        }
+      }
+      groupId={3}
+      handleDraggedFrom={[Function]}
+      idx={0}
+      key="0"
+      removeEntry={[MockFunction]}
+      selected={false}
+      selectedRows={Array []}
+    />
+    <DragSource(GridRow)
+      channels={Array []}
+      clickHandler={[Function]}
+      disabled={false}
+      editEntry={[MockFunction]}
+      entry={
+        Object {
+          "entryId": 1,
+          "input": Object {
+            "channel": 9,
+            "status": 9,
+            "value": 2,
+          },
+          "output": Object {
+            "channel": 9,
+            "status": 9,
+            "value": 2,
+          },
+        }
+      }
+      groupId={3}
+      handleDraggedFrom={[Function]}
+      idx={1}
+      key="1"
+      removeEntry={[MockFunction]}
+      selected={false}
+      selectedRows={Array []}
+    />
+    <DragSource(GridRow)
+      channels={Array []}
+      clickHandler={[Function]}
+      disabled={false}
+      editEntry={[MockFunction]}
+      entry={
+        Object {
+          "entryId": 2,
+          "input": Object {
+            "channel": 9,
+            "status": 9,
+            "value": 3,
+          },
+          "output": Object {
+            "channel": 9,
+            "status": 9,
+            "value": 3,
+          },
+        }
+      }
+      groupId={3}
+      handleDraggedFrom={[Function]}
+      idx={2}
+      key="2"
+      removeEntry={[MockFunction]}
+      selected={false}
+      selectedRows={Array []}
+    />
+    <DragSource(GridRow)
+      channels={Array []}
+      clickHandler={[Function]}
+      disabled={false}
+      editEntry={[MockFunction]}
+      entry={
+        Object {
+          "entryId": 3,
+          "input": Object {
+            "channel": 9,
+            "status": 9,
+            "value": 4,
+          },
+          "output": Object {
+            "channel": 9,
+            "status": 9,
+            "value": 4,
+          },
+        }
+      }
+      groupId={3}
+      handleDraggedFrom={[Function]}
+      idx={3}
+      key="3"
+      removeEntry={[MockFunction]}
+      selected={false}
+      selectedRows={Array []}
+    />
+  </div>
+</div>
+`;

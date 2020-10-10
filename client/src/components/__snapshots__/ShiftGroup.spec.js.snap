@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FactoryReset tests renders correctly 1`] = `
+<section>
+  <WithStyles(GridControls)
+    changeSort={[Function]}
+    clearAllSelections={[Function]}
+    disabled={false}
+    editEntry={[Function]}
+    entries={Array []}
+    groupId={0}
+    handleEntryClick={[Function]}
+    removeEntry={[Function]}
+    selectAllEntries={[Function]}
+    selectShiftEntry={[Function]}
+    sortBy="SORT_BY_ALL"
+    sortDir={0}
+    sortOn={0}
+  />
+  <GridHeader
+    changeSort={[Function]}
+    clearAllSelections={[Function]}
+    disabled={false}
+    editEntry={[Function]}
+    entries={Array []}
+    groupId={0}
+    handleEntryClick={[Function]}
+    removeEntry={[Function]}
+    selectAllEntries={[Function]}
+    selectShiftEntry={[Function]}
+    sortBy="SORT_BY_ALL"
+    sortDir={0}
+    sortOn={0}
+  />
+  <ShiftEntriesGrid
+    changeSort={[Function]}
+    clearAllSelections={[Function]}
+    disabled={false}
+    editEntry={[Function]}
+    entries={Array []}
+    groupId={0}
+    handleEntryClick={[Function]}
+    removeEntry={[Function]}
+    selectAllEntries={[Function]}
+    selectShiftEntry={[Function]}
+    sortBy="SORT_BY_ALL"
+    sortDir={0}
+    sortOn={0}
+  />
+</section>
+`;

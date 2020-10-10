@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExportSettings tests renders correctly 1`] = `
+<Dialog
+  onClose={[Function]}
+  open={false}
+>
+  <WithStyles(DialogTitle)>
+    Backup Settings
+  </WithStyles(DialogTitle)>
+  <WithStyles(DialogContent)>
+    <Connect(ReduxForm) />
+  </WithStyles(DialogContent)>
+  <WithStyles(DialogActions)>
+    <WithStyles(Button)
+      onClick={[Function]}
+      tag="btnCancel"
+    >
+      Cancel
+    </WithStyles(Button)>
+    <WithStyles(Button)
+      color="primary"
+      onClick={[MockFunction]}
+      tag="btnSave"
+      variant="contained"
+    >
+      Save
+    </WithStyles(Button)>
+  </WithStyles(DialogActions)>
+</Dialog>
+`;

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MidiActivity tests renders correctly 1`] = `
+<div
+  style={
+    Object {
+      "margin": "8px 7px 0 0",
+    }
+  }
+>
+  <Led
+    isMidiActivity={true}
+    label="label"
+    layout="left"
+    lit={true}
+  />
+</div>
+`;

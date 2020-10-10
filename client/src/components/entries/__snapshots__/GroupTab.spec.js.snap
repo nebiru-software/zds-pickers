@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GroupTab tests renders correctly 1`] = `
+<GroupTab
+  active={true}
+  canDrop={true}
+  classes={
+    Object {
+      "activeLabel": "GroupTab-activeLabel-1",
+      "controlsLabel": "GroupTab-controlsLabel-2",
+      "dropTarget": "GroupTab-dropTarget-3",
+      "dropTargetOver": "GroupTab-dropTargetOver-4",
+    }
+  }
+  connectDropTarget={[MockFunction]}
+  controlLabels={Array []}
+  groupId={1}
+  isOver={false}
+  selected={false}
+/>
+`;
+
+exports[`GroupTab tests renders correctly when not active 1`] = `
+<GroupTab
+  active={false}
+  canDrop={true}
+  classes={
+    Object {
+      "activeLabel": "GroupTab-activeLabel-1",
+      "controlsLabel": "GroupTab-controlsLabel-2",
+      "dropTarget": "GroupTab-dropTarget-3",
+      "dropTargetOver": "GroupTab-dropTargetOver-4",
+    }
+  }
+  connectDropTarget={[MockFunction]}
+  controlLabels={Array []}
+  groupId={1}
+  isOver={false}
+  selected={false}
+/>
+`;
+
+exports[`GroupTab tests renders correctly when not allowed to drop 1`] = `
+<GroupTab
+  active={true}
+  canDrop={false}
+  classes={
+    Object {
+      "activeLabel": "GroupTab-activeLabel-1",
+      "controlsLabel": "GroupTab-controlsLabel-2",
+      "dropTarget": "GroupTab-dropTarget-3",
+      "dropTargetOver": "GroupTab-dropTargetOver-4",
+    }
+  }
+  connectDropTarget={[MockFunction]}
+  controlLabels={Array []}
+  groupId={1}
+  isOver={true}
+  selected={false}
+/>
+`;
+
+exports[`GroupTab tests renders correctly when over 1`] = `
+<GroupTab
+  active={true}
+  canDrop={true}
+  classes={
+    Object {
+      "activeLabel": "GroupTab-activeLabel-1",
+      "controlsLabel": "GroupTab-controlsLabel-2",
+      "dropTarget": "GroupTab-dropTarget-3",
+      "dropTargetOver": "GroupTab-dropTargetOver-4",
+    }
+  }
+  connectDropTarget={[MockFunction]}
+  controlLabels={Array []}
+  groupId={1}
+  isOver={true}
+  selected={false}
+/>
+`;

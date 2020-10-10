@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainMenu tests renders correctly 1`] = `
+<Fragment>
+  <WithStyles(IconButton)
+    aria-haspopup="true"
+    aria-label="More"
+    aria-owns={null}
+    onClick={[Function]}
+  >
+    <WithStyles(Tooltip)
+      title="Settings"
+    >
+      <pure(MenuIcon) />
+    </WithStyles(Tooltip)>
+  </WithStyles(IconButton)>
+  <WithStyles(Menu)
+    PaperProps={
+      Object {
+        "style": Object {
+          "width": 200,
+        },
+      }
+    }
+    anchorEl={null}
+    id="long-menu"
+    onClick={[Function]}
+    onClose={[Function]}
+    open={false}
+  >
+    <WithStyles(MenuItem)
+      icon="perm_identity"
+      onClick={[MockFunction]}
+      tag="miRegistration"
+      value="user"
+    >
+      <WithStyles(ListItemIcon)>
+        <pure(PermIdentityIcon) />
+      </WithStyles(ListItemIcon)>
+      <WithStyles(ListItemText)
+        inset={true}
+        primary="Registration"
+      />
+    </WithStyles(MenuItem)>
+    <WithStyles(Divider) />
+    <WithStyles(MenuItem)
+      disabled={false}
+      onClick={[Function]}
+      tag="miExport"
+    >
+      <WithStyles(ListItemIcon)>
+        <pure(GetAppIcon) />
+      </WithStyles(ListItemIcon)>
+      <WithStyles(ListItemText)
+        inset={true}
+        primary="Backup Settings"
+      />
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      disabled={false}
+      onClick={[Function]}
+      tag="miImport"
+    >
+      <WithStyles(ListItemIcon)>
+        <pure(CloudUploadIcon) />
+      </WithStyles(ListItemIcon)>
+      <WithStyles(ListItemText)
+        inset={true}
+        primary="Restore Settings"
+      />
+    </WithStyles(MenuItem)>
+    <WithStyles(Divider) />
+    <WithStyles(MenuItem)
+      onClick={[Function]}
+      tag="miReset"
+      value="reset"
+    >
+      <WithStyles(ListItemIcon)>
+        <pure(WarningIcon) />
+      </WithStyles(ListItemIcon)>
+      <WithStyles(ListItemText)
+        inset={true}
+        primary="Factory Reset"
+      />
+    </WithStyles(MenuItem)>
+  </WithStyles(Menu)>
+  <Connect(ExportSettings) />
+  <Connect(ReduxForm) />
+  <FactoryReset
+    confirmFactoryReset={[MockFunction]}
+    performFactoryReset={[MockFunction]}
+    shifter={
+      Object {
+        "accessGranted": true,
+        "errorMessage": "",
+        "errorVisible": false,
+        "exportBuffer": Array [],
+        "exportDialogVisible": false,
+        "exportFilename": "zds-shifter-backup.txt",
+        "found": true,
+        "hardwareTestVisible": true,
+        "importDialogVisible": false,
+        "importInProcess": false,
+        "invalidSettingsFile": null,
+        "midiActivityLEDMode": 0,
+        "midiInActivity": false,
+        "midiOutActivity": false,
+        "ready": true,
+        "resetInProcess": false,
+        "responding": true,
+        "searchedForShifter": true,
+        "serialMidiOutEnabled": true,
+        "showResetDialog": false,
+        "testInterfaceFound": false,
+        "usbMidiOutEnabled": true,
+      }
+    }
+  />
+</Fragment>
+`;

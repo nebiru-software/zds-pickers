@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExportSettingsForm tests renders correctly 1`] = `
+<form
+  onSubmit={[MockFunction]}
+>
+  <Field
+    autoFocus={true}
+    component={[Function]}
+    label="Filename"
+    name="exportFilename"
+    type="text"
+    validate={
+      Array [
+        [Function],
+        [Function],
+      ]
+    }
+  />
+</form>
+`;
+
+exports[`ExportSettingsForm tests renders errors correctly 1`] = `
+<form
+  onSubmit={[MockFunction]}
+>
+  <Field
+    autoFocus={true}
+    component={[Function]}
+    label="Filename"
+    name="exportFilename"
+    type="text"
+    validate={
+      Array [
+        [Function],
+        [Function],
+      ]
+    }
+  />
+  <strong>
+    error message
+  </strong>
+</form>
+`;

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainInterface tests renders correctly 1`] = `
+<div>
+  <Component
+    backend={[Function]}
+  >
+    <PrimaryNav />
+  </Component>
+  <Connect(HardwareTest) />
+  <Connect(MidiSecurity) />
+  <Connect(NotResponding) />
+  <Connect(VersionNotSupported) />
+  <Connect(NoShifterFound) />
+  <Connect(InfoPanel) />
+</div>
+`;

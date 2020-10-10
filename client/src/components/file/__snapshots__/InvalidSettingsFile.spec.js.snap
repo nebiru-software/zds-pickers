@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InvalidSettingsFile tests renders correctly 1`] = `
+<Dialog
+  onRequestClose={[MockFunction]}
+  open={false}
+>
+  <WithStyles(DialogTitle)>
+    Error During Restore
+  </WithStyles(DialogTitle)>
+  <WithStyles(DialogContent)>
+    <WithStyles(DialogContentText) />
+  </WithStyles(DialogContent)>
+  <WithStyles(DialogActions)>
+    <WithStyles(Button)
+      onClick={[MockFunction]}
+    >
+      Close
+    </WithStyles(Button)>
+  </WithStyles(DialogActions)>
+</Dialog>
+`;

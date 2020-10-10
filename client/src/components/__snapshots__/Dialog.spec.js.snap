@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dialog tests renders correctly 1`] = `
+<WithStyles(Dialog)
+  TransitionComponent={[Function]}
+  open={true}
+>
+  content
+</WithStyles(Dialog)>
+`;

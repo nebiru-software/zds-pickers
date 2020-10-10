@@ -1,0 +1,301 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EntryControls tests renders correctly 1`] = `
+<section>
+  <EntryControlSet
+    changeChannel={[MockFunction]}
+    changeStatus={[MockFunction]}
+    changeValue={[MockFunction]}
+    entry={
+      Object {
+        "channel": 9,
+        "status": 9,
+        "value": 0,
+      }
+    }
+    groupId={0}
+    isInput={true}
+    mappings={
+      Object {
+        "channels": Array [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "BFD3",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+        ],
+        "dialogVisible": false,
+        "stockMappings": Array [
+          "2box",
+          "Addictive Drums",
+          "Alesis DM Pro",
+          "Alesis DM10",
+          "Alesis DM5",
+          "BFD2",
+          "BFD3",
+          "Battery 3",
+          "E-MU Protean Acoustic",
+          "E-MU Protean Bread n Butter",
+          "E-MU Protean Studio",
+          "E-MU Protean Synth",
+          "EZ Drummer The Classic EZX",
+          "EZDrummer",
+          "EZDrummer Jazz Kit",
+          "EZDrummer Latin Percussion",
+          "General MIDI",
+          "Infinite Instruments",
+          "John Emrich - Articulations 1",
+          "Kontakt 2",
+          "Ocean Way Drums",
+          "Pearl Redbox",
+          "Roland HandSonic 15",
+          "Roland TD-10",
+          "Roland TD-10 Perc 1",
+          "Roland TD-10 Perc 2",
+          "Roland TD-10 Perc 3",
+          "Roland TD-10 Perc 4",
+          "Roland TD-12",
+          "Roland TD-12 Perc 1 (Latin)",
+          "Roland TD-12 Perc 2 (Indian)",
+          "Roland TD-12 Perc 3 (African)",
+          "Roland TD-12 Perc 4 (Salsa)",
+          "Roland TD-12 Perc 5 (SFX)",
+          "Roland TD-12 Perc 6-8 (User)",
+          "Roland TD-20",
+          "Roland TD-20 Perc",
+          "Roland TD-3",
+          "Roland TD-30",
+          "Roland TD-30 Perc 1 (Latin)",
+          "Roland TD-30 Perc 2 (Indian)",
+          "Roland TD-30 Perc 3 (African)",
+          "Roland TD-30 Perc 4 (Salsa)",
+          "Roland TD-30 Perc 5 (SFX)",
+          "Roland TD-30 Perc 6-8 (User)",
+          "Roland TD-5",
+          "Roland TD-6",
+          "Roland TD-6 Perc 1",
+          "Roland TD-6 Perc 10 (Special)",
+          "Roland TD-6 Perc 2",
+          "Roland TD-6 Perc 3 (Room)",
+          "Roland TD-6 Perc 4 (Power)",
+          "Roland TD-6 Perc 5 (Elec)",
+          "Roland TD-6 Perc 6 (808)",
+          "Roland TD-6 Perc 7 (Jazz)",
+          "Roland TD-6 Perc 8 (Brush)",
+          "Roland TD-6 Perc 9 (Perc)",
+          "Roland TD-7",
+          "Roland TD-8",
+          "Roland TD-8 Perc 1",
+          "Roland TD-8 Perc 10 (Special)",
+          "Roland TD-8 Perc 2",
+          "Roland TD-8 Perc 3 (Room)",
+          "Roland TD-8 Perc 4 (Power)",
+          "Roland TD-8 Perc 5 (Elec)",
+          "Roland TD-8 Perc 6 (808)",
+          "Roland TD-8 Perc 7 (Jazz)",
+          "Roland TD-8 Perc 8 (Brush)",
+          "Roland TD-8 Perc 9 (Perc)",
+          "Roland TD-9",
+          "Roland TD-9 Perc",
+          "Simmons SD1000",
+          "Simmons SD5X",
+          "Simmons SD7",
+          "Simmons SD7PK",
+          "Simmons SD9K",
+          "Sonic Reality iMap Extended",
+          "Sonic Reality iMap Standard",
+          "Studio ProFiles",
+          "Superior Drummer",
+          "Yamaha DTX 700",
+          "Yamaha DTXplorer",
+          "Zendrum Stompblock",
+          "Zendrum TRS",
+          "Zendrum TRS 2.0",
+        ],
+        "userDialogVisible": false,
+        "userImportDialogVisible": false,
+        "userMappings": Array [
+          "BFD3 Custom ZenEdit",
+          "reaper",
+        ],
+      }
+    }
+    okButtonRef={
+      Object {
+        "current": Object {
+          "focus": [MockFunction],
+        },
+      }
+    }
+    onPressedEnter={[Function]}
+    otherEntry={
+      Object {
+        "channel": 9,
+        "status": 9,
+        "value": 0,
+      }
+    }
+  />
+  <InputStatusIcon
+    channel={9}
+    status={9}
+    value={0}
+  />
+  <EntryControlSet
+    changeChannel={[MockFunction]}
+    changeStatus={[MockFunction]}
+    changeValue={[MockFunction]}
+    entry={
+      Object {
+        "channel": 9,
+        "status": 9,
+        "value": 0,
+      }
+    }
+    groupId={0}
+    isInput={false}
+    mappings={
+      Object {
+        "channels": Array [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "BFD3",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+        ],
+        "dialogVisible": false,
+        "stockMappings": Array [
+          "2box",
+          "Addictive Drums",
+          "Alesis DM Pro",
+          "Alesis DM10",
+          "Alesis DM5",
+          "BFD2",
+          "BFD3",
+          "Battery 3",
+          "E-MU Protean Acoustic",
+          "E-MU Protean Bread n Butter",
+          "E-MU Protean Studio",
+          "E-MU Protean Synth",
+          "EZ Drummer The Classic EZX",
+          "EZDrummer",
+          "EZDrummer Jazz Kit",
+          "EZDrummer Latin Percussion",
+          "General MIDI",
+          "Infinite Instruments",
+          "John Emrich - Articulations 1",
+          "Kontakt 2",
+          "Ocean Way Drums",
+          "Pearl Redbox",
+          "Roland HandSonic 15",
+          "Roland TD-10",
+          "Roland TD-10 Perc 1",
+          "Roland TD-10 Perc 2",
+          "Roland TD-10 Perc 3",
+          "Roland TD-10 Perc 4",
+          "Roland TD-12",
+          "Roland TD-12 Perc 1 (Latin)",
+          "Roland TD-12 Perc 2 (Indian)",
+          "Roland TD-12 Perc 3 (African)",
+          "Roland TD-12 Perc 4 (Salsa)",
+          "Roland TD-12 Perc 5 (SFX)",
+          "Roland TD-12 Perc 6-8 (User)",
+          "Roland TD-20",
+          "Roland TD-20 Perc",
+          "Roland TD-3",
+          "Roland TD-30",
+          "Roland TD-30 Perc 1 (Latin)",
+          "Roland TD-30 Perc 2 (Indian)",
+          "Roland TD-30 Perc 3 (African)",
+          "Roland TD-30 Perc 4 (Salsa)",
+          "Roland TD-30 Perc 5 (SFX)",
+          "Roland TD-30 Perc 6-8 (User)",
+          "Roland TD-5",
+          "Roland TD-6",
+          "Roland TD-6 Perc 1",
+          "Roland TD-6 Perc 10 (Special)",
+          "Roland TD-6 Perc 2",
+          "Roland TD-6 Perc 3 (Room)",
+          "Roland TD-6 Perc 4 (Power)",
+          "Roland TD-6 Perc 5 (Elec)",
+          "Roland TD-6 Perc 6 (808)",
+          "Roland TD-6 Perc 7 (Jazz)",
+          "Roland TD-6 Perc 8 (Brush)",
+          "Roland TD-6 Perc 9 (Perc)",
+          "Roland TD-7",
+          "Roland TD-8",
+          "Roland TD-8 Perc 1",
+          "Roland TD-8 Perc 10 (Special)",
+          "Roland TD-8 Perc 2",
+          "Roland TD-8 Perc 3 (Room)",
+          "Roland TD-8 Perc 4 (Power)",
+          "Roland TD-8 Perc 5 (Elec)",
+          "Roland TD-8 Perc 6 (808)",
+          "Roland TD-8 Perc 7 (Jazz)",
+          "Roland TD-8 Perc 8 (Brush)",
+          "Roland TD-8 Perc 9 (Perc)",
+          "Roland TD-9",
+          "Roland TD-9 Perc",
+          "Simmons SD1000",
+          "Simmons SD5X",
+          "Simmons SD7",
+          "Simmons SD7PK",
+          "Simmons SD9K",
+          "Sonic Reality iMap Extended",
+          "Sonic Reality iMap Standard",
+          "Studio ProFiles",
+          "Superior Drummer",
+          "Yamaha DTX 700",
+          "Yamaha DTXplorer",
+          "Zendrum Stompblock",
+          "Zendrum TRS",
+          "Zendrum TRS 2.0",
+        ],
+        "userDialogVisible": false,
+        "userImportDialogVisible": false,
+        "userMappings": Array [
+          "BFD3 Custom ZenEdit",
+          "reaper",
+        ],
+      }
+    }
+    okButtonRef={
+      Object {
+        "current": Object {
+          "focus": [MockFunction],
+        },
+      }
+    }
+    onPressedEnter={[Function]}
+    otherEntry={
+      Object {
+        "channel": 9,
+        "status": 9,
+        "value": 0,
+      }
+    }
+  />
+</section>
+`;

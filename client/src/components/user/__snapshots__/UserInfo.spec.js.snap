@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserInfo tests renders correctly 1`] = `
+<div>
+  <div>
+    <section
+      onClick={[MockFunction]}
+      role="button"
+      tabIndex="0"
+    >
+      <div>
+        Registered to:
+      </div>
+      <span>
+        Darin Kadrioski
+      </span>
+    </section>
+    <WithStyles(Avatar)
+      onClick={[MockFunction]}
+      style={
+        Object {
+          "height": 30,
+          "marginLeft": 10,
+          "width": 30,
+        }
+      }
+    >
+      <Gravatar
+        default="mm"
+        email="dkadrios@gmail.com"
+        protocol="//"
+        rating="x"
+        size={30}
+      />
+    </WithStyles(Avatar)>
+  </div>
+  <WithStyles(UserRegistration)
+    active={false}
+    checkedRegistration={true}
+    checkedRegistrationAction={[MockFunction]}
+    dialogVisible={false}
+    email="dkadrios@gmail.com"
+    firstName="Darin"
+    hideDialog={[MockFunction]}
+    lastName="Kadrioski"
+    registered={true}
+    serialNumber="rkJdMJGt7"
+    submitRegistrationForm={[MockFunction]}
+  />
+</div>
+`;

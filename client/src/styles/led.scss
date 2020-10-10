@@ -1,0 +1,32 @@
+@import 'animation';
+
+@mixin pulsate($color, $shadow) {
+  @include keyframes(pulsate) {
+    from {
+      box-shadow: $shadow 0 -1px 7px 1px, lighten($color, 80) 0 2px 12px 2px;
+    }
+    to {
+      box-shadow: $color 0 2px 12px 2px;
+    }
+  }
+
+  @include animate(pulsate, 2s, ease-in-out, infinite, alternate);
+}
+
+@mixin led($led-size, $color, $shadow: rgba(0, 0, 0, 0.2)) {
+  width: $led-size;
+  height: $led-size;
+  background-color: darken($color, 50);
+  box-shadow: $shadow 0 1.5px 1px 0px, inset darken($color, 30) 0 -1.5px 7px;
+  border: 1.5px solid silver;
+
+  -webkit-animation: none;
+  -moz-animation: none;
+  animation: none;
+}
+
+@mixin led-on($led-size, $color, $shadow: rgba(0, 0, 0, 0.2)) {
+  @include led($led-size, $color, $shadow);
+  @include pulsate($color, $shadow);
+  background-color: $color;
+}

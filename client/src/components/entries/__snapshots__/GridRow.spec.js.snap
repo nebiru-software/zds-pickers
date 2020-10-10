@@ -1,0 +1,400 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GridRow tests renders correctly 1`] = `
+<div
+  className=""
+  onClick={[Function]}
+  onDoubleClick={[Function]}
+>
+  <section>
+    <aside>
+      <WithStyles(Tooltip)
+        enterDelay={250}
+        placement="right"
+        title="Edit (double-clicking row does the same)"
+      >
+        <i
+          className="material-icons"
+          onClick={[Function]}
+        >
+          mode_edit
+        </i>
+      </WithStyles(Tooltip)>
+    </aside>
+    <div>
+      Note On
+    </div>
+    <div>
+      10
+    </div>
+    <div>
+      <div>
+        <aside>
+          1
+        </aside>
+        <article />
+      </div>
+    </div>
+  </section>
+  <section>
+    <aside>
+      <InputStatusIcon
+        channel={9}
+        status={9}
+        value={1}
+      />
+    </aside>
+  </section>
+  <section>
+    <div>
+      Note Stack
+    </div>
+    <div>
+      10
+    </div>
+    <div>
+      <div>
+        <aside>
+          2
+        </aside>
+        <article />
+      </div>
+    </div>
+    <aside>
+      <WithStyles(Tooltip)
+        enterDelay={250}
+        placement="left"
+        title="Delete Entry"
+      >
+        <i
+          className="material-icons"
+          onClick={[Function]}
+          tag="iDelete"
+        >
+          delete_forever
+        </i>
+      </WithStyles(Tooltip)>
+    </aside>
+  </section>
+</div>
+`;
+
+exports[`GridRow tests renders correctly for CCs 1`] = `
+<div
+  className=""
+  onClick={[Function]}
+  onDoubleClick={[Function]}
+>
+  <section>
+    <aside>
+      <WithStyles(Tooltip)
+        enterDelay={250}
+        placement="right"
+        title="Edit (double-clicking row does the same)"
+      >
+        <i
+          className="material-icons"
+          onClick={[Function]}
+        >
+          mode_edit
+        </i>
+      </WithStyles(Tooltip)>
+    </aside>
+    <div>
+      Control Change
+    </div>
+    <div>
+      10
+    </div>
+    <div>
+      <div>
+        <aside>
+          1
+        </aside>
+        <article>
+          Mod. Wheel
+        </article>
+      </div>
+    </div>
+  </section>
+  <section>
+    <aside>
+      <InputStatusIcon
+        channel={9}
+        status={11}
+        value={1}
+      />
+    </aside>
+  </section>
+  <section>
+    <div>
+      Note Stack
+    </div>
+    <div>
+      10
+    </div>
+    <div>
+      <div>
+        <aside>
+          2
+        </aside>
+        <article />
+      </div>
+    </div>
+    <aside>
+      <WithStyles(Tooltip)
+        enterDelay={250}
+        placement="left"
+        title="Delete Entry"
+      >
+        <i
+          className="material-icons"
+          onClick={[Function]}
+          tag="iDelete"
+        >
+          delete_forever
+        </i>
+      </WithStyles(Tooltip)>
+    </aside>
+  </section>
+</div>
+`;
+
+exports[`GridRow tests renders correctly for other statuses 1`] = `
+<div
+  className=""
+  onClick={[Function]}
+  onDoubleClick={[Function]}
+>
+  <section>
+    <aside>
+      <WithStyles(Tooltip)
+        enterDelay={250}
+        placement="right"
+        title="Edit (double-clicking row does the same)"
+      >
+        <i
+          className="material-icons"
+          onClick={[Function]}
+        >
+          mode_edit
+        </i>
+      </WithStyles(Tooltip)>
+    </aside>
+    <div>
+      Aftertouch
+    </div>
+    <div>
+      10
+    </div>
+    <div>
+      <div>
+        <aside>
+          1
+        </aside>
+        <article />
+      </div>
+    </div>
+  </section>
+  <section>
+    <aside>
+      <InputStatusIcon
+        channel={9}
+        status={10}
+        value={1}
+      />
+    </aside>
+  </section>
+  <section>
+    <div>
+      Note Stack
+    </div>
+    <div>
+      10
+    </div>
+    <div>
+      <div>
+        <aside>
+          2
+        </aside>
+        <article />
+      </div>
+    </div>
+    <aside>
+      <WithStyles(Tooltip)
+        enterDelay={250}
+        placement="left"
+        title="Delete Entry"
+      >
+        <i
+          className="material-icons"
+          onClick={[Function]}
+          tag="iDelete"
+        >
+          delete_forever
+        </i>
+      </WithStyles(Tooltip)>
+    </aside>
+  </section>
+</div>
+`;
+
+exports[`GridRow tests renders correctly when selected 1`] = `
+<div
+  className=""
+  onClick={[Function]}
+  onDoubleClick={[Function]}
+>
+  <section>
+    <aside>
+      <WithStyles(Tooltip)
+        enterDelay={250}
+        placement="right"
+        title="Edit (double-clicking row does the same)"
+      >
+        <i
+          className="material-icons"
+          onClick={[Function]}
+        >
+          mode_edit
+        </i>
+      </WithStyles(Tooltip)>
+    </aside>
+    <div>
+      Note On
+    </div>
+    <div>
+      10
+    </div>
+    <div>
+      <div>
+        <aside>
+          1
+        </aside>
+        <article />
+      </div>
+    </div>
+  </section>
+  <section>
+    <aside>
+      <InputStatusIcon
+        channel={9}
+        status={9}
+        value={1}
+      />
+    </aside>
+  </section>
+  <section>
+    <div>
+      Note Stack
+    </div>
+    <div>
+      10
+    </div>
+    <div>
+      <div>
+        <aside>
+          2
+        </aside>
+        <article />
+      </div>
+    </div>
+    <aside>
+      <WithStyles(Tooltip)
+        enterDelay={250}
+        placement="left"
+        title="Delete selected"
+      >
+        <i
+          className="material-icons"
+          onClick={[Function]}
+          tag="iDelete"
+        >
+          delete_forever
+        </i>
+      </WithStyles(Tooltip)>
+    </aside>
+  </section>
+</div>
+`;
+
+exports[`GridRow tests renders correctly when there is a note value 1`] = `
+<div
+  className=""
+  onClick={[Function]}
+  onDoubleClick={[Function]}
+>
+  <section>
+    <aside>
+      <WithStyles(Tooltip)
+        enterDelay={250}
+        placement="right"
+        title="Edit (double-clicking row does the same)"
+      >
+        <i
+          className="material-icons"
+          onClick={[Function]}
+        >
+          mode_edit
+        </i>
+      </WithStyles(Tooltip)>
+    </aside>
+    <div>
+      Note On
+    </div>
+    <div>
+      1
+    </div>
+    <div>
+      <div>
+        <aside>
+          24
+        </aside>
+        <article>
+          Kick
+        </article>
+      </div>
+    </div>
+  </section>
+  <section>
+    <aside>
+      <InputStatusIcon
+        channel={0}
+        status={9}
+        value={24}
+      />
+    </aside>
+  </section>
+  <section>
+    <div>
+      Note Stack
+    </div>
+    <div>
+      10
+    </div>
+    <div>
+      <div>
+        <aside>
+          2
+        </aside>
+        <article />
+      </div>
+    </div>
+    <aside>
+      <WithStyles(Tooltip)
+        enterDelay={250}
+        placement="left"
+        title="Delete Entry"
+      >
+        <i
+          className="material-icons"
+          onClick={[Function]}
+          tag="iDelete"
+        >
+          delete_forever
+        </i>
+      </WithStyles(Tooltip)>
+    </aside>
+  </section>
+</div>
+`;

@@ -1,0 +1,78 @@
+@import 'variables';
+
+@mixin absWidth($width) {
+  width: $width;
+  min-width: $width;
+  max-width: $width;
+}
+
+@mixin linearGradient($top, $bottom) {
+  background: $top; /* Old browsers */
+  background: -moz-linear-gradient(top, $top 0%, $bottom 100%); /* FF3.6+ */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, $top),
+    color-stop(100%, $bottom)
+  ); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(
+    top,
+    $top 0%,
+    $bottom 100%
+  ); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, $top 0%, $bottom 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, $top 0%, $bottom 100%); /* IE10+ */
+  background: linear-gradient(to bottom, $top 0%, $bottom 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(
+      startColorstr='#ffffff',
+      endColorstr='#000000',
+      GradientType=0
+    ); /* IE6-9 */
+}
+
+@mixin outerGlow($color, $size, $opacity: 0.79) {
+  -webkit-box-shadow: 0px 0px $size $size rgba($color, $opacity);
+  -moz-box-shadow: 0px 0px $size $size rgba($color, $opacity);
+  box-shadow: 0px 0px $size $size rgba($color, $opacity);
+}
+
+@mixin dropShadow($color, $size, $opacity: 0.79) {
+  -webkit-box-shadow: $size $size $size rgba($color, $opacity);
+  -moz-box-shadow: $size $size $size rgba($color, $opacity);
+  box-shadow: $size $size $size rgba($color, $opacity);
+}
+
+@mixin innerShadow($color, $size, $opacity: 0.79) {
+  -webkit-box-shadow: 0 $size $size 0 rgba($color, $opacity) inset;
+  -moz-box-shadow: 0 $size $size 0 rgba($color, $opacity) inset;
+  box-shadow: 0 $size $size 0 rgba($color, $opacity) inset;
+}
+
+@mixin scroll-shadow-indicator() {
+  overflow: overlay;
+  overflow-x: hidden;
+  background: linear-gradient($color-background 30%, rgba(255, 255, 255, 0)),
+    linear-gradient(rgba(255, 255, 255, 0), $color-background 70%) 0 100%,
+    radial-gradient(
+      farthest-side at 50% 0,
+      rgba(43, 43, 43, 0.25),
+      rgba(43, 43, 43, 0)
+    ),
+    radial-gradient(
+        farthest-side at 50% 100%,
+        rgba(43, 43, 43, 0.2),
+        rgba(43, 43, 43, 0)
+      )
+      0 100%;
+  background-repeat: no-repeat;
+  background-color: $color-background;
+  background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+  background-attachment: local, local, scroll, scroll;
+}
+
+@mixin ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

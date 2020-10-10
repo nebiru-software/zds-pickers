@@ -1,0 +1,884 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EntryControlSet tests renders correctly as input 1`] = `
+<div>
+  <h3>
+    Input
+  </h3>
+  <StatusPicker
+    channel={9}
+    className=""
+    mini={false}
+    onChange={[Function]}
+    status={13}
+    statuses={
+      Array [
+        Object {
+          "label": "Note On",
+          "value": 9,
+        },
+        Object {
+          "label": "Control Change",
+          "value": 11,
+        },
+        Object {
+          "label": "Program Change",
+          "value": 12,
+        },
+        Object {
+          "label": "Aftertouch",
+          "value": 10,
+        },
+        Object {
+          "label": "Channel Pressure",
+          "value": 13,
+        },
+      ]
+    }
+    value={22}
+  />
+  <WithStyles(ChannelPicker)
+    channel={9}
+    onChange={[Function]}
+    status={13}
+    value={22}
+  />
+  <ValuePicker
+    autoFocus={true}
+    channel={9}
+    className=""
+    inputRef={
+      Object {
+        "current": null,
+      }
+    }
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    status={13}
+    value={22}
+  />
+</div>
+`;
+
+exports[`EntryControlSet tests renders correctly as output 1`] = `
+<div>
+  <h3>
+    Output
+  </h3>
+  <StatusPicker
+    channel={9}
+    className=""
+    mini={false}
+    onChange={[Function]}
+    status={13}
+    statuses={
+      Array [
+        Object {
+          "label": "Note On",
+          "value": 9,
+        },
+        Object {
+          "label": "Control Change",
+          "value": 11,
+        },
+        Object {
+          "label": "Program Change",
+          "value": 12,
+        },
+        Object {
+          "label": "Aftertouch",
+          "value": 10,
+        },
+        Object {
+          "label": "Channel Pressure",
+          "value": 13,
+        },
+      ]
+    }
+    value={22}
+  />
+  <WithStyles(ChannelPicker)
+    channel={9}
+    onChange={[Function]}
+    status={13}
+    value={22}
+  />
+  <ValuePicker
+    autoFocus={false}
+    channel={9}
+    className=""
+    inputRef={
+      Object {
+        "current": null,
+      }
+    }
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    status={13}
+    value={22}
+  />
+</div>
+`;
+
+exports[`EntryControlSet tests renders correctly when status is CC 1`] = `
+<div>
+  <h3>
+    Output
+  </h3>
+  <StatusPicker
+    channel={9}
+    className=""
+    mini={false}
+    onChange={[Function]}
+    status={11}
+    statuses={
+      Array [
+        Object {
+          "label": "Note On",
+          "value": 9,
+        },
+        Object {
+          "label": "Control Change",
+          "value": 11,
+        },
+        Object {
+          "label": "Program Change",
+          "value": 12,
+        },
+        Object {
+          "label": "Aftertouch",
+          "value": 10,
+        },
+        Object {
+          "label": "Channel Pressure",
+          "value": 13,
+        },
+      ]
+    }
+    value={22}
+  />
+  <WithStyles(ChannelPicker)
+    channel={9}
+    onChange={[Function]}
+    status={11}
+    value={22}
+  />
+  <WithStyles(CCPicker)
+    autoFocus={false}
+    channel={9}
+    inputRef={
+      Object {
+        "current": null,
+      }
+    }
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    status={11}
+    value={22}
+  />
+</div>
+`;
+
+exports[`EntryControlSet tests renders correctly when status is NOTE ON 1`] = `
+<div>
+  <h3>
+    Output
+  </h3>
+  <StatusPicker
+    channel={9}
+    className=""
+    mini={false}
+    onChange={[Function]}
+    status={9}
+    statuses={
+      Array [
+        Object {
+          "label": "Note On",
+          "value": 9,
+        },
+        Object {
+          "label": "Control Change",
+          "value": 11,
+        },
+        Object {
+          "label": "Program Change",
+          "value": 12,
+        },
+        Object {
+          "label": "Aftertouch",
+          "value": 10,
+        },
+        Object {
+          "label": "Channel Pressure",
+          "value": 13,
+        },
+      ]
+    }
+    value={22}
+  />
+  <WithStyles(ChannelPicker)
+    channel={9}
+    onChange={[Function]}
+    status={9}
+    value={22}
+  />
+  <NotePicker
+    autoFocus={false}
+    channel={9}
+    disabled={false}
+    inputRef={
+      Object {
+        "current": null,
+      }
+    }
+    mapping={
+      Array [
+        Object {
+          "group": "",
+          "name": "",
+          "note": 1,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 2,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 3,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 4,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 5,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 6,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 7,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 8,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 9,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 10,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 11,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 12,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 13,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 14,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 15,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 16,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 17,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 18,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 19,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 20,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 21,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 22,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 23,
+        },
+        Object {
+          "group": "Kicks",
+          "name": "Kick",
+          "note": 24,
+        },
+        Object {
+          "group": "Snares",
+          "name": "Side Stick",
+          "note": 25,
+        },
+        Object {
+          "group": "Snares",
+          "name": "Snare",
+          "note": 26,
+        },
+        Object {
+          "group": "Snares",
+          "name": "Snare Drag",
+          "note": 27,
+        },
+        Object {
+          "group": "Snares",
+          "name": "Snare Half Edge",
+          "note": 28,
+        },
+        Object {
+          "group": "Snares",
+          "name": "Snare Rimshot",
+          "note": 29,
+        },
+        Object {
+          "group": "Hats",
+          "name": "HH Closed Tip",
+          "note": 30,
+        },
+        Object {
+          "group": "Toms",
+          "name": "Floor Tom 1",
+          "note": 31,
+        },
+        Object {
+          "group": "Hats",
+          "name": "HH Pedal",
+          "note": 32,
+        },
+        Object {
+          "group": "Toms",
+          "name": "Floor Tom 2",
+          "note": 33,
+        },
+        Object {
+          "group": "Hats",
+          "name": "HH Open Tip",
+          "note": 34,
+        },
+        Object {
+          "group": "Toms",
+          "name": "Mid Tom 1",
+          "note": 35,
+        },
+        Object {
+          "group": "Toms",
+          "name": "Mid Tom 2",
+          "note": 36,
+        },
+        Object {
+          "group": "Hats",
+          "name": "HH Closed Shank",
+          "note": 37,
+        },
+        Object {
+          "group": "Toms",
+          "name": "High Tom 1",
+          "note": 38,
+        },
+        Object {
+          "group": "Hats",
+          "name": "HH Open Shank",
+          "note": 39,
+        },
+        Object {
+          "group": "Toms",
+          "name": "High Tom 2",
+          "note": 40,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Crash 1 Edge",
+          "note": 41,
+        },
+        Object {
+          "group": "Hats",
+          "name": "HH 1/4 Open Tip",
+          "note": 42,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Crash 2 Edge",
+          "note": 43,
+        },
+        Object {
+          "group": "Hats",
+          "name": "HH 1/4 Open Shank",
+          "note": 44,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Cymbal 1 Edge",
+          "note": 45,
+        },
+        Object {
+          "group": "Hats",
+          "name": "HH 1/2 Open Tip",
+          "note": 46,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Cymbal 2 Edge",
+          "note": 47,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Cymbal 3 Edge",
+          "note": 48,
+        },
+        Object {
+          "group": "Hats",
+          "name": "HH 1/2 Open Shank",
+          "note": 49,
+        },
+        Object {
+          "group": "Rides",
+          "name": "Ride 1 Edge",
+          "note": 50,
+        },
+        Object {
+          "group": "Hats",
+          "name": "HH 3/4 Open Tip",
+          "note": 51,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Crash 1 Bow",
+          "note": 52,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Crash 2 Bow",
+          "note": 53,
+        },
+        Object {
+          "group": "Hats",
+          "name": "HH 3/4 Open Shank",
+          "note": 54,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Cymbal 1 Bow",
+          "note": 55,
+        },
+        Object {
+          "group": "Hats",
+          "name": "HH Splash",
+          "note": 56,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Cymbal 2 Bow",
+          "note": 57,
+        },
+        Object {
+          "group": "Hats",
+          "name": "HH Bell Tip",
+          "note": 58,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Cymbal 3 Bow",
+          "note": 59,
+        },
+        Object {
+          "group": "Rides",
+          "name": "Ride 1 Bow",
+          "note": 60,
+        },
+        Object {
+          "group": "Toms",
+          "name": "Floor Tom 1 Rimshot",
+          "note": 61,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Crash 1 Bell",
+          "note": 62,
+        },
+        Object {
+          "group": "Toms",
+          "name": "Floor Tom 2 Rimshot",
+          "note": 63,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Crash 2 Bell",
+          "note": 64,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Cymbal 1 Bell",
+          "note": 65,
+        },
+        Object {
+          "group": "Toms",
+          "name": "Mid Tom 1 Rimshot",
+          "note": 66,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Cymbal 2 Bell",
+          "note": 67,
+        },
+        Object {
+          "group": "Toms",
+          "name": "Mid Tom 2 Rimshot",
+          "note": 68,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Cymbal 3 Bell",
+          "note": 69,
+        },
+        Object {
+          "group": "Toms",
+          "name": "High Tom 1 Rimshot",
+          "note": 70,
+        },
+        Object {
+          "group": "Rides",
+          "name": "Ride 1 Bell",
+          "note": 71,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Crash 1 Hit",
+          "note": 72,
+        },
+        Object {
+          "group": "Toms",
+          "name": "High Tom 2 Rimshot",
+          "note": 73,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Crash 2 Hit",
+          "note": 74,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Crash 1 Choke",
+          "note": 75,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Cymbal 1 Hit",
+          "note": 76,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Cymbal 2 Hit",
+          "note": 77,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Crash 2 Choke",
+          "note": 78,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Cymbal 3 Hit",
+          "note": 79,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Cymbal 1 Choke",
+          "note": 80,
+        },
+        Object {
+          "group": "Rides",
+          "name": "Ride 1 Hit",
+          "note": 81,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Cymbal 2 Choke",
+          "note": 82,
+        },
+        Object {
+          "group": "Perc",
+          "name": "Perc Hit",
+          "note": 83,
+        },
+        Object {
+          "group": "Kicks",
+          "name": "Kick No Snare",
+          "note": 84,
+        },
+        Object {
+          "group": "Cymbals",
+          "name": "Cymbal 3 Choke",
+          "note": 85,
+        },
+        Object {
+          "group": "Snares",
+          "name": "Snare Flam",
+          "note": 86,
+        },
+        Object {
+          "group": "Rides",
+          "name": "Ride 1 Choke",
+          "note": 87,
+        },
+        Object {
+          "group": "Snares",
+          "name": "Snare Rim Click",
+          "note": 88,
+        },
+        Object {
+          "group": "Toms",
+          "name": "Floor Tom 1 Rim Click",
+          "note": 89,
+        },
+        Object {
+          "group": "Toms",
+          "name": "Floor Tom 2 Rim Click",
+          "note": 90,
+        },
+        Object {
+          "group": "Toms",
+          "name": "Mid Tom Rim 1 Click",
+          "note": 91,
+        },
+        Object {
+          "group": "Toms",
+          "name": "Mid Tom 2 Rim Click",
+          "note": 92,
+        },
+        Object {
+          "group": "Toms",
+          "name": "High Tom Rim 1 Click",
+          "note": 93,
+        },
+        Object {
+          "group": "Toms",
+          "name": "High Tom 2 Rim Click",
+          "note": 94,
+        },
+        Object {
+          "group": "Perc",
+          "name": "Perc 2 Hit",
+          "note": 95,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 1",
+          "note": 96,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 2",
+          "note": 97,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 3",
+          "note": 98,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 4",
+          "note": 99,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 5",
+          "note": 100,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 6",
+          "note": 101,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 7",
+          "note": 102,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 8",
+          "note": 103,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 9",
+          "note": 104,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 10",
+          "note": 105,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 11",
+          "note": 106,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 12",
+          "note": 107,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 13",
+          "note": 108,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 14",
+          "note": 109,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 15",
+          "note": 110,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 16",
+          "note": 111,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 17",
+          "note": 112,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 18",
+          "note": 113,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 19",
+          "note": 114,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 20",
+          "note": 115,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 21",
+          "note": 116,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 22",
+          "note": 117,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 23",
+          "note": 118,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 24",
+          "note": 119,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 25",
+          "note": 120,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 26",
+          "note": 121,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 27",
+          "note": 122,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 28",
+          "note": 123,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 29",
+          "note": 124,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 30",
+          "note": 125,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 31",
+          "note": 126,
+        },
+        Object {
+          "group": "Groove",
+          "name": "Groove 32",
+          "note": 127,
+        },
+        Object {
+          "group": "",
+          "name": "",
+          "note": 128,
+        },
+      ]
+    }
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    status={9}
+    value={22}
+  />
+</div>
+`;

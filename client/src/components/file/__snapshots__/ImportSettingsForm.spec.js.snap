@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImportSettingsForm tests renders correctly 1`] = `
+<div>
+  <form
+    onSubmit={[MockFunction]}
+  >
+    <Field
+      component={[Function]}
+      label="Filename"
+      name="importFilename"
+      validate={
+        Array [
+          [Function],
+        ]
+      }
+    />
+  </form>
+</div>
+`;

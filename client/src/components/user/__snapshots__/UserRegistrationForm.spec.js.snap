@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserRegistrationForm tests renders correctly 1`] = `
+<form
+  onSubmit={[MockFunction]}
+>
+  <Field
+    component={[Function]}
+    label="First Name"
+    name="firstName"
+    type="text"
+    validate={
+      Array [
+        [Function],
+        [Function],
+      ]
+    }
+  />
+  <Field
+    component={[Function]}
+    label="Last Name"
+    name="lastName"
+    type="text"
+    validate={
+      Array [
+        [Function],
+        [Function],
+      ]
+    }
+  />
+  <Field
+    component={[Function]}
+    label="Email"
+    name="email"
+    type="email"
+    validate={
+      Array [
+        [Function],
+        [Function],
+      ]
+    }
+  />
+</form>
+`;
+
+exports[`UserRegistrationForm tests renders errors correctly 1`] = `
+<form
+  onSubmit={[MockFunction]}
+>
+  <Field
+    component={[Function]}
+    label="First Name"
+    name="firstName"
+    type="text"
+    validate={
+      Array [
+        [Function],
+        [Function],
+      ]
+    }
+  />
+  <Field
+    component={[Function]}
+    label="Last Name"
+    name="lastName"
+    type="text"
+    validate={
+      Array [
+        [Function],
+        [Function],
+      ]
+    }
+  />
+  <Field
+    component={[Function]}
+    label="Email"
+    name="email"
+    type="email"
+    validate={
+      Array [
+        [Function],
+        [Function],
+      ]
+    }
+  />
+  <strong>
+    error message
+  </strong>
+</form>
+`;

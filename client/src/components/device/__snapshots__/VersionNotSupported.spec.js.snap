@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VersionNotSupported tests renders correctly 1`] = `
+<Dialog
+  open={false}
+>
+  <WithStyles(DialogTitle)>
+    Unsupported Version
+  </WithStyles(DialogTitle)>
+  <WithStyles(DialogContent)>
+    <WithStyles(DialogContentText)>
+      Your ZDS Shifter is running an incompatible firmware revision.
+      <br />
+      <p>
+        <span>
+          Your version: 
+          <b>
+            v0.1
+          </b>
+        </span>
+        <br />
+        <span>
+          Minimum supported: 
+          <b>
+            v2.0
+          </b>
+        </span>
+      </p>
+    </WithStyles(DialogContentText)>
+  </WithStyles(DialogContent)>
+</Dialog>
+`;
+
+exports[`VersionNotSupported tests renders correctly when firmware is not supported 1`] = `
+<Dialog
+  open={true}
+>
+  <WithStyles(DialogTitle)>
+    Unsupported Version
+  </WithStyles(DialogTitle)>
+  <WithStyles(DialogContent)>
+    <WithStyles(DialogContentText)>
+      Your ZDS Shifter is running an incompatible firmware revision.
+      <br />
+      <p>
+        <span>
+          Your version: 
+          <b>
+            v0.1
+          </b>
+        </span>
+        <br />
+        <span>
+          Minimum supported: 
+          <b>
+            v2.0
+          </b>
+        </span>
+      </p>
+    </WithStyles(DialogContentText)>
+  </WithStyles(DialogContent)>
+</Dialog>
+`;

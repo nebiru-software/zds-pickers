@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SortControls tests renders correctly 1`] = `
+<a
+  className="sortControl active"
+  href="#"
+  onClick={[Function]}
+>
+  <div>
+    content
+  </div>
+  <i
+    className="material-icons"
+  >
+    keyboard_arrow_down
+  </i>
+</a>
+`;
+
+exports[`SortControls tests renders correctly when sorting desc 1`] = `
+<a
+  className="sortControl active"
+  href="#"
+  onClick={[Function]}
+>
+  <div>
+    content
+  </div>
+  <i
+    className="material-icons"
+  >
+    keyboard_arrow_up
+  </i>
+</a>
+`;
+
+exports[`SortControls tests should also sort on output 1`] = `
+<a
+  className="sortControl active"
+  href="#"
+  onClick={[Function]}
+>
+  <div>
+    content
+  </div>
+  <i
+    className="material-icons"
+  >
+    keyboard_arrow_down
+  </i>
+</a>
+`;

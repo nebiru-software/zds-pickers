@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoShifterFound tests renders correctly 1`] = `
+<Dialog
+  open={false}
+>
+  <WithStyles(DialogTitle)>
+    Device Not Found
+  </WithStyles(DialogTitle)>
+  <WithStyles(DialogContent)>
+    <WithStyles(DialogContentText)>
+      There does not appear to be an attached ZDS Shifter.
+      <br />
+      <br />
+      <b>
+        Troubleshooting
+      </b>
+    </WithStyles(DialogContentText)>
+    <ul>
+      <li>
+        Check that your Shifter is connected via USB
+      </li>
+      <li>
+        Check that no other software is utilizing your Shifter
+      </li>
+      <li>
+        If connecting through a USB Host device, try connecting directly instead
+      </li>
+      <li>
+        Try disconnecting and reconnecting your Shifter
+      </li>
+    </ul>
+  </WithStyles(DialogContent)>
+</Dialog>
+`;

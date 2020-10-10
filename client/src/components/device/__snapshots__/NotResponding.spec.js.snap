@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotResponding tests renders correctly 1`] = `
+<Dialog
+  open={false}
+>
+  <WithStyles(DialogTitle)>
+    Shifter Not Responding
+  </WithStyles(DialogTitle)>
+  <WithStyles(DialogContent)>
+    <WithStyles(DialogContentText)>
+      There appears to be an available ZDS Shifter attached to your computer, however it is not responding to requests.
+      <br />
+      <br />
+      <b>
+        Troubleshooting
+      </b>
+    </WithStyles(DialogContentText)>
+    <ul>
+      <li>
+        Check that no other software is utilizing your Shifter
+      </li>
+      <li>
+        Plug directly into a USB port, if using a HUB or other USB host device
+      </li>
+      <li>
+        Try a different USB port
+      </li>
+      <li>
+        Power down the ZDS Shifter, plug it back in, wait 5 seconds and then refresh this page
+      </li>
+    </ul>
+  </WithStyles(DialogContent)>
+</Dialog>
+`;
