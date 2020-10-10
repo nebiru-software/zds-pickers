@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import DialogActions from '@material-ui/core/DialogActions'
-import { hardwareTestShape } from '../../../shapes'
+import Button from '@material-ui/core/Button'
+import { hardwareTestShape } from '../../../core/shapes'
 
 const ActionButtons = (props) => {
   const {

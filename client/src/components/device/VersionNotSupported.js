@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
-import { versionShape } from '../../shapes'
+import { versionShape } from '../../core/shapes'
 import Dialog from '../Dialog'
 
 const minimumFirmware = 20

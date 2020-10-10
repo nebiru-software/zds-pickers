@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
@@ -6,11 +7,11 @@ import { createDragPreview } from 'react-dnd-text-dragpreview'
 import { STATUS_CONTROL_CHANGE, STATUS_NOTE_OFF, STATUS_NOTE_ON, ccValues } from 'zds-pickers'
 import classNames from 'classnames'
 import Tooltip from '@material-ui/core/Tooltip'
-import DragTypes from '../../dragTypes'
+import DragTypes from '../../core/dragTypes'
 import { gridFriendlyData } from '../../reducers/shiftGroup'
 import styles from '../../styles/shiftGroupRow.scss'
 import { getNoteValue } from '../../reducers/mappings'
-import { entryShape } from '../../shapes'
+import { entryShape } from '../../core/shapes'
 
 const dragPreviewStyle = {
   backgroundColor: 'rgb(68, 67, 67)',
@@ -59,26 +60,6 @@ const builtDragSource = DragSource(DragTypes.ENTRY, entrySource, (connect, monit
 }))
 
 class GridRow extends PureComponent {
-  static propTypes = {
-    groupId: PropTypes.number.isRequired,
-    idx: PropTypes.number.isRequired,
-    editEntry: PropTypes.func.isRequired,
-    removeEntry: PropTypes.func.isRequired,
-    entry: entryShape.isRequired,
-    selected: PropTypes.bool.isRequired,
-    disabled: PropTypes.bool.isRequired,
-    channels: PropTypes.arrayOf(PropTypes.string).isRequired,
-    selectedRows: PropTypes.arrayOf(PropTypes.number).isRequired,
-    clickHandler: PropTypes.func.isRequired,
-    connectDragSource: PropTypes.func,
-    connectDragPreview: PropTypes.func,
-  }
-
-  static defaultProps = {
-    connectDragSource: null,
-    connectDragPreview: null,
-  }
-
   componentDidMount() {
     const { connectDragPreview, selectedRows } = this.props
 
@@ -115,7 +96,7 @@ class GridRow extends PureComponent {
     const { entryId } = entry
     const { indicator, input, output } = gridFriendlyData(entry)
 
-    const FormatedValue = (value, label) => (
+    const FormattedValue = (value, label) => (
       <div className={styles.formattedNoteName}>
         <aside>{value}</aside>
         <article>{label}</article>
@@ -144,7 +125,7 @@ class GridRow extends PureComponent {
           break
       }
 
-      return FormatedValue(value, label)
+      return FormattedValue(value, label)
     }
 
     const handleEdit = () => !disabled && editEntry(groupId, entryId)
@@ -217,6 +198,26 @@ class GridRow extends PureComponent {
 
     return connectDragSource(renderedOutput)
   }
+}
+
+GridRow.propTypes = {
+  groupId: PropTypes.number.isRequired,
+  idx: PropTypes.number.isRequired,
+  editEntry: PropTypes.func.isRequired,
+  removeEntry: PropTypes.func.isRequired,
+  entry: entryShape.isRequired,
+  selected: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool.isRequired,
+  channels: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selectedRows: PropTypes.arrayOf(PropTypes.number).isRequired,
+  clickHandler: PropTypes.func.isRequired,
+  connectDragSource: PropTypes.func,
+  connectDragPreview: PropTypes.func,
+}
+
+GridRow.defaultProps = {
+  connectDragSource: null,
+  connectDragPreview: null,
 }
 
 export default builtDragSource(GridRow)

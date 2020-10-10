@@ -1,4 +1,4 @@
-import 'jest-localstorage-mock'
+import 'fp/node_modules/jest-localstorage-mock'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { STATUS_NOTE_OFF, STATUS_NOTE_ON } from 'zds-pickers'

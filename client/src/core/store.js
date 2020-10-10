@@ -2,13 +2,14 @@ import { applyMiddleware, compose, createStore } from 'redux'
 import { createLogger } from 'redux-logger'
 import setup from 'redux-midi-fork'
 import thunk from 'redux-thunk'
-import rootReducer from './reducers'
-import sysexInputMiddleware from './middleware/sysexInput'
-import sysexOutputMiddleware from './middleware/sysexOutput'
-import hardwareTestOutputMiddleware from './middleware/hardwareTestOutput'
-import fileExport from './middleware/fileExport'
-import fileImport from './middleware/fileImport'
-import { watchForDeviceChange } from './midi'
+import rootReducer from '../reducers'
+import sysexInputMiddleware from '../middleware/sysexInput'
+import sysexOutputMiddleware from '../middleware/sysexOutput'
+import hardwareTestOutputMiddleware from '../middleware/hardwareTestOutput'
+import fileExport from '../middleware/fileExport'
+import fileImport from '../middleware/fileImport'
+import { watchForDeviceChange } from '../midi'
+import { isDevEnv } from '../selectors'
 
 const logger = createLogger({
   collapsed: true,
@@ -16,28 +17,25 @@ const logger = createLogger({
 })
 let middlewares = [thunk]
 
-export default function storeFactory(
-  initialState,
-  /* istanbul ignore next */ debug = __DEV__,
-  /* istanbul ignore next */ test = __TEST__,
-) {
+export default function storeFactory(initialState) {
+  const isDev = isDevEnv()
   /* istanbul ignore if */
-  if (!test) {
-    const { inputMiddleware, outputMiddleware } = setup({ midiOptions: { sysex: true } })
-    middlewares = [
-      ...middlewares,
-      inputMiddleware,
-      outputMiddleware,
-      sysexInputMiddleware,
-      sysexOutputMiddleware,
-      hardwareTestOutputMiddleware,
-      fileExport,
-      fileImport,
-    ]
-  }
+  // if (!test) {
+  const { inputMiddleware, outputMiddleware } = setup({ midiOptions: { sysex: true } })
+  middlewares = [
+    ...middlewares,
+    inputMiddleware,
+    outputMiddleware,
+    sysexInputMiddleware,
+    sysexOutputMiddleware,
+    hardwareTestOutputMiddleware,
+    fileExport,
+    fileImport,
+  ]
+  // }
 
   /* eslint-disable indent */
-  const store = (debug
+  const store = (isDev
     ? compose(
         applyMiddleware(...middlewares),
         applyMiddleware(logger),

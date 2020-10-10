@@ -8,7 +8,7 @@ import EntryControls from '../controls/EntryControls'
 import { actions as shiftGroupActions } from '../../reducers/shiftGroups'
 import { actions as shiftEntryActions } from '../../reducers/shiftEntry'
 import { instructions } from '../../styles/entryDlg.scss'
-import { groupsShape, mappingsShape } from '../../shapes'
+import { groupsShape, mappingsShape } from '../../core/shapes'
 
 /**
  * We ran into a huge issue with material-ui dialog here.

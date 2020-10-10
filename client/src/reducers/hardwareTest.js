@@ -1,5 +1,4 @@
 /* eslint-disable no-bitwise, no-console */
-import isEqual from 'lodash/fp/isEqual'
 import {
   MASK_CHANNEL,
   MASK_STATUS,
@@ -8,11 +7,13 @@ import {
   STATUS_NOTE_ON,
   combineStatus,
 } from 'zds-pickers/dist/midi/statuses'
-import { createReducer, delay } from '../utils'
 import rules from '../components/device/hardwareTest/rules'
 import echoMessages from '../components/device/hardwareTest/echoMessages'
 import { shifterInputId, testInterfaceInputId } from '../midi/devices'
 import { SHIFTER_CC_MESSAGE } from '../midi'
+import { delay } from '../core/fp/utils'
+import { isEqual } from '../core/fp/objects'
+import { createReducer } from './utils'
 import { actions as shifterActions } from './shifter'
 import actionTypes from './actionTypes'
 import { compareAll, compareValue } from './shiftEntry'

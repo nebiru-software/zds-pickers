@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import IconButton from '@material-ui/core/IconButton'
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+import Tooltip from '@material-ui/core/Tooltip'
 import {
   ACTIVITY_LED_MODE_ALWAYS_OFF,
   ACTIVITY_LED_MODE_ALWAYS_ON,
@@ -17,16 +20,7 @@ const options = [
 ]
 
 class LEDModePicker extends Component {
-  static propTypes = {
-    selectedValue: PropTypes.number.isRequired,
-    setFlags: PropTypes.func.isRequired,
-    serialMidiOutEnabled: PropTypes.bool.isRequired,
-    usbMidiOutEnabled: PropTypes.bool.isRequired,
-    children: PropTypes.node,
-  }
-
-  static defaultProps = { children: null }
-
+  // eslint-disable-next-line react/state-in-constructor
   state = {
     anchorEl: null,
   }
@@ -89,5 +83,15 @@ class LEDModePicker extends Component {
     )
   }
 }
+
+LEDModePicker.propTypes = {
+  selectedValue: PropTypes.number.isRequired,
+  setFlags: PropTypes.func.isRequired,
+  serialMidiOutEnabled: PropTypes.bool.isRequired,
+  usbMidiOutEnabled: PropTypes.bool.isRequired,
+  children: PropTypes.node,
+}
+
+LEDModePicker.defaultProps = { children: null }
 
 export default LEDModePicker

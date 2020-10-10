@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import 'jest-localstorage-mock'
+import 'fp/node_modules/jest-localstorage-mock'
 import storeFactory from './store'
 import actionTypes from './reducers/actionTypes'
 

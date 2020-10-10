@@ -97,6 +97,8 @@
     "core-js-pure": "3.6.5",
     "date-fns": "2.16.1",
     "file-saver": "2.0.2",
+    "immer": "7.0.9",
+    "monet": "0.9.1",
     "nanoid": "3.1.12",
     "nebiru-react-file-picker": "0.0.7",
     "object-hash": "2.0.3",
@@ -118,6 +120,7 @@
     "redux-logger": "3.0.6",
     "redux-midi-fork": "2.0.3",
     "redux-thunk": "2.3.0",
+    "shallowequal": "1.1.0",
     "zds-mappings": "1.4.9",
     "zds-pickers": "3.1.0"
   }

@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogActions from '@material-ui/core/DialogActions'
 import LinearProgress from '@material-ui/core/LinearProgress'
-import { shifterShape } from '../shapes'
+import { shifterShape } from '../core/shapes'
 import Dialog from './Dialog'
 
 const FactoryReset = (props) => {

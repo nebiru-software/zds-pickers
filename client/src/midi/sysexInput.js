@@ -32,7 +32,7 @@ const processMidiMessage = (dispatch, { data, device }) => {
   ] = parseMSB(data)
 
   // One of our packets?  (and only over usb)
-  if (kind === SYSEX_START && deviceId === SHIFTER_DEVICE_ID && (__TEST__ || device === shifterInputId())) {
+  if (kind === SYSEX_START && deviceId === SHIFTER_DEVICE_ID && (device === shifterInputId())) {
     let serial
 
     switch (command) {
@@ -50,11 +50,8 @@ const processMidiMessage = (dispatch, { data, device }) => {
           serial.reduce((val, char) => val + String.fromCharCode(char), ''),
         ))
 
-        /* istanbul ignore next */
-        if (!__TEST__) {
-          dispatch(actions.askForControls())
-          dispatch(shiftGroupActions.askForGroups())
-        }
+        dispatch(actions.askForControls())
+        dispatch(shiftGroupActions.askForGroups())
         break
 
       case SYSEX_MSG_RECEIVE_MODEL:

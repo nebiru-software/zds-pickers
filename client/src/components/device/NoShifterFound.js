@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
-import { shifterShape } from '../../shapes'
+import { shifterShape } from '../../core/shapes'
 import Dialog from '../Dialog'
 
 export const NoShifterFound = ({ shifter: { searchedForShifter, found } }) => (
-  <Dialog open={searchedForShifter && !found}>
+  <Dialog open={Boolean(searchedForShifter) && !found}>
     <DialogTitle>Device Not Found</DialogTitle>
     <DialogContent>
       <DialogContentText>

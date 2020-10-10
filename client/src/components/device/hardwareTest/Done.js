@@ -1,14 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import once from 'lodash/once'
-import { hardwareTestShape } from '../../../shapes'
+import { hardwareTestShape } from '../../../core/shapes'
+import { once } from '../../../core/fp/utils'
 
 class Done extends Component {
-  static propTypes = {
-    hardwareTest: hardwareTestShape.isRequired,
-    hideHardwareTestDialog: PropTypes.func.isRequired,
-  }
-
   constructor(props) {
     super(props)
     this.hide = once(props.hideHardwareTestDialog)
@@ -29,6 +24,11 @@ class Done extends Component {
       </>
     )
   }
+}
+
+Done.propTypes = {
+  hardwareTest: hardwareTestShape.isRequired,
+  hideHardwareTestDialog: PropTypes.func.isRequired,
 }
 
 export default Done

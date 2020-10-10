@@ -8,14 +8,21 @@ import PermIdentity from '@material-ui/icons/PermIdentity'
 import FileDownload from '@material-ui/icons/GetApp'
 import FileUpload from '@material-ui/icons/CloudUpload'
 import Warning from '@material-ui/icons/Warning'
+import IconButton from '@material-ui/core/IconButton'
+import Tooltip from '@material-ui/core/Tooltip'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText'
 import { actions as userActions } from '../reducers/user'
 import { actions as shifterActions } from '../reducers/shifter'
-import { shifterShape } from '../shapes'
+import { shifterShape } from '../core/shapes'
 import ExportSettings from './file/ExportSettings'
 import ImportSettings from './file/ImportSettings'
 import FactoryReset from './FactoryReset'
 
 export class MainMenu extends Component {
+  // eslint-disable-next-line react/state-in-constructor
   state = {
     anchorEl: null,
   }
@@ -50,9 +57,7 @@ export class MainMenu extends Component {
           aria-owns={open ? 'long-menu' : null}
           onClick={this.handleClick}
         >
-          <Tooltip
-            title="Settings"
-          >
+          <Tooltip title="Settings">
             <MenuIcon />
           </Tooltip>
         </IconButton>

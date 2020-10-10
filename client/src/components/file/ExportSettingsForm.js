@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 import { Field, reduxForm } from 'redux-form'
 import FormInput from '../FormInput'
 import { actions as shifterActions } from '../../reducers/shifter'
-import { fieldFilename, fieldRequired } from '../../utils'
+import { fieldFilename, fieldRequired } from '../../core/fp/strings'
 
 export const ExportSettingsForm = ({ error, handleSubmit }) => (
   <form onSubmit={handleSubmit}>
@@ -18,7 +18,7 @@ export const ExportSettingsForm = ({ error, handleSubmit }) => (
       validate={[fieldRequired, fieldFilename]}
     />
 
-    {error && <strong>{error}</strong>}
+    {Boolean(error) && <strong>{error}</strong>}
   </form>
 )
 

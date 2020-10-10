@@ -12,28 +12,11 @@ import {
 } from 'zds-pickers'
 import { entryControlSet, notePicker, valuePicker } from '../../styles/entryDlg.scss'
 import { getMapping, getNoteValue } from '../../reducers/mappings'
-import { mappingsShape, midiMessageShape } from '../../shapes'
+import { mappingsShape, midiMessageShape } from '../../core/shapes'
 import CCPicker from './CCPicker'
 import ChannelPicker from './ChannelPicker'
 
 class EntryControlSet extends Component {
-  static propTypes = {
-    isInput: PropTypes.bool,
-    entry: midiMessageShape.isRequired,
-    groupId: PropTypes.number.isRequired,
-    changeStatus: PropTypes.func.isRequired,
-    changeValue: PropTypes.func.isRequired,
-    changeChannel: PropTypes.func.isRequired,
-    onPressedEnter: PropTypes.func.isRequired,
-    mappings: mappingsShape.isRequired,
-    otherEntry: midiMessageShape.isRequired,
-    okButtonRef: PropTypes.object.isRequired,
-  }
-
-  static defaultProps = {
-    isInput: false,
-  }
-
   constructor(props) {
     super(props)
     this.valueControlRef = createRef()
@@ -143,6 +126,23 @@ class EntryControlSet extends Component {
       </div>
     )
   }
+}
+
+EntryControlSet.propTypes = {
+  isInput: PropTypes.bool,
+  entry: midiMessageShape.isRequired,
+  groupId: PropTypes.number.isRequired,
+  changeStatus: PropTypes.func.isRequired,
+  changeValue: PropTypes.func.isRequired,
+  changeChannel: PropTypes.func.isRequired,
+  onPressedEnter: PropTypes.func.isRequired,
+  mappings: mappingsShape.isRequired,
+  otherEntry: midiMessageShape.isRequired,
+  okButtonRef: PropTypes.object.isRequired,
+}
+
+EntryControlSet.defaultProps = {
+  isInput: false,
 }
 
 export default EntryControlSet

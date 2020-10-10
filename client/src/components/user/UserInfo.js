@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -6,7 +7,7 @@ import Avatar from '@material-ui/core/Avatar'
 import Gravatar from 'react-gravatar'
 import styles from '../../styles/registration.scss'
 import { actions as userActions } from '../../reducers/user'
-import { userShape } from '../../shapes'
+import { userShape } from '../../core/shapes'
 import UserRegistration from './UserRegistration'
 
 export const UserInfo = ({ user, showDialog, hideDialog, submitRegistrationForm, checkedRegistrationAction }) => {
@@ -15,7 +16,7 @@ export const UserInfo = ({ user, showDialog, hideDialog, submitRegistrationForm,
 
   return (
     <div className={styles.userInfo}>
-      {registered && (
+      {Boolean(registered) && (
         <div className={styles.layout}>
           <section
             onClick={showDialog}

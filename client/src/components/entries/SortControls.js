@@ -3,9 +3,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames/bind'
-import { SORT_ASC, SORT_ON_INPUT, SORT_ON_OUTPUT } from '../../reducers/shiftGroup'
+import { SORT_ASC, SORT_ON_INPUT, SORT_ON_OUTPUT } from '../../core/consts'
 import * as styles from '../../styles/shiftGroupTable.scss'
-import { sortShape } from '../../shapes'
+import { sortShape } from '../../core/shapes'
 
 const cx = classNames.bind(styles)
 

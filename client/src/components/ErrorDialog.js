@@ -8,7 +8,7 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogActions from '@material-ui/core/DialogActions'
 import { actions as shifterActions } from '../reducers/shifter'
-import { shifterShape } from '../shapes'
+import { shifterShape } from '../core/shapes'
 import Dialog from './Dialog'
 
 export const ErrorDialog = ({ shifter: { errorMessage, errorVisible }, dismissError }) => (

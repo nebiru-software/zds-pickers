@@ -1,5 +1,5 @@
 import React from 'react'
-import { hardwareTestShape } from '../../../shapes'
+import { hardwareTestShape } from '../../../core/shapes'
 import Connected from './Connected'
 import FactoryReset from './FactoryReset'
 import SendEntries from './SendEntries'

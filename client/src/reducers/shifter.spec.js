@@ -1,6 +1,6 @@
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import 'jest-localstorage-mock'
+import 'fp/node_modules/jest-localstorage-mock'
 import deepFreeze from 'deep-freeze'
 import { RECEIVE_DEVICE_LIST } from 'redux-midi-fork'
 import { state as resetPacket } from '../../__assets__/zds-shifter-backup'

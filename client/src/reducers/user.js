@@ -1,6 +1,6 @@
 import { submit } from 'redux-form'
-import { PRODUCT_INSTANCE, PRODUCT_REGISTER } from '../endpoints'
-import { createReducer } from '../utils'
+import { PRODUCT_INSTANCE, PRODUCT_REGISTER } from '../sagas'
+import { createReducer } from './utils'
 import actionTypes from './actionTypes'
 
 const checkedRegistrationAction = productInstance => ({

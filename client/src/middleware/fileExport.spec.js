@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import actionTypes from '../reducers/actionTypes'

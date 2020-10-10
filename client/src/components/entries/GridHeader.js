@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { SORT_BY_ALL, SORT_BY_CHANNEL, SORT_BY_MESSAGE, SORT_BY_VALUE } from '../../reducers/shiftGroup'
+import { SORT_BY_ALL, SORT_BY_CHANNEL, SORT_BY_MESSAGE, SORT_BY_VALUE } from '../../core/consts'
 import { gridHeader } from '../../styles/shiftGroupHeader.scss'
-import { sortShape } from '../../shapes'
+import { sortShape } from '../../core/shapes'
 import SortControls from './SortControls'
 
 const GridHeader = props => (

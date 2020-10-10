@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import pick from 'lodash/pick'
 import { LatchPicker, PolarityPicker } from 'zds-pickers'
 import Led from '../Led'
 import { ccControl, picker } from '../../styles/inputControls.scss'
+import { pick } from '../../core/fp/objects'
 import CCPicker from './CCPicker'
 import ChannelPicker from './ChannelPicker'
 
@@ -19,7 +19,7 @@ const CCControl = (props) => {
   } = props
 
   const pickerProps = {
-    ...pick(props, ['channel', 'className', 'latching', 'polarity', 'value']),
+    ...pick(['channel', 'className', 'latching', 'polarity', 'value'])(props),
     className: picker,
   }
 

@@ -1,9 +1,14 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { validateContent } from 'zds-mappings'
 import { FilePicker } from 'nebiru-react-file-picker'
 import Button from '@material-ui/core/Button'
+import DialogTitle from '@material-ui/core/DialogTitle'
+import DialogContent from '@material-ui/core/DialogContent'
+import Tooltip from '@material-ui/core/Tooltip'
+import DialogActions from '@material-ui/core/DialogActions'
 import mappingsStyle from '../../styles/mappings.scss'
 import Dialog from '../Dialog'
 

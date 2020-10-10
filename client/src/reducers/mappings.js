@@ -1,6 +1,8 @@
 import { getMapping as zdsGetMapping, getStockNames, getUserMappingNames } from 'zds-mappings'
 import { removeMapping, storeMapping } from 'zds-mappings/dist/userMappings'
-import { arraySequence, createReducer, getSetting } from '../utils'
+import { arraySequence } from '../core/fp/arrays'
+import { getSetting } from '../core/utils'
+import { createReducer } from './utils'
 import actionTypes from './actionTypes'
 
 const defaultState = {

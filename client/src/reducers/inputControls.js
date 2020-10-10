@@ -1,8 +1,8 @@
 /* eslint-disable no-plusplus, no-bitwise */
-import chunk from 'lodash/chunk'
 import { MASK_CHANNEL, MASK_STATUS, assertRange } from 'zds-pickers'
-import { createReducer } from '../utils'
+import { chunk } from '../core/fp/arrays'
 import { MASK_CURVE, MASK_LATCHING, MASK_POLARITY } from '../midi'
+import { createReducer } from './utils'
 import inputControl from './inputControl'
 import actionTypes from './actionTypes'
 
@@ -58,7 +58,7 @@ const modifyControl = (
 const receivedControls = (
   state,
   { controlData }, //
-) => chunk(controlData, 5) //
+) => chunk(5)(controlData) //
   .map(([status, value, flags, calibrationLow, calibrationHigh], i) => inputControl(
     {
       controlId: i,
@@ -79,7 +79,7 @@ const receivedControls = (
 const receivedInternalState = (state, { packet }) => {
   const [numControls, ...rest] = packet
   rest.pop() // Settings flag
-  const [active, lit] = chunk(rest.map(val => Boolean(val)), numControls)
+  const [active, lit] = chunk(numControls)(rest.map(val => Boolean(val)))
 
   return state.map((control, idx) => ({ ...control, active: active[idx], lit: lit[idx] }))
 }

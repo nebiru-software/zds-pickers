@@ -6,7 +6,7 @@ import { Field, reduxForm } from 'redux-form'
 import withStyles from '@material-ui/core/styles/withStyles'
 import FormInput from '../FormInput'
 import { actions as userActions } from '../../reducers/user'
-import { fieldEmail, fieldMaxLength64, fieldRequired } from '../../utils'
+import { fieldEmail, fieldMaxLength64, fieldRequired } from '../../core/fp/strings'
 
 const styles = {
   container: {
@@ -49,7 +49,7 @@ export const UserRegistrationForm = ({ error, handleSubmit, classes }) => (
       type="email"
       validate={[fieldRequired, fieldEmail]}
     />
-    {error && <strong>{error}</strong>}
+    {Boolean(error) && <strong>{error}</strong>}
   </form>
 )
 

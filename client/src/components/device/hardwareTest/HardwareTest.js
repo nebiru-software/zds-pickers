@@ -1,28 +1,20 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Dialog from '@material-ui/core/Dialog'
 import { bindActionCreators } from 'redux'
+import DialogTitle from '@material-ui/core/DialogTitle'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogContentText from '@material-ui/core/DialogContentText'
 import { actions as shifterActions } from '../../../reducers/shifter'
 import { actions as hardwareTestActions } from '../../../reducers/hardwareTest'
-import { shifterShape } from '../../../shapes'
+import { shifterShape } from '../../../core/shapes'
+import Dialog from '../../Dialog'
 import Interface from './Interface'
 import ActionButtons from './ActionButtons'
 
 const style = { minHeight: 200, minWidth: 450, maxWidth: 450 }
 
 export class HardwareTest extends Component {
-  static propTypes = {
-    shifter: shifterShape.isRequired,
-    showHardwareTestDialog: PropTypes.func.isRequired,
-    hideHardwareTestDialog: PropTypes.func.isRequired,
-    classes: PropTypes.object,
-  }
-
-  static defaultProps = {
-    classes: null,
-  }
-
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown, false)
   }
@@ -86,6 +78,17 @@ export const mapDispatchToProps = dispatch => bindActionCreators(
   },
   dispatch,
 )
+
+HardwareTest.propTypes = {
+  shifter: shifterShape.isRequired,
+  showHardwareTestDialog: PropTypes.func.isRequired,
+  hideHardwareTestDialog: PropTypes.func.isRequired,
+  classes: PropTypes.object,
+}
+
+HardwareTest.defaultProps = {
+  classes: null,
+}
 
 export default connect(
   mapStateToProps,

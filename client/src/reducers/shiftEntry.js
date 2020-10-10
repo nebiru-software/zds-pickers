@@ -1,7 +1,7 @@
 import { STATUS_NOTE_ON, assertRange, extractStatus, getStatusLabel } from 'zds-pickers'
-import { createReducer } from '../utils'
+import { SORT_BY_ALL, SORT_BY_CHANNEL, SORT_BY_MESSAGE, SORT_BY_VALUE, SORT_DESC, SORT_ON_INPUT } from '../core/consts'
+import { createReducer } from './utils'
 import actionTypes from './actionTypes'
-import { SORT_BY_ALL, SORT_BY_CHANNEL, SORT_BY_MESSAGE, SORT_BY_VALUE, SORT_DESC, SORT_ON_INPUT } from './shiftGroup'
 
 export const actions = {
   changeStatus: (groupId, isInput, status) => ({

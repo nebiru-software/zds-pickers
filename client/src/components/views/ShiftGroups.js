@@ -9,7 +9,7 @@ import { actions as mappingsActions } from '../../reducers/mappings'
 import { actions as shifterActions } from '../../reducers/shifter'
 import { container, loadingCont, tabsCont } from '../../styles/shiftGroups.scss'
 import GroupTab from '../entries/GroupTab'
-import { groupsShape, inputControlShape, shifterShape, versionShape } from '../../shapes'
+import { groupsShape, inputControlShape, shifterShape, versionShape } from '../../core/shapes'
 
 export const ShiftGroups = (props) => {
   const {
@@ -60,7 +60,7 @@ export const ShiftGroups = (props) => {
           totalEntries={totalEntries}
         />
         ))}
-        {(decoratedGroups.length === 0 || !ready) && (
+        {Boolean(decoratedGroups.length === 0 || !ready) && (
           <div className={loadingCont}>Searching for attached ZDS Shifter...</div>
         )}
       </div>

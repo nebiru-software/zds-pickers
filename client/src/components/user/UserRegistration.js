@@ -38,16 +38,6 @@ export const GravatarLink = ({ content }) => (
 GravatarLink.propTypes = { content: PropTypes.node.isRequired }
 
 export class UserRegistration extends Component {
-  static propTypes = {
-    active: PropTypes.bool.isRequired,
-    hideDialog: PropTypes.func.isRequired,
-    submitRegistrationForm: PropTypes.func.isRequired,
-    checkedRegistrationAction: PropTypes.func.isRequired,
-    serialNumber: PropTypes.string.isRequired,
-    classes: PropTypes.object.isRequired,
-    registered: PropTypes.bool.isRequired,
-  }
-
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown, false)
   }
@@ -114,7 +104,7 @@ export class UserRegistration extends Component {
           </div>
         </DialogContent>
         <DialogActions>
-          {registered && (
+          {Boolean(registered) && (
             <Button
               onClick={hideDialog}
               tag="btnCancel"
@@ -135,6 +125,16 @@ export class UserRegistration extends Component {
       </Dialog>
     )
   }
+}
+
+UserRegistration.propTypes = {
+  active: PropTypes.bool.isRequired,
+  hideDialog: PropTypes.func.isRequired,
+  submitRegistrationForm: PropTypes.func.isRequired,
+  checkedRegistrationAction: PropTypes.func.isRequired,
+  serialNumber: PropTypes.string.isRequired,
+  classes: PropTypes.object.isRequired,
+  registered: PropTypes.bool.isRequired,
 }
 
 export default withStyles(styles)(UserRegistration)

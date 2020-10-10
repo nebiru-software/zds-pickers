@@ -1,13 +1,13 @@
-import shortid from 'shortid'
-import { createReducer } from '../utils'
+import { nanoid } from 'nanoid'
 import { CURRENT_CLIENT_VERSION } from '../midi'
+import { createReducer } from './utils'
 import actionTypes from './actionTypes'
 import { actions as userActions } from './user'
 
 export const actions = {
   checkVersion: () => ({
     type: actionTypes.GET_SYSEX_VERSION,
-    serialNumber: shortid.generate(),
+    serialNumber: nanoid(),
   }),
 
   checkModel: () => ({

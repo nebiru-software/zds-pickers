@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import { assertRange } from 'zds-pickers'
 import { entryGrid } from '../../styles/shiftGroupTable.scss'
 import { compareEntry } from '../../reducers/shiftEntry'
-import { delay } from '../../utils'
-import { entryShape, sortShape } from '../../shapes'
+import { entryShape, sortShape } from '../../core/shapes'
+import { delay } from '../../core/fp/utils'
 import GridRow from './GridRow'
 
 const ShiftEntriesGrid = ({

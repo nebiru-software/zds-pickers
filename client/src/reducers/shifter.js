@@ -1,7 +1,7 @@
 /* eslint-disable no-bitwise */
 import { submit } from 'redux-form'
-import { createReducer } from '../utils'
 import { ACTIVITY_LED_MODE_ALWAYS_OFF } from '../midi/sysex'
+import { createReducer } from './utils'
 import actionTypes from './actionTypes'
 
 export const actions = {

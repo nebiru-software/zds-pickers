@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
-import { shifterShape } from '../../shapes'
+import { shifterShape } from '../../core/shapes'
 import Dialog from '../Dialog'
 
 export class MidiSecurity extends Component {
@@ -12,7 +12,8 @@ export class MidiSecurity extends Component {
     this.state = { active: false }
   }
 
-  componentWillMount() {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillMount() {
     const { shifter } = this.props
     // Give web midi a chance to start up before assuming no access given.
     setTimeout(
@@ -28,7 +29,7 @@ export class MidiSecurity extends Component {
     const { active } = this.state
 
     return (
-      <Dialog open={active && !shifter.accessGranted}>
+      <Dialog open={Boolean(active) && !shifter.accessGranted}>
         <DialogTitle>Your Permission Is Required</DialogTitle>
         <DialogContent>
           <DialogContentText>

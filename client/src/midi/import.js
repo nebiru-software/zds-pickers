@@ -1,9 +1,9 @@
 /* eslint-disable no-plusplus */
 import PromiseFileReader from 'promise-file-reader'
 import Hash from 'object-hash'
-import chunk from 'lodash/chunk'
 import { actions as shifterActions } from '../reducers/shifter'
-import { delay } from '../utils'
+import { chunk } from '../core/fp/arrays'
+import { delay } from '../core/fp/utils'
 import { transmitBackup } from './sysexOutput'
 
 /*
@@ -24,7 +24,7 @@ const invalidFile = dispatch => dispatch(shifterActions.settingsFileInvalid('Inv
 const process = (dispatch, [, , , ...rest]) => new Promise((resolve, reject) => {
   const BLOCK_SIZE = 51
   try {
-    chunk(rest, BLOCK_SIZE).forEach((block, blockIdx) => {
+    chunk(BLOCK_SIZE)(rest).forEach((block, blockIdx) => {
       delay(200)
 
       transmitBackup(

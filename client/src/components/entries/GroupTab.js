@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import compose from 'lodash/fp/compose'
 import classNames from 'classnames'
 import withStyles from '@material-ui/core/styles/withStyles'
 import Tab from '@material-ui/core/Tab'
 import { DropTarget } from 'react-dnd'
-import DragTypes from '../../dragTypes'
+import { compose } from 'redux'
+import DragTypes from '../../core/dragTypes'
 
 export const boxTarget = {
   drop({ groupId }) {
@@ -43,23 +43,6 @@ const builtDropTarget = DropTarget(DragTypes.ENTRY, boxTarget, (connect, monitor
 }))
 
 class GroupTab extends Component {
-  static propTypes = {
-    selected: PropTypes.bool.isRequired,
-    active: PropTypes.bool.isRequired,
-    connectDropTarget: PropTypes.func,
-    canDrop: PropTypes.bool,
-    isOver: PropTypes.bool,
-    groupId: PropTypes.number.isRequired,
-    controlLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
-    classes: PropTypes.object.isRequired,
-  }
-
-  static defaultProps = {
-    canDrop: false,
-    isOver: false,
-    connectDropTarget: null,
-  }
-
   render() {
     const {
       active,
@@ -97,6 +80,23 @@ class GroupTab extends Component {
 
     return connectDropTarget(renderedOutput)
   }
+}
+
+GroupTab.propTypes = {
+  selected: PropTypes.bool.isRequired,
+  active: PropTypes.bool.isRequired,
+  connectDropTarget: PropTypes.func,
+  canDrop: PropTypes.bool,
+  isOver: PropTypes.bool,
+  groupId: PropTypes.number.isRequired,
+  controlLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
+  classes: PropTypes.object.isRequired,
+}
+
+GroupTab.defaultProps = {
+  canDrop: false,
+  isOver: false,
+  connectDropTarget: null,
 }
 
 export default compose(

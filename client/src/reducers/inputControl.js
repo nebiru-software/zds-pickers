@@ -1,6 +1,6 @@
 import { STATUS_CONTROL_CHANGE } from 'zds-pickers'
-import { createReducer } from '../utils'
 import { SHIFTER_CC_MESSAGE } from '../midi'
+import { createReducer } from './utils'
 import actionTypes from './actionTypes'
 
 const defaultState = {

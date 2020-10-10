@@ -3,9 +3,12 @@ import PropTypes from 'prop-types'
 import withStyles from '@material-ui/core/styles/withStyles'
 import Button from '@material-ui/core/Button'
 import Add from '@material-ui/icons/AddCircle'
+import Grid from '@material-ui/core/Grid'
+import Tooltip from '@material-ui/core/Tooltip'
+import Typography from '@material-ui/core/Typography'
 import MappingsDialog from '../mappings/MappingsDialog'
 import UserMappingsDialog from '../mappings/UserMappingsDialog'
-import { mappingsShape, shifterShape, userShape } from '../../shapes'
+import { mappingsShape, shifterShape, userShape } from '../../core/shapes'
 import CCPicker from '../controls/CCPicker'
 import ChannelPicker from '../controls/ChannelPicker'
 
@@ -28,31 +31,6 @@ const styles = theme => ({
 })
 
 export class GridControls extends Component {
-  static propTypes = {
-    changeGroupChannel: PropTypes.func.isRequired,
-    changeGroupValue: PropTypes.func.isRequired,
-    addEntry: PropTypes.func.isRequired,
-    classes: PropTypes.object.isRequired,
-    disabled: PropTypes.bool.isRequired,
-    mappings: mappingsShape.isRequired,
-    showMappingsDialog: PropTypes.func.isRequired,
-    hideMappingsDialog: PropTypes.func.isRequired,
-    changeMapping: PropTypes.func.isRequired,
-    showUserMappingsDialog: PropTypes.func.isRequired,
-    hideUserMappingsDialog: PropTypes.func.isRequired,
-    reportError: PropTypes.func.isRequired,
-    importMapping: PropTypes.func.isRequired,
-    deleteMapping: PropTypes.func.isRequired,
-    maxEntries: PropTypes.number.isRequired,
-    totalEntries: PropTypes.number.isRequired,
-    editing: PropTypes.bool.isRequired,
-    shifter: shifterShape.isRequired,
-    user: userShape.isRequired,
-    groupId: PropTypes.number.isRequired,
-    channel: PropTypes.number.isRequired,
-    value: PropTypes.number.isRequired,
-  }
-
   static noMapping = 'No Mapping'
 
   componentDidMount() {
@@ -246,6 +224,31 @@ export class GridControls extends Component {
       </>
     )
   }
+}
+
+GridControls.propTypes = {
+  changeGroupChannel: PropTypes.func.isRequired,
+  changeGroupValue: PropTypes.func.isRequired,
+  addEntry: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
+  disabled: PropTypes.bool.isRequired,
+  mappings: mappingsShape.isRequired,
+  showMappingsDialog: PropTypes.func.isRequired,
+  hideMappingsDialog: PropTypes.func.isRequired,
+  changeMapping: PropTypes.func.isRequired,
+  showUserMappingsDialog: PropTypes.func.isRequired,
+  hideUserMappingsDialog: PropTypes.func.isRequired,
+  reportError: PropTypes.func.isRequired,
+  importMapping: PropTypes.func.isRequired,
+  deleteMapping: PropTypes.func.isRequired,
+  maxEntries: PropTypes.number.isRequired,
+  totalEntries: PropTypes.number.isRequired,
+  editing: PropTypes.bool.isRequired,
+  shifter: shifterShape.isRequired,
+  user: userShape.isRequired,
+  groupId: PropTypes.number.isRequired,
+  channel: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
 }
 
 export default withStyles(styles)(GridControls)

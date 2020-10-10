@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react'
-import { hardwareTestShape } from '../../../shapes'
+import { hardwareTestShape } from '../../../core/shapes'
 
 const SendEntries = ({ hardwareTest: { creatingRules } }) => creatingRules ? (
   <h3>Setting up test entries...</h3>

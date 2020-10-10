@@ -1,7 +1,7 @@
-import chunk from 'lodash/chunk'
-import sum from 'lodash/sum'
 import { assertRange } from 'zds-pickers'
-import { arraySequence, createReducer, splitAt } from '../utils'
+import { arraySequence, chunk, splitAt } from '../core/fp/arrays'
+import { sum } from '../core/fp/numbers'
+import { createReducer } from './utils'
 import shiftGroup from './shiftGroup'
 import actionTypes from './actionTypes.js'
 
@@ -126,7 +126,7 @@ const handleShifterUnplugged = () => ({
 const receivedGroups = (state, { groupData }) => {
   const [preamble, rest] = splitAt(12)(groupData)
 
-  const [numEntries, channels, values] = chunk(preamble, 4)
+  const [numEntries, channels, values] = chunk(4)(preamble)
 
   const groups = arraySequence(4).map((val, groupId) => ({
     groupId,
@@ -137,7 +137,7 @@ const receivedGroups = (state, { groupData }) => {
 
   return {
     ...state,
-    totalEntries: sum(numEntries),
+    totalEntries: sum(...numEntries),
     groups: groups.map((
       group,
       idx, //

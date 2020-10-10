@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import styles from '../styles/infoPanel.scss'
-import { versionShape } from '../shapes'
+import { versionShape } from '../core/shapes'
 
 export const InfoPanel = ({ version }) => {
   const { client, firmware } = version

@@ -1,22 +1,14 @@
 /* eslint-disable no-plusplus, no-mixed-operators */
 import React from 'react'
-import chunk from 'lodash/chunk'
-import omit from 'lodash/omit'
 import shallowEqual from 'shallowequal'
 import { statuses } from 'zds-pickers'
-import { createReducer } from '../utils'
+import { omit } from '../core/fp/objects'
+import { chunk } from '../core/fp/arrays'
 import InputStatusIcon from '../components/InputStatusIcon'
+import { SORT_ASC, SORT_BY_ALL, SORT_ON_INPUT } from '../core/consts'
+import { createReducer } from './utils'
 import actionTypes from './actionTypes'
 import shiftEntry from './shiftEntry'
-
-export const SORT_DESC = 0
-export const SORT_ASC = 1
-export const SORT_ON_INPUT = 0
-export const SORT_ON_OUTPUT = 1
-export const SORT_BY_ALL = 'SORT_BY_ALL'
-export const SORT_BY_MESSAGE = 'SORT_BY_MESSAGE'
-export const SORT_BY_CHANNEL = 'SORT_BY_CHANNEL'
-export const SORT_BY_VALUE = 'SORT_BY_VALUE'
 
 const defaultState = {
   active: false,
@@ -122,7 +114,7 @@ const passThrough = (state, action) => ({
 const receivedGroup = (state, { entries }) => ({
   ...defaultState,
   ...state,
-  entries: chunk(entries, 4).map((
+  entries: chunk(4)(entries).map((
     entryData,
     entryId, //
   ) => shiftEntry({}, { type: actionTypes.RECEIVED_ENTRY, entryId, entryData })),
@@ -136,9 +128,9 @@ const changeGroupSort = (state, { sortOn, sortBy }) => {
   }
 
   // selectedEntryId can be NaN, which is never equal to another NaN
-  const ignoreForEquivalence = ['selectedEntryId']
+  const ignoreForEquivalence = omit('selectedEntryId')
 
-  if (shallowEqual(omit(state, ignoreForEquivalence), omit(newState, ignoreForEquivalence))) {
+  if (shallowEqual(ignoreForEquivalence(state), ignoreForEquivalence(newState))) {
     // If there was no change then assume user clicked an already sorted col.
     // Toggle the sort direction.
     newState.sortDir = 1 - newState.sortDir

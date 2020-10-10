@@ -4,7 +4,7 @@ import {
   ACTIVITY_LED_MODE_ALWAYS_ON,
   ACTIVITY_LED_MODE_NORMALLY_OFF,
   ACTIVITY_LED_MODE_NORMALLY_ON,
-} from './midi/sysex'
+} from '../midi/sysex'
 import {
   SORT_ASC,
   SORT_BY_ALL,
@@ -14,7 +14,7 @@ import {
   SORT_DESC,
   SORT_ON_INPUT,
   SORT_ON_OUTPUT,
-} from './reducers/shiftGroup'
+} from './consts'
 
 export const midiMessageShape = shape({
   channel: number.isRequired,

@@ -10,7 +10,7 @@ import MidiMenu from '../MidiMenu'
 import { actions as inputControlActions } from '../../reducers/inputControls'
 import { actions as shifterActions } from '../../reducers/shifter'
 import { inputControls as controlsClass, midiLedCont } from '../../styles/inputControls.scss'
-import { inputControlShape, shifterShape, versionShape } from '../../shapes'
+import { inputControlShape, shifterShape, versionShape } from '../../core/shapes'
 import WaitingOnShifter from '../WaitingOnShifter'
 
 export const InputControls = (props) => {
@@ -34,7 +34,7 @@ export const InputControls = (props) => {
               justify="space-between"
             >
               <Grid item>
-                {visibleControls.length > 0 && ready && (
+                {Boolean(visibleControls.length > 0 && ready) && (
                   <div className={midiLedCont}>
                     <LEDModePicker
                       selectedValue={midiActivityLEDMode}
@@ -48,7 +48,7 @@ export const InputControls = (props) => {
                 )}
               </Grid>
               <Grid item>
-                {visibleControls.length > 0 && ready && (
+                {Boolean(visibleControls.length > 0 && ready) && (
                   <div
                     className={midiLedCont}
                     style={{ marginRight: 10 }}
@@ -70,7 +70,7 @@ export const InputControls = (props) => {
             </section>
           </>
         ) : (
-          <section>{found && responding && <WaitingOnShifter />}</section>
+          <section>{Boolean(found && responding) && <WaitingOnShifter />}</section>
         )}
       </div>
     </div>

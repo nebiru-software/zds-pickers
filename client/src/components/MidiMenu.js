@@ -5,11 +5,14 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import IconButton from '@material-ui/core/IconButton'
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown'
-import USB from '@material-ui/icons/Usb'
-import Plus from '@material-ui/icons/Add'
-import Midi from '../images/Midi.svg'
+// import USB from '@material-ui/icons/Usb'
+// import Plus from '@material-ui/icons/Add'
+import Tooltip from '@material-ui/core/Tooltip'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+// import Midi from '../images/Midi.svg'
 import { actions as shifterActions } from '../reducers/shifter'
-import { shifterShape } from '../shapes'
+import { shifterShape } from '../core/shapes'
 
 const options = [
   { value: 4, label: 'Enable MIDI Out on DIN', tag: 'miDinOut' },
@@ -18,6 +21,7 @@ const options = [
 ]
 
 export class MidiMenu extends Component {
+  // eslint-disable-next-line react/state-in-constructor
   state = {
     anchorEl: null,
   }
@@ -70,11 +74,12 @@ export class MidiMenu extends Component {
             title="MIDI out mode"
           >
             <div style={{ display: 'flex', flexFlow: 'row nowrap', alignItems: 'center' }}>
-              {serialMidiOutEnabled && <Midi width={18} />}
+              {/* {serialMidiOutEnabled && <Midi width={18} />}
               {serialMidiOutEnabled && usbMidiOutEnabled && (
                 <Plus style={{ width: 15, position: 'relative', left: 3 }} />
               )}
-              {usbMidiOutEnabled && <USB />}
+              {usbMidiOutEnabled && <USB />} */}
+              TODO:
               <span style={{ padding: '5px 5px 0' }}>{menuLabel()}</span>
               <ArrowDropDown />
             </div>

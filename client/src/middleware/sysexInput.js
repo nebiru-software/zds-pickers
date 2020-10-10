@@ -1,5 +1,5 @@
 import { RECEIVE_MIDI_MESSAGE, SEND_MIDI_MESSAGE } from 'redux-midi-fork'
-import debounce from 'lodash/fp/debounce'
+import { debounce } from '../core/fp/utils'
 import actionTypes from '../reducers/actionTypes'
 import { actions as shifterActions } from '../reducers/shifter'
 import { actions as versionActions } from '../reducers/version'
@@ -17,7 +17,7 @@ export default ({ dispatch }) => next => (action) => {
   const { payload, type } = action
 
   if (!debouncedIdle) {
-    debouncedIdle = debounce(1000)(() => dispatch({ type: actionTypes.MIDI_IDLE }))
+    debouncedIdle = debounce(1000, () => dispatch({ type: actionTypes.MIDI_IDLE }))
   }
 
   switch (type) {

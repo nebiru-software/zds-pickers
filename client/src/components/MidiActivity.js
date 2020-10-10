@@ -7,7 +7,7 @@ import {
   ACTIVITY_LED_MODE_NORMALLY_OFF,
   ACTIVITY_LED_MODE_NORMALLY_ON,
 } from '../midi/sysex'
-import { shifterShape } from '../shapes'
+import { shifterShape } from '../core/shapes'
 import Led from './Led'
 
 export const isLit = ({ midiInActivity, midiOutActivity, midiActivityLEDMode }) => {

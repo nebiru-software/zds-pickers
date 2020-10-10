@@ -1,4 +1,4 @@
-global.fetch = require('jest-fetch-mock')
+// global.fetch = require('jest-fetch-mock')
 
 global.productInstance = {
   _id: '5a164a99ec146e03c38c7f4b',

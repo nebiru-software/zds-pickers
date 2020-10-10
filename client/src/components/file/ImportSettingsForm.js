@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Field } from 'redux-form'
 import FileInput from '../FileInput'
-import { validateFile } from '../../utils'
+import { validateFile } from '../../core/fp/strings'
 
 const ImportSettingsForm = ({ handleSubmit }) => (
   <div>
