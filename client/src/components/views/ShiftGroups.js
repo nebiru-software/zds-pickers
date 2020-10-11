@@ -3,13 +3,43 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Tabs from '@material-ui/core/Tabs'
+import makeStyles from '@material-ui/core/styles/makeStyles'
+import { border } from 'polished'
 import ShiftGroup from '../ShiftGroup'
 import { actions as shiftGroupActions } from '../../reducers/shiftGroups'
 import { actions as mappingsActions } from '../../reducers/mappings'
 import { actions as shifterActions } from '../../reducers/shifter'
-import { container, loadingCont, tabsCont } from '../../styles/shiftGroups.scss'
+// import { container, loadingCont, tabsCont } from '../../styles/shiftGroups.scss'
 import GroupTab from '../entries/GroupTab'
 import { groupsShape, inputControlShape, shifterShape, versionShape } from '../../core/shapes'
+
+const heightHeader = 77
+const inputControlsHeight = 280
+const heightTabs = 48
+const heightGridControls = 62
+const heightFooter = 30
+const viewportMargin = 30
+const tabBorderWidth = 4
+
+const gridHeight = heightHeader + inputControlsHeight + heightTabs
+  + heightGridControls + heightFooter + viewportMargin + tabBorderWidth
+  * 2 + 42
+
+const useStyles = makeStyles(({ mixins: { important }, palette }) => ({
+  root: { },
+  loadingCont: {
+    paddingTop: 80,
+    textAlign: 'center',
+    fontSize: 24,
+    // color: '$color-text-dimmer',
+    height: important(`calc(100vh - ${gridHeight}px + 55px)`),
+    overflow: important('hidden'),
+  },
+  container: {
+    ...border(4, 'solid', palette.accent),
+    borderRadius: '0 4px 4px 4px',
+  },
+}), { name: 'ShiftGroups' })
 
 export const ShiftGroups = (props) => {
   const {
@@ -19,6 +49,8 @@ export const ShiftGroups = (props) => {
     shifter: { ready },
     version: { proModel },
   } = props
+
+  const classes = useStyles()
 
   const decoratedGroups = groups.map((group) => {
     const assignedControls = inputControls
@@ -31,7 +63,9 @@ export const ShiftGroups = (props) => {
 
   return (
     <div>
-      <div className={tabsCont}>
+      <div className={classes.root}>
+
+        {/* classes.tabsCont */}
         <Tabs
           disabled={!ready}
           onChange={(e, idx) => changeSelectedGroup(idx)}
@@ -49,7 +83,7 @@ export const ShiftGroups = (props) => {
         </Tabs>
       </div>
 
-      <div className={container}>
+      <div className={classes.container}>
         {decoratedGroups.map((group, idx) => idx === selectedGroupIdx && (
         <ShiftGroup
           key={idx}
@@ -61,7 +95,7 @@ export const ShiftGroups = (props) => {
         />
         ))}
         {Boolean(decoratedGroups.length === 0 || !ready) && (
-          <div className={loadingCont}>Searching for attached ZDS Shifter...</div>
+          <div className={classes.loadingCont}>Searching for attached ZDS Shifter...</div>
         )}
       </div>
     </div>

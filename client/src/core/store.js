@@ -45,17 +45,17 @@ export default function storeFactory(initialState) {
   /* eslint-enable indent */
 
   /* istanbul ignore if */
-  if (module.hot) {
-    module.hot.accept('./reducers', () => {
-      // eslint-disable-next-line
-      const nextRootReducer = require('./reducers/index')
-      store.replaceReducer(nextRootReducer)
-    })
-  }
+  // if (module.hot) {
+  //   module.hot.accept('./reducers', () => {
+  //     // eslint-disable-next-line
+  //     const nextRootReducer = require('./reducers/index')
+  //     store.replaceReducer(nextRootReducer)
+  //   })
+  // }
 
   /* istanbul ignore if */
-  if (!test) {
-    /*
+  // if (!test) {
+  /*
      * This effectively bootstraps the application.
      *
      * Whenever our device is detected, either initially or due to being
@@ -64,8 +64,8 @@ export default function storeFactory(initialState) {
      * dispatches additional events to request the internal state of the
      * device.
      */
-    watchForDeviceChange(store)
-  }
+  watchForDeviceChange(store)
+  // }
 
   return store
 }

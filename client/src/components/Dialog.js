@@ -1,17 +1,12 @@
 import React from 'react'
 import MuiDialog from '@material-ui/core/Dialog'
-import Slide from '@material-ui/core/Slide'
+import withTabSupport from '../hoc/withTabSupport'
+import Transition from './Transition'
 
-/* istanbul ignore next */
-const Transition = props => (
-  <Slide
-    direction="up"
-    {...props}
-  />
-)
+const TabSupportedDialog = withTabSupport(MuiDialog)
 
 const Dialog = props => (
-  <MuiDialog
+  <TabSupportedDialog
     TransitionComponent={Transition}
     {...props}
   />

@@ -30,6 +30,11 @@ const processMidiMessage = (dispatch, { data, device }) => {
     command,
     ...packet
   ] = parseMSB(data)
+  console.log(
+    kind,
+    deviceId,
+    firmwareVersion, command, packet,
+  )
 
   // One of our packets?  (and only over usb)
   if (kind === SYSEX_START && deviceId === SHIFTER_DEVICE_ID && (device === shifterInputId())) {

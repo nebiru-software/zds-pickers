@@ -44,7 +44,8 @@ export default ({ dispatch }) => next => (action) => {
     case actionTypes.SHIFTER_FOUND:
       // istanbul ignore next
       waitForVersionTimer = setTimeout(() => {
-        dispatch(shifterActions.notResponding())
+        // TODO: why is this firing?
+        // dispatch(shifterActions.notResponding())
       }, assumeNotRespondingTimeout)
       dispatch(versionActions.checkVersion())
       dispatch(versionActions.checkModel())

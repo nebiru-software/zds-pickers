@@ -1,18 +1,28 @@
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
-// import grey from '@material-ui/core/colors/grey'
-import shifterPalette from './palette'
+import produce from 'immer'
 
-export default createMuiTheme({
-  palette: {
-    primary: shifterPalette,
-    accent: shifterPalette[400],
-  },
+export default theme => produce(theme, (draft) => {
+  const {
+    // breakpoints,
+    // mixins: {
+    //   absWidth,
+    //   borderS,
+    //   em,
+    //   important,
+    //   importantPx,
+    //   importantRem,
+    //   marginR,
+    //   paddingR,
+    //   rem,
+    //   sizeR,
+    //   transition,
+    //   when,
+    // },
+    // name,
+    palette,
+    // spacing,
+  } = theme
 
-  typography: {
-    useNextVariants: true,
-  },
-
-  overrides: {
+  draft.overrides = {
     MuiAppBar: {
       root: {
         background: 'linear-gradient(45deg, #000 30%, #000 90%)',
@@ -43,7 +53,7 @@ export default createMuiTheme({
         color: 'white',
         marginTop: 4,
       },
-      expanded: {
+      '&$expanded': {
         marginTop: '4px !important',
       },
     },
@@ -72,15 +82,15 @@ export default createMuiTheme({
     MuiSelect: {
       root: {
         marginRight: 5,
-        backgroundColor: shifterPalette[600],
+        backgroundColor: palette[600],
         color: 'white',
         borderRadius: 5,
         height: 30,
         paddingLeft: 5,
         borderWidth: 1,
         borderStyle: 'solid',
-        borderColor: shifterPalette[500],
-        boxShadow: `inset 1px 1px 0 ${shifterPalette[400]}`,
+        borderColor: palette[500],
+        boxShadow: `inset 1px 1px 0 ${palette[400]}`,
       },
       icon: {
         color: 'white',
@@ -93,14 +103,14 @@ export default createMuiTheme({
     },
     MuiTab: {
       root: {
-        backgroundColor: shifterPalette[100],
+        backgroundColor: palette[100],
         minWidth: '130px !important',
         maxWidth: '130px !important',
         borderRadius: '8px 8px 0 0',
         color: 'white',
         marginRight: 5,
         '&$selected': {
-          backgroundColor: shifterPalette[500],
+          backgroundColor: palette[500],
           color: 'white',
         },
       },
@@ -133,5 +143,5 @@ export default createMuiTheme({
         fontSize: 14,
       },
     },
-  },
+  }
 })
