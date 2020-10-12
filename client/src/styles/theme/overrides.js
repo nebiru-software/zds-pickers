@@ -114,9 +114,9 @@ export default theme => produce(theme, (draft) => {
           color: 'white',
         },
       },
-      labelContainer: {
-        fontSize: '16px !important',
-      },
+      // labelContainer: {
+      //   fontSize: '16px !important',
+      // },
       wrapper: {
         flexDirection: 'row',
       },

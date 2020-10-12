@@ -45,7 +45,7 @@ export default ({ dispatch }) => next => (action) => {
       // istanbul ignore next
       waitForVersionTimer = setTimeout(() => {
         // TODO: why is this firing?
-        // dispatch(shifterActions.notResponding())
+        dispatch(shifterActions.notResponding())
       }, assumeNotRespondingTimeout)
       dispatch(versionActions.checkVersion())
       dispatch(versionActions.checkModel())
