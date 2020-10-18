@@ -14,3 +14,4 @@
 .vscode/.browse.c_cpp.db*
 .vscode/launch.json
 *.zip
+*.job
