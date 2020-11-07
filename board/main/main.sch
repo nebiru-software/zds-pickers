@@ -9458,7 +9458,7 @@ Source: RS Component / Phycomp</description>
 </libraries>
 <attributes>
 <attribute name="CNAME" value="ZDS Shifter Pro"/>
-<attribute name="CREVISION" value="C"/>
+<attribute name="CREVISION" value="D"/>
 <attribute name="DESIGNER" value="Darin Kadrioski"/>
 </attributes>
 <variantdefs>
@@ -9525,6 +9525,8 @@ Source: RS Component / Phycomp</description>
 <part name="U$2" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="AGND" device=""/>
 <part name="RN1" library="resistor-dil" deviceset="4R-N" device="EXB38V" value="470"/>
 <part name="RN2" library="resistor-dil" deviceset="4R-N" device="EXB38V" value="2.2K"/>
+<part name="R5" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="RESISTOR" device="1206" package3d_urn="urn:adsk.eagle:package:39654/1" value="100"/>
+<part name="R8" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="RESISTOR" device="1206" package3d_urn="urn:adsk.eagle:package:39654/1" value="100"/>
 </parts>
 <sheets>
 <sheet>
@@ -9533,6 +9535,7 @@ Source: RS Component / Phycomp</description>
 <text x="186.436" y="21.336" size="2.54" layer="91">&gt;CNAME</text>
 <text x="231.648" y="11.43" size="2.54" layer="91">&gt;DESIGNER</text>
 <text x="240.03" y="6.35" size="2.54" layer="91">&gt;CREVISION</text>
+<text x="35.56" y="58.42" size="1.778" layer="91">Signal diodes</text>
 </plain>
 <instances>
 <instance part="MIDI_OUT" gate="G$1" x="172.72" y="22.86" smashed="yes" rot="MR180">
@@ -9724,6 +9727,14 @@ Source: RS Component / Phycomp</description>
 </instance>
 <instance part="RN2" gate="D" x="88.9" y="76.2" smashed="yes" rot="R90">
 <attribute name="VALUE" x="91.948" y="78.74" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="R5" gate="G$1" x="57.658" y="163.322" smashed="yes">
+<attribute name="NAME" x="53.848" y="164.8206" size="1.778" layer="95"/>
+<attribute name="VALUE" x="53.848" y="160.02" size="1.778" layer="96"/>
+</instance>
+<instance part="R8" gate="G$1" x="58.42" y="146.05" smashed="yes">
+<attribute name="NAME" x="54.61" y="147.5486" size="1.778" layer="95"/>
+<attribute name="VALUE" x="54.61" y="142.748" size="1.778" layer="96"/>
 </instance>
 </instances>
 <busses>
@@ -10244,12 +10255,8 @@ Source: RS Component / Phycomp</description>
 <segment>
 <wire x1="66.04" y1="172.72" x2="66.04" y2="170.18" width="0.1524" layer="91"/>
 <label x="66.04" y="172.72" size="1.778" layer="95" rot="R90" xref="yes"/>
-<pinref part="EXP" gate="G$1" pin="P$11"/>
 <wire x1="66.04" y1="170.18" x2="66.04" y2="163.322" width="0.1524" layer="91"/>
-<wire x1="66.04" y1="163.322" x2="42.672" y2="163.322" width="0.1524" layer="91"/>
-<pinref part="EXP" gate="G$1" pin="P$5"/>
 <wire x1="66.04" y1="163.322" x2="66.04" y2="146.05" width="0.1524" layer="91"/>
-<wire x1="66.04" y1="146.05" x2="42.672" y2="146.05" width="0.1524" layer="91"/>
 <junction x="66.04" y="163.322"/>
 <pinref part="D12" gate="G$1" pin="C"/>
 <wire x1="76.2" y1="162.56" x2="76.2" y2="170.18" width="0.1524" layer="91"/>
@@ -10259,6 +10266,10 @@ Source: RS Component / Phycomp</description>
 <wire x1="83.82" y1="144.78" x2="83.82" y2="170.18" width="0.1524" layer="91"/>
 <wire x1="83.82" y1="170.18" x2="76.2" y2="170.18" width="0.1524" layer="91"/>
 <junction x="76.2" y="170.18"/>
+<wire x1="66.04" y1="163.322" x2="62.738" y2="163.322" width="0.1524" layer="91"/>
+<pinref part="R5" gate="G$1" pin="2"/>
+<wire x1="66.04" y1="146.05" x2="63.5" y2="146.05" width="0.1524" layer="91"/>
+<pinref part="R8" gate="G$1" pin="2"/>
 </segment>
 <segment>
 <pinref part="U3" gate="A" pin="C2"/>
@@ -10454,6 +10465,20 @@ Source: RS Component / Phycomp</description>
 <pinref part="TRIG1" gate="G$1" pin="P$12"/>
 <pinref part="RN1" gate="C" pin="1"/>
 <wire x1="45.212" y1="103.632" x2="50.546" y2="103.632" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$14" class="1">
+<segment>
+<pinref part="EXP" gate="G$1" pin="P$11"/>
+<wire x1="52.578" y1="163.322" x2="42.672" y2="163.322" width="0.1524" layer="91"/>
+<pinref part="R5" gate="G$1" pin="1"/>
+</segment>
+</net>
+<net name="N$19" class="1">
+<segment>
+<pinref part="EXP" gate="G$1" pin="P$5"/>
+<wire x1="53.34" y1="146.05" x2="42.672" y2="146.05" width="0.1524" layer="91"/>
+<pinref part="R8" gate="G$1" pin="1"/>
 </segment>
 </net>
 </nets>

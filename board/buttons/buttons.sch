@@ -1046,14 +1046,16 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </libraries>
 <attributes>
 <attribute name="CNAME" value="ZDS Shifter Pro"/>
-<attribute name="CREVISION" value="A"/>
+<attribute name="CREVISION" value="B"/>
 <attribute name="DESIGNER" value="D. Kadrioski"/>
 </attributes>
 <variantdefs>
 </variantdefs>
 <classes>
-<class number="0" name="default" width="1" drill="0">
+<class number="0" name="default" width="0.25" drill="0">
 <clearance class="0" value="0.5"/>
+</class>
+<class number="1" name="6V" width="0.5" drill="0">
 </class>
 </classes>
 <parts>
@@ -1213,7 +1215,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <label x="48.26" y="114.3" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="VIN" class="0">
+<net name="VIN" class="1">
 <segment>
 <pinref part="FS1" gate="G$1" pin="LED+"/>
 <wire x1="99.06" y1="114.3" x2="96.52" y2="114.3" width="0.1524" layer="91"/>
@@ -1235,7 +1237,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <label x="48.26" y="111.76" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="GND" class="0">
+<net name="GND" class="1">
 <segment>
 <pinref part="FS1" gate="G$1" pin="BTN-"/>
 <wire x1="99.06" y1="121.92" x2="96.52" y2="121.92" width="0.1524" layer="91"/>
