@@ -13,7 +13,6 @@ import {
   SYSEX_MSG_GET_CONTROLS,
   SYSEX_MSG_GET_GROUPS,
   SYSEX_MSG_GET_MODEL,
-  SYSEX_MSG_GET_VERSION,
   SYSEX_MSG_RECEIVE_FLAGS,
   SYSEX_MSG_REMOVE_ENTRY,
   SYSEX_MSG_RESTART,
@@ -34,14 +33,6 @@ const transmitAction = (command, data = []) => sendMidiMessage({
   timestamp: 0, // performance.now(),
   device: shifterOutputId(),
 })
-
-export const askForVersion = (dispatch, serialNumber) => {
-  dispatch(transmitAction(
-    //
-    SYSEX_MSG_GET_VERSION,
-    Array.from(serialNumber, char => char.charCodeAt(0)),
-  ))
-}
 
 export const askForModel = (dispatch) => {
   dispatch(transmitAction(SYSEX_MSG_GET_MODEL))

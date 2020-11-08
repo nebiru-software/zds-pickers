@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-bitwise */
 import { submit } from 'redux-form'
 import { ACTIVITY_LED_MODE_ALWAYS_OFF } from '../midi/sysex'
@@ -5,126 +6,37 @@ import { createReducer } from './utils'
 import actionTypes from './actionTypes'
 
 export const actions = {
-  searchedForShifter: () => ({
-    type: actionTypes.SEARCHED_FOR_SHIFTER,
-  }),
-
-  shifterFound: () => ({
-    type: actionTypes.SHIFTER_FOUND,
-  }),
-
-  shifterMissing: () => ({
-    type: actionTypes.SHIFTER_MISSING,
-  }),
-
-  testInterfaceFound: () => ({
-    type: actionTypes.TEST_INTERFACE_FOUND,
-  }),
-
-  testInterfaceMissing: () => ({
-    type: actionTypes.TEST_INTERFACE_MISSING,
-  }),
-
-  notResponding: () => ({
-    type: actionTypes.NOT_RESPONDING,
-  }),
-
-  midiInActivityChanged: midiInActivity => ({
-    type: actionTypes.MIDI_IN_ACTIVITY,
-    midiInActivity,
-  }),
-
-  midiOutActivityChanged: midiOutActivity => ({
-    type: actionTypes.MIDI_OUT_ACTIVITY,
-    midiOutActivity,
-  }),
-
-  confirmFactoryReset: showResetDialog => ({
-    type: actionTypes.CONFIRM_FACTORY_RESET,
-    showResetDialog,
-  }),
-
-  showExportDialog: exportDialogVisible => ({
-    type: actionTypes.SHOW_EXPORT_DIALOG,
-    exportDialogVisible,
-  }),
-
-  submitExportForm: () => (dispatch) => {
-    dispatch(submit('exportSettingsForm'))
-  },
-
-  exportSettings: ({ exportFilename }) => ({
-    type: actionTypes.EXPORT_SETTINGS,
-    exportDialogVisible: false,
-    exportFilename,
-  }),
-
-  receivedExportPacket: packet => ({
-    type: actionTypes.EXPORT_SETTINGS_PACKET,
-    packet,
-  }),
-
-  showImportDialog: importDialogVisible => ({
-    type: actionTypes.SHOW_IMPORT_DIALOG,
-    importDialogVisible,
-  }),
-
-  submitImportForm: () => (dispatch) => {
-    dispatch(submit('importSettingsForm'))
-  },
-
-  importSettings: File => ({
-    type: actionTypes.IMPORT_SETTINGS,
-    importDialogVisible: false,
-    File,
-  }),
-
-  settingsFileInvalid: reason => ({
-    type: actionTypes.INVALID_SETTINGS_FILE,
-    invalidSettingsFile: reason,
-  }),
-
-  acknowledgeInvalidFile: () => ({
-    type: actionTypes.INVALID_SETTINGS_FILE_ACK,
-  }),
-
-  restart: () => ({
-    type: actionTypes.RESTART,
-  }),
-
-  performFactoryReset: restartToo => ({
-    type: actionTypes.FACTORY_RESET,
-    restartToo,
-  }),
-
+  searchedForShifter: () => ({ type: actionTypes.SEARCHED_FOR_SHIFTER }),
+  shifterFound: deviceId => ({ type: actionTypes.SHIFTER_FOUND, deviceId }),
+  shifterMissing: () => ({ type: actionTypes.SHIFTER_MISSING }),
+  testInterfaceFound: () => ({ type: actionTypes.TEST_INTERFACE_FOUND }),
+  testInterfaceMissing: () => ({ type: actionTypes.TEST_INTERFACE_MISSING }),
+  notResponding: () => ({ type: actionTypes.NOT_RESPONDING }),
+  midiInActivityChanged: midiInActivity => ({ type: actionTypes.MIDI_IN_ACTIVITY, midiInActivity }),
+  midiOutActivityChanged: midiOutActivity => ({ type: actionTypes.MIDI_OUT_ACTIVITY, midiOutActivity }),
+  confirmFactoryReset: showResetDialog => ({ type: actionTypes.CONFIRM_FACTORY_RESET, showResetDialog }),
+  showExportDialog: exportDialogVisible => ({ type: actionTypes.SHOW_EXPORT_DIALOG, exportDialogVisible }),
+  submitExportForm: () => (dispatch) => { dispatch(submit('exportSettingsForm')) },
+  exportSettings: ({ exportFilename }) => ({ type: actionTypes.EXPORT_SETTINGS, exportDialogVisible: false, exportFilename }),
+  receivedExportPacket: packet => ({ type: actionTypes.EXPORT_SETTINGS_PACKET, packet }),
+  showImportDialog: importDialogVisible => ({ type: actionTypes.SHOW_IMPORT_DIALOG, importDialogVisible }),
+  submitImportForm: () => (dispatch) => { dispatch(submit('importSettingsForm')) },
+  importSettings: File => ({ type: actionTypes.IMPORT_SETTINGS, importDialogVisible: false, File }),
+  settingsFileInvalid: reason => ({ type: actionTypes.INVALID_SETTINGS_FILE, invalidSettingsFile: reason }),
+  acknowledgeInvalidFile: () => ({ type: actionTypes.INVALID_SETTINGS_FILE_ACK }),
+  restart: () => ({ type: actionTypes.RESTART }),
+  performFactoryReset: restartToo => ({ type: actionTypes.FACTORY_RESET, restartToo }),
   setFlags: (midiActivityLEDMode, serialMidiOutEnabled, usbMidiOutEnabled) => ({
     type: actionTypes.SET_FLAGS,
     midiActivityLEDMode,
     serialMidiOutEnabled,
     usbMidiOutEnabled,
   }),
-
-  receivedAvailability: ready => ({
-    type: actionTypes.RECEIVED_AVAILABILITY,
-    ready,
-  }),
-
-  reportError: errorMessage => ({
-    type: actionTypes.REPORT_ERROR,
-    errorMessage,
-  }),
-
-  dismissError: () => ({
-    type: actionTypes.DISMISS_ERROR,
-  }),
-
-  showHardwareTestDialog: () => ({
-    type: actionTypes.SHOW_HARDWARE_TEST_DIALOG,
-  }),
-
-  hideHardwareTestDialog: () => ({
-    type: actionTypes.HIDE_HARDWARE_TEST_DIALOG,
-  }),
+  receivedAvailability: ready => ({ type: actionTypes.RECEIVED_AVAILABILITY, ready }),
+  reportError: errorMessage => ({ type: actionTypes.REPORT_ERROR, errorMessage }),
+  dismissError: () => ({ type: actionTypes.DISMISS_ERROR }),
+  showHardwareTestDialog: () => ({ type: actionTypes.SHOW_HARDWARE_TEST_DIALOG }),
+  hideHardwareTestDialog: () => ({ type: actionTypes.HIDE_HARDWARE_TEST_DIALOG }),
 }
 
 export const defaultState = {

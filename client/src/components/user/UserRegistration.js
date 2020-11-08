@@ -48,7 +48,7 @@ export class UserRegistration extends Component {
 
   handleKeyDown = (event) => {
     const { ctrlKey, key, metaKey } = event
-    const { checkedRegistrationAction, hideDialog } = this.props
+    const { hideDialog } = this.props
 
     // Press CTRL+CMD+U to dismiss registration form
     if (key === 'u' && ctrlKey && metaKey) {
@@ -64,7 +64,7 @@ export class UserRegistration extends Component {
           },
         ],
       }
-      checkedRegistrationAction(productInstance)
+      // checkedRegistrationAction(productInstance)
       hideDialog()
     }
   }
@@ -131,7 +131,6 @@ UserRegistration.propTypes = {
   active: PropTypes.bool.isRequired,
   hideDialog: PropTypes.func.isRequired,
   submitRegistrationForm: PropTypes.func.isRequired,
-  checkedRegistrationAction: PropTypes.func.isRequired,
   serialNumber: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
   registered: PropTypes.bool.isRequired,

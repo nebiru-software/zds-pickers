@@ -6,7 +6,7 @@
 #include <EEPROM.h>
 #include <MidiBridge.h>
 
-#define SYSEX_DEBUG_MODE false
+#define SYSEX_DEBUG_MODE true
 
 #define DEVICE_BYTE 1
 #define VERSION_BYTE 2
@@ -81,7 +81,7 @@ void sendControls() {
 
 #if SYSEX_DEBUG_MODE
   Serial.println("Sending controls.");
-  dumpDataToSerial(data, j);
+  // dumpDataToSerial(data, j);
 #endif // if SYSEX_DEBUG_MODE
 
   sendSysEx(data, j);
@@ -114,7 +114,7 @@ void sendGroups() {
 
 #if SYSEX_DEBUG_MODE
   Serial.println("Sending groups.");
-  dumpDataToSerial(data, j);
+  // dumpDataToSerial(data, j);
 #endif // if SYSEX_DEBUG_MODE
 
   sendSysEx(data, j);
@@ -303,13 +303,6 @@ void sysexStop() {
   Serial.println(" bytes");
 #endif // if SYSEX_DEBUG_MODE
 
-#if SYSEX_DEBUG_MODE
-  for (int i = 0; i < rawDataIndex; i++) {
-    Serial.print(rawData[i]);
-    Serial.print(" ");
-  }
-#endif // if SYSEX_DEBUG_MODE
-
   uint8_t data[rawDataIndex];
   size_t  messageLength;
   int     size;
@@ -323,43 +316,42 @@ void sysexStop() {
     size          = messageLength - 2;
 
 #if SYSEX_DEBUG_MODE
+    for (int i = 0; i < count; i++) {
+      Serial.print(data[i]);
+      Serial.print(" ");
+    }
+#endif // if SYSEX_DEBUG_MODE
+
+#if SYSEX_DEBUG_MODE
     Serial.print("Looks like a command: ");
     Serial.print(data[0]);
     Serial.print(" message length is ");
-    Serial.println(messageLength);
-
-// Serial.print("Unpacked: ");
-
-// for (int i = 0; i < count; i++) {
-//     Serial.print(sysex[i]);
-//     Serial.print(" ");
-// }
-// Serial.println("");
+    Serial.print(messageLength);
+    Serial.print(" (size ");
+    Serial.print(size);
+    Serial.println(")");
 #endif // if SYSEX_DEBUG_MODE
 
     busy();
 
     switch (data[0]) {
       case SYSEX_MSG_GET_VERSION:
-
-        if ((size == 10) || (size == 11)) {
+        if ((size == 15)) {
           clientIsConnected = true;
           sendVersion(data, size);
         }
         break;
-      case SYSEX_MSG_GET_MODEL:
 
+      case SYSEX_MSG_GET_MODEL:
         if (size == 1) {
           sendModel();
 
           delay(300);
           sendInternalState();
         }
-
         break;
 
       case SYSEX_MSG_RESTART:
-
         if (size == 1) {
           restart(true);
 
@@ -374,17 +366,16 @@ void sysexStop() {
             sendInternalState();
           }
         }
+        break;
 
       case SYSEX_MSG_FACTORY_RESET:
-
         if (size == 2) {
           performFactoryReset(data[1]);
         }
         break;
 
       case SYSEX_MSG_GET_CONTROLS:
-
-        if (size == 1) {
+        if (size == 3) {
           sendControls();
 
           delay(500);
@@ -393,19 +384,16 @@ void sysexStop() {
         break;
 
       case SYSEX_MSG_RECEIVE_CONTROLS:
-
         // 11 for just two controls; 31 for all six.
         if ((size == 11) || (size == 31)) {
           receiveControls(data, size);
         }
 
         restart(true);
-
         break;
 
       case SYSEX_MSG_GET_GROUPS:
-
-        if (size == 1) {
+        if (size == 3) {
           sendGroups();
 
           delay(500);
@@ -414,14 +402,12 @@ void sysexStop() {
         break;
 
       case SYSEX_MSG_GET_STATE:
-
         if (size == 1) {
           sendInternalState();
         }
         break;
 
       case SYSEX_MSG_RECEIVE_FLAGS:
-
         if (size == 2) {
           EEPROM.update(LOCATION_OF_FLAGS, data[1]);
           restart(true);
@@ -429,7 +415,6 @@ void sysexStop() {
         break;
 
       case SYSEX_MSG_CHANGE_GROUP_CHANNEL:
-
         if (size == 3) {
           shifter_group* group;
           group          = &shifter_groups[data[1]];
@@ -441,7 +426,6 @@ void sysexStop() {
         break;
 
       case SYSEX_MSG_CHANGE_GROUP_VALUE:
-
         if (size == 3) {
           shifter_group* group;
           group            = &shifter_groups[data[1]];
@@ -453,7 +437,6 @@ void sysexStop() {
         break;
 
       case SYSEX_MSG_REMOVE_ENTRY:
-
         if (size == 3) {
           shifter_group* group;
           uint8_t        i;
@@ -472,7 +455,6 @@ void sysexStop() {
         break;
 
       case SYSEX_MSG_SAVE_ENTRY_EDIT:
-
         if (size == 7) {
           shifter_group* group;
           uint8_t        entryId;
@@ -506,18 +488,15 @@ void sysexStop() {
         break;
 
       case SYSEX_MSG_BACKUP:
-
         if (size == 1) {
           sendBackup();
         }
         break;
 
       case SYSEX_MSG_RESTORE:
-
         if (size > 5) {
           receiveBackup(data, size);
         }
-
         break;
     }
   }

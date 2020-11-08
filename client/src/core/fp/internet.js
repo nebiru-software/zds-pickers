@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define */
 
 import { nanoid } from 'nanoid'
+import { isDevEnv } from '../../selectors'
 // import { compressToEncodedURIComponent } from 'lz-string'
 // import { isDevEnv, isTestEnv } from '../../selectors'
 // import { isObject } from './objects'
@@ -34,4 +35,4 @@ export const assertId = id => id || `gen-${nanoid()}`
 
 export const isMobile = () => navigator?.maxTouchPoints > 2
 
-// export const storage = () => isDevEnv() || isTestEnv() ? localStorage : sessionStorage
+export const storage = () => isDevEnv() ? localStorage : sessionStorage

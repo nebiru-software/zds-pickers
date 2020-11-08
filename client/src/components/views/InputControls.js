@@ -142,7 +142,7 @@ export const InputControls = (props) => {
 }
 
 InputControls.propTypes = {
-  inputControls: PropTypes.arrayOf(inputControlShape).isRequired,
+  inputControls: PropTypes.array.isRequired, // PropTypes.arrayOf(inputControlShape).isRequired,
   version: versionShape.isRequired,
   shifter: shifterShape.isRequired,
   setFlags: PropTypes.func.isRequired,

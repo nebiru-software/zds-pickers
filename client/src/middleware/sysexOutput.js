@@ -4,7 +4,6 @@ import {
   askForControls,
   askForGroups,
   askForModel,
-  askForVersion,
   performFactoryReset,
   removeShiftEntry,
   restart,
@@ -23,10 +22,6 @@ export default store => next => (action) => {
 
   // If it's an action that affects the hardware device, process it
   switch (action.type) {
-    case actionTypes.GET_SYSEX_VERSION:
-      askForVersion(dispatch, action.serialNumber)
-      break
-
     case actionTypes.GET_SYSEX_MODEL:
       askForModel(dispatch)
       break

@@ -43,10 +43,12 @@ const useStyles = makeStyles(() => ({
 
 }), { name: 'UserInfo' })
 
-export const UserInfo = ({ user, showDialog, hideDialog, submitRegistrationForm, checkedRegistrationAction }) => {
+export const UserInfo = ({ user, showDialog, hideDialog, submitRegistrationForm }) => {
   const { dialogVisible, email, firstName, lastName, registered } = user
   const size = 30
   const classes = useStyles()
+
+  return null
 
   return (
     <div className={classes.root}>
@@ -77,7 +79,6 @@ export const UserInfo = ({ user, showDialog, hideDialog, submitRegistrationForm,
 
       <UserRegistration
         active={dialogVisible}
-        checkedRegistrationAction={checkedRegistrationAction}
         hideDialog={hideDialog}
         submitRegistrationForm={submitRegistrationForm}
         {...user}
@@ -91,7 +92,6 @@ UserInfo.propTypes = {
   showDialog: PropTypes.func.isRequired,
   hideDialog: PropTypes.func.isRequired,
   submitRegistrationForm: PropTypes.func.isRequired,
-  checkedRegistrationAction: PropTypes.func.isRequired,
 }
 
 export const mapStateToProps = ({ user }) => ({ user })

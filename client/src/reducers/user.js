@@ -1,12 +1,8 @@
 import { submit } from 'redux-form'
-import { PRODUCT_INSTANCE, PRODUCT_REGISTER } from '../sagas'
+import { PRODUCT_REGISTER } from '../sagas'
+import { success } from '../sagas/utils'
 import { createReducer } from './utils'
 import actionTypes from './actionTypes'
-
-const checkedRegistrationAction = productInstance => ({
-  type: actionTypes.CHECKED_REGISTRATION,
-  productInstance,
-})
 
 const deviceRegistered = productInstance => ({
   type: actionTypes.DEVICE_REGISTERED,
@@ -18,7 +14,6 @@ const hideDialog = () => ({
 })
 
 export const actions = {
-  checkedRegistrationAction,
   deviceRegistered,
 
   showDialog: () => ({
@@ -44,11 +39,6 @@ export const actions = {
       .then(newRegistration => dispatch(deviceRegistered(newRegistration)))
       .then(() => dispatch(hideDialog()))
   },
-
-  checkRegistration: (serialNumber, firmware) => dispatch => fetch(`${PRODUCT_INSTANCE}/${serialNumber}?v=${firmware}`)
-    .then(response => response.json())
-    .then(productInstance => dispatch(checkedRegistrationAction(productInstance)))
-    .catch(err => err), // Safe to just eat these
 }
 
 const defaultState = {
@@ -71,7 +61,7 @@ const toggleDialog = dialogVisible => state => ({
   dialogVisible,
 })
 
-const checkedRegistration = (state, { productInstance: { registrations } }) => {
+const checkedRegistration = (state, { response: { registrations } }) => {
   const newState = { ...state, checkedRegistration: true }
   const A = registrations.filter(entry => entry.active)
 
@@ -91,7 +81,7 @@ const handleShifterUnplugged = state => ({
 
 export default createReducer(defaultState, {
   [actionTypes.RECEIVED_VERSION]: receivedVersion,
-  [actionTypes.CHECKED_REGISTRATION]: checkedRegistration,
+  [success(actionTypes.RECEIVED_VERSION)]: checkedRegistration,
   [actionTypes.DEVICE_REGISTERED]: checkedRegistration,
   [actionTypes.SHOW_REGISTRATION_DLG]: toggleDialog(true),
   [actionTypes.HIDE_REGISTRATION_DLG]: toggleDialog(false),

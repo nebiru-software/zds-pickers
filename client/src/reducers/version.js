@@ -2,27 +2,22 @@ import { nanoid } from 'nanoid'
 import { CURRENT_CLIENT_VERSION } from '../midi'
 import { createReducer } from './utils'
 import actionTypes from './actionTypes'
-import { actions as userActions } from './user'
 
 export const actions = {
   checkVersion: () => ({
     type: actionTypes.GET_SYSEX_VERSION,
-    serialNumber: nanoid(),
+    serialNumber: nanoid(14),
   }),
 
   checkModel: () => ({
     type: actionTypes.GET_SYSEX_MODEL,
   }),
 
-  receivedVersion: (firmware, serialNumber) => (dispatch) => {
-    dispatch({
-      type: actionTypes.RECEIVED_VERSION,
-      firmware,
-      serialNumber,
-    })
-
-    return dispatch(userActions.checkRegistration(serialNumber, firmware))
-  },
+  receivedVersion: (firmware, serialNumber) => ({
+    type: actionTypes.RECEIVED_VERSION,
+    firmware,
+    serialNumber,
+  }),
 
   receivedModel: proModel => ({
     type: actionTypes.RECEIVED_MODEL,

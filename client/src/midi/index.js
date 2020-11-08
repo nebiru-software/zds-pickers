@@ -10,7 +10,7 @@ import {
   testInterfaceInputId,
 } from './devices'
 
-export const SHIFTER_DEVICE_ID = 0x6c
+export const SHIFTER_DEVICE_ID = 0x6e
 export const SHIFTER_CC_MESSAGE = 110
 
 // Takes a version string in the form "4.7.0" and reduces it to 47 (format the hardware uses)
