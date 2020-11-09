@@ -2,36 +2,57 @@
 
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames/bind'
+import cl from 'classnames'
+import SortDown from '@material-ui/icons/KeyboardArrowDown'
+import SortUp from '@material-ui/icons/KeyboardArrowUp'
 import { useDispatch } from 'react-redux'
+import makeStyles from '@material-ui/core/styles/makeStyles'
 import { SORT_ASC, SORT_ON_INPUT, SORT_ON_OUTPUT } from '../../core/consts'
-import * as styles from '../../styles/shiftGroupTable.scss'
 import { sortShape } from '../../core/shapes'
 import { actions } from '../../reducers/shiftGroups'
 
-const cx = classNames.bind(styles)
+const useStyles = makeStyles(({ palette }) => ({
+  sortControl: {
+    whiteSpace: 'nowrap',
+    '& i': {
+      visibility: 'hidden',
+      verticalAlign: 'middle',
+    },
+  },
+
+  active: {
+    '& i': {
+      visibility: 'visible',
+      color: palette.primary[500],
+    },
+  },
+}), { name: 'SortControls' })
 
 const SortControls = ({ groupId, isInput, field, sortOn, sortBy, sortDir, children }) => {
   const dispatch = useDispatch()
+  const classes = useStyles()
 
   const handleClick = useCallback((event) => {
     event.preventDefault()
     dispatch(actions.changeSort(groupId, isInput ? SORT_ON_INPUT : SORT_ON_OUTPUT, field))
   }, [dispatch, field, groupId, isInput])
 
-  const icon = () => (sortDir === SORT_ASC ? 'keyboard_arrow_down' : 'keyboard_arrow_up')
+  const icon = () => (sortDir === SORT_ASC
+    ? <SortDown />
+    : <SortUp />
+  )
 
   const current = () => field === sortBy //
     && ((isInput && sortOn === SORT_ON_INPUT) || (!isInput && sortOn === SORT_ON_OUTPUT))
 
   return (
     <a
-      className={cx({ sortControl: true, active: current() })}
+      className={cl({ [classes.sortControl]: true, [classes.active]: current() })}
       href="#"
       onClick={handleClick}
     >
       {children}
-      <i className="material-icons">{icon()}</i>
+      <i>{icon()}</i>
     </a>
   )
 }

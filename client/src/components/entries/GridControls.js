@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
-import withStyles from '@material-ui/core/styles/withStyles'
 import Button from '@material-ui/core/Button'
 import Add from '@material-ui/icons/AddCircle'
 import Grid from '@material-ui/core/Grid'
@@ -20,30 +19,24 @@ import { stateMappings, stateShiftGroups } from '../../selectors'
 import { actions as shiftGroupActions } from '../../reducers/shiftGroups'
 import { isDefined } from '../../core/fp/utils'
 
-const useStyles = makeStyles(({ mixins: { rem }, palette }) => ({
-  root: {
-  },
-}), { name: 'GridControls' })
-
-const noMapping = 'No Mapping'
-
-/* istanbul ignore next */
-const styles = theme => ({
+const useStyles = makeStyles(({ mixins: { paddingR, rem } }) => ({
   addIcon: {
-    marginRight: theme.spacing(1),
+    marginRight: rem(1),
   },
   mappingButton: {
     textTransform: 'none',
     borderRadius: 5,
     maxHeight: 30,
     minHeight: 30,
-    padding: `0 ${theme.spacing(1)}px`,
+    ...paddingR(0, 1),
   },
   addButton: {
     borderRadius: 8,
     minHeight: 50,
   },
-})
+}), { name: 'GridControls2' })
+
+const noMapping = 'No Mapping'
 
 const GridControls = ({ groupId }) => {
   const dispatch = useDispatch()
@@ -186,4 +179,4 @@ GridControls.propTypes = {
   groupId: PropTypes.number.isRequired,
 }
 
-export default withStyles(styles)(GridControls)
+export default GridControls

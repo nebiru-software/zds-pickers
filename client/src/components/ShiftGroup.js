@@ -8,7 +8,7 @@ const ShiftGroup = ({ groupId }) => (
   <section>
     <GridControls groupId={groupId} />
     <GridHeader groupId={groupId} />
-    {/* <ShiftEntriesGrid groupId={groupId} /> */}
+    <ShiftEntriesGrid groupId={groupId} />
   </section>
 )
 

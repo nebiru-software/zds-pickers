@@ -10,19 +10,20 @@ import { actions } from '../../reducers/shiftGroups'
 import useParamSelector from '../../hooks/useParamSelector'
 import { getShiftGroup } from '../../selectors/shiftGroups'
 import { isDisabled } from '../../selectors/shifter'
+import { stateMappings } from '../../selectors'
 import GridRow from './GridRow'
 
 const ShiftEntriesGrid = ({ groupId }) => {
   const dispatch = useDispatch()
-  const shiftGroup = useParamSelector(getShiftGroup, groupId)
+  const shiftGroup = useParamSelector(getShiftGroup, groupId) || {}
   const disabled = useSelector(isDisabled)
-  const channels = [] // TODO:
+  const { channels } = useSelector(stateMappings)
 
   const { entries, selectedRows, sortBy, sortDir, sortOn } = shiftGroup
 
   const compare = compareEntry(sortOn, sortBy, sortDir)
 
-  const sortedEntries = entries.sort(compare)
+  const sortedEntries = entries?.sort(compare) || []
 
   const sortedIds = sortedEntries.map(({ entryId }) => entryId)
 
