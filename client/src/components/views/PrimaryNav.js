@@ -10,16 +10,14 @@ import Documentation from '../Documentation'
 import ShiftGroups from './ShiftGroups'
 import InputControls from './InputControls'
 
-const heightHeader = 77
-
-const useStyles = makeStyles(({ palette }) => ({
+const useStyles = makeStyles(({ constants, palette }) => ({
   mainContent: {
     ...padding(0, 4),
     margin: 0,
   },
   topBar: {
     boxSizing: 'border-box',
-    height: heightHeader,
+    height: constants.headerHeight,
     ...padding(10, 16, 10),
     margin: 0,
     backgroundColor: palette.background.paperSecondary,

@@ -1,16 +1,18 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import IconButton from '@material-ui/core/IconButton'
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import Tooltip from '@material-ui/core/Tooltip'
+import { useDispatch } from 'react-redux'
 import {
   ACTIVITY_LED_MODE_ALWAYS_OFF,
   ACTIVITY_LED_MODE_ALWAYS_ON,
   ACTIVITY_LED_MODE_NORMALLY_OFF,
   ACTIVITY_LED_MODE_NORMALLY_ON,
 } from '../../midi/sysex'
+import { actions } from '../../reducers/shifter'
 
 const options = [
   { value: ACTIVITY_LED_MODE_NORMALLY_ON, label: 'Flicker on activity; Normally ON' },
@@ -19,74 +21,71 @@ const options = [
   { value: ACTIVITY_LED_MODE_ALWAYS_OFF, label: 'Always OFF' },
 ]
 
-class LEDModePicker extends Component {
-  // eslint-disable-next-line react/state-in-constructor
-  state = {
-    anchorEl: null,
+const LEDModePicker = (props) => {
+  const dispatch = useDispatch()
+  const [anchorEl, setAnchorEl] = useState(null)
+  const {
+    children,
+    selectedValue,
+    serialMidiOutEnabled,
+    usbMidiOutEnabled,
+  } = props
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget)
   }
 
-  handleClick = (event) => {
-    this.setState({ anchorEl: event.currentTarget })
+  const handleClose = () => {
+    setAnchorEl(null)
   }
 
-  handleMenuItemClick = (value) => {
-    const { serialMidiOutEnabled, setFlags, usbMidiOutEnabled } = this.props
-    setFlags(value, serialMidiOutEnabled, usbMidiOutEnabled)
-    this.handleClose()
+  const handleMenuItemClick = (value) => {
+    dispatch(actions.setFlags(value, serialMidiOutEnabled, usbMidiOutEnabled))
+    handleClose()
   }
 
-  handleClose = () => {
-    this.setState({ anchorEl: null })
-  }
-
-  render() {
-    const { anchorEl } = this.state
-    const { children, selectedValue } = this.props
-
-    return (
-      <>
-        <IconButton
-          aria-haspopup="true"
-          aria-owns={anchorEl ? 'simple-menu' : null}
-          onClick={this.handleClick}
+  return (
+    <>
+      <IconButton
+        aria-haspopup="true"
+        aria-owns={anchorEl ? 'simple-menu' : null}
+        onClick={handleClick}
+      >
+        <Tooltip
+          enterDelay={250}
+          placement="top"
+          title="LED mode"
         >
-          <Tooltip
-            enterDelay={250}
-            placement="top"
-            title="LED mode"
+          <div style={{ display: 'flex', flexFlow: 'row nowrap' }}>
+            {children}
+            <ArrowDropDown />
+          </div>
+        </Tooltip>
+      </IconButton>
+
+      <Menu
+        anchorEl={anchorEl}
+        id="simple-menu"
+        onClose={handleClose}
+        open={Boolean(anchorEl)}
+      >
+        {options.map(({ value, label }, index) => (
+          <MenuItem
+            key={value}
+            onClick={() => handleMenuItemClick(value)}
+            selected={index === selectedValue}
+            tag={`miValue${value}`}
           >
-            <div style={{ display: 'flex', flexFlow: 'row nowrap' }}>
-              {children}
-              <ArrowDropDown />
-            </div>
-          </Tooltip>
-        </IconButton>
-
-        <Menu
-          anchorEl={anchorEl}
-          id="simple-menu"
-          onClose={this.handleClose}
-          open={Boolean(anchorEl)}
-        >
-          {options.map(({ value, label }, index) => (
-            <MenuItem
-              key={value}
-              onClick={() => this.handleMenuItemClick(value)}
-              selected={index === selectedValue}
-              tag={`miValue${value}`}
-            >
-              {label}
-            </MenuItem>
-          ))}
-        </Menu>
-      </>
-    )
-  }
+            {label}
+          </MenuItem>
+        ))}
+      </Menu>
+    </>
+  )
 }
 
 LEDModePicker.propTypes = {
   selectedValue: PropTypes.number.isRequired,
-  setFlags: PropTypes.func.isRequired,
   serialMidiOutEnabled: PropTypes.bool.isRequired,
   usbMidiOutEnabled: PropTypes.bool.isRequired,
   children: PropTypes.node,

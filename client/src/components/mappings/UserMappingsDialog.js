@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useCallback } from 'react'
 import { validateContent } from 'zds-mappings'
 import { FilePicker } from 'nebiru-react-file-picker'
 import Button from '@material-ui/core/Button'
@@ -9,34 +8,40 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogContent from '@material-ui/core/DialogContent'
 import Tooltip from '@material-ui/core/Tooltip'
 import DialogActions from '@material-ui/core/DialogActions'
+import { useDispatch, useSelector } from 'react-redux'
 import mappingsStyle from '../../styles/mappings.scss'
 import Dialog from '../Dialog'
+import { stateMappings } from '../../selectors'
+import { actions } from '../../reducers/mappings'
 
-const UserMappingsDialog = ({
-  userDialogVisible,
-  userMappings,
-  hideUserMappingsDialog,
-  reportError,
-  importMapping,
-  deleteMapping,
-}) => {
+const UserMappingsDialog = () => {
+  const dispatch = useDispatch()
+  const {
+    userDialogVisible,
+    userMappings,
+  } = useSelector(stateMappings)
+
+  const hideUserMappingsDialog = useCallback(() => {
+    dispatch(actions.hideUserMappingsDialog())
+  }, [dispatch])
+
   const handleFileUploaded = (FileObject) => {
     const reader = new FileReader()
     reader.onload = ({ target }) => {
       const content = target.result.trim()
       if (validateContent(content)) {
-        importMapping(
+        dispatch(actions.importMapping(
           //
           FileObject.name.split('.')[0],
           content,
-        )
+        ))
       } else {
-        reportError('Not a valid ZenEdit mapping file.')
+        dispatch(actions.reportError('Not a valid ZenEdit mapping file.'))
       }
     }
 
     reader.onerror = ({ target }) => {
-      reportError(`File could not be read! Code ${target.error.code}`)
+      dispatch(actions.reportError(`File could not be read! Code ${target.error.code}`))
     }
 
     reader.readAsText(FileObject)
@@ -63,7 +68,7 @@ const UserMappingsDialog = ({
                   >
                     <i
                       className="material-icons"
-                      onClick={() => deleteMapping(name)}
+                      onClick={() => dispatch(actions.deleteMapping(name))}
                     >
                       delete_forever
                     </i>
@@ -81,7 +86,6 @@ const UserMappingsDialog = ({
         <FilePicker
           extensions={['txt']}
           onChange={handleFileUploaded}
-          onError={reportError}
         >
           <Button>Import Mapping...</Button>
         </FilePicker>
@@ -97,15 +101,6 @@ const UserMappingsDialog = ({
       </DialogActions>
     </Dialog>
   )
-}
-
-UserMappingsDialog.propTypes = {
-  userMappings: PropTypes.arrayOf(PropTypes.string).isRequired,
-  userDialogVisible: PropTypes.bool.isRequired,
-  hideUserMappingsDialog: PropTypes.func.isRequired,
-  reportError: PropTypes.func.isRequired,
-  importMapping: PropTypes.func.isRequired,
-  deleteMapping: PropTypes.func.isRequired,
 }
 
 export default UserMappingsDialog

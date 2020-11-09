@@ -5,11 +5,11 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 
 const styles = theme => ({
   dialogContentText: {
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing(1),
   },
   subHeader: {
     fontWeight: 700,
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing(1),
   },
 })
 

@@ -1,24 +1,38 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useCallback } from 'react'
 import Button from '@material-ui/core/Button'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogActions from '@material-ui/core/DialogActions'
 import MenuItem from '@material-ui/core/MenuItem'
+import { useDispatch, useSelector } from 'react-redux'
 import mappingsStyle from '../../styles/mappings.scss'
 import Dialog from '../Dialog'
+import { stateMappings } from '../../selectors'
+import { actions } from '../../reducers/mappings'
 import MappingPicker from './MappingPicker'
 
-const MappingsDialog = ({
-  dialogVisible,
-  channels,
-  stockMappings,
-  userMappings,
-  hideMappingsDialog,
-  changeMapping,
-  showUserMappingsDialog,
-}) => {
+const MappingsDialog = () => {
+  const dispatch = useDispatch()
+  const {
+    channels,
+    dialogVisible,
+    stockMappings,
+    userMappings,
+  } = useSelector(stateMappings)
+
+  const hideMappingsDialog = useCallback(() => {
+    dispatch(actions.hideMappingsDialog())
+  }, [dispatch])
+
+  const changeMapping = useCallback((idx, name) => {
+    dispatch(actions.changeMapping(idx, name))
+  }, [dispatch])
+
+  const showUserMappingsDialog = useCallback(() => {
+    dispatch(actions.showUserMappingsDialog())
+  }, [dispatch])
+
   const userMenuSource = userMappings.map((label, idx) => (
     <MenuItem
       key={`${label}_${idx}`}
@@ -74,17 +88,6 @@ const MappingsDialog = ({
       </DialogActions>
     </Dialog>
   )
-}
-
-MappingsDialog.propTypes = {
-  dialogVisible: PropTypes.bool.isRequired,
-  channels: PropTypes.arrayOf(PropTypes.string).isRequired,
-  stockMappings: PropTypes.arrayOf(PropTypes.string).isRequired,
-  userMappings: PropTypes.arrayOf(PropTypes.string).isRequired,
-
-  hideMappingsDialog: PropTypes.func.isRequired,
-  changeMapping: PropTypes.func.isRequired,
-  showUserMappingsDialog: PropTypes.func.isRequired,
 }
 
 export default MappingsDialog

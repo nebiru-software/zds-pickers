@@ -1,7 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 import Grid from '@material-ui/core/Grid'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import { margin, padding } from 'polished'
@@ -9,16 +7,12 @@ import InputControl from '../controls/InputControl'
 import MidiActivity from '../MidiActivity'
 import LEDModePicker from '../controls/LEDModePicker'
 import MidiMenu from '../MidiMenu'
-import { actions as inputControlActions } from '../../reducers/inputControls'
-import { actions as shifterActions } from '../../reducers/shifter'
-import { inputControlShape, shifterShape, versionShape } from '../../core/shapes'
 import WaitingOnShifter from '../WaitingOnShifter'
+import { stateInputControls, stateShifter, stateVersion } from '../../selectors'
 
-const inputControlsHeight = 280
-
-const useStyles = makeStyles(({ palette }) => ({
+const useStyles = makeStyles(({ constants, palette }) => ({
   root: {
-    height: inputControlsHeight,
+    height: constants.inputControlsHeight,
     ...margin(0, 50),
     display: 'flex',
     flexDirection: 'row',
@@ -75,13 +69,17 @@ const useStyles = makeStyles(({ palette }) => ({
   },
 }), { name: 'InputControls' })
 
-export const InputControls = (props) => {
+export const InputControls = () => {
+  const inputControls = useSelector(stateInputControls)
+  const { proModel } = useSelector(stateVersion)
   const {
-    inputControls,
-    setFlags,
-    shifter: { midiActivityLEDMode, ready, found, responding, serialMidiOutEnabled, usbMidiOutEnabled },
-    version: { proModel },
-  } = props
+    found,
+    midiActivityLEDMode,
+    ready,
+    responding,
+    serialMidiOutEnabled,
+    usbMidiOutEnabled,
+  } = useSelector(stateShifter)
 
   const classes = useStyles()
 
@@ -103,7 +101,6 @@ export const InputControls = (props) => {
                     <LEDModePicker
                       selectedValue={midiActivityLEDMode}
                       serialMidiOutEnabled={serialMidiOutEnabled}
-                      setFlags={setFlags}
                       usbMidiOutEnabled={usbMidiOutEnabled}
                     >
                       <MidiActivity label="PWR/Midi" />
@@ -127,7 +124,6 @@ export const InputControls = (props) => {
                 <InputControl
                   key={idx}
                   {...control}
-                  {...props}
                   layout={idx === 1 ? 'right' : 'left'}
                 />
               ))}
@@ -141,29 +137,4 @@ export const InputControls = (props) => {
   )
 }
 
-InputControls.propTypes = {
-  inputControls: PropTypes.array.isRequired, // PropTypes.arrayOf(inputControlShape).isRequired,
-  version: versionShape.isRequired,
-  shifter: shifterShape.isRequired,
-  setFlags: PropTypes.func.isRequired,
-}
-
-export const mapStateToProps = ({ inputControls, version, shifter }) => ({
-  inputControls,
-  version,
-  shifter,
-})
-
-export const mapDispatchToProps = dispatch => bindActionCreators(
-  {
-    //
-    ...inputControlActions,
-    ...shifterActions,
-  },
-  dispatch,
-)
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(InputControls)
+export default InputControls

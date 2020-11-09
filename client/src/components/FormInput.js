@@ -6,8 +6,8 @@ import withStyles from '@material-ui/core/styles/withStyles'
 // istanbul ignore next
 const styles = theme => ({
   textField: {
-    marginLeft: theme.spacing.unit * 2,
-    marginRight: theme.spacing.unit,
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(1),
     width: 200,
   },
 })

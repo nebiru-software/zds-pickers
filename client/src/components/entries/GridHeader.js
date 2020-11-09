@@ -2,95 +2,107 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { SORT_BY_ALL, SORT_BY_CHANNEL, SORT_BY_MESSAGE, SORT_BY_VALUE } from '../../core/consts'
 import { gridHeader } from '../../styles/shiftGroupHeader.scss'
-import { sortShape } from '../../core/shapes'
+import { getShiftGroup } from '../../selectors/shiftGroups'
+import useParamSelector from '../../hooks/useParamSelector'
 import SortControls from './SortControls'
 
-const GridHeader = props => (
-  <div className={gridHeader}>
-    <header>
-      <section>
-        <SortControls
-          field={SORT_BY_ALL}
-          {...props}
-          isInput
-        >
-          Input
-        </SortControls>
-      </section>
-      <section>
-        <SortControls
-          field={SORT_BY_ALL}
-          {...props}
-        >
-          Output
-        </SortControls>
-      </section>
-    </header>
+const GridHeader = ({ groupId }) => {
+  const group = useParamSelector(getShiftGroup, groupId)
+  if (!group) { return false }
 
-    <footer>
-      <section>
-        <div>
+  const { sortBy, sortDir, sortOn } = group
+  const sortProps = {
+    groupId,
+    sortBy,
+    sortDir,
+    sortOn,
+  }
+
+  return (
+    <div className={gridHeader}>
+      <header>
+        <section>
           <SortControls
-            field={SORT_BY_MESSAGE}
-            {...props}
+            field={SORT_BY_ALL}
+            {...sortProps}
             isInput
           >
-            Message
+            Input
           </SortControls>
-        </div>
-        <div>
+        </section>
+        <section>
           <SortControls
-            field={SORT_BY_CHANNEL}
-            {...props}
-            isInput
+            field={SORT_BY_ALL}
+            {...sortProps}
           >
-            Channel
+            Output
           </SortControls>
-        </div>
-        <div>
-          <SortControls
-            field={SORT_BY_VALUE}
-            {...props}
-            isInput
-          >
-            Value
-          </SortControls>
-        </div>
-      </section>
-      <section>
-        <div>
-          <SortControls
-            field={SORT_BY_MESSAGE}
-            {...props}
-          >
-            Message
-          </SortControls>
-        </div>
-        <div>
-          <SortControls
-            field={SORT_BY_CHANNEL}
-            {...props}
-          >
-            Channel
-          </SortControls>
-        </div>
-        <div>
-          <SortControls
-            field={SORT_BY_VALUE}
-            {...props}
-          >
-            Value
-          </SortControls>
-        </div>
-      </section>
-    </footer>
-  </div>
-)
+        </section>
+      </header>
+
+      <footer>
+        <section>
+          <div>
+            <SortControls
+              field={SORT_BY_MESSAGE}
+              {...sortProps}
+              isInput
+            >
+              Message
+            </SortControls>
+          </div>
+          <div>
+            <SortControls
+              field={SORT_BY_CHANNEL}
+              {...sortProps}
+              isInput
+            >
+              Channel
+            </SortControls>
+          </div>
+          <div>
+            <SortControls
+              field={SORT_BY_VALUE}
+              {...sortProps}
+              isInput
+            >
+              Value
+            </SortControls>
+          </div>
+        </section>
+        <section>
+          <div>
+            <SortControls
+              field={SORT_BY_MESSAGE}
+              {...sortProps}
+            >
+              Message
+            </SortControls>
+          </div>
+          <div>
+            <SortControls
+              field={SORT_BY_CHANNEL}
+              {...sortProps}
+            >
+              Channel
+            </SortControls>
+          </div>
+          <div>
+            <SortControls
+              field={SORT_BY_VALUE}
+              {...sortProps}
+            >
+              Value
+            </SortControls>
+          </div>
+        </section>
+      </footer>
+    </div>
+  )
+}
 
 GridHeader.propTypes = {
   groupId: PropTypes.number.isRequired,
-  ...sortShape,
-  changeSort: PropTypes.func.isRequired,
 }
 
 export default GridHeader

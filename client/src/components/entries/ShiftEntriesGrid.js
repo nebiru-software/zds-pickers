@@ -1,46 +1,69 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { assertRange } from 'zds-pickers'
+import { useDispatch, useSelector } from 'react-redux'
 import { entryGrid } from '../../styles/shiftGroupTable.scss'
 import { compareEntry } from '../../reducers/shiftEntry'
-import { entryShape, sortShape } from '../../core/shapes'
 import { delay } from '../../core/fp/utils'
+import { actions } from '../../reducers/shiftGroups'
+import useParamSelector from '../../hooks/useParamSelector'
+import { getShiftGroup } from '../../selectors/shiftGroups'
+import { isDisabled } from '../../selectors/shifter'
 import GridRow from './GridRow'
 
-const ShiftEntriesGrid = ({
-  groupId,
-  entries,
-  editEntry,
-  removeEntry,
-  saveEntryEdit,
-  selectShiftEntry,
-  sortOn,
-  sortBy,
-  sortDir,
-  selectedRows,
-  disabled,
-  mappings: { channels },
-  selectAllEntries,
-  clearAllSelections,
-  handleEntryClick,
-}) => {
+const ShiftEntriesGrid = ({ groupId }) => {
+  const dispatch = useDispatch()
+  const shiftGroup = useParamSelector(getShiftGroup, groupId)
+  const disabled = useSelector(isDisabled)
+  const channels = [] // TODO:
+
+  const { entries, selectedRows, sortBy, sortDir, sortOn } = shiftGroup
+
   const compare = compareEntry(sortOn, sortBy, sortDir)
 
   const sortedEntries = entries.sort(compare)
 
   const sortedIds = sortedEntries.map(({ entryId }) => entryId)
 
+  const selectShiftEntry = useCallback((entryId) => {
+    dispatch(actions.selectShiftEntry(groupId, entryId))
+  }, [dispatch, groupId])
+
+  const selectAllEntries = useCallback(() => {
+    dispatch(actions.selectAllEntries(groupId))
+  }, [dispatch, groupId])
+
+  const clearAllSelections = useCallback(() => {
+    dispatch(actions.clearAllSelections(groupId))
+  }, [dispatch, groupId])
+
+  const editEntry = useCallback((editEntryIdx) => {
+    dispatch(actions.editEntry(groupId, editEntryIdx))
+  }, [dispatch, groupId])
+
+  const handleEntryClick = useCallback((idx, metaKey, shiftKey) => {
+    dispatch(actions.handleEntryClick(groupId, sortedIds, idx, metaKey, shiftKey))
+  }, [dispatch, groupId, sortedIds])
+
+  const saveEntryEdit = useCallback((destGroupId, editQueue) => {
+    dispatch(actions.saveEntryEdit(destGroupId, editQueue))
+  }, [dispatch])
+
+  const removeEntry = useCallback((sourceGroupId, entryId) => {
+    dispatch(actions.removeEntry(sourceGroupId, entryId))
+  }, [dispatch])
+
   const handleArrowKey = (dir) => {
     if (!selectedRows.length) {
       if (sortedEntries.length) {
-        selectShiftEntry(groupId, sortedEntries[0].entryId)
+        selectShiftEntry(sortedEntries[0].entryId)
       }
     } else {
       const currentIndex = sortedEntries.findIndex(({ entryId }) => entryId === selectedRows[0])
       const nextIndex = assertRange(currentIndex + dir, sortedEntries.length - 1, 0)
       if (currentIndex !== nextIndex) {
-        selectShiftEntry(groupId, sortedEntries[nextIndex].entryId)
+        selectShiftEntry(sortedEntries[nextIndex].entryId)
       }
     }
   }
@@ -48,14 +71,14 @@ const ShiftEntriesGrid = ({
   const handleKeyDown = (event) => {
     const { key, metaKey } = event
     if (key === 'a' && metaKey) {
-      selectAllEntries(groupId)
+      selectAllEntries()
       event.preventDefault()
     }
     if (key === 'Escape') {
-      clearAllSelections(groupId)
+      clearAllSelections()
     }
     if (key === 'Enter' && selectedRows.length) {
-      editEntry(groupId, selectedRows[0])
+      editEntry(selectedRows[0])
     }
     if (key === 'ArrowUp') {
       handleArrowKey(-1)
@@ -69,9 +92,9 @@ const ShiftEntriesGrid = ({
     const { metaKey, shiftKey } = event
     if (metaKey || shiftKey) {
       event.stopPropagation()
-      handleEntryClick(groupId, sortedIds, idx, metaKey, shiftKey)
+      handleEntryClick()
     } else {
-      selectShiftEntry(groupId, entryId)
+      selectShiftEntry(entryId)
     }
   }
 
@@ -118,17 +141,6 @@ const ShiftEntriesGrid = ({
   )
 }
 
-ShiftEntriesGrid.propTypes = {
-  groupId: PropTypes.number.isRequired,
-  editEntry: PropTypes.func.isRequired,
-  removeEntry: PropTypes.func.isRequired,
-  selectShiftEntry: PropTypes.func.isRequired,
-  entries: PropTypes.arrayOf(entryShape).isRequired,
-  disabled: PropTypes.bool.isRequired,
-  selectAllEntries: PropTypes.func.isRequired,
-  clearAllSelections: PropTypes.func.isRequired,
-  handleEntryClick: PropTypes.func.isRequired,
-  ...sortShape,
-}
+ShiftEntriesGrid.propTypes = { groupId: PropTypes.number.isRequired }
 
 export default ShiftEntriesGrid

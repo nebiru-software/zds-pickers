@@ -36,6 +36,8 @@ const browserHandler = {
 
 const App = () => {
   const classes = useStyles()
+  // console.log(theme({}))
+
   return (
     <ThemeProvider theme={theme({})}>
       <Titled title={() => 'ZDS Shifter Pro'} />

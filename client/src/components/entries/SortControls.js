@@ -1,19 +1,23 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames/bind'
+import { useDispatch } from 'react-redux'
 import { SORT_ASC, SORT_ON_INPUT, SORT_ON_OUTPUT } from '../../core/consts'
 import * as styles from '../../styles/shiftGroupTable.scss'
 import { sortShape } from '../../core/shapes'
+import { actions } from '../../reducers/shiftGroups'
 
 const cx = classNames.bind(styles)
 
-const SortControls = ({ groupId, isInput, field, sortOn, sortBy, sortDir, children, changeSort }) => {
-  const handleClick = (event) => {
+const SortControls = ({ groupId, isInput, field, sortOn, sortBy, sortDir, children }) => {
+  const dispatch = useDispatch()
+
+  const handleClick = useCallback((event) => {
     event.preventDefault()
-    changeSort(groupId, isInput ? SORT_ON_INPUT : SORT_ON_OUTPUT, field)
-  }
+    dispatch(actions.changeSort(groupId, isInput ? SORT_ON_INPUT : SORT_ON_OUTPUT, field))
+  }, [dispatch, field, groupId, isInput])
 
   const icon = () => (sortDir === SORT_ASC ? 'keyboard_arrow_down' : 'keyboard_arrow_up')
 
@@ -37,7 +41,6 @@ SortControls.propTypes = {
   isInput: PropTypes.bool,
   field: sortShape.sortBy, // eslint-disable-line
   ...sortShape,
-  changeSort: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
 }
 

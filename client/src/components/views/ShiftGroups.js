@@ -1,38 +1,22 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import React, { useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Tabs from '@material-ui/core/Tabs'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import { border } from 'polished'
 import ShiftGroup from '../ShiftGroup'
-import { actions as shiftGroupActions } from '../../reducers/shiftGroups'
-import { actions as mappingsActions } from '../../reducers/mappings'
-import { actions as shifterActions } from '../../reducers/shifter'
-// import { container, loadingCont, tabsCont } from '../../styles/shiftGroups.scss'
+import { actions } from '../../reducers/shiftGroups'
 import GroupTab from '../entries/GroupTab'
-import { groupsShape, inputControlShape, shifterShape, versionShape } from '../../core/shapes'
+import { stateShiftGroups, stateShifter } from '../../selectors'
+import { getShiftGroups } from '../../selectors/shiftGroups'
 
-const heightHeader = 77
-const inputControlsHeight = 280
-const heightTabs = 48
-const heightGridControls = 62
-const heightFooter = 30
-const viewportMargin = 30
-const tabBorderWidth = 4
-
-const gridHeight = heightHeader + inputControlsHeight + heightTabs
-  + heightGridControls + heightFooter + viewportMargin + tabBorderWidth
-  * 2 + 42
-
-const useStyles = makeStyles(({ mixins: { important }, palette }) => ({
+const useStyles = makeStyles(({ constants, mixins: { important }, palette }) => ({
   root: { },
   loadingCont: {
     paddingTop: 80,
     textAlign: 'center',
     fontSize: 24,
     // color: '$color-text-dimmer',
-    height: important(`calc(100vh - ${gridHeight}px + 55px)`),
+    height: important(`calc(100vh - ${constants.gridHeight}px + 55px)`),
     overflow: important('hidden'),
   },
   container: {
@@ -41,25 +25,17 @@ const useStyles = makeStyles(({ mixins: { important }, palette }) => ({
   },
 }), { name: 'ShiftGroups' })
 
-export const ShiftGroups = (props) => {
-  const {
-    changeSelectedGroup,
-    inputControls,
-    shiftGroups: { groups, selectedGroupIdx, maxEntries, totalEntries },
-    shifter: { ready },
-    version: { proModel },
-  } = props
+export const ShiftGroups = () => {
+  const dispatch = useDispatch()
+  const { selectedGroupIdx } = useSelector(stateShiftGroups)
+  const { groups } = useSelector(getShiftGroups)
+  const { ready } = useSelector(stateShifter)
 
   const classes = useStyles()
 
-  const decoratedGroups = groups.map((group) => {
-    const assignedControls = inputControls
-      .filter((control, idx) => proModel || idx < 2)
-      .filter(({ channel, value }) => channel === group.channel && value === group.value)
-      .map(({ controlId }) => controlId + 1)
-      .map(controlNumber => `FS${controlNumber}`)
-    return { ...group, controlLabels: assignedControls }
-  })
+  const handleTabChange = useCallback((e, idx) => {
+    dispatch(actions.changeSelectedGroup(idx))
+  }, [dispatch])
 
   return (
     <div>
@@ -68,10 +44,10 @@ export const ShiftGroups = (props) => {
         {/* classes.tabsCont */}
         <Tabs
           disabled={!ready}
-          onChange={(e, idx) => changeSelectedGroup(idx)}
+          onChange={handleTabChange}
           value={selectedGroupIdx}
         >
-          {decoratedGroups.map(({ label, active, groupId, controlLabels }, idx) => ready ? (
+          {groups.map(({ label, active, groupId, controlLabels }, idx) => ready ? (
             <GroupTab
               active={active}
               controlLabels={controlLabels}
@@ -84,17 +60,9 @@ export const ShiftGroups = (props) => {
       </div>
 
       <div className={classes.container}>
-        {decoratedGroups.map((group, idx) => idx === selectedGroupIdx && (
-        <ShiftGroup
-          key={idx}
-          {...group}
-          {...props}
-          disabled={!ready}
-          maxEntries={maxEntries}
-          totalEntries={totalEntries}
-        />
-        ))}
-        {Boolean(decoratedGroups.length === 0 || !ready) && (
+        <ShiftGroup groupId={selectedGroupIdx} />
+
+        {Boolean(groups.length === 0 || !ready) && (
           <div className={classes.loadingCont}>Searching for attached ZDS Shifter...</div>
         )}
       </div>
@@ -102,33 +70,4 @@ export const ShiftGroups = (props) => {
   )
 }
 
-ShiftGroups.propTypes = {
-  shiftGroups: groupsShape.isRequired,
-  shifter: shifterShape.isRequired,
-  inputControls: PropTypes.arrayOf(inputControlShape).isRequired,
-  version: versionShape.isRequired,
-  changeSelectedGroup: PropTypes.func.isRequired,
-}
-
-export const mapStateToProps = ({ shiftGroups, shifter, mappings, user, inputControls, version }) => ({
-  shiftGroups,
-  shifter,
-  mappings,
-  user,
-  inputControls,
-  version,
-})
-export const mapDispatchToProps = dispatch => bindActionCreators(
-  {
-    //
-    ...shiftGroupActions,
-    ...mappingsActions,
-    reportError: shifterActions.reportError,
-  },
-  dispatch,
-)
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ShiftGroups)
+export default ShiftGroups

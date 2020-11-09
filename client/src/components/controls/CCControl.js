@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { LatchPicker, PolarityPicker } from 'zds-pickers'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import { border, margin, padding } from 'polished'
+import { useDispatch } from 'react-redux'
 import Led from '../Led'
-// import { ccControl, picker } from '../../styles/inputControls.scss'
+import { actions } from '../../reducers/inputControls'
 import { pick } from '../../core/fp/objects'
 import CCPicker from './CCPicker'
 import ChannelPicker from './ChannelPicker'
@@ -46,15 +47,32 @@ const useStyles = makeStyles(({ mixins: { importantPx }, palette }) => ({
 }), { name: 'CCControl' })
 
 const CCControl = (props) => {
+  const dispatch = useDispatch()
   const {
-    changeInputControlChannel,
-    changeInputControlLatching,
-    changeInputControlPolarity,
-    changeInputControlValue,
+    // changeInputControlChannel,
+    // changeInputControlLatching,
+    // changeInputControlPolarity,
+    // changeInputControlValue,
     controlId,
     lit,
     ...rest
   } = props
+
+  const handleChangeValue = useCallback((value) => {
+    dispatch(actions.changeInputControlValue(controlId, value))
+  }, [controlId, dispatch])
+
+  const handleChangeChannel = useCallback((value) => {
+    dispatch(actions.changeInputControlChannel(controlId, value))
+  }, [controlId, dispatch])
+
+  const handleChangeLatching = useCallback((value) => {
+    dispatch(actions.changeInputControlLatching(controlId, value))
+  }, [controlId, dispatch])
+
+  const handleChangePolarity = useCallback((value) => {
+    dispatch(actions.changeInputControlPolarity(controlId, value))
+  }, [controlId, dispatch])
 
   const classes = useStyles()
 
@@ -72,21 +90,21 @@ const CCControl = (props) => {
       />
       <CCPicker
         {...pickerProps}
-        onChange={value => changeInputControlValue(controlId, value)}
+        onChange={handleChangeValue}
       />
       <ChannelPicker
         {...pickerProps}
-        onChange={channel => changeInputControlChannel(controlId, channel)}
+        onChange={handleChangeChannel}
       />
       <LatchPicker
         {...pickerProps}
-        onChange={latching => changeInputControlLatching(controlId, latching)}
+        onChange={handleChangeLatching}
       />
       <PolarityPicker
         {...pickerProps}
         labelOff={pickerProps.latching ? 'Initially Off' : 'Normally Off'}
         labelOn={pickerProps.latching ? 'Initially On' : 'Normally On'}
-        onChange={polarity => changeInputControlPolarity(controlId, polarity)}
+        onChange={handleChangePolarity}
       />
     </div>
   )
@@ -95,10 +113,6 @@ const CCControl = (props) => {
 CCControl.propTypes = {
   lit: PropTypes.bool.isRequired,
   controlId: PropTypes.number.isRequired,
-  changeInputControlChannel: PropTypes.func.isRequired,
-  changeInputControlValue: PropTypes.func.isRequired,
-  changeInputControlLatching: PropTypes.func.isRequired,
-  changeInputControlPolarity: PropTypes.func.isRequired,
   value: PropTypes.number.isRequired,
   latching: PropTypes.oneOf([0, 1]).isRequired,
   polarity: PropTypes.oneOf([0, 1]).isRequired,
