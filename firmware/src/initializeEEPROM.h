@@ -3,7 +3,7 @@
 
 #define CURRENT_VERSION 30
 
-const int MAX_BYTES = 1024;
+const int MAX_BYTES = 2048;
 
 bool initEEPROM();
 void resetTrims();

@@ -260,22 +260,17 @@ bool handleControlChange(midi_packet* packet) {
         input_control* jack = &input_controls[j];
 
 #if MIDI_HANDLER_DEBUG_MODE
-        if (jack->active) {
-          Serial.print("Checking jack: ");
-          Serial.print(jack->active, DEC);
-          Serial.print(" ");
-          Serial.print(jack->status & 0x0F, DEC);
-          Serial.print(" ");
-          Serial.print(group->channel, DEC);
-          Serial.print(" ");
-          Serial.print(jack->data, DEC);
-          Serial.print(" ");
-          Serial.println(group->cc_number, DEC);
-        }
+        Serial.print("Checking jack: ");
+        Serial.print(jack->status & 0x0F, DEC);
+        Serial.print(" ");
+        Serial.print(group->channel, DEC);
+        Serial.print(" ");
+        Serial.print(jack->data, DEC);
+        Serial.print(" ");
+        Serial.println(group->cc_number, DEC);
 #endif
 
-        if (jack->active && (jack->status & 0x0F) == (group->channel) &&
-            jack->data == group->cc_number) {
+        if (((jack->status & 0x0F) == group->channel) && jack->data == group->cc_number) {
           jack->latched = group->active;
           digitalWrite(jack->ledPin, group->active);
           jack->ledLit = group->active;

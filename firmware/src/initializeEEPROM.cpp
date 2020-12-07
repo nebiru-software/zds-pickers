@@ -10,7 +10,7 @@ bool initEEPROM() {
       first byte of EEPROM _NOT_ set to 255.  In this case, the last byte
       usually is, so try both.
   */
-  if ((EEPROM.read(0) == 255) || (EEPROM.read(511) == 255)) {
+  if ((EEPROM.read(0) == 255) || (EEPROM.read(MAX_BYTES - 1) == 255)) {
     // First time ran
 
 #if SETTINGS_DEBUG_MODE

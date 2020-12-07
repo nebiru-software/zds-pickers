@@ -17,8 +17,6 @@ struct input_control : midi_message {
   uint8_t sensitivity;
 
   // Nothing below is stored
-  bool active;
-
   uint8_t idx;
 
   bool    latching;

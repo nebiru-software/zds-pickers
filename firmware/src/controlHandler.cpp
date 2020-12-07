@@ -40,8 +40,6 @@ static void dumpControl(input_control* jack) {
   Serial.println(jack->sensitivity);
   Serial.print("Cal Low ");
   Serial.println(jack->threshold);
-  Serial.print("Active ");
-  Serial.println(jack->active);
   Serial.print("Latching ");
   Serial.println(jack->latching);
   Serial.print("Polarity ");
@@ -202,6 +200,13 @@ static void crankExpressionPedal(input_control* jack) {
 static void crankTrigger(input_control* jack) {
   uint16_t apinReading = analogRead(jack->dataPin);
 
+  // Serial.print(jack->idx);
+  // Serial.print(" ");
+  // Serial.print(jack->scanState);
+  // Serial.print(" ");
+  // Serial.print(apinReading);
+  // Serial.println(" ");
+
   if (jack->scanState == 0) {
     // IDLE state: if any reading is above a threshold, begin peak
     if (apinReading > jack->rawThreshold) {
@@ -267,18 +272,16 @@ void initControls() {
   for (uint8_t i = 0; i < MAX_INPUT_CONTROLS; i++) {
     input_control* jack = &input_controls[i];
 
-    if (jack->active) {
-      switch (jack->controlType) {
-        case CONTROL_TYPE_BUTTON:
-          pinMode(jack->dataPin, INPUT_PULLUP);
-          if (jack->ledPin != 255) {
-            pinMode(jack->ledPin, OUTPUT);
-          }
-          break;
-        case CONTROL_TYPE_TRIGGER:
-        case CONTROL_TYPE_POT:
-          break;
-      }
+    switch (jack->controlType) {
+      case CONTROL_TYPE_BUTTON:
+        pinMode(jack->dataPin, INPUT_PULLUP);
+        if (jack->ledPin != 255) {
+          pinMode(jack->ledPin, OUTPUT);
+        }
+        break;
+      case CONTROL_TYPE_TRIGGER:
+      case CONTROL_TYPE_POT:
+        break;
     }
 
 #if CONTROLS_DEBUG_MODE
@@ -292,13 +295,7 @@ void initControls() {
 uint8_t currentInputIdx = 0;
 
 void crankInputJacks() {
-  input_control* jack;
-
-  jack = &input_controls[currentInputIdx];
-
-  if (jack->active) {
-    crankJack(jack);
-  }
+  crankJack(&input_controls[currentInputIdx]);
 
   currentInputIdx++;
   if (currentInputIdx == MAX_INPUT_CONTROLS) {

@@ -132,10 +132,6 @@ void sendInternalState() {
   j = 2;
 
   for (i = 0; i < MAX_INPUT_CONTROLS; i++) {
-    data[j++] = input_controls[i].active;
-  }
-
-  for (i = 0; i < MAX_INPUT_CONTROLS; i++) {
     data[j++] = input_controls[i].ledLit;
   }
 

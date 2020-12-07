@@ -12,15 +12,18 @@
     15 - 19
         15 is settings flags, rest are reserved
 
-    20 - 49
+    20 - 64
         Input controls.  Six controls are stored sequentially.  These currently
-        consume 5 bytes each, for a total of 30.
+        consume 5 bytes each, for a total of 45.
 
-    50 - ~512
-        Groups, 4 total. Each group needs three bytes for the number of entries,
-        channel # and CC #.  Whatever's left (460B) is devoted to entries.
-        Each entry needs 4 bytes which gives us a max of 115 entries.
-        We've capped it at 112 in order to give us a little breathing room at
+    65 - 99
+        Reserved for future use
+
+    100 - ~2047
+        Groups, 6 total. Each group needs three bytes for the number of entries
+        (18 total), channel # and CC #.  Whatever's left (460B) is devoted to
+        entries. Each entry needs 4 bytes which gives us a max of 482 entries.
+        We've capped it at 480 in order to give us a little breathing room at
         the end.
  */
 
@@ -99,7 +102,7 @@ static void dumpMIDIMessage(midi_message* message) {
 
 // #endif // if SETTINGS_DEBUG_MODE
 
-static bool loadInput(input_control* jack, uint8_t idx) {
+static void loadInput(input_control* jack, uint8_t idx) {
   loadMIDIMessage(jack);
 
   jack->idx = idx;
@@ -107,7 +110,6 @@ static bool loadInput(input_control* jack, uint8_t idx) {
   jack->flags       = nextByte();
   jack->threshold   = nextByte();
   jack->sensitivity = nextByte();
-  jack->active      = true; //(idx < 4); // || proModel;
   jack->latching    = jack->flags & LATCHING_MASK;
   jack->polarity    = (jack->flags & POLARITY_MASK) >> 1;
   jack->curve       = (jack->flags & CURVE_MASK) >> 2;
@@ -151,11 +153,21 @@ static bool loadInput(input_control* jack, uint8_t idx) {
       jack->analog.enableEdgeSnap();
       break;
     case 5:
-      jack->dataPin   = 17;
+      jack->dataPin   = 20;
       jack->ledPin    = 255;
       jack->scanState = 0;
       break;
     case 6:
+      jack->dataPin   = 21;
+      jack->ledPin    = 255;
+      jack->scanState = 0;
+      break;
+    case 7:
+      jack->dataPin   = 17;
+      jack->ledPin    = 255;
+      jack->scanState = 0;
+      break;
+    case 8:
       jack->dataPin   = 18;
       jack->ledPin    = 255;
       jack->scanState = 0;
@@ -164,8 +176,6 @@ static bool loadInput(input_control* jack, uint8_t idx) {
 
   jack->rawThreshold   = map(jack->threshold, 0, 127, 0, 1023);
   jack->rawSensitivity = map(jack->sensitivity, 0, 127, 0, 1023);
-
-  return true;
 }
 
 static void loadInputs() {
@@ -176,16 +186,12 @@ static void loadInputs() {
 #endif // if SETTINGS_DEBUG_MODE
 
   for (uint8_t i = 0; i < MAX_INPUT_CONTROLS; i++) {
-    if (!loadInput(&input_controls[i], i)) {
-      break;
-    }
+    loadInput(&input_controls[i], i);
 
     // #if SETTINGS_DEBUG_MODE
     Serial.print("Input #");
     Serial.print(i);
     dumpMIDIMessage(&input_controls[i]);
-    Serial.print(" Active:");
-    Serial.print(input_controls[i].active);
     Serial.print(" Flags:");
     Serial.print(input_controls[i].flags);
     Serial.print(" Type:");

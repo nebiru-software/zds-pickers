@@ -13,13 +13,11 @@ void resetControls() {
   uint8_t       eepromIndex = LOCATION_OF_CONTROLS;
 
   for (uint8_t i = 0; i < MAX_INPUT_CONTROLS; i++) {
-    jack.idx    = i;
-    jack.active = true;
-    jack.status = CC;
-    jack.data   = 110 + i;
-
-    // jack.flags = 1;
-    jack.threshold   = 2;
+    jack.idx         = i;
+    jack.status      = CC;
+    jack.data        = 110 + i;
+    jack.controlType = 0;
+    jack.threshold   = 0;
     jack.sensitivity = 127;
     jack.latching    = true;
     jack.polarity    = false;
@@ -42,6 +40,8 @@ void resetControls() {
 
       case 5:
       case 6:
+      case 7:
+      case 8:
         jack.controlType = CONTROL_TYPE_TRIGGER;
         jack.status      = NOTE_ON;
         jack.threshold   = 2;
