@@ -30,11 +30,6 @@ const uint8_t triggerMaskTime  = 100;
 const uint8_t pedalMaskTime    = 255;
 const uint8_t scanTime         = 60; // 20;
 
-/**
- * We don't check the analog jacks on every loop.
- */
-static class Metro analog_check_metro(20);
-
 #if CONTROLS_DEBUG_MODE
 static void dumpControl(input_control* jack) {
   Serial.print("Jack # ");
@@ -189,8 +184,11 @@ static void crankExpressionPedal(input_control* jack) {
     uint16_t apinReading = jack->analog.getValue();
     jack->reading = map(apinReading, jack->rawThreshold, jack->rawSensitivity, 0, 127);
 
-    // fire action
-    buttonStateChanged(jack);
+    if (jack->prevReading != jack->reading) {
+      // fire action
+      buttonStateChanged(jack);
+      jack->prevReading = jack->reading;
+    }
 
 #if CONTROLS_DEBUG_MODE
     Serial.print(apinReading);
@@ -256,9 +254,7 @@ static void crankJack(input_control* jack) {
       break;
 
     case CONTROL_TYPE_POT:
-      if (analog_check_metro.check()) {
-        crankExpressionPedal(jack);
-      }
+      crankExpressionPedal(jack);
       break;
 
     case CONTROL_TYPE_TRIGGER:
@@ -293,35 +289,19 @@ void initControls() {
   sendInternalState();
 }
 
+uint8_t currentInputIdx = 0;
+
 void crankInputJacks() {
   input_control* jack;
-  for (uint8_t i = 0; i < MAX_INPUT_CONTROLS; i++) {
-    switch (i) {
-      case 0:
-        jack = &input_controls[0];
-        break;
-      case 1:
-        jack = &input_controls[3];
-        break;
-      case 2:
-        jack = &input_controls[1];
-        break;
-      case 3:
-        jack = &input_controls[4];
-        break;
-      case 4:
-        jack = &input_controls[2];
-        break;
-      case 5:
-        jack = &input_controls[5];
-        break;
-      case 6:
-        jack = &input_controls[6];
-        break;
-    }
 
-    if (jack->active) {
-      crankJack(jack);
-    }
+  jack = &input_controls[currentInputIdx];
+
+  if (jack->active) {
+    crankJack(jack);
+  }
+
+  currentInputIdx++;
+  if (currentInputIdx == MAX_INPUT_CONTROLS) {
+    currentInputIdx = 0;
   }
 }

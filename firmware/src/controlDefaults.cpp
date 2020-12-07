@@ -21,7 +21,7 @@ void resetControls() {
     // jack.flags = 1;
     jack.threshold   = 2;
     jack.sensitivity = 127;
-    jack.latching    = false;
+    jack.latching    = true;
     jack.polarity    = false;
     jack.curve       = 0;
 

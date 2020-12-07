@@ -30,11 +30,12 @@ struct input_control : midi_message {
 
   uint8_t controlType;
 
-  bool     prevState;
-  bool     state;
-  uint16_t reading;
-  bool     latched;
-  bool     ledLit;
+  bool    prevState;
+  bool    state;
+  uint8_t prevReading;
+  uint8_t reading;
+  bool    latched;
+  bool    ledLit;
 
   // unsigned long lastStartHitTime;
   // unsigned long lastEndHitTime;

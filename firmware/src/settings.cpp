@@ -137,16 +137,16 @@ static bool loadInput(input_control* jack, uint8_t idx) {
       jack->ledPin  = 7;
       break;
     case 3:
-      jack->dataPin = 15;
+      jack->dataPin = 16;
       jack->ledPin  = 255;
-      jack->analog  = ResponsiveAnalogRead(15, true);
+      jack->analog  = ResponsiveAnalogRead(16, false);
       jack->analog.setAnalogResolution(1023);
       jack->analog.enableEdgeSnap();
       break;
     case 4:
-      jack->dataPin = 16;
+      jack->dataPin = 15;
       jack->ledPin  = 255;
-      jack->analog  = ResponsiveAnalogRead(16, true);
+      jack->analog  = ResponsiveAnalogRead(15, false);
       jack->analog.setAnalogResolution(1023);
       jack->analog.enableEdgeSnap();
       break;
