@@ -175,25 +175,33 @@ static void crankButton(input_control* jack) {
   jack->prevState = pinReading;
 }
 
+static uint16_t readingToMidiValue(input_control* jack, uint16_t aReading) {
+  return map(constrain(aReading, jack->rawThreshold, jack->rawSensitivity),
+             jack->rawThreshold,
+             jack->rawSensitivity,
+             0,
+             127);
+}
+
 static void crankExpressionPedal(input_control* jack) {
   jack->analog.update();
 
   if (jack->analog.hasChanged()) {
     uint16_t apinReading = jack->analog.getValue();
-    jack->reading = map(apinReading, jack->rawThreshold, jack->rawSensitivity, 0, 127);
+    jack->reading        = readingToMidiValue(jack, apinReading);
 
     if (jack->prevReading != jack->reading) {
+#if CONTROLS_DEBUG_MODE
+      Serial.print(apinReading);
+      Serial.print("\tCC ");
+      Serial.print(jack->reading);
+      Serial.println("");
+#endif // if CONTROLS_DEBUG_MODE
+
       // fire action
       buttonStateChanged(jack);
       jack->prevReading = jack->reading;
     }
-
-#if CONTROLS_DEBUG_MODE
-    Serial.print(apinReading);
-    Serial.print("\tCC ");
-    Serial.print(jack->reading);
-    Serial.println("");
-#endif // if CONTROLS_DEBUG_MODE
   }
 }
 
@@ -220,27 +228,28 @@ static void crankTrigger(input_control* jack) {
       jack->scanPeak = apinReading;
     }
     if (jack->scanTime >= 10) {
-      jack->reading =
-          map(jack->scanPeak, jack->rawThreshold, jack->rawSensitivity, 0, 127);
+      jack->reading   = readingToMidiValue(jack, jack->scanPeak);
       jack->scanState = 2;
       jack->scanTime  = 0;
 
+      if (jack->reading > 0) {
 #if CONTROLS_DEBUG_MODE
-      Serial.print("[Hit] ");
-      Serial.print("pin: ");
-      Serial.print(jack->dataPin);
-      Serial.print(", raw: ");
-      Serial.print(jack->scanPeak);
-      Serial.print(", thresh: ");
-      Serial.print(jack->rawThreshold);
-      Serial.print(", sens: ");
-      Serial.print(jack->rawSensitivity);
-      Serial.print(", velocity: ");
-      Serial.print(jack->reading);
-      Serial.println();
+        Serial.print("[Hit] ");
+        Serial.print("pin: ");
+        Serial.print(jack->dataPin);
+        Serial.print(", raw: ");
+        Serial.print(jack->scanPeak);
+        Serial.print(", thresh: ");
+        Serial.print(jack->rawThreshold);
+        Serial.print(", sens: ");
+        Serial.print(jack->rawSensitivity);
+        Serial.print(", velocity: ");
+        Serial.print(jack->reading);
+        Serial.println();
 #endif // if CONTROLS_DEBUG_MODE
 
-      buttonStateChanged(jack);
+        buttonStateChanged(jack);
+      }
     }
   } else {
     // Ignore Aftershock state: wait for things to be quiet again
