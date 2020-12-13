@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import { hardwareTestShape } from '../../../core/shapes'
 import { once } from '../../../core/fp/utils'

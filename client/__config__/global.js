@@ -1,5 +1,5 @@
 /* eslint-disable no-console, import/no-extraneous-dependencies */
-import React from 'react'
+import { createElement } from 'react'
 import curry from 'lodash/curry'
 import { compose } from 'redux'
 import { configure, mount, render, shallow } from 'enzyme'
@@ -18,7 +18,7 @@ global.mount = mount
 //   throw new Error(message)
 // }
 
-const noChildrenCreateElement = (Component, props) => React.createElement(Component, props)
+const noChildrenCreateElement = (Component, props) => createElement(Component, props)
 global.createElement = curry(noChildrenCreateElement)
 
 global.shallowExpect = Component => compose(

@@ -1,4 +1,3 @@
-import React from 'react'
 import set from 'lodash/fp/set'
 import { STATUS_CONTROL_CHANGE } from 'zds-pickers'
 import { STATUS_NOTE_ON } from 'zds-pickers/dist/midi/statuses'

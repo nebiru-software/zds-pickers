@@ -1,4 +1,3 @@
-import React from 'react'
 import set from 'lodash/fp/set'
 import { shifter } from '../../../__mocks__'
 import { MidiSecurity, mapStateToProps } from './MidiSecurity'

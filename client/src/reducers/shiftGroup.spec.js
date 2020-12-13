@@ -1,4 +1,3 @@
-import React from 'react'
 import deepFreeze from 'deep-freeze'
 import { STATUS_NOTE_OFF, STATUS_NOTE_ON } from 'zds-pickers'
 import InputStatusIcon from '../components/InputStatusIcon'

@@ -1,4 +1,3 @@
-import React from 'react'
 import flow from 'lodash/fp/flow'
 import set from 'lodash/fp/set'
 import { SORT_ASC, SORT_BY_CHANNEL, SORT_DESC, SORT_ON_INPUT, SORT_ON_OUTPUT } from '../../reducers/shiftGroup'

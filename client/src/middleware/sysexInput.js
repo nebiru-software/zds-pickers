@@ -21,43 +21,43 @@ export default ({ dispatch }) => next => (action) => {
   }
 
   switch (type) {
-    case RECEIVE_MIDI_MESSAGE:
-      debouncedIdle()
-      processMidiMessage(dispatch, payload)
-      clearTimeout(midiInTimer)
-      dispatch(shifterActions.midiInActivityChanged(true))
-      /* istanbul ignore next */
-      midiInTimer = setTimeout(() => {
-        dispatch(shifterActions.midiInActivityChanged(false))
-      }, flickerTimeout)
-      break
+  case RECEIVE_MIDI_MESSAGE:
+    debouncedIdle()
+    processMidiMessage(dispatch, payload)
+    clearTimeout(midiInTimer)
+    dispatch(shifterActions.midiInActivityChanged(true))
+    /* istanbul ignore next */
+    midiInTimer = setTimeout(() => {
+      dispatch(shifterActions.midiInActivityChanged(false))
+    }, flickerTimeout)
+    break
 
-    case SEND_MIDI_MESSAGE:
-      clearTimeout(midiOutTimer)
-      dispatch(shifterActions.midiOutActivityChanged(true))
-      /* istanbul ignore next */
-      midiOutTimer = setTimeout(() => {
-        dispatch(shifterActions.midiOutActivityChanged(false))
-      }, flickerTimeout)
-      break
+  case SEND_MIDI_MESSAGE:
+    clearTimeout(midiOutTimer)
+    dispatch(shifterActions.midiOutActivityChanged(true))
+    /* istanbul ignore next */
+    midiOutTimer = setTimeout(() => {
+      dispatch(shifterActions.midiOutActivityChanged(false))
+    }, flickerTimeout)
+    break
 
-    case actionTypes.SHIFTER_FOUND:
-      // istanbul ignore next
-      waitForVersionTimer = setTimeout(() => {
-        // TODO: why is this firing?
-        dispatch(shifterActions.notResponding())
-      }, assumeNotRespondingTimeout)
-      dispatch(versionActions.checkVersion())
-      dispatch(versionActions.checkModel())
-      break
+  case actionTypes.SHIFTER_FOUND:
+    // istanbul ignore next
+    waitForVersionTimer = setTimeout(() => {
+      // TODO: why is this firing?
+      dispatch(shifterActions.notResponding())
+    }, assumeNotRespondingTimeout)
+    dispatch(versionActions.checkVersion())
+    dispatch(versionActions.checkModel())
+    break
 
     // istanbul ignore next
-    case actionTypes.RECEIVED_VERSION:
-      clearTimeout(waitForVersionTimer)
-      break
+  case actionTypes.RECEIVED_VERSION:
+    clearTimeout(waitForVersionTimer)
+    break
 
-    default:
-      break
+  default:
+    break
   }
   return next(action)
 }

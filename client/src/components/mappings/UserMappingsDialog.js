@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import { validateContent } from 'zds-mappings'
 import { FilePicker } from 'nebiru-react-file-picker'
 import Button from '@material-ui/core/Button'

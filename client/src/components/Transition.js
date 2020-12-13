@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import { forwardRef } from 'react'
 import Slide from '@material-ui/core/Slide'
 
 export default /* istanbul ignore next */ forwardRef((props, ref) => (

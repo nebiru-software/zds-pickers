@@ -22,12 +22,12 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [
+    '@studysync/jsx-conditionals',
     '@studysync/material-ui',
     '@studysync/persnickety',
     'custom-jsx-props-order',
     'jest',
     'json',
-    'jsx-conditionals',
     'markdown',
     'ocd',
     'prettier',
@@ -78,6 +78,7 @@ module.exports = {
     },
   },
   rules: {
+    '@studysync/jsx-conditionals/ensure-booleans': 'error',
     '@studysync/material-ui/import-alias-index': ['error', { aliases: [
       '@config',
       '@data',
@@ -145,7 +146,15 @@ module.exports = {
       },
     ],
     'import/default': 'error',
-    'jsx-conditionals/ensure-booleans': 'error',
+    indent: [
+      'error',
+      2,
+      {
+        ignoredNodes: [
+          'TemplateLiteral',
+        ],
+      },
+    ],
     'max-len': [
       'error',
       {
@@ -226,13 +235,14 @@ module.exports = {
     'react/jsx-no-undef': 'error',
     'react/jsx-one-expression-per-line': 'off',
     'react/jsx-props-no-spreading': 'off',
-    "react/jsx-uses-react": "off",
+    'react/jsx-uses-react': 'off',
     'react/no-array-index-key': 'off',
     'react/no-danger': 'off',
     'react/jsx-pascal-case': 'error',
     'react/prop-types': ['error', { ignore: ['className'] }],
-    "react/react-in-jsx-scope": "off",
+    'react/react-in-jsx-scope': 'off',
     semi: ['error', 'never'],
+    'template-curly-spacing': ['off'],
   },
   overrides: [
     {
@@ -254,7 +264,7 @@ module.exports = {
       files: ['**/*.stories.js'],
       rules: {
         'import/no-extraneous-dependencies': 'off',
-        'jsx-conditionals/ensure-booleans': 'off',
+        '@studysync/jsx-conditionals/ensure-booleans': 'off',
         'max-len': 'off',
       },
     },

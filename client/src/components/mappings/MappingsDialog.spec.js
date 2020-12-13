@@ -1,4 +1,3 @@
-import React from 'react'
 import { mappings } from '../../../__mocks__'
 import MappingsDialog from './MappingsDialog'
 

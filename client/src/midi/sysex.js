@@ -38,28 +38,28 @@ export const marshalMSB = (data = []) => {
   let c
 
   switch (data.length) {
-    case 0:
-      break
-    case 1:
-      result.push(0, data[0])
-      break
-    default:
-      for (i = 0; i < data.length - 1;) {
-        for (j = 0, c = 0; j < 7 && i < data.length; ++j) {
-          // collect d7 bits from next seven bytes
-          if (data[i++] & 0x80) {
-            // if d7 set
-            c |= 1 << j // collect it
-          }
-        }
-
-        result.push(c) // send d7 byte
-        while (j) {
-          // send the seven bytes (or whatever was left at the end)
-          result.push(data[i - j--] & ~0x80) // with d7 clear
+  case 0:
+    break
+  case 1:
+    result.push(0, data[0])
+    break
+  default:
+    for (i = 0; i < data.length - 1;) {
+      for (j = 0, c = 0; j < 7 && i < data.length; ++j) {
+        // collect d7 bits from next seven bytes
+        if (data[i++] & 0x80) {
+          // if d7 set
+          c |= 1 << j // collect it
         }
       }
-      break
+
+      result.push(c) // send d7 byte
+      while (j) {
+        // send the seven bytes (or whatever was left at the end)
+        result.push(data[i - j--] & ~0x80) // with d7 clear
+      }
+    }
+    break
   }
 
   return result

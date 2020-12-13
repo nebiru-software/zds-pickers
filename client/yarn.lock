@@ -2243,6 +2243,11 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@studysync/eslint-plugin-jsx-conditionals@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@studysync/eslint-plugin-jsx-conditionals/-/eslint-plugin-jsx-conditionals-2.0.1.tgz#6f6718dc97ab82367e291049e684c8b40178ba05"
+  integrity sha512-1oKYM7Qd74sMEEE9BClXzXF5VLhVhJKdVSON3nQnnekYOBaLrIXk2uf+vk87CdE2z0pUUjc6PZJto6ew4a/sYA==
+
 "@studysync/eslint-plugin-material-ui@0.3.3":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@studysync/eslint-plugin-material-ui/-/eslint-plugin-material-ui-0.3.3.tgz#c2c09b04293779c98b506879cc1a5632b35fe7bf"
@@ -5143,11 +5148,6 @@ eslint-plugin-jsx-a11y@6.4.1:
     has "^1.0.3"
     jsx-ast-utils "^3.1.0"
     language-tags "^1.0.5"
-
-eslint-plugin-jsx-conditionals@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jsx-conditionals/-/eslint-plugin-jsx-conditionals-2.0.0.tgz#2b238cf7c0fdfde15fd0331d7b7a593f9bac4898"
-  integrity sha512-N1aMlqLciuVXZfYKE+K5W/Od2dvCyLeYSdsfu5XLFM16AncuMuqo1zQ9Dyl7dv5+qh+wQEjIQCe/7dG76cjdBw==
 
 eslint-plugin-markdown@1.0.2:
   version "1.0.2"

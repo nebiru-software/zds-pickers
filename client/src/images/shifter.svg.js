@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default () => (
   <svg x="0" y="0" width="240" height="57" viewBox="0, 0, 480, 114">
     <g id="zds_text">

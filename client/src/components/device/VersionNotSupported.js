@@ -1,4 +1,3 @@
-import React from 'react'
 import { connect } from 'react-redux'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogContent from '@material-ui/core/DialogContent'

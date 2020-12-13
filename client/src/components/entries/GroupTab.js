@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import Tab from '@material-ui/core/Tab'

@@ -1,4 +1,3 @@
-import React from 'react'
 import { shifter, store } from '../../../__mocks__'
 import actionTypes from '../../reducers/actionTypes'
 import { ExportSettings, mapDispatchToProps, mapStateToProps } from './ExportSettings'

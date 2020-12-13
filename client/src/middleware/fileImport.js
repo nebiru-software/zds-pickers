@@ -5,13 +5,13 @@ export default store => next => (action) => {
   const result = next(action)
 
   switch (action.type) {
-    case actionTypes.IMPORT_SETTINGS:
-      importFile(store, action)
-      break
+  case actionTypes.IMPORT_SETTINGS:
+    importFile(store, action)
+    break
 
     // istanbul ignore next
-    default:
-      break
+  default:
+    break
   }
 
   return result

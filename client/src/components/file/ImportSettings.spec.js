@@ -1,4 +1,3 @@
-import React from 'react'
 import { shifter } from '../../../__mocks__'
 import { ImportSettings, mapDispatchToProps, mapStateToProps } from './ImportSettings'
 

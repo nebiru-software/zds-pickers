@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { PureComponent } from 'react'
+import { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { DragSource } from 'react-dnd'
 import { createDragPreview } from 'react-dnd-text-dragpreview'
@@ -108,21 +108,21 @@ class GridRow extends PureComponent {
       let label
 
       switch (status) {
-        case STATUS_NOTE_ON:
-        case STATUS_NOTE_OFF:
-          entryData = getNoteValue(channels, channel, value)
-          label = entryData ? entryData.name : ''
-          break
+      case STATUS_NOTE_ON:
+      case STATUS_NOTE_OFF:
+        entryData = getNoteValue(channels, channel, value)
+        label = entryData ? entryData.name : ''
+        break
 
-        case STATUS_CONTROL_CHANGE:
-          label = ccValues[value].label
-            .split(' ')
-            .slice(1)
-            .join(' ')
-          break
+      case STATUS_CONTROL_CHANGE:
+        label = ccValues[value].label
+          .split(' ')
+          .slice(1)
+          .join(' ')
+        break
 
-        default:
-          break
+      default:
+        break
       }
 
       return FormattedValue(value, label)

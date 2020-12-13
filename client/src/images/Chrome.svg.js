@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default (props) => (
   <svg viewBox="1 1 176 176" {...props}>
     <defs>

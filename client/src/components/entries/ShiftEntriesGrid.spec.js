@@ -1,6 +1,4 @@
-import React from 'react'
-// import flow from 'lodash/fp/flow'
-import set from 'lodash/fp/set'
+import set from 'lodash/fp/set';
 import { SORT_ASC, SORT_BY_CHANNEL, SORT_ON_INPUT } from '../../reducers/shiftGroup'
 import { group } from '../../../__mocks__/shiftGroups'
 import ShiftEntriesGrid from './ShiftEntriesGrid'

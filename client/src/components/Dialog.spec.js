@@ -1,4 +1,3 @@
-import React from 'react'
 import Dialog from './Dialog'
 
 const props = { open: true }

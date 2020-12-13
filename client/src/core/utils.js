@@ -31,14 +31,14 @@ export const getSetting = (key, defaultValue) => {
   const value = localStorage.getItem(key)
   if (value !== null) {
     switch (typeof defaultValue) {
-      case 'boolean':
-        return value === 'true'
-      case 'number':
-        return parseInt(value, 10)
-      case 'object':
-        return JSON.parse(value)
-      default:
-        return value
+    case 'boolean':
+      return value === 'true'
+    case 'number':
+      return parseInt(value, 10)
+    case 'object':
+      return JSON.parse(value)
+    default:
+      return value
     }
   }
   return defaultValue

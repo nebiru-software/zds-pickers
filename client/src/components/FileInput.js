@@ -1,4 +1,3 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 
 const adaptFileEventToValue = delegate => e => delegate(e.target.files[0])

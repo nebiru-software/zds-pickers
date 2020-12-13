@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default () =>
   (<svg viewBox="0 0 160 160">
     <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">

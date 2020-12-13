@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default props => (
   <svg
     x="0px"

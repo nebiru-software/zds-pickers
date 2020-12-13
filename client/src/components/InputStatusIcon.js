@@ -1,4 +1,3 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 import { STATUS_NOTE_OFF } from 'zds-pickers'
 

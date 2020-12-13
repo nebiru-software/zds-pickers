@@ -1,4 +1,3 @@
-import React from 'react'
 import LEDModePicker from './LEDModePicker'
 
 const setFlags = jest.fn()

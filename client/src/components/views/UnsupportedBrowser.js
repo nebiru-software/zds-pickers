@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from '../../styles/unsupportedBrowser.scss'
 import ChromeIcon from '../../images/Chrome.svg.js'
 import OperaIcon from '../../images/Opera.svg.js'

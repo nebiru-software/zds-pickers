@@ -1,5 +1,4 @@
 /* eslint-disable no-plusplus, no-mixed-operators */
-import React from 'react'
 import shallowEqual from 'shallowequal'
 import { statuses } from 'zds-pickers'
 import { omit } from '../core/fp/objects'

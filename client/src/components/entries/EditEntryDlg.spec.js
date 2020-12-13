@@ -1,4 +1,3 @@
-import React from 'react'
 import set from 'lodash/fp/set'
 import { mappings, shiftGroups } from '../../../__mocks__'
 import { EditEntryDlg, mapDispatchToProps, mapStateToProps } from './EditEntryDlg'

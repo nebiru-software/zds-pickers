@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { assertRange } from 'zds-pickers'
 import { useDispatch, useSelector } from 'react-redux'

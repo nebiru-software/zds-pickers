@@ -1,4 +1,3 @@
-import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import {
@@ -12,15 +11,15 @@ import Led from './Led'
 
 export const isLit = ({ midiInActivity, midiOutActivity, midiActivityLEDMode }) => {
   switch (midiActivityLEDMode) {
-    case ACTIVITY_LED_MODE_NORMALLY_ON:
-      return !midiInActivity && !midiOutActivity
-    case ACTIVITY_LED_MODE_NORMALLY_OFF:
-      return midiInActivity || midiOutActivity
-    case ACTIVITY_LED_MODE_ALWAYS_ON:
-      return true
-    case ACTIVITY_LED_MODE_ALWAYS_OFF:
-    default:
-      return false
+  case ACTIVITY_LED_MODE_NORMALLY_ON:
+    return !midiInActivity && !midiOutActivity
+  case ACTIVITY_LED_MODE_NORMALLY_OFF:
+    return midiInActivity || midiOutActivity
+  case ACTIVITY_LED_MODE_ALWAYS_ON:
+    return true
+  case ACTIVITY_LED_MODE_ALWAYS_OFF:
+  default:
+    return false
   }
 }
 

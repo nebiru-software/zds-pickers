@@ -1,4 +1,3 @@
-import React from 'react'
 import { STATUS_CONTROL_CHANGE, STATUS_NOTE_OFF } from 'zds-pickers'
 import InputStatusIcon from './InputStatusIcon'
 

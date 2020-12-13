@@ -1,6 +1,5 @@
 import flow from 'lodash/fp/flow'
 import set from 'lodash/fp/set'
-import React from 'react'
 import { shifter } from '../../__mocks__'
 import { MidiMenu, mapDispatchToProps, mapStateToProps } from './MidiMenu'
 

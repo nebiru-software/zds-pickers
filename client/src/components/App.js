@@ -1,4 +1,3 @@
-import React from 'react'
 import { hot } from 'react-hot-loader'
 // eslint-disable-next-line @studysync/material-ui/tree-shakeable-imports
 import { MuiThemeProvider as ThemeProvider } from '@material-ui/core/styles'

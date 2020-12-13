@@ -1,4 +1,3 @@
-import React from 'react'
 import { hardwareTestShape } from '../../../core/shapes'
 import Connected from './Connected'
 import FactoryReset from './FactoryReset'

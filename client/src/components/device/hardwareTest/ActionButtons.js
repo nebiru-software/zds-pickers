@@ -1,4 +1,3 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 import DialogActions from '@material-ui/core/DialogActions'
 import Button from '@material-ui/core/Button'
@@ -18,20 +17,20 @@ const ActionButtons = (props) => {
   const nextEnabled = () => !busy && passed
   const nextClicked = () => {
     switch (step) {
-      case 0:
-        performFactoryReset(false)
-        break
-      case 1:
-        sendEntries(true)
-        break
-      case 2:
-        sendMessages()
-        break
-      case 3:
-        performFactoryReset(true)
-        break
-      default:
-        break
+    case 0:
+      performFactoryReset(false)
+      break
+    case 1:
+      sendEntries(true)
+      break
+    case 2:
+      sendMessages()
+      break
+    case 3:
+      performFactoryReset(true)
+      break
+    default:
+      break
     }
     nextStep()
   }

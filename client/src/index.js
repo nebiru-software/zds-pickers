@@ -1,5 +1,4 @@
 import './hotLoaderConfig'
-import React from 'react'
 import { render } from 'react-dom'
 import ReactModal from 'react-modal'
 import { Provider } from 'react-redux'

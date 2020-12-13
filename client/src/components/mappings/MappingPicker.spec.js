@@ -1,4 +1,3 @@
-import React from 'react'
 import MappingPicker from './MappingPicker'
 
 const onChange = jest.fn()

@@ -1,4 +1,3 @@
-import React from 'react'
 import set from 'lodash/fp/set'
 import { STATUS_CONTROL_CHANGE, STATUS_NOTE_ON } from 'zds-pickers'
 import { mappings } from '../../../__mocks__'

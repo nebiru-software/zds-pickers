@@ -101,21 +101,21 @@ export const compareEntry = (sortOn, sortBy, sortDir) => ({ input: ai, output: a
   }
 
   switch (sortBy) {
-    case SORT_BY_ALL:
-      result = compareAll(a, b)
-      break
-    case SORT_BY_CHANNEL:
-      result = compareChannel(a, b)
-      break
-    case SORT_BY_MESSAGE:
-      result = compareStatus(a, b)
-      break
-    case SORT_BY_VALUE:
-      result = compareValue(a, b)
-      break
+  case SORT_BY_ALL:
+    result = compareAll(a, b)
+    break
+  case SORT_BY_CHANNEL:
+    result = compareChannel(a, b)
+    break
+  case SORT_BY_MESSAGE:
+    result = compareStatus(a, b)
+    break
+  case SORT_BY_VALUE:
+    result = compareValue(a, b)
+    break
     // istanbul ignore next
-    default:
-      break
+  default:
+    break
   }
 
   if (sortDir === SORT_DESC) {

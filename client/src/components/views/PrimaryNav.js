@@ -1,4 +1,3 @@
-import React from 'react'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import { border, padding } from 'polished'
 import UserInfo from '../user/UserInfo'

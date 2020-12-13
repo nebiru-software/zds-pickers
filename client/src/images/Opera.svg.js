@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default props => (
   <svg viewBox="0 0 120 120" {...props}>
     <linearGradient

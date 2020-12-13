@@ -1,4 +1,3 @@
-import React from 'react'
 import { DragDropContext, DragDropContextProvider } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 import makeStyles from '@material-ui/core/styles/makeStyles'

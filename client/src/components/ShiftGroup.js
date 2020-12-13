@@ -1,4 +1,3 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 import GridControls from './entries/GridControls'
 import GridHeader from './entries/GridHeader'

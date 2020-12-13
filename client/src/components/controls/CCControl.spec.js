@@ -1,4 +1,3 @@
-import React from 'react'
 import set from 'lodash/fp/set'
 import flow from 'lodash/fp/flow'
 import CCControl from './CCControl'

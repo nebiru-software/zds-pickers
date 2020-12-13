@@ -67,62 +67,62 @@ function* handleReceiveMessage({ payload: { device, data } }) {
     let serialNumber
 
     switch (command) {
-      case SYSEX_MSG_RECEIVE_VERSION:
-        // TODO: find more functional way to do this.
-        // Trim SysEx header and footer
-        serial = [...packet].slice(1, packet.length - 2)
-        // Remove any trailing zeros (but none within!)
-        while (serial.length && serial[serial.length - 1] === 0) {
-          serial.pop()
-        }
+    case SYSEX_MSG_RECEIVE_VERSION:
+      // TODO: find more functional way to do this.
+      // Trim SysEx header and footer
+      serial = [...packet].slice(1, packet.length - 2)
+      // Remove any trailing zeros (but none within!)
+      while (serial.length && serial[serial.length - 1] === 0) {
+        serial.pop()
+      }
 
-        // eslint-disable-next-line prefer-destructuring
-        firmware = packet[0]
-        serialNumber = serial.reduce((val, char) => val + String.fromCharCode(char), '')
+      // eslint-disable-next-line prefer-destructuring
+      firmware = packet[0]
+      serialNumber = serial.reduce((val, char) => val + String.fromCharCode(char), '')
 
-        yield put(versionActions.receivedVersion(firmware, serialNumber))
-        // yield put(userActions.checkRegistration(serialNumber, firmware))
+      yield put(versionActions.receivedVersion(firmware, serialNumber))
+      // yield put(userActions.checkRegistration(serialNumber, firmware))
 
-        yield put(actions.askForControls())
-        yield put(shiftGroupActions.askForGroups())
-        break
+      yield put(actions.askForControls())
+      yield put(shiftGroupActions.askForGroups())
+      break
 
-      case SYSEX_MSG_RECEIVE_MODEL:
-        yield put(versionActions.receivedModel(packet[0] === 1))
-        break
+    case SYSEX_MSG_RECEIVE_MODEL:
+      yield put(versionActions.receivedModel(packet[0] === 1))
+      break
 
-      case SYSEX_MSG_SEND_CONTROLS:
-        /* istanbul ignore if */
-        if (controlsPresent(packet) && controlsValid(packet)) {
-          yield put(actions.receivedControls(packet))
-        } else {
-          throw new Error('Invalid or missing control data received')
-        }
-        break
+    case SYSEX_MSG_SEND_CONTROLS:
+      /* istanbul ignore if */
+      if (controlsPresent(packet) && controlsValid(packet)) {
+        yield put(actions.receivedControls(packet))
+      } else {
+        throw new Error('Invalid or missing control data received')
+      }
+      break
 
-      case SYSEX_MSG_SEND_GROUPS:
-        /* istanbul ignore if */
-        if (groupsPresent(packet) && groupsValid(packet)) {
-          yield put(shiftGroupActions.receivedGroups(packet))
-        } else {
-          throw new Error('Invalid or missing group data received')
-        }
-        break
+    case SYSEX_MSG_SEND_GROUPS:
+      /* istanbul ignore if */
+      if (groupsPresent(packet) && groupsValid(packet)) {
+        yield put(shiftGroupActions.receivedGroups(packet))
+      } else {
+        throw new Error('Invalid or missing group data received')
+      }
+      break
 
-      case SYSEX_MSG_GET_STATE:
-        yield put(actions.receivedInternalState(packet))
-        break
+    case SYSEX_MSG_GET_STATE:
+      yield put(actions.receivedInternalState(packet))
+      break
 
-      case SYSEX_MSG_AVAILABILITY:
-        yield put(shifterActions.receivedAvailability(packet[0] === 1))
-        break
+    case SYSEX_MSG_AVAILABILITY:
+      yield put(shifterActions.receivedAvailability(packet[0] === 1))
+      break
 
-      case SYSEX_MSG_BACKUP:
-        yield put(shifterActions.receivedExportPacket(packet))
-        break
+    case SYSEX_MSG_BACKUP:
+      yield put(shifterActions.receivedExportPacket(packet))
+      break
 
-      default:
-        throw new Error('Unknown SysEx message received: ', command)
+    default:
+      throw new Error('Unknown SysEx message received: ', command)
     }
   }
 }

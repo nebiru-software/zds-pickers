@@ -1,4 +1,3 @@
-import React from 'react'
 import flow from 'lodash/fp/flow'
 import set from 'lodash/fp/set'
 import { STATUS_AFTER_TOUCH, STATUS_CONTROL_CHANGE, STATUS_NOTE_OFF, STATUS_NOTE_ON } from 'zds-pickers'

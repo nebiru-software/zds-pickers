@@ -1,4 +1,3 @@
-import React from 'react'
 import set from 'lodash/fp/set'
 import { mappings, shiftGroups, shifter, user } from '../../../__mocks__'
 import { GridControls } from './GridControls'

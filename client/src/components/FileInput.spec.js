@@ -1,4 +1,3 @@
-import React from 'react'
 import flow from 'lodash/fp/flow'
 import set from 'lodash/fp/set'
 import FileInput from './FileInput'
