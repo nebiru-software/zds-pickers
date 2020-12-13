@@ -9,7 +9,7 @@ export default theme => produce(theme, (draft) => {
     tabBorderWidth: 4,
     tabsHeight: 48,
     viewportMargin: 30,
-    viewportWidth: 800,
+    viewportWidth: 900,
   }
 
   draft.constants = { ...constants }

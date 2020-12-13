@@ -1,4 +1,5 @@
 import React from 'react'
+import { hot } from 'react-hot-loader'
 // eslint-disable-next-line @studysync/material-ui/tree-shakeable-imports
 import { MuiThemeProvider as ThemeProvider } from '@material-ui/core/styles'
 import BrowserDetection from 'react-browser-detection'
@@ -48,4 +49,4 @@ const App = () => {
   )
 }
 
-export default App
+export default hot(module)(App)

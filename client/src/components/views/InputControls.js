@@ -10,6 +10,8 @@ import MidiMenu from '../MidiMenu'
 import WaitingOnShifter from '../WaitingOnShifter'
 import { stateInputControls, stateShifter } from '../../selectors'
 
+const width = 680
+
 const useStyles = makeStyles(({ constants, palette }) => ({
   root: {
     height: constants.inputControlsHeight,
@@ -21,7 +23,8 @@ const useStyles = makeStyles(({ constants, palette }) => ({
     color: palette.text.inverted,
 
     '& > div': {
-      maxWidth: 500,
+      minWidth: width,
+      maxWidth: width,
       minHeight: 250,
       display: 'flex',
       flexFlow: 'column nowrap',
@@ -36,7 +39,7 @@ const useStyles = makeStyles(({ constants, palette }) => ({
         flexFlow: 'row nowrap',
         justifyContent: 'space-between',
         alignItems: 'center',
-        minWidth: 490,
+        minWidth: width,
         minHeight: 200,
       },
     },
