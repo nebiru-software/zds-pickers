@@ -1,0 +1,65 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+import Typography from '@material-ui/core/Typography'
+import useTheme from '@material-ui/core/styles/useTheme'
+import { border } from 'polished'
+import { withRegistrationMarks, withStore } from '../../../../../.storybook/decorators'
+import DebouncedTextField from './DebouncedTextField'
+
+<Meta
+  component={DebouncedTextField}
+  title="Components/Form Controls/Text/DebouncedTextField"
+/>
+
+# DebouncedTextField
+
+<Canvas withToolbar>
+  <Story
+    decorators={[withRegistrationMarks, withStore()]}
+    name="sample"
+  >
+    {() => {
+      const { palette } = useTheme()
+      const [events, setEvents] = React.useState([])
+      const handleChange = ({ target }) => {
+        setEvents([...events, `onChange: ${target.value}`])
+      }
+      return (
+        <React.Fragment>
+          <DebouncedTextField
+            label="Type here"
+            onChange={handleChange}
+            value=""
+          />
+          <div style={{
+            ...border(1, 'solid', palette.grey[400]),
+            backgroundColor: palette.grey[200],
+            borderRadius: 5,
+            marginTop: '4rem',
+            padding: '1rem',
+            maxWidth: 400,
+            minHeight: 80,
+          }}
+          >
+            <Typography
+              style={border('bottom', 1, 'solid', palette.grey[400])}
+              variant="h5"
+            >
+              Events
+            </Typography>
+            <div style={{
+              overflow: 'auto',
+              maxHeight: 100,
+            }}
+            >
+              {events.map((event, key) => (
+                <div key={key}>{event}</div>
+              ))}
+            </div>
+          </div>
+        </React.Fragment>
+      )
+    }}
+  </Story>
+</Canvas>
+
+<ArgsTable of={DebouncedTextField} />

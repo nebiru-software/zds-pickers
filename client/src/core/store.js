@@ -5,6 +5,7 @@ import * as reducers from 'reducers/index'
 import sagas from 'sagas/index'
 import { isDevEnv } from 'selectors/index'
 import { sortObject } from 'fp/objects'
+import promiseListener from './promiseListener'
 
 const combinedReducers = combineReducers(sortObject(reducers))
 const sagaMiddleware = createSagaMiddleware()
@@ -34,7 +35,7 @@ const createLoggerMiddleware = async () => {
 
 const buildMiddlewares = async (isDev) => {
   const { inputMiddleware, outputMiddleware } = setup({ midiOptions: { sysex: true } })
-  const result = [inputMiddleware, outputMiddleware, sagaMiddleware]
+  const result = [inputMiddleware, outputMiddleware, promiseListener.middleware, sagaMiddleware]
   /* istanbul ignore next */
   if (isDev) {
     result.push(await createLoggerMiddleware())

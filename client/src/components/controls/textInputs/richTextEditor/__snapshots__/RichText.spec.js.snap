@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RichText /> should render 1`] = `
+<Quill
+  formats={
+    Array [
+      "header",
+      "bold",
+      "italic",
+      "underline",
+      "strike",
+      "list",
+      "bullet",
+      "indent",
+      "link",
+      "video",
+    ]
+  }
+  modules={
+    Object {
+      "toolbar": Array [
+        Array [
+          Object {
+            "header": Array [
+              false,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+            ],
+          },
+        ],
+        Array [
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+        ],
+        Array [
+          Object {
+            "list": "ordered",
+          },
+          Object {
+            "list": "bullet",
+          },
+          Object {
+            "indent": "-1",
+          },
+          Object {
+            "indent": "+1",
+          },
+        ],
+        Array [
+          "link",
+          "video",
+        ],
+      ],
+    }
+  }
+  onChange={[MockFunction]}
+  theme="snow"
+  value="<h1>header</h1><p>paragraph <strong>strong</strong> text</p>"
+/>
+`;

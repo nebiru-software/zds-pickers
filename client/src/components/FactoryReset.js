@@ -1,21 +1,24 @@
-import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogActions from '@material-ui/core/DialogActions'
 import LinearProgress from '@material-ui/core/LinearProgress'
-import { shifterShape } from '../core/shapes'
+import { useDispatch, useSelector } from 'react-redux'
+import { actions } from 'reducers/shifter'
+import { stateShifter } from 'selectors/index'
 import Dialog from './Dialog'
 
-const FactoryReset = (props) => {
-  const { confirmFactoryReset, performFactoryReset, shifter } = props
-  const { resetInProcess, showResetDialog } = shifter
+const FactoryReset = () => {
+  const dispatch = useDispatch()
+  const { resetInProcess, showResetDialog } = useSelector(stateShifter)
+  // const { confirmFactoryReset, performFactoryReset, shifter } = props
+  // const { resetInProcess, showResetDialog } = shifter
 
   return (
     <>
       <Dialog
-        onClose={/* istanbul ignore next */ () => confirmFactoryReset(false)}
+        onClose={/* istanbul ignore next */ () => dispatch(actions.confirmFactoryReset(false))}
         open={showResetDialog}
       >
         <DialogTitle>Confirm Factory Reset</DialogTitle>
@@ -29,7 +32,7 @@ const FactoryReset = (props) => {
         </DialogContent>
         <DialogActions>
           <Button
-            onClick={() => confirmFactoryReset(false)}
+            onClick={() => dispatch(actions.confirmFactoryReset(false))}
             tag="btnCancel"
           >
             Cancel
@@ -37,7 +40,7 @@ const FactoryReset = (props) => {
           <Button
             autoFocus
             color="primary"
-            onClick={() => performFactoryReset(true)}
+            onClick={() => dispatch(actions.performFactoryReset(true))}
             tag="btnOk"
             variant="contained"
           >
@@ -55,12 +58,6 @@ const FactoryReset = (props) => {
       </Dialog>
     </>
   )
-}
-
-FactoryReset.propTypes = {
-  shifter: shifterShape.isRequired,
-  confirmFactoryReset: PropTypes.func.isRequired,
-  performFactoryReset: PropTypes.func.isRequired,
 }
 
 export default FactoryReset

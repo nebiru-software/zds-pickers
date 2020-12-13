@@ -81,6 +81,16 @@ export default theme => produce(theme, (draft) => {
         paddingBottom: 3,
       },
     },
+    MuiListItemIcon: {
+      root: {
+        minWidth: 40,
+      },
+    },
+    MuiListItemText: {
+      inset: {
+        paddingLeft: 'unset',
+      },
+    },
     MuiMenuItem: {
       root: {
         paddingTop: 5,

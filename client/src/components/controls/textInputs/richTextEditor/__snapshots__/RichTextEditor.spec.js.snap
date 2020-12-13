@@ -1,0 +1,1847 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RichTextEditor /> should render 1`] = `
+<ThemeProvider
+  theme={
+    Object {
+      "breakpoints": Object {
+        "between": [Function],
+        "down": [Function],
+        "keys": Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ],
+        "only": [Function],
+        "up": [Function],
+        "values": Object {
+          "lg": 1150,
+          "md": 850,
+          "sm": 768,
+          "xl": 1264,
+          "xs": 0,
+        },
+        "width": [Function],
+      },
+      "direction": "ltr",
+      "globals": Object {
+        ".ss-typography": Object {
+          "&[class*=\\"--bold\\"]": Object {
+            "fontWeight": 600,
+          },
+          "&[class*=\\"--caps\\"]": Object {
+            "textTransform": "uppercase",
+          },
+          "&[class*=\\"--extq\\"]": Object {
+            "& p": Object {
+              "display": "inline-block",
+              "margin": 0,
+            },
+            "marginBottom": "0.5rem",
+          },
+          "&[class*=\\"--gutterTop\\"]": Object {
+            "marginTop": "1.5rem",
+          },
+          "&[class*=\\"--short\\"]": Object {
+            "marginBottom": "1rem",
+          },
+          "&[class*=\\"--tall\\"]": Object {
+            "paddingBottom": "1.2rem",
+          },
+          "&[class*=\\"--weight-100\\"]": Object {
+            "fontWeight": 100,
+          },
+          "&[class*=\\"--weight-200\\"]": Object {
+            "fontWeight": 200,
+          },
+          "&[class*=\\"--weight-300\\"]": Object {
+            "fontWeight": 300,
+          },
+          "&[class*=\\"--weight-400\\"]": Object {
+            "fontWeight": 400,
+          },
+          "&[class*=\\"--weight-500\\"]": Object {
+            "fontWeight": 500,
+          },
+          "&[class*=\\"--weight-600\\"]": Object {
+            "fontWeight": 600,
+          },
+          "&[class*=\\"--weight-700\\"]": Object {
+            "fontWeight": 700,
+          },
+          "&[class*=\\"--weight-800\\"]": Object {
+            "fontWeight": 800,
+          },
+          "&[class*=\\"-colorTextSecondary\\"]": Object {
+            "color": "#5b616b",
+          },
+          "&[class*=\\"-headline--assignmentName\\"]": Object {
+            "@media (min-width:1150px)": Object {
+              "fontSize": "2.6rem",
+              "fontWeight": 300,
+              "lineHeight": "3.1rem",
+            },
+            "@media (min-width:850px)": Object {
+              "fontSize": "2.4rem",
+              "fontWeight": 300,
+              "lineHeight": "2.7rem",
+              "width": "87%",
+            },
+            "fontSize": "1.9rem",
+            "fontWeight": 300,
+            "lineHeight": "2.2rem",
+            "margin": 0,
+            "transition": "all 150ms ease-in-out 0ms",
+            "width": "80%",
+          },
+          "&[class*=\\"-headline--description\\"]": Object {
+            "fontSize": "initial",
+            "fontStyle": "italic",
+          },
+          "&[class*=\\"-headline--details\\"]": Object {
+            "& li": Object {
+              "color": "#939598",
+              "fontSize": "1.5rem",
+            },
+            "&>li, &>dd": Object {
+              "margin": 0,
+            },
+            "clear": "both",
+            "content": "\\"\\"",
+            "display": "block",
+            "listStyle": "none",
+            "padding": 0,
+          },
+          "&[class*=\\"-headline--equalSpacing\\"]": Object {
+            "marginBottom": "2rem",
+            "marginTop": "2rem",
+          },
+          "&[class*=\\"-headline--flex\\"]": Object {
+            "& *": Object {
+              "&:first-child": Object {
+                "flex": 1,
+              },
+            },
+            "& .switch__body": Object {
+              "fontSize": "1.7rem",
+            },
+            "alignItems": "center",
+            "display": "flex",
+          },
+          "&[class*=\\"-headline--headline\\"]": Object {
+            "marginBottom": "3rem",
+          },
+          "&[class*=\\"-headline--hr\\"]": Object {
+            "borderBottomColor": "#e1e1e1",
+            "borderBottomStyle": "solid",
+            "borderBottomWidth": 1,
+            "marginBottom": "2rem",
+            "paddingBottom": "1.2rem",
+          },
+          "&[class*=\\"-headline--label\\"]": Object {
+            "marginBottom": "4rem",
+          },
+          "&[class*=\\"-headline--large\\"]": Object {
+            "fontSize": "2.4rem",
+            "fontWeight": 300,
+            "lineHeight": "2.7rem",
+          },
+          "&[class*=\\"-headline--medium\\"]": Object {
+            "fontSize": "1.9rem",
+            "fontWeight": 300,
+            "lineHeight": "2.2rem",
+          },
+          "&[class*=\\"-headline--noHr\\"]": Object {
+            "marginBottom": "2em",
+          },
+          "&[class*=\\"-headline--shortHr\\"]": Object {
+            "borderBottomColor": "#eee",
+            "borderBottomStyle": "solid",
+            "borderBottomWidth": 1,
+            "marginBottom": 0,
+            "paddingBottom": "1.2rem",
+          },
+          "&[class*=\\"-headline--small\\"]": Object {
+            "fontSize": "1.7rem",
+            "fontWeight": 300,
+            "lineHeight": "1.8rem",
+          },
+          "&[class*=\\"-headline--strikethrough\\"]": Object {
+            "& h1,h2,h3,h4,h5,span": Object {
+              "background": "#fff",
+              "display": "inline-block",
+              "fontSize": "inherit",
+              "fontWeight": 300,
+              "margin": 0,
+              "paddingBottom": 0,
+              "paddingLeft": "1em",
+              "paddingRight": "1em",
+              "paddingTop": 0,
+              "position": "relative",
+              "top": -1,
+            },
+            "& span": Object {
+              "&.no-header": Object {
+                "background": "#fff",
+                "display": "inline-block",
+                "fontWeight": 300,
+                "paddingBottom": 0,
+                "paddingLeft": "1em",
+                "paddingRight": "1em",
+                "paddingTop": 0,
+                "position": "relative",
+                "top": -1,
+              },
+              "fontSize": "100%",
+            },
+            "&:before": Object {
+              "background": "linear-gradient(
+          to right,
+          #f5f5f5 0,
+          #e1e1e1 25%,
+          #e1e1e1 75%,
+          #f5f5f5 100%
+        )",
+              "content": "''",
+              "height": 1,
+              "left": 0,
+              "position": "absolute",
+              "top": "0.5em",
+              "width": "100%",
+            },
+            "position": "relative",
+            "textAlign": "center",
+            "whiteSpace": "nowrap",
+          },
+          "&[class*=\\"-headline--xlarge\\"]": Object {
+            "fontSize": "2.6rem",
+            "fontWeight": 300,
+            "lineHeight": "3.1rem",
+          },
+          "&[class*=\\"-headline--xsmall\\"]": Object {
+            "fontSize": "1.4rem",
+            "fontWeight": 300,
+            "lineHeight": "1.8rem",
+          },
+          "&[class*=\\"-headline--xxlarge\\"]": Object {
+            "fontSize": "2.8rem",
+            "fontWeight": 300,
+            "lineHeight": "3.2rem",
+          },
+          "&[class*=\\"-headline--xxsmall\\"]": Object {
+            "fontSize": "1.3rem",
+            "fontWeight": 300,
+            "lineHeight": "1.6rem",
+          },
+          "&[class*=\\"-headline--xxxlarge\\"]": Object {
+            "@media (min-width:850px)": Object {
+              "fontSize": "6rem",
+            },
+            "fontSize": "4rem",
+            "lineHeight": 1,
+          },
+          "&[class*=\\"-text--accent\\"]": Object {
+            "color": "#faa21b",
+          },
+          "&[class*=\\"-text--accentDark\\"]": Object {
+            "color": "#f77e0d",
+          },
+          "&[class*=\\"-text--alt\\"]": Object {
+            "color": "#939598",
+          },
+          "&[class*=\\"-text--capitalize\\"]": Object {
+            "textTransform": "capitalize",
+          },
+          "&[class*=\\"-text--condensed\\"]": Object {
+            "display": "block",
+            "lineHeight": 1.3,
+          },
+          "&[class*=\\"-text--disclaimer\\"]": Object {
+            "color": "#939598",
+            "fontSize": "1.5rem",
+          },
+          "&[class*=\\"-text--failure\\"]": Object {
+            "color": "#da5450",
+          },
+          "&[class*=\\"-text--greyed\\"]": Object {
+            "color": "#5b616b",
+          },
+          "&[class*=\\"-text--italic\\"]": Object {
+            "fontStyle": "italic",
+            "lineHeight": 1.4,
+          },
+          "&[class*=\\"-text--large\\"]": Object {
+            "fontSize": "1.9rem",
+          },
+          "&[class*=\\"-text--light\\"]": Object {
+            "color": "#939598",
+          },
+          "&[class*=\\"-text--lower\\"]": Object {
+            "textTransform": "lowercase",
+          },
+          "&[class*=\\"-text--medium\\"]": Object {
+            "fontSize": "1.7rem",
+          },
+          "&[class*=\\"-text--small\\"]": Object {
+            "fontSize": "1.5rem",
+          },
+          "&[class*=\\"-text--success\\"]": Object {
+            "color": "#689107",
+          },
+          "&[class*=\\"-text--upper\\"]": Object {
+            "textTransform": "uppercase",
+          },
+          "&[class*=\\"-text--white\\"]": Object {
+            "color": "#fff",
+          },
+          "&[class*=\\"-text--xsmall\\"]": Object {
+            "fontSize": "1.3rem",
+          },
+        },
+        "h1": [Function],
+        "h2": [Function],
+        "h3": [Function],
+        "h4": [Function],
+        "h5": [Function],
+        "h6": [Function],
+      },
+      "mixins": Object {
+        "absHeight": [Function],
+        "absWidth": [Function],
+        "borderS": [Function],
+        "clearfix": [Function],
+        "em": [Function],
+        "firefox": [Function],
+        "fontIcon": [Function],
+        "gutters": [Function],
+        "hideForPrint": [Function],
+        "hideForScreen": [Function],
+        "icon": [Function],
+        "iconAfter": [Function],
+        "important": [Function],
+        "importantEm": [Function],
+        "importantMarginR": [Function],
+        "importantPaddingR": [Function],
+        "importantPx": [Function],
+        "importantRem": [Function],
+        "marginEm": [Function],
+        "marginR": [Function],
+        "paddingEm": [Function],
+        "paddingR": [Function],
+        "percentage": [Function],
+        "px": [Function],
+        "rem": [Function],
+        "resetList": [Function],
+        "safari": [Function],
+        "size": [Function],
+        "sizeR": [Function],
+        "textSizeR": [Function],
+        "toolbar": Object {
+          "@media (min-width:0px) and (orientation: landscape)": Object {
+            "minHeight": 48,
+          },
+          "@media (min-width:768px)": Object {
+            "minHeight": 64,
+          },
+          "minHeight": 56,
+        },
+        "transition": [Function],
+        "vertCenter": [Function],
+        "vertScrollFade": [Function],
+        "vertScrollIndicator": [Function],
+        "when": [Function],
+      },
+      "name": "ss",
+      "overrides": Object {
+        "MuiButton": Object {
+          "contained": Object {
+            "&:disabled": Object {
+              "backgroundColor": "#babbbd",
+              "color": "#fff",
+              "opacity": 0.5,
+            },
+            "&:hover": Object {
+              "backgroundColor": "#babbbd",
+              "boxShadow": "none",
+            },
+            "backgroundColor": "#babbbd",
+            "boxShadow": "none",
+            "color": "#fff",
+          },
+          "containedPrimary": Object {
+            "&:disabled": Object {
+              "backgroundColor": "#fca223",
+              "color": "#fff",
+              "opacity": 0.5,
+            },
+            "&:hover": Object {
+              "backgroundColor": "#f77e0d",
+            },
+            "backgroundColor": "#fca223",
+            "boxShadow": "none",
+            "color": "#fff",
+          },
+          "containedSecondary": Object {
+            "&:disabled": Object {
+              "backgroundColor": "#00abe6",
+              "color": "#fff",
+              "opacity": 0.5,
+            },
+            "&:hover": Object {
+              "backgroundColor": "#00abe6",
+            },
+            "boxShadow": "none",
+            "color": "#fff",
+          },
+          "outlined": Object {
+            "&:disabled": Object {
+              "opacity": 0.75,
+            },
+            "background": "none",
+            "borderColor": "#c7c8ca !important",
+            "color": "#939598",
+            "paddingBottom": 0,
+            "paddingTop": 0,
+          },
+          "outlinedPrimary": Object {
+            "&:disabled": Object {
+              "borderColor": "#e1e1e1 !important",
+            },
+            "background": "none",
+            "borderColor": "#faa21b !important",
+            "color": "#f77e0d",
+            "paddingBottom": 0,
+            "paddingTop": 0,
+          },
+          "outlinedSecondary": Object {
+            "&:disabled": Object {
+              "borderColor": "#e1e1e1 !important",
+            },
+            "&:hover": Object {
+              "backgroundColor": "none !important",
+            },
+            "background": "none",
+            "borderColor": "#00abe6 !important",
+            "color": "#00abe6",
+            "paddingBottom": 0,
+            "paddingTop": 0,
+          },
+          "root": Object {
+            "&::before": Object {
+              "opacity": 0.5,
+            },
+            "boxShadow": "none",
+            "color": "#fff",
+            "fontSize": "1.6rem",
+            "fontWeight": 400,
+            "height": "3.2rem",
+            "minHeight": "3.2rem",
+            "paddingBottom": 0,
+            "paddingLeft": "2rem",
+            "paddingRight": "2rem",
+            "paddingTop": 0,
+            "textTransform": "none",
+            "transition": "all 200ms  0ms",
+          },
+          "sizeLarge": Object {
+            "paddingBottom": 0,
+            "paddingTop": 0,
+          },
+          "text": Object {
+            "&:hover": Object {
+              "backgroundColor": "transparent",
+              "color": "#989698",
+            },
+            "background": "none",
+            "color": "#4b4a4b",
+            "paddingBottom": 0,
+            "paddingTop": 0,
+          },
+          "textPrimary": Object {
+            "&:hover": Object {
+              "backgroundColor": "transparent",
+              "color": "#dd8805",
+            },
+            "background": "none",
+            "color": "#f77e0d",
+          },
+          "textSecondary": Object {
+            "&:hover": Object {
+              "backgroundColor": "transparent",
+              "color": "#0085b3",
+            },
+            "background": "none",
+            "color": "#00abe6",
+          },
+        },
+        "MuiButtonGroup": Object {
+          "contained": Object {
+            "boxShadow": "none",
+          },
+          "groupedContainedHorizontal": Object {
+            "&:last-child": Object {
+              "maxWidth": 30,
+              "minWidth": 30,
+              "width": 30,
+            },
+            "&:not(:last-child)": Object {
+              "borderRightColor": "#fff",
+              "borderRightStyle": "solid",
+              "borderRightWidth": 1,
+            },
+          },
+        },
+        "MuiCard": Object {
+          "root": Object {
+            "marginBottom": "2rem",
+          },
+        },
+        "MuiCardHeader": Object {
+          "root": Object {
+            "background": "#f5f5f5",
+            "padding": "1rem 2rem !important",
+          },
+        },
+        "MuiCardMedia": Object {
+          "root": Object {
+            "paddingTop": "56.25%",
+          },
+        },
+        "MuiCircularProgress": Object {
+          "circle": Object {
+            "color": undefined,
+          },
+        },
+        "MuiCollapse": Object {
+          "hidden": Object {
+            "display": "none",
+          },
+        },
+        "MuiDialog": Object {
+          "container": Object {
+            "@media (max-width:849.95px)": Object {
+              "padding": 0,
+            },
+            "bottom": 0,
+            "display": "block",
+            "left": 0,
+            "padding": "10% 0",
+            "position": "fixed",
+            "right": 0,
+            "top": 0,
+          },
+          "paper": Object {
+            "borderRadius": 2,
+            "color": "#1c1c1c",
+            "margin": "0 auto",
+          },
+          "paperFullScreen": Object {
+            "@media (min-width:768px)": Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+          },
+          "paperScrollPaper": Object {
+            "maxHeight": "fit-content",
+          },
+          "paperWidthLg": Object {
+            "@media (max-width:849.95px)": Object {
+              "display": "block",
+              "margin": "0 auto",
+              "maxWidth": 970,
+            },
+            "@media (min-width:850px)": Object {
+              "maxWidth": 820,
+              "minWidth": 820,
+            },
+          },
+          "paperWidthMd": Object {
+            "@media (max-width:767.95px)": Object {
+              "display": "block",
+              "margin": "0 auto",
+              "maxWidth": 770,
+            },
+            "@media (min-width:768px)": Object {
+              "maxWidth": 600,
+              "minWidth": 600,
+            },
+          },
+          "paperWidthXs": Object {
+            "maxWidth": 600,
+          },
+          "root": Object {
+            "& a": Object {
+              "&:hover": Object {
+                "color": "#f77e0d",
+              },
+              "&:visited": Object {
+                "color": "#f77e0d",
+              },
+              "color": "#faa21b",
+              "textDecoration": "none",
+            },
+            "fontFamily": "'ProximaNova', -apple-system, 'sans-serif'",
+            "fontWeight": 300,
+            "textAlign": "center",
+          },
+          "scrollPaper": Object {
+            "overflowY": "auto",
+          },
+        },
+        "MuiDialogActions": Object {
+          "root": Object {
+            "@media (max-width:1149.95px)": Object {
+              "marginBottom": "3rem",
+              "marginLeft": "2.5rem",
+              "marginRight": "2.5rem",
+              "marginTop": "2rem",
+            },
+            "display": "flex",
+            "flexFlow": "row nowrap",
+            "justifyContent": "center",
+            "marginBottom": "3rem",
+            "marginLeft": "4rem",
+            "marginRight": "4rem",
+            "marginTop": "2rem",
+            "padding": 0,
+          },
+          "spacing": Object {
+            "& > :not(:first-child)": Object {
+              "marginLeft": "1em",
+            },
+          },
+        },
+        "MuiDialogContent": Object {
+          "root": Object {
+            "& img": Object {
+              "height": "auto",
+              "maxWidth": "100%",
+            },
+            "@media (max-width:1149.95px)": Object {
+              "paddingBottom": 0,
+              "paddingLeft": "2.5rem",
+              "paddingRight": "2.5rem",
+              "paddingTop": 0,
+            },
+            "fontSize": "1.7rem",
+            "fontWeight": 400,
+            "height": "auto",
+            "lineHeight": 1.625,
+            "overflowY": "auto",
+            "paddingBottom": 0,
+            "paddingLeft": "4rem",
+            "paddingRight": "4rem",
+            "paddingTop": 0,
+          },
+        },
+        "MuiDialogTitle": Object {
+          "root": Object {
+            "@media (max-width:1149.95px)": Object {
+              "paddingBottom": "3rem",
+              "paddingLeft": "2.5rem",
+              "paddingRight": "2.5rem",
+              "paddingTop": "3rem",
+            },
+            "fontSize": "3rem",
+            "fontWeight": 300,
+            "lineHeight": 1.3,
+            "paddingBottom": "3rem",
+            "paddingLeft": "4rem",
+            "paddingRight": "4rem",
+            "paddingTop": "3rem",
+            "textAlign": "center",
+          },
+        },
+        "MuiFormControlLabel": Object {
+          "label": Object {
+            "fontSize": "1.4rem !important",
+            "left": "-0.5rem",
+            "lineHeight": "1.3 !important",
+            "position": "relative",
+          },
+        },
+        "MuiFormHelperText": Object {
+          "root": Object {
+            "color": "#939598",
+            "fontSize": "1.5rem",
+            "fontStyle": "italic",
+            "lineHeight": 1.4,
+          },
+        },
+        "MuiFormLabel": Object {
+          "root": Object {
+            "color": "#4b4a4b !important",
+            "marginBottom": "1rem",
+          },
+        },
+        "MuiIconButton": Object {
+          "colorPrimary": Object {
+            "color": "#939598",
+          },
+          "root": Object {
+            "&:hover": Object {
+              "backgroundColor": "transparent",
+              "boxShadow": "none",
+            },
+          },
+        },
+        "MuiInput": Object {
+          "underline": Object {
+            "&.Mui-disabled": Object {
+              "color": "#4b4a4b",
+              "opacity": 0.75,
+            },
+            "&.Mui-disabled:before": Object {
+              "borderBottomStyle": "solid",
+            },
+            "&::before": Object {
+              "borderBottomColor": "#e1e1e1",
+              "borderBottomStyle": "solid",
+              "borderBottomWidth": 2,
+            },
+            "&:hover:not(.Mui-disabled)": Object {
+              "& input::placeholder": Object {
+                "color": "inherit",
+              },
+              "&::before": Object {
+                "borderBottomColor": "#c8c8c8",
+                "borderBottomStyle": "solid",
+                "borderBottomWidth": 2,
+              },
+            },
+            "width": "100%",
+          },
+        },
+        "MuiInputAdornment": Object {
+          "root": Object {
+            "color": "#939598",
+            "opacity": 0.8,
+          },
+        },
+        "MuiInputBase": Object {
+          "adornedStart": Object {
+            "fontSize": "90%",
+          },
+          "input": Object {
+            "&::placeholder": Object {
+              "color": "#939598",
+              "fontSize": "1.5rem",
+              "opacity": 1,
+              "transition": "all 300ms  0ms",
+            },
+          },
+        },
+        "MuiInputLabel": Object {
+          "shrink": Object {
+            "color": "#939598 !important",
+            "fontSize": "1.5rem",
+            "lineHeight": 1.625,
+            "transform": "translate(0, -5px) scale(1)",
+          },
+        },
+        "MuiListItem": Object {
+          "gutters": Object {
+            "lineHeight": 1,
+            "paddingBottom": 15,
+            "paddingLeft": 10,
+            "paddingRight": 10,
+            "paddingTop": 15,
+          },
+          "root": Object {
+            "&$selected": Object {
+              "&:hover": Object {
+                "background": "#fff",
+              },
+              "background": "rgba(238,238,238,0.6)",
+              "color": "#f77e0d",
+            },
+            "&:hover": Object {
+              "background": "#f5f5f5",
+            },
+            "fontSize": "1.6rem",
+            "fontWeight": 500,
+            "marginTop": 0,
+          },
+        },
+        "MuiMenuItem": Object {
+          "gutters": Object {
+            "paddingBottom": 7.2,
+            "paddingLeft": 22,
+            "paddingRight": 48,
+            "paddingTop": 7.2,
+          },
+          "root": Object {
+            "& svg": Object {
+              "fill": "#f77e0d",
+              "marginRight": 6,
+              "width": 20,
+            },
+            "fontSize": "1.5rem",
+          },
+        },
+        "MuiOutlinedInput": Object {
+          "adornedStart": Object {
+            "paddingLeft": 4,
+          },
+          "input": Object {
+            "paddingBottom": "1rem",
+            "paddingLeft": "1rem",
+            "paddingRight": "1rem",
+            "paddingTop": "1rem",
+          },
+          "root": Object {
+            "&.Mui-focused .MuiOutlinedInput-notchedOutline": Object {
+              "borderWidth": 1,
+            },
+          },
+        },
+        "MuiPagination": Object {
+          "ul": Object {
+            "& li": Object {
+              "marginTop": 0,
+            },
+            "color": "#fff",
+            "fontWeight": 700,
+          },
+        },
+        "MuiPaginationItem": Object {
+          "root": Object {
+            "backgroundColor": "#e1e1e1",
+            "color": "#fff",
+            "height": "2.4rem",
+            "width": "2.4rem",
+          },
+          "textSecondary": Object {
+            "&$selected": Object {
+              "color": "#fff",
+              "fontWeight": 700,
+            },
+          },
+        },
+        "MuiPaper": Object {
+          "root": Object {
+            "fontFamily": "'ProximaNova', -apple-system, 'sans-serif'",
+          },
+        },
+        "MuiSlider": Object {
+          "active": Object {
+            "boxShadow": "none !important",
+          },
+          "rail": Object {
+            "backgroundColor": "#e1e1e1",
+            "height": "0.7rem",
+            "opacity": 1,
+          },
+          "root": Object {
+            "marginLeft": 5,
+            "paddingTop": 10,
+          },
+          "thumb": Object {
+            "&:hover": Object {
+              "boxShadow": "none !important",
+            },
+            "height": 13,
+            "top": 12,
+            "width": 13,
+          },
+          "track": Object {
+            "height": "0.7rem",
+          },
+        },
+        "MuiSnackbar": Object {
+          "anchorOriginTopRight": Object {
+            "right": "16px !important",
+            "top": "16px !important",
+          },
+        },
+        "MuiSnackbarContent": Object {
+          "action": Object {
+            "maxHeight": 20,
+          },
+          "root": Object {
+            "maxWidth": 400,
+            "padding": "1rem",
+            "textAlign": "center",
+          },
+        },
+        "MuiSvgIcon": Object {
+          "root": Object {
+            "height": 24,
+            "width": 24,
+          },
+        },
+        "MuiTab": Object {
+          "root": Object {
+            "&$selected": Object {
+              "background": "none",
+              "fontWeight": 400,
+            },
+            "background": "none",
+            "color": "#1c1c1c",
+            "fontSize": "1.7rem !important",
+            "fontWeight": 400,
+            "minWidth": "80px !important",
+            "textTransform": "initial",
+          },
+        },
+        "MuiTabs": Object {
+          "indicator": Object {
+            "background": "#faa21b",
+          },
+          "root": Object {
+            "borderBottom": "2px solid #e1e1e1",
+            "marginBottom": "2rem",
+          },
+        },
+        "MuiToggleButton": Object {
+          "label": Object {
+            "& .ss-assignment-icon": Object {
+              "height": "2.4rem",
+              "width": "2.4rem",
+            },
+            "color": "#1c1c1c",
+            "fontWeight": 400,
+            "whiteSpace": "nowrap",
+          },
+          "root": Object {
+            "&$selected": Object {
+              "&:hover": Object {
+                "backgroundColor": "#fff",
+              },
+              "backgroundColor": "#fff",
+            },
+            "&:hover": Object {
+              "backgroundColor": "initial",
+            },
+            "borderColor": "#e1e1e1",
+            "borderRadius": 3,
+            "borderStyle": "solid",
+            "borderWidth": 1,
+            "marginBottom": "0.8rem",
+            "marginLeft": 0,
+            "marginRight": "0.8rem",
+            "marginTop": 0,
+            "paddingBottom": "0.75rem",
+            "paddingLeft": "1.5rem",
+            "paddingRight": "1.5rem",
+            "paddingTop": "0.75rem",
+          },
+        },
+        "MuiToggleButtonGroup": Object {
+          "groupedHorizontal": Object {
+            "&:not(:first-child)": Object {
+              "borderBottomLeftRadius": 3,
+              "borderLeftColor": "#e1e1e1",
+              "borderLeftStyle": "solid",
+              "borderLeftWidth": 1,
+              "borderTopLeftRadius": 3,
+            },
+            "&:not(:last-child)": Object {
+              "borderBottomRightRadius": 3,
+              "borderTopRightRadius": 3,
+            },
+          },
+          "root": Object {
+            "flexWrap": "wrap",
+          },
+        },
+        "MuiTooltip": Object {
+          "tooltip": Object {
+            "background": "#4b4a4b !important",
+            "color": "#fff",
+            "fontSize": "1.5rem",
+            "left": 20,
+            "position": "relative",
+          },
+        },
+        "MuiTypography": Object {
+          "colorPrimary": Object {
+            "color": "#4b4a4b",
+          },
+        },
+        "PrivateValueLabel": Object {
+          "label": Object {
+            "color": "#4b4a4b",
+          },
+        },
+      },
+      "palette": Object {
+        "accent": "#faa21b",
+        "accentDark": "#f77e0d",
+        "accentLight": "#fdb913",
+        "action": Object {
+          "activatedOpacity": 0.12,
+          "active": "rgba(0, 0, 0, 0.54)",
+          "disabled": "rgba(0, 0, 0, 0.26)",
+          "disabledBackground": "rgba(0, 0, 0, 0.12)",
+          "disabledOpacity": 0.38,
+          "focus": "rgba(0, 0, 0, 0.12)",
+          "focusOpacity": 0.12,
+          "hover": "rgba(0, 0, 0, 0.04)",
+          "hoverOpacity": 0.04,
+          "selected": "rgba(0, 0, 0, 0.08)",
+          "selectedOpacity": 0.08,
+        },
+        "annotation": Array [
+          "#ffdc19",
+          "#9a488e",
+          "#faa21b",
+          "#00abe6",
+          "#da5450",
+          "#689107",
+        ],
+        "assignments": Object {
+          "1": "#689107",
+          "15": "#00abe6",
+          "16": "#9a488e",
+          "17": "#ffdc19",
+          "2": "#00abe6",
+          "3": "#ffdc19",
+          "4": "#9a488e",
+          "5": "#faa21b",
+          "6": "#da5450",
+        },
+        "augmentColor": [Function],
+        "background": Object {
+          "default": "#fff",
+          "paper": "#fff",
+          "paperSecondary": "#f1f1f1",
+        },
+        "badges": Object {
+          "annual": "#92af2b",
+          "bronze": "#faa21b",
+          "gold": "#ffdc19",
+          "nonclassified": "#faa21b",
+          "platinum": "#00abe6",
+          "silver": "#939598",
+        },
+        "border": "#e1e1e1",
+        "borderDark": "#1C1C1C",
+        "borderLight": "#eee",
+        "charting": Array [
+          "#0cabe3",
+          "#93af3c",
+          "#f9a235",
+          "#99498c",
+          "#1173f2",
+        ],
+        "checked": "#94ac3c",
+        "common": Object {
+          "black": "#1c1c1c",
+          "blue": "#00abe6",
+          "darkRed": "#dc1f41",
+          "green": "#689107",
+          "grey": "#939598",
+          "lightGrey": "#f5f5f5",
+          "orange": "#faa21b",
+          "purple": "#9a488e",
+          "red": "#da5450",
+          "white": "#fff",
+          "yellow": "#ffdc19",
+        },
+        "contrastThreshold": 3,
+        "divider": "rgba(0, 0, 0, 0.12)",
+        "error": Object {
+          "contrastText": "#fff",
+          "dark": "#d32f2f",
+          "light": "#e57373",
+          "main": "#f44336",
+        },
+        "focused": "#4D90FE",
+        "getContrastText": [Function],
+        "gradebook": Array [
+          Object {
+            "colorId": 1,
+            "label": "Yellow",
+            "value": "#ffdc19",
+          },
+          Object {
+            "colorId": 2,
+            "label": "Purple",
+            "value": "#9a488e",
+          },
+          Object {
+            "colorId": 3,
+            "label": "Orange",
+            "value": "#faa21b",
+          },
+          Object {
+            "colorId": 4,
+            "label": "Blue",
+            "value": "#00abe6",
+          },
+          Object {
+            "colorId": 5,
+            "label": "Red",
+            "value": "#da5450",
+          },
+          Object {
+            "colorId": 6,
+            "label": "Green",
+            "value": "#689107",
+          },
+          Object {
+            "colorId": 7,
+            "label": "Black",
+            "value": "#1c1c1c",
+          },
+          Object {
+            "colorId": 8,
+            "label": "Gray",
+            "value": "#939598",
+          },
+        ],
+        "grey": Object {
+          "100": "#f5f5f5",
+          "150": "#f5f5f5",
+          "200": "#e1e1e1",
+          "300": "#939598",
+          "400": "#bdbdbd",
+          "50": "#fafafa",
+          "500": "#9e9e9e",
+          "600": "#757575",
+          "700": "#616161",
+          "800": "#424242",
+          "900": "#212121",
+          "A100": "#d5d5d5",
+          "A200": "#aaaaaa",
+          "A400": "#303030",
+          "A700": "#616161",
+        },
+        "greyed": "#babbbd",
+        "important": "#dc1f41",
+        "info": Object {
+          "contrastText": "#fff",
+          "dark": "#1976d2",
+          "light": "#64b5f6",
+          "main": "#2196f3",
+        },
+        "patterns": Array [],
+        "primary": Object {
+          "100": "#feeac3",
+          "200": "#fedc9b",
+          "300": "#fece73",
+          "400": "#fdc455",
+          "50": "#fff7e7",
+          "500": "#fdb913",
+          "600": "#f9b639",
+          "700": "#faa21b",
+          "800": "#fca223",
+          "900": "#f77e0d",
+          "A100": "#ffffff",
+          "A200": "#fffcf8",
+          "A400": "#ffe3c5",
+          "A700": "#ffd6ac",
+          "contrastDarkColors": Array [
+            "50",
+            "100",
+            "200",
+            "A100",
+            "A200",
+          ],
+          "contrastDefaultColor": "light",
+          "contrastLightColors": Array [
+            "300",
+            "400",
+            "500",
+            "600",
+            "700",
+            "800",
+            "900",
+            "A400",
+            "A700",
+          ],
+          "contrastText": "rgba(0, 0, 0, 0.87)",
+          "dark": "#faa21b",
+          "light": "#fece73",
+          "main": "#fdb913",
+        },
+        "quikPoll": Array [
+          "#00abe6",
+          "#689107",
+          "#faa21b",
+          undefined,
+          "#da5450",
+        ],
+        "ribbon": "#939598",
+        "secondary": Object {
+          "contrastText": "rgba(0, 0, 0, 0.87)",
+          "dark": "#1992c6",
+          "light": "#e4f5fc",
+          "main": "#00abe6",
+        },
+        "selected": "#eee",
+        "selection": "#96d6f0",
+        "shadow": "#111",
+        "success": Object {
+          "contrastText": "rgba(0, 0, 0, 0.87)",
+          "dark": "#388e3c",
+          "light": "#81c784",
+          "main": "#4caf50",
+        },
+        "switched": "#53d76a",
+        "text": Object {
+          "alt": "#939598",
+          "dimmer": "#1c1c1c",
+          "disabled": "rgba(0, 0, 0, 0.38)",
+          "greyed": "#5b616b",
+          "hint": "rgba(0, 0, 0, 0.38)",
+          "hover": "#fdb913",
+          "inverted": "#fff",
+          "primary": "#4b4a4b",
+          "secondary": "#939598",
+          "selected": "#4b4a4b",
+        },
+        "tonalOffset": 0.2,
+        "type": "light",
+        "warning": Object {
+          "contrastText": "rgba(0, 0, 0, 0.87)",
+          "dark": "#f57c00",
+          "light": "#ffb74d",
+          "main": "#ff9800",
+        },
+      },
+      "props": Object {
+        "MuiButtonBase": Object {
+          "disableRipple": true,
+        },
+      },
+      "shadows": Array [
+        "none",
+        "0px 1px 3px 0px rgba(17,17,17,0.14),0px 1px 1px 0px rgba(17,17,17,0.08),0px 2px 1px -1px rgba(17,17,17,0.06)",
+        "0px 1px 5px 0px rgba(17,17,17,0.14),0px 2px 2px 0px rgba(17,17,17,0.08),0px 3px 1px -2px rgba(17,17,17,0.06)",
+        "0px 1px 8px 0px rgba(17,17,17,0.14),0px 3px 4px 0px rgba(17,17,17,0.08),0px 3px 3px -2px rgba(17,17,17,0.06)",
+        "0px 2px 4px -1px rgba(17,17,17,0.14),0px 4px 5px 0px rgba(17,17,17,0.08),0px 1px 10px 0px rgba(17,17,17,0.06)",
+        "0px 3px 5px -1px rgba(17,17,17,0.14),0px 5px 8px 0px rgba(17,17,17,0.08),0px 1px 14px 0px rgba(17,17,17,0.06)",
+        "0px 3px 5px -1px rgba(17,17,17,0.14),0px 6px 10px 0px rgba(17,17,17,0.08),0px 1px 18px 0px rgba(17,17,17,0.06)",
+        "0px 4px 5px -2px rgba(17,17,17,0.14),0px 7px 10px 1px rgba(17,17,17,0.08),0px 2px 16px 1px rgba(17,17,17,0.06)",
+        "0px 5px 5px -3px rgba(17,17,17,0.14),0px 8px 10px 1px rgba(17,17,17,0.08),0px 3px 14px 2px rgba(17,17,17,0.06)",
+        "0px 5px 6px -3px rgba(17,17,17,0.14),0px 9px 12px 1px rgba(17,17,17,0.08),0px 3px 16px 2px rgba(17,17,17,0.06)",
+        "0px 6px 6px -3px rgba(17,17,17,0.14),0px 10px 14px 1px rgba(17,17,17,0.08),0px 4px 18px 3px rgba(17,17,17,0.06)",
+        "0px 6px 7px -4px rgba(17,17,17,0.14),0px 11px 15px 1px rgba(17,17,17,0.08),0px 4px 20px 3px rgba(17,17,17,0.06)",
+        "0px 7px 8px -4px rgba(17,17,17,0.14),0px 12px 17px 2px rgba(17,17,17,0.08),0px 5px 22px 4px rgba(17,17,17,0.06)",
+        "0px 7px 8px -4px rgba(17,17,17,0.14),0px 13px 19px 2px rgba(17,17,17,0.08),0px 5px 24px 4px rgba(17,17,17,0.06)",
+        "0px 7px 9px -4px rgba(17,17,17,0.14),0px 14px 21px 2px rgba(17,17,17,0.08),0px 5px 26px 4px rgba(17,17,17,0.06)",
+        "0px 8px 9px -5px rgba(17,17,17,0.14),0px 15px 22px 2px rgba(17,17,17,0.08),0px 6px 28px 5px rgba(17,17,17,0.06)",
+        "0px 8px 10px -5px rgba(17,17,17,0.14),0px 16px 24px 2px rgba(17,17,17,0.08),0px 6px 30px 5px rgba(17,17,17,0.06)",
+        "0px 8px 11px -5px rgba(17,17,17,0.14),0px 17px 26px 2px rgba(17,17,17,0.08),0px 6px 32px 5px rgba(17,17,17,0.06)",
+        "0px 9px 11px -5px rgba(17,17,17,0.14),0px 18px 28px 2px rgba(17,17,17,0.08),0px 7px 34px 6px rgba(17,17,17,0.06)",
+        "0px 9px 12px -6px rgba(17,17,17,0.14),0px 19px 29px 2px rgba(17,17,17,0.08),0px 7px 36px 6px rgba(17,17,17,0.06)",
+        "0px 10px 13px -6px rgba(17,17,17,0.14),0px 20px 31px 3px rgba(17,17,17,0.08),0px 8px 38px 7px rgba(17,17,17,0.06)",
+        "0px 10px 13px -6px rgba(17,17,17,0.14),0px 21px 33px 3px rgba(17,17,17,0.08),0px 8px 40px 7px rgba(17,17,17,0.06)",
+        "0px 10px 14px -6px rgba(17,17,17,0.14),0px 22px 35px 3px rgba(17,17,17,0.08),0px 8px 42px 7px rgba(17,17,17,0.06)",
+        "0px 11px 14px -7px rgba(17,17,17,0.14),0px 23px 36px 3px rgba(17,17,17,0.08),0px 9px 44px 8px rgba(17,17,17,0.06)",
+        "0px 11px 15px -7px rgba(17,17,17,0.14),0px 24px 38px 3px rgba(17,17,17,0.08),0px 9px 46px 8px rgba(17,17,17,0.06)",
+      ],
+      "shape": Object {
+        "borderRadius": 4,
+      },
+      "spacing": [Function],
+      "thirdParty": Object {
+        ".ql-container": Object {
+          "fontSize": "1.6rem",
+        },
+        ".ql-container.ql-snow": Object {
+          "borderColor": "#eee",
+        },
+        ".ql-snow .ql-editor": Object {
+          "& h1": Object {
+            "fontSize": "3.4rem",
+            "fontWeight": 400,
+            "lineHeight": "3.2rem",
+          },
+          "& h1, h2, h3, h4, h5, h6": Object {
+            "margin": 0,
+            "marginBottom": 12,
+            "padding": 0,
+            "textRendering": "optimizeLegibility",
+          },
+          "& h2": Object {
+            "fontSize": "2.6rem",
+            "fontWeight": 400,
+            "lineHeight": "3.1rem",
+          },
+          "& h3": Object {
+            "fontSize": "1.9rem",
+            "fontWeight": 600,
+            "lineHeight": "2.2rem",
+          },
+          "& h4": Object {
+            "fontSize": "1.7rem",
+            "fontWeight": 700,
+            "lineHeight": "1.8rem",
+          },
+          "& h5": Object {
+            "fontSize": "1.4rem",
+            "fontWeight": 400,
+            "lineHeight": "1.8rem",
+          },
+          "& h6": Object {
+            "fontSize": "1.3rem",
+            "fontWeight": 400,
+            "lineHeight": "1.7rem",
+          },
+          "color": "#4b4a4b",
+          "lineHeight": "24px",
+          "minHeight": "20rem",
+          "padding": "24px 24px 32px",
+        },
+        ".ql-snow .ql-fill": Object {
+          "fill": "#939598",
+        },
+        ".ql-snow .ql-picker": Object {
+          "color": "#939598",
+        },
+        ".ql-snow .ql-stroke": Object {
+          "stroke": "#939598",
+        },
+        ".ql-toolbar.ql-snow": Object {
+          "background": "#f5f5f5",
+          "borderBottomColor": "#eee",
+          "borderColor": "#f5f5f5",
+        },
+        ".slick-arrow.slick-hidden": Object {
+          "display": "none",
+        },
+        ".slick-dots": Object {
+          "& li": Object {
+            "& button": Object {
+              "&:hover": Object {
+                "background": "transparent",
+              },
+              "display": "block",
+              "height": 15,
+              "padding": 0,
+              "width": 15,
+            },
+            "& svg": Object {
+              "fill": "#e1e1e1",
+              "height": 12,
+              "width": 12,
+            },
+            "&.slick-active svg": Object {
+              "fill": "#f77e0d",
+            },
+            "display": "inline-block",
+            "margin": 0,
+            "padding": 0,
+            "position": "relative",
+          },
+          "display": "block",
+          "listStyle": "none",
+          "margin": 0,
+          "paddingBottom": 0,
+          "paddingLeft": 0,
+          "paddingRight": 8,
+          "paddingTop": 0,
+          "position": "absolute",
+          "textAlign": "right",
+          "top": -35,
+          "width": "100%",
+        },
+        ".slick-initialized .slick-slide": Object {
+          "display": "block",
+        },
+        ".slick-list": Object {
+          "display": "block",
+          "margin": 0,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+        },
+        ".slick-list.dragging": Object {
+          "cursor": "pointer",
+        },
+        ".slick-loading .slick-slide": Object {
+          "visibility": "hidden",
+        },
+        ".slick-loading .slick-track": Object {
+          "visibility": "hidden",
+        },
+        ".slick-next": Object {
+          "right": -40,
+        },
+        ".slick-prev": Object {
+          "left": -50,
+        },
+        ".slick-prev, .slick-next": Object {
+          "& svg": Object {
+            "&:hover": Object {
+              "fill": "#4b4a4b",
+            },
+            "fill": "#939598",
+            "height": 50,
+            "width": 50,
+          },
+          "display": "block",
+          "height": 50,
+          "padding": 0,
+          "position": "absolute",
+          "top": "50%",
+          "transform": "translate(0, -50%)",
+          "width": 50,
+        },
+        ".slick-prev:hover,.slick-prev:focus,.slick-next:hover,.slick-next:focus": Object {
+          "background": "transparent",
+        },
+        ".slick-slide": Object {
+          "display": "none",
+          "float": "left",
+          "height": "100%",
+          "minHeight": 1,
+        },
+        ".slick-slide img": Object {
+          "display": "block",
+        },
+        ".slick-slide.dragging img": Object {
+          "pointerEvents": "none",
+        },
+        ".slick-slide.slick-loading img": Object {
+          "display": "none",
+        },
+        ".slick-slider": Object {
+          "WebkitTapHighlightColor": "transparent",
+          "WebkitTouchCallout": "none",
+          "boxSizing": "border-box",
+          "display": "block",
+          "position": "relative",
+          "touchAction": "pan-y",
+          "userSelect": "none",
+        },
+        ".slick-slider .slick-track, .slick-slider .slick-list": Object {
+          "transform": "translate3d(0, 0, 0)",
+        },
+        ".slick-track": Object {
+          "bottom": 0,
+          "display": "block",
+          "left": 0,
+          "marginLeft": "auto",
+          "marginRight": "auto",
+          "position": "relative",
+          "right": 0,
+          "top": 0,
+        },
+        ".slick-track:after": Object {
+          "clear": "both",
+        },
+        ".slick-track:before,.slick-track:after": Object {
+          "content": "''",
+          "display": "table",
+        },
+        ".slick-vertical .slick-slide": Object {
+          "borderColor": "transparent",
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "display": "block",
+          "height": "auto",
+        },
+        ".video-js": Object {
+          "& .controlButton": Object {
+            "&.depressed": Object {
+              "&:hover": Object {
+                "backgroundColor": "#fff",
+              },
+              "backgroundColor": "#fff",
+              "borderRadius": 5,
+              "color": "#4b4a4b",
+            },
+            "&.ss-transcript-button": Object {
+              "bottom": "1.1rem",
+              "height": 27,
+              "position": "absolute",
+              "right": 5,
+              "width": 35,
+            },
+            "&::before": Object {
+              "opacity": 1,
+            },
+            "&:hover": Object {
+              "color": "#96d6f0",
+            },
+            "color": "#fff",
+            "cursor": "pointer",
+            "height": "1.6em",
+            "marginRight": "0.7em",
+            "minHeight": "unset",
+            "minWidth": "unset",
+          },
+          "& .ss-gradient-overlay": Object {
+            "backgroundColor": "transparent",
+            "backgroundImage": "linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 0%, transparent 15%, transparent 85%, rgba(0, 0, 0, 0.25) 100%)",
+            "bottom": 0,
+            "left": 0,
+            "pointerEvents": "none",
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+          "& .vjs-big-play-button": Object {
+            "& .vjs-icon-placeholder": Object {
+              "display": "none",
+            },
+            "&::after": Object {
+              "color": "#fff",
+              "content": "'\\\\e007'",
+              "fontFamily": "flowplayer",
+              "fontSize": "1.8em",
+              "textShadow": "0 0 8px #555",
+            },
+            "backgroundColor": "transparent !important",
+            "border": "none",
+            "width": "3em",
+          },
+          "& .vjs-controls-disabled .vjs-big-play-button": Object {
+            "display": "none !important",
+          },
+          "& .vjs-fullscreen-control": Object {
+            "& .vjs-icon-placeholder::before": Object {
+              "content": "'\\\\e002'",
+              "fontFamily": "flowplayer",
+              "fontSize": "1.7em",
+            },
+            "&:hover": Object {
+              "color": "#faa21b",
+            },
+            "height": "3em",
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "transition": "color 150ms  0ms",
+            "width": "3em",
+          },
+          "& .vjs-load-progress div, .vjs-seeking .vjs-big-play-button, .vjs-waiting .vjs-big-play-button": Object {
+            "display": "none !important",
+          },
+          "& .vjs-text-track-cue": Object {
+            "& div": Object {
+              "backgroundColor": "rgba(28,28,28,0.6) !important",
+              "borderRadius": "0.2em !important",
+              "color": "#fff !important",
+              "display": "inline-block !important",
+              "font": "150% \\"ProximaNova\\", -apple-system, sans-serif !important",
+              "fontSize": "150% !important",
+              "lineHeight": "1.625 !important",
+              "margin": "0.1em !important",
+              "paddingBottom": "0.1em !important",
+              "paddingLeft": "0.3em !important",
+              "paddingRight": "0.3em !important",
+              "paddingTop": "0.1em !important",
+            },
+            "bottom": "3em !important",
+            "fontSize": "16px !important",
+            "height": "unset !important",
+            "top": "unset !important",
+          },
+          "&.vjs-fullscreen .vjs-fullscreen-control .vjs-icon-placeholder::before": Object {
+            "content": "'\\\\e016'",
+          },
+          "&:not(.vjs-has-started) .vjs-fullscreen-control": Object {
+            "display": "none",
+          },
+          "cursor": "pointer",
+          "fontFamily": "\\"ProximaNova\\", -apple-system, sans-serif",
+          "fontSize": 16,
+        },
+        ".vjs-control-bar": Object {
+          "& .ss-transcript-spacer": Object {
+            "display": "inline-block",
+            "width": 50,
+          },
+          "& .ss-volume-control": Object {
+            "& .ss-volume": Object {
+              "& em": Object {
+                "&.lit": Object {
+                  "backgroundColor": "#faa21b !important",
+                },
+                "&:hover": Object {
+                  "transform": "scaleY(1.35)",
+                  "transition": "transform 200ms  0ms",
+                },
+                "backgroundColor": "#fff",
+                "borderRadius": 2,
+                "display": "inline-block",
+                "height": "100%",
+                "marginLeft": 3,
+                "position": "relative",
+                "transformOrigin": "bottom",
+                "transition": "all 400ms  0ms",
+                "userSelect": "none",
+                "verticalAlign": "top",
+                "width": 5,
+              },
+              "cursor": "col-resize",
+              "height": "0.9em",
+              "marginLeft": "0.9em",
+              "position": "relative",
+              "top": -1,
+              "whiteSpace": "nowrap",
+            },
+            "alignItems": "center",
+            "display": "flex",
+            "marginRight": "2em",
+          },
+          "& .vjs-captions-toggle": Object {
+            "& .vjs-icon-placeholder::before": Object {
+              "content": "\\"CC\\"",
+              "fontSize": "16px",
+              "fontWeight": 700,
+              "paddingTop": 1,
+            },
+            "height": 26,
+            "marginBottom": 0,
+            "marginLeft": 0,
+            "marginRight": "1em",
+            "marginTop": "0.6em",
+            "width": 34,
+          },
+          "& .vjs-current-time": Object {
+            "display": "inherit",
+          },
+          "& .vjs-duration": Object {
+            "display": "block",
+          },
+          "& .vjs-play-control": Object {
+            "& .vjs-icon-placeholder::before": Object {
+              "fontFamily": "flowplayer",
+              "fontSize": "1.7em",
+            },
+            "&.vjs-paused .vjs-icon-placeholder::before": Object {
+              "content": "'\\\\e007'",
+            },
+            "&.vjs-playing .vjs-icon-placeholder::before": Object {
+              "content": "'\\\\e008'",
+            },
+          },
+          "& .vjs-progress-control": Object {
+            "& .vjs-slider-horizontal": Object {
+              "& .vjs-load-progress": Object {
+                "backgroundColor": "#fff",
+                "borderRadius": "0.24em",
+              },
+              "& .vjs-mouse-display": Object {
+                "display": "none",
+              },
+              "& .vjs-play-progress": Object {
+                "& .vjs-time-tooltip": Object {
+                  "display": "none",
+                },
+                "&::before": Object {
+                  "content": "\\"\\"",
+                },
+                "backgroundColor": "#faa21b",
+              },
+              "& .vjs-slider-bar": Object {
+                "borderRadius": "0.24em",
+              },
+              "& .vjs-time-tooltip": Object {
+                "fontSize": "90%",
+              },
+              "backgroundColor": "rgba(255,255,255,0.5)",
+              "borderRadius": "0.24em",
+              "cursor": "col-resize",
+              "height": "0.9em",
+            },
+            "&:hover .vjs-progress-holder": Object {
+              "fontSize": "16px",
+            },
+            "paddingBottom": 0,
+            "paddingLeft": "1em",
+            "paddingRight": "1em",
+            "paddingTop": 0,
+          },
+          "& .vjs-time-control": Object {
+            "padding": 0,
+          },
+          "& .vjs-volume-panel, .vjs-picture-in-picture-control": Object {
+            "display": "none",
+          },
+          "backgroundColor": "transparent !important",
+        },
+        "[class*='-MenuList']": Object {
+          "background": "
+    linear-gradient(#fff 30%, rgba(255,255,255,0)),
+    linear-gradient(rgba(255,255,255,0), #fff 70%) 0 100%,
+    radial-gradient(farthest-side at 50% 0, rgba(28,28,28,0.2), rgba(28,28,28,0)),
+    radial-gradient(farthest-side at 50% 100%, rgba(28,28,28,0.2), rgba(28,28,28,0)) 0 100%",
+          "backgroundAttachment": "local, local, scroll, scroll",
+          "backgroundColor": "#fff",
+          "backgroundRepeat": "no-repeat",
+          "backgroundSize": "100% 40px, 100% 40px, 100% 14px, 100% 14px",
+        },
+        "[class*='-indicatorContainer']": Object {
+          "cursor": "pointer",
+        },
+        "[class*='-indicatorContainer'] svg": Object {
+          "fill": "#939598",
+        },
+        "[class*='ChipSelectAsync-placeholder-']": Object {
+          "color": "#939598",
+        },
+        "[dir='rtl'] .slick-slide": Object {
+          "float": "right",
+        },
+      },
+      "transitions": Object {
+        "create": [Function],
+        "duration": Object {
+          "complex": 375,
+          "enteringScreen": 225,
+          "leavingScreen": 195,
+          "short": 250,
+          "shorter": 200,
+          "shortest": 150,
+          "standard": 300,
+        },
+        "easing": Object {
+          "easeIn": "cubic-bezier(0.4, 0, 1, 1)",
+          "easeInOut": "cubic-bezier(0.4, 0, 0.2, 1)",
+          "easeOut": "cubic-bezier(0.0, 0, 0.2, 1)",
+          "sharp": "cubic-bezier(0.4, 0, 0.6, 1)",
+        },
+        "getAutoHeightDuration": [Function],
+      },
+      "typography": Object {
+        "body1": Object {
+          "& a": Object {
+            "&:hover": Object {
+              "color": "#f77e0d",
+            },
+            "&:visited": Object {
+              "color": "#f77e0d",
+            },
+            "color": "#faa21b",
+            "textDecoration": "none",
+          },
+          "-moz-osx-font-smoothing": "grayscale",
+          "-webkit-font-smoothing": "antialiased",
+          "color": "#1c1c1c",
+          "fontFamily": "\\"ProximaNova\\", -apple-system, sans-serif",
+          "fontSize": "1.7rem",
+          "fontWeight": 400,
+          "lineHeight": 1.625,
+          "overflow": "hidden",
+          "textRendering": "optimizeLegibility !important",
+        },
+        "body2": Object {
+          "fontFamily": "\\"ProximaNova\\", -apple-system, sans-serif",
+          "fontSize": "1.5rem",
+          "fontWeight": 400,
+          "lineHeight": 1.625,
+        },
+        "button": Object {
+          "fontFamily": "\\"ProximaNova\\", -apple-system, sans-serif",
+          "fontSize": "1.4rem",
+          "fontWeight": 500,
+          "lineHeight": 1.75,
+          "textTransform": "uppercase",
+        },
+        "caption": Object {
+          "fontFamily": "\\"ProximaNova\\", -apple-system, sans-serif",
+          "fontSize": "1.2rem",
+          "fontWeight": 400,
+          "lineHeight": 1.66,
+        },
+        "fontFamily": "\\"ProximaNova\\", -apple-system, sans-serif",
+        "fontSize": 14,
+        "fontWeightBold": 700,
+        "fontWeightLight": 300,
+        "fontWeightMedium": 500,
+        "fontWeightRegular": 400,
+        "h1": Object {
+          "fontFamily": "\\"ProximaNova\\", -apple-system, sans-serif",
+          "fontSize": "2.8rem",
+          "fontWeight": 300,
+          "lineHeight": "3.2rem",
+        },
+        "h2": Object {
+          "fontFamily": "\\"ProximaNova\\", -apple-system, sans-serif",
+          "fontSize": "2.6rem",
+          "fontWeight": 300,
+          "lineHeight": "3.1rem",
+        },
+        "h3": Object {
+          "fontFamily": "\\"ProximaNova\\", -apple-system, sans-serif",
+          "fontSize": "1.9rem",
+          "fontWeight": 600,
+          "lineHeight": "2.2rem",
+        },
+        "h4": Object {
+          "fontFamily": "\\"ProximaNova\\", -apple-system, sans-serif",
+          "fontSize": "1.7rem",
+          "fontWeight": 700,
+          "lineHeight": "1.8rem",
+        },
+        "h5": Object {
+          "fontFamily": "\\"ProximaNova\\", -apple-system, sans-serif",
+          "fontSize": "1.4rem",
+          "fontWeight": 300,
+          "lineHeight": "1.8rem",
+        },
+        "h6": Object {
+          "fontFamily": "\\"ProximaNova\\", -apple-system, sans-serif",
+          "fontSize": "1.3rem",
+          "fontWeight": 300,
+          "lineHeight": "1.7rem",
+        },
+        "htmlFontSize": 10,
+        "overline": Object {
+          "fontFamily": "\\"ProximaNova\\", -apple-system, sans-serif",
+          "fontSize": "1.2rem",
+          "fontWeight": 400,
+          "lineHeight": 2.66,
+          "textTransform": "uppercase",
+        },
+        "pxToRem": [Function],
+        "round": [Function],
+        "subtitle1": Object {
+          "fontFamily": "\\"ProximaNova\\", -apple-system, sans-serif",
+          "fontSize": "1.6rem",
+          "fontWeight": 400,
+          "lineHeight": 1.75,
+        },
+        "subtitle2": Object {
+          "fontFamily": "\\"ProximaNova\\", -apple-system, sans-serif",
+          "fontSize": "1.4rem",
+          "fontWeight": 500,
+          "lineHeight": 1.57,
+        },
+      },
+      "zIndex": Object {
+        "appBar": 1100,
+        "drawer": 1200,
+        "mobileStepper": 1000,
+        "modal": 1300,
+        "snackbar": 1400,
+        "speedDial": 1050,
+        "tooltip": 1500,
+      },
+      Symbol(mui.nested): false,
+    }
+  }
+>
+  <RichTextEditor
+    onChange={[MockFunction]}
+    value="<h1>header</h1><p>paragraph <strong>strong</strong> text</p>"
+  >
+    <Suspense
+      fallback={<Busy />}
+    >
+      <Busy>
+        <div
+          className="Busy-root-1"
+        >
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
+      </Busy>
+    </Suspense>
+  </RichTextEditor>
+</ThemeProvider>
+`;

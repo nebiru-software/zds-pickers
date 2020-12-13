@@ -1,0 +1,27 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+import { withRegistrationMarks, withStore } from '../../../../../.storybook/decorators'
+import IconTextField from './IconTextField'
+import '../../../../styles/fonts/index.scss'
+
+<Meta
+  component={IconTextField}
+  title="Components/Form Controls/Text/IconTextField"
+/>
+
+# IconTextField
+
+<Canvas withToolbar>
+  <Story
+    decorators={[withRegistrationMarks, withStore()]}
+    name="sample"
+  >
+    <IconTextField
+      icon="icon-user"
+      placeholder="username"
+      required
+      variant="outlined"
+    />
+  </Story>
+</Canvas>
+
+<ArgsTable of={IconTextField} />

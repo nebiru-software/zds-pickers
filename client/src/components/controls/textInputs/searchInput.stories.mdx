@@ -1,0 +1,27 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+import { action } from '@storybook/addon-actions'
+import { withRegistrationMarks, withStore } from '../../../../../.storybook/decorators'
+import SearchInput from './SearchInput'
+
+<Meta
+  component={SearchInput}
+  title="Components/Form Controls/Text/SearchInput"
+/>
+
+# SearchInput
+
+This is a debounced edit control which automatically displays a search icon
+and has a hidden aria label for 'search'.
+
+This control is used as the basis for all search operations within the app
+
+<Canvas withToolbar>
+  <Story
+    decorators={[withRegistrationMarks, withStore()]}
+    name="sample"
+  >
+    <SearchInput onChange={action('onChange')} />
+  </Story>
+</Canvas>
+
+<ArgsTable of={SearchInput} />

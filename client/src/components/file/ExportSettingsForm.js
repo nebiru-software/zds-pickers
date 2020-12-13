@@ -1,21 +1,19 @@
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Field, reduxForm } from 'redux-form'
-import FormInput from '../FormInput'
 import { actions as shifterActions } from '../../reducers/shifter'
 import { fieldFilename, fieldRequired } from '../../core/fp/strings'
 
 export const ExportSettingsForm = ({ error, handleSubmit }) => (
   <form onSubmit={handleSubmit}>
-    <Field
+    {/* <Field
       autoFocus
       component={FormInput}
       label="Filename"
       name="exportFilename"
       type="text"
       validate={[fieldRequired, fieldFilename]}
-    />
+    /> */}
 
     {Boolean(error) && <strong>{error}</strong>}
   </form>
@@ -42,4 +40,4 @@ const formOptions = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(reduxForm(formOptions)(ExportSettingsForm))
+)((ExportSettingsForm))

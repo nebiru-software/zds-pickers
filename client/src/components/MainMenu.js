@@ -1,7 +1,5 @@
-import { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Divider from '@material-ui/core/Divider'
 import MenuIcon from '@material-ui/icons/Menu'
 import PermIdentity from '@material-ui/icons/PermIdentity'
@@ -14,153 +12,126 @@ import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-import { actions as userActions } from '../reducers/user'
-import { actions as shifterActions } from '../reducers/shifter'
-import { shifterShape } from '../core/shapes'
+import { stateShifter } from 'selectors/index'
+import { actions as shifterActions } from 'reducers/shifter'
 import ExportSettings from './file/ExportSettings'
 import ImportSettings from './file/ImportSettings'
 import FactoryReset from './FactoryReset'
+import UserRegistration from './user/UserRegistration'
 
-export class MainMenu extends Component {
-  // eslint-disable-next-line react/state-in-constructor
-  state = {
-    anchorEl: null,
+const MainMenu = () => {
+  const dispatch = useDispatch()
+  const [anchorEl, setAnchorEl] = useState()
+  const [dialogVisible, setDialogVisible] = useState(false)
+  const { found, ready, responding } = useSelector(stateShifter)
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget)
   }
 
-  handleClick = (event) => {
-    this.setState({ anchorEl: event.currentTarget })
+  const handleClose = () => {
+    setAnchorEl(null)
   }
 
-  handleClose = () => {
-    this.setState({ anchorEl: null })
-  }
+  const open = Boolean(anchorEl)
 
-  render() {
-    const {
-      confirmFactoryReset,
-      performFactoryReset,
-      shifter,
-      shifter: { ready, found, responding },
-      showDialog,
-      showExportDialog,
-      showImportDialog,
-    } = this.props
-    const { anchorEl } = this.state
-
-    const open = Boolean(anchorEl)
-
-    return ready ? (
-      <>
-        <IconButton
-          aria-haspopup="true"
-          aria-label="More"
-          aria-owns={open ? 'long-menu' : null}
-          onClick={this.handleClick}
+  return ready ? (
+    <>
+      <IconButton
+        aria-haspopup="true"
+        aria-label="More"
+        aria-owns={open ? 'long-menu' : null}
+        onClick={handleClick}
+      >
+        <Tooltip title="Settings">
+          <MenuIcon />
+        </Tooltip>
+      </IconButton>
+      <Menu
+        anchorEl={anchorEl}
+        id="long-menu"
+        onClick={handleClose}
+        onClose={handleClose}
+        open={open}
+        PaperProps={{
+          style: {
+            width: 200,
+          },
+        }}
+      >
+        <MenuItem
+          icon="perm_identity"
+          onClick={() => setDialogVisible(true)}
+          tag="miRegistration"
+          value="user"
         >
-          <Tooltip title="Settings">
-            <MenuIcon />
-          </Tooltip>
-        </IconButton>
-        <Menu
-          anchorEl={anchorEl}
-          id="long-menu"
-          onClick={this.handleClose}
-          onClose={this.handleClose}
-          open={open}
-          PaperProps={{
-            style: {
-              width: 200,
-            },
-          }}
+          <ListItemIcon>
+            <PermIdentity />
+          </ListItemIcon>
+          <ListItemText
+            inset
+            primary="Registration"
+          />
+        </MenuItem>
+
+        <Divider />
+
+        <MenuItem
+          disabled={!(found && responding)}
+          onClick={() => dispatch(shifterActions.showExportDialog(true))}
+          tag="miExport"
         >
-          <MenuItem
-            icon="perm_identity"
-            onClick={showDialog}
-            tag="miRegistration"
-            value="user"
-          >
-            <ListItemIcon>
-              <PermIdentity />
-            </ListItemIcon>
-            <ListItemText
-              inset
-              primary="Registration"
-            />
-          </MenuItem>
+          <ListItemIcon>
+            <FileDownload />
+          </ListItemIcon>
+          <ListItemText
+            inset
+            primary="Backup Settings"
+          />
+        </MenuItem>
 
-          <Divider />
+        <MenuItem
+          disabled={!(found && responding)}
+          onClick={() => dispatch(shifterActions.showImportDialog(true))}
+          tag="miImport"
+        >
+          <ListItemIcon>
+            <FileUpload />
+          </ListItemIcon>
+          <ListItemText
+            inset
+            primary="Restore Settings"
+          />
+        </MenuItem>
 
-          <MenuItem
-            disabled={!(found && responding)}
-            onClick={() => showExportDialog(true)}
-            tag="miExport"
-          >
-            <ListItemIcon>
-              <FileDownload />
-            </ListItemIcon>
-            <ListItemText
-              inset
-              primary="Backup Settings"
-            />
-          </MenuItem>
+        <Divider />
 
-          <MenuItem
-            disabled={!(found && responding)}
-            onClick={() => showImportDialog(true)}
-            tag="miImport"
-          >
-            <ListItemIcon>
-              <FileUpload />
-            </ListItemIcon>
-            <ListItemText
-              inset
-              primary="Restore Settings"
-            />
-          </MenuItem>
+        <MenuItem
+          onClick={() => dispatch(shifterActions.confirmFactoryReset(true))}
+          tag="miReset"
+          value="reset"
+        >
+          <ListItemIcon>
+            <Warning />
+          </ListItemIcon>
+          <ListItemText
+            inset
+            primary="Factory Reset"
+          />
+        </MenuItem>
+      </Menu>
 
-          <Divider />
+      <ExportSettings />
+      <ImportSettings />
 
-          <MenuItem
-            onClick={() => confirmFactoryReset(true)}
-            tag="miReset"
-            value="reset"
-          >
-            <ListItemIcon>
-              <Warning />
-            </ListItemIcon>
-            <ListItemText
-              inset
-              primary="Factory Reset"
-            />
-          </MenuItem>
-        </Menu>
+      <FactoryReset />
 
-        <ExportSettings />
-        <ImportSettings />
-
-        <FactoryReset
-          confirmFactoryReset={confirmFactoryReset}
-          performFactoryReset={performFactoryReset}
-          shifter={shifter}
-        />
-      </>
-    ) : null
-  }
+      <UserRegistration
+        active={dialogVisible}
+        hideDialog={() => setDialogVisible(false)}
+      />
+    </>
+  ) : null
 }
 
-MainMenu.propTypes = {
-  shifter: shifterShape.isRequired,
-  showDialog: PropTypes.func.isRequired,
-  confirmFactoryReset: PropTypes.func.isRequired,
-  performFactoryReset: PropTypes.func.isRequired,
-  showImportDialog: PropTypes.func.isRequired,
-  showExportDialog: PropTypes.func.isRequired,
-}
-
-export const mapStateToProps = ({ shifter }) => ({ shifter })
-export const mapDispatchToProps = dispatch => bindActionCreators({ ...userActions, ...shifterActions }, dispatch)
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(MainMenu)
+export default MainMenu

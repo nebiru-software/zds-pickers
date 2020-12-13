@@ -13,8 +13,6 @@
 
 // export const splitAt = index => A => [A.slice(0, index), A.slice(index)]
 
-// /* ------------------------ redux-form Validators --------------------------- */
-
 // /* -------------------------------- misc ------------------------------------ */
 
 // export const delay = async (ms) => {
