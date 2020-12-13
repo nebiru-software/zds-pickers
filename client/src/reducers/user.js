@@ -1,6 +1,5 @@
 import { submit } from 'redux-form'
-import { PRODUCT_REGISTER } from '../sagas'
-import { success } from '../sagas/utils'
+import { PRODUCT_REGISTER, success } from 'sagas/utils'
 import { createReducer } from './utils'
 import actionTypes from './actionTypes'
 

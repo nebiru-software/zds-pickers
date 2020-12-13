@@ -75,6 +75,7 @@ module.exports = {
       alias: {
         map: [
           ['controls', './src/components/controls'],
+          ['views', './src/components/views'],
           ['components', './src/components'],
           ['fp', './src/core/fp'],
           ['core', './src/core'],
@@ -89,7 +90,6 @@ module.exports = {
           ['sagas', './src/sagas'],
           ['selectors', './src/selectors'],
           ['styles', './src/styles'],
-          ['views', './src/views'],
 
         ],
         extensions: ['.js', '.json', '.spec.js'],

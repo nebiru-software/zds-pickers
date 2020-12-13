@@ -2,8 +2,8 @@ import './hotLoaderConfig'
 import { render } from 'react-dom'
 import ReactModal from 'react-modal'
 import { Provider } from 'react-redux'
-import storeFactory from './core/store'
-import App from './components/App'
+import storeFactory from 'core/store'
+import App from 'components/App'
 
 ReactModal.setAppElement('#react-container')
 

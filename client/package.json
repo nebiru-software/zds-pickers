@@ -116,6 +116,7 @@
     "react-favicon": "0.0.18",
     "react-gravatar": "2.6.3",
     "react-hot-loader": "4.13.0",
+    "react-keyboard-event-handler": "1.5.4",
     "react-modal": "3.12.1",
     "react-redux": "7.2.2",
     "react-select": "3.1.1",
@@ -132,6 +133,7 @@
   },
   "alias": {
     "controls": "./src/components/controls",
+    "views": "./src/components/views",
     "components": "./src/components",
     "fp": "./src/core/fp",
     "core": "./src/core",
@@ -146,7 +148,6 @@
     "sagas": "./src/sagas",
     "selectors": "./src/selectors",
     "styles": "./src/styles",
-    "views": "./src/views",
     "xlsx": "./node_modules/xlsx/dist/xlsx.mini.min.js"
   }
 }

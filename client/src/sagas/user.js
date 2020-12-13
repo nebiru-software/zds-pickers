@@ -1,7 +1,7 @@
 import { call, takeLatest } from 'redux-saga/effects'
-import actionTypes from '../reducers/actionTypes'
+import actionTypes from 'reducers/actionTypes'
 import { callApi } from './api'
-import { PRODUCT_INSTANCE } from '.'
+import { PRODUCT_INSTANCE } from './utils'
 
 function* handleReceivedVersion(action) {
   const { firmware, serialNumber } = action

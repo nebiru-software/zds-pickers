@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Field, reduxForm } from 'redux-form'
 import withStyles from '@material-ui/core/styles/withStyles'
+import { actions as userActions } from 'reducers/user'
+import { fieldEmail, fieldMaxLength64, fieldRequired } from 'fp/strings'
 import FormInput from '../FormInput'
-import { actions as userActions } from '../../reducers/user'
-import { fieldEmail, fieldMaxLength64, fieldRequired } from '../../core/fp/strings'
 
 const styles = {
   container: {

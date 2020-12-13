@@ -8,11 +8,11 @@ export default theme => produce(theme, (draft) => {
     //   borderS,
     //   em,
       important,
-    //   importantPx,
-    //   importantRem,
-    //   marginR,
-    //   paddingR,
-    //   rem,
+      //   importantPx,
+      //   importantRem,
+      //   marginR,
+      //   paddingR,
+      rem,
     //   sizeR,
     //   transition,
     //   when,
@@ -45,6 +45,14 @@ export default theme => produce(theme, (draft) => {
       root: {
         color: 'rgba(0, 0, 0, 0.54)',
         fontSize: '1rem',
+      },
+    },
+    MuiDialogTitle: {
+      root: {
+        '& h2': {
+          fontWeight: 'bold',
+          fontSize: rem(2),
+        },
       },
     },
     MuiExpansionPanel: {

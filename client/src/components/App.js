@@ -6,11 +6,11 @@ import { Titled } from 'react-titled'
 import Favicon from 'react-favicon'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import makeStyles from '@material-ui/core/styles/makeStyles'
-import theme from '../styles/theme'
-import FavIconUrl from '../images/favicon.ico'
-import CssGlobals from '../styles/theme/CssGlobals'
-import MainInterface from './views/MainInterface'
-import UnsupportedBrowser from './views/UnsupportedBrowser'
+import MainInterface from 'views/MainInterface'
+import UnsupportedBrowser from 'views/UnsupportedBrowser'
+import theme from 'styles/theme'
+import FavIconUrl from 'images/favicon.ico'
+import CssGlobals from 'styles/theme/CssGlobals'
 
 const useStyles = makeStyles(() => ({
   root: {

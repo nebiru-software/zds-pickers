@@ -6,13 +6,13 @@ import Avatar from '@material-ui/core/Avatar'
 import Gravatar from 'react-gravatar'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import { padding } from 'polished'
-import { actions as userActions } from '../../reducers/user'
-import { userShape } from '../../core/shapes'
+import { actions as userActions } from 'reducers/user'
+import { userShape } from 'core/shapes'
 import UserRegistration from './UserRegistration'
 
 const useStyles = makeStyles(() => ({
   root: {
-    cursor: 'pointer',
+    // cursor: 'pointer',
     outline: 'none',
     marginRight: 16,
     display: 'flex',
@@ -46,8 +46,6 @@ export const UserInfo = ({ user, showDialog, hideDialog, submitRegistrationForm 
   const { dialogVisible, email, firstName, lastName, registered } = user
   const size = 30
   const classes = useStyles()
-
-  return null
 
   return (
     <div className={classes.root}>

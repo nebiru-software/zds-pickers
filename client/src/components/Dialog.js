@@ -6,6 +6,7 @@ const TabSupportedDialog = withTabSupport(MuiDialog)
 
 const Dialog = props => (
   <TabSupportedDialog
+    disablePortal
     TransitionComponent={Transition}
     {...props}
   />
