@@ -9,12 +9,11 @@ export const downloadFile = (data, filename) => {
 export default (store) => {
   const {
     shifter: { exportFilename, exportBuffer },
-    version: { firmware, proModel },
+    version: { firmware },
   } = store.getState()
 
   let output = [
     firmware, //
-    proModel,
     ...exportBuffer,
   ].map(Number)
 

@@ -20,8 +20,8 @@ import { transmitBackup } from './sysexOutput'
 const validFile = ([fileChecksum, ...rest]) => Hash(rest) === fileChecksum
 const invalidFile = dispatch => dispatch(shifterActions.settingsFileInvalid('Invalid settings file'))
 
-// Params are hash, version, proModel, then the rest
-const process = (dispatch, [, , , ...rest]) => new Promise((resolve, reject) => {
+// Params are hash, version, then the rest
+const process = (dispatch, [, , ...rest]) => new Promise((resolve, reject) => {
   const BLOCK_SIZE = 51
   try {
     chunk(BLOCK_SIZE)(rest).forEach((block, blockIdx) => {

@@ -67,7 +67,7 @@ static void sendVersion(midi::DataByte* data, int size) {
 }
 
 void sendControls() {
-  const uint8_t length = LOCATION_OF_GROUPS - LOCATION_OF_CONTROLS;
+  const uint8_t length = MAX_INPUT_CONTROLS * 5;
 
   midi::DataByte data[length + 1];
   uint16_t       j = 0;
@@ -75,13 +75,12 @@ void sendControls() {
 
   data[j++] = SYSEX_MSG_RECEIVE_CONTROLS;
 
-  while (i < LOCATION_OF_GROUPS) {
+  while (j <= length) {
     data[j++] = EEPROM.read(i++);
   }
 
 #if SYSEX_DEBUG_MODE
   Serial.println("Sending controls.");
-  // dumpDataToSerial(data, j);
 #endif // if SYSEX_DEBUG_MODE
 
   sendSysEx(data, j);

@@ -8,7 +8,7 @@ import MidiActivity from '../MidiActivity'
 import LEDModePicker from '../controls/LEDModePicker'
 import MidiMenu from '../MidiMenu'
 import WaitingOnShifter from '../WaitingOnShifter'
-import { stateInputControls, stateShifter, stateVersion } from '../../selectors'
+import { stateInputControls, stateShifter } from '../../selectors'
 
 const useStyles = makeStyles(({ constants, palette }) => ({
   root: {
@@ -71,7 +71,6 @@ const useStyles = makeStyles(({ constants, palette }) => ({
 
 export const InputControls = () => {
   const inputControls = useSelector(stateInputControls)
-  const { proModel } = useSelector(stateVersion)
   const {
     found,
     midiActivityLEDMode,
@@ -83,7 +82,7 @@ export const InputControls = () => {
 
   const classes = useStyles()
 
-  const visibleControls = inputControls.filter((control, idx) => proModel || idx < 2)
+  const visibleControls = inputControls.filter((control, idx) => idx < 3)
 
   return (
     <div className={classes.root}>

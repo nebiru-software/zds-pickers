@@ -3,11 +3,11 @@ import produce from 'immer'
 export default theme => produce(theme, (draft) => {
   const {
     // breakpoints,
-    // mixins: {
+    mixins: {
     //   absWidth,
     //   borderS,
     //   em,
-    //   important,
+      important,
     //   importantPx,
     //   importantRem,
     //   marginR,
@@ -16,7 +16,7 @@ export default theme => produce(theme, (draft) => {
     //   sizeR,
     //   transition,
     //   when,
-    // },
+    },
     // name,
     palette,
     // spacing,
@@ -82,46 +82,45 @@ export default theme => produce(theme, (draft) => {
     MuiSelect: {
       root: {
         marginRight: 5,
-        backgroundColor: palette[600],
+        backgroundColor: palette.primary[600],
         color: 'white',
         borderRadius: 5,
         height: 30,
         paddingLeft: 5,
         borderWidth: 1,
         borderStyle: 'solid',
-        borderColor: palette[500],
-        boxShadow: `inset 1px 1px 0 ${palette[400]}`,
+        borderColor: palette.primary[500],
+        boxShadow: `inset 1px 1px 0 ${palette.primary[400]}`,
       },
       icon: {
         color: 'white',
       },
     },
-    MuiTabs: {
-      indicator: {
-        display: 'none',
-      },
-    },
     MuiTab: {
       root: {
-        backgroundColor: palette[100],
+        backgroundColor: palette.primary[100],
         minWidth: '130px !important',
         maxWidth: '130px !important',
         borderRadius: '8px 8px 0 0',
-        color: 'white',
         marginRight: 5,
         '&$selected': {
-          backgroundColor: palette[500],
-          color: 'white',
+          backgroundColor: important(palette.primary[500]),
+          color: palette.common.white,
         },
       },
-      // labelContainer: {
-      //   fontSize: '16px !important',
-      // },
+      textColorInherit: {
+        color: palette.text.dimmer,
+      },
       wrapper: {
         flexDirection: 'row',
       },
       labelIcon: {
         minHeight: 48,
+      },
+    },
+    MuiTabs: {
+      indicator: {
+        display: 'none',
       },
     },
     MuiToolbar: {

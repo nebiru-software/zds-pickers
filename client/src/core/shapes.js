@@ -133,7 +133,6 @@ export const userShape = shape({
 export const versionShape = shape({
   checking: bool.isRequired,
   checked: bool.isRequired,
-  proModel: bool.isRequired,
   client: number.isRequired,
   firmware: number.isRequired,
 })

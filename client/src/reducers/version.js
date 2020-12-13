@@ -18,17 +18,11 @@ export const actions = {
     firmware,
     serialNumber,
   }),
-
-  receivedModel: proModel => ({
-    type: actionTypes.RECEIVED_MODEL,
-    proModel,
-  }),
 }
 
 const defaultState = {
   checking: false,
   checked: false,
-  proModel: false,
   client: CURRENT_CLIENT_VERSION,
   firmware: NaN,
 }
@@ -46,11 +40,6 @@ const receivedVersion = (state, { firmware }) => ({
   checked: true,
 })
 
-const receivedModel = (state, { proModel }) => ({
-  ...state,
-  proModel,
-})
-
 const shifterMissing = state => ({
   ...state,
   checking: false,
@@ -61,5 +50,4 @@ export default createReducer(defaultState, {
   [actionTypes.GET_SYSEX_VERSION]: checkingVersion,
   [actionTypes.RECEIVED_VERSION]: receivedVersion,
   [actionTypes.SHIFTER_MISSING]: shifterMissing,
-  [actionTypes.RECEIVED_MODEL]: receivedModel,
 })

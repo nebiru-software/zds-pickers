@@ -9,7 +9,7 @@ import SortControls from './SortControls'
 
 const useStyles = makeStyles(({ mixins: { absWidth }, palette }) => ({
   root: {
-    backgroundColor: palette.background.default,
+    backgroundColor: palette.common.white,
     color: palette.text.primary,
     textAlign: 'center',
 

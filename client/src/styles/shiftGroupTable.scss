@@ -6,27 +6,6 @@
 }
 
 :local {
-  .entryGrid {
-    background-color: $color-grid-background;
-    height: calc(100vh - #{$grid-height}) !important;
-    overflow: hidden !important;
-    margin: 0 3px 3px;
-    outline: none;
-
-    > div:first-of-type {
-      overflow-y: auto;
-      height: 100%;
-      //@include scroll-shadow-indicator();
-
-      & > div:nth-child(even) {
-        background-color: $color-grid-row-even;
-      }
-
-      & > div:nth-child(odd) {
-        background-color: $color-grid-row-odd;
-      }
-    }
-  }
 
   .sortControl {
     white-space: nowrap;

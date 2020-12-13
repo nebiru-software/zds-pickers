@@ -10,13 +10,12 @@ import InfoPanel from '../InfoPanel'
 import HardwareTest from '../device/hardwareTest/HardwareTest'
 import PrimaryNav from './PrimaryNav'
 
-const useStyles = makeStyles(({ constants, palette }) => ({
+const useStyles = makeStyles(({ constants, palette, mixins: { absWidth, borderS } }) => ({
   root: {
-    maxWidth: constants.viewportWidth,
-    minWidth: constants.viewportWidth,
-    borderStyle: 'solid',
-    borderColor: palette.border,
+    ...absWidth(constants.viewportWidth),
+    ...borderS(palette.grey[300]),
     borderWidth: '0 1px',
+    backgroundColor: palette.background.paperSecondary,
 
     // @include linearGradient(#ece9e6, white);
   },

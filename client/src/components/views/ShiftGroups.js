@@ -50,6 +50,7 @@ export const ShiftGroups = () => {
           {groups.map(({ label, active, groupId, controlLabels }, idx) => ready ? (
             <GroupTab
               active={active}
+              color="primary"
               controlLabels={controlLabels}
               groupId={groupId}
               key={idx}

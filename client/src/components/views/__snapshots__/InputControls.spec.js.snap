@@ -168,7 +168,6 @@ exports[`InputControls tests renders correctly 1`] = `
             "checking": false,
             "client": 2.5,
             "firmware": 1.5,
-            "proModel": false,
           }
         }
       />
@@ -301,7 +300,6 @@ exports[`InputControls tests renders correctly 1`] = `
             "checking": false,
             "client": 2.5,
             "firmware": 1.5,
-            "proModel": false,
           }
         }
       />

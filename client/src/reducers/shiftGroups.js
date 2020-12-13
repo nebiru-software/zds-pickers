@@ -1,6 +1,7 @@
 import { assertRange } from 'zds-pickers'
 import { arraySequence, chunk, splitAt } from '../core/fp/arrays'
 import { sum } from '../core/fp/numbers'
+import { GROUP_SIZE_BYTES, MAX_ENTRIES, MAX_GROUPS } from '../core/consts'
 import { createReducer } from './utils'
 import shiftGroup from './shiftGroup'
 import actionTypes from './actionTypes.js'
@@ -95,7 +96,7 @@ export const actions = {
 
 const defaultState = {
   selectedGroupIdx: 0,
-  maxEntries: 112,
+  maxEntries: MAX_ENTRIES,
   totalEntries: 0,
   groups: [],
 }
@@ -124,11 +125,11 @@ const handleShifterUnplugged = () => ({
 })
 
 const receivedGroups = (state, { groupData }) => {
-  const [preamble, rest] = splitAt(12)(groupData)
+  const [preamble, rest] = splitAt(MAX_GROUPS * GROUP_SIZE_BYTES)(groupData)
 
-  const [numEntries, channels, values] = chunk(4)(preamble)
+  const [numEntries, channels, values] = chunk(MAX_GROUPS)(preamble)
 
-  const groups = arraySequence(4).map((val, groupId) => ({
+  const groups = arraySequence(MAX_GROUPS).map((val, groupId) => ({
     groupId,
     channel: channels[groupId],
     value: values[groupId],
@@ -143,7 +144,7 @@ const receivedGroups = (state, { groupData }) => {
       idx, //
     ) => shiftGroup(group, {
       type: actionTypes.RECEIVED_GROUP, //
-      entries: rest.splice(0, numEntries[idx] * 4),
+      entries: rest.splice(0, numEntries[idx] * MAX_GROUPS),
     })),
   }
 }

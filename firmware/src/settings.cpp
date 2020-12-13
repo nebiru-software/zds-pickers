@@ -14,14 +14,14 @@
 
     20 - 64
         Input controls.  Six controls are stored sequentially.  These currently
-        consume 5 bytes each, for a total of 45.
+        consume 5 bytes each, for a total of 30.
 
     65 - 99
-        Reserved for future use
+        Reserved for future use (virtual hats?)
 
     100 - ~2047
         Groups, 6 total. Each group needs three bytes for the number of entries
-        (18 total), channel # and CC #.  Whatever's left (460B) is devoted to
+        (18 total), channel # and CC #.  Whatever's left (1929B) is devoted to
         entries. Each entry needs 4 bytes which gives us a max of 482 entries.
         We've capped it at 480 in order to give us a little breathing room at
         the end.

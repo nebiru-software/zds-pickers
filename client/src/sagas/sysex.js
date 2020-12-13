@@ -24,12 +24,13 @@ import { actions as shifterActions } from '../reducers/shifter'
 import actionTypes from '../reducers/actionTypes'
 import { getInputDeviceId, getOutputDeviceId } from '../selectors/midi'
 import { actions as userActions } from '../reducers/user'
+import { ENTRY_SIZE_BYTES, GROUP_SIZE_BYTES, INPUT_CONTROL_SIZE_BYTES, MAX_GROUPS, MAX_INPUTS } from '../core/consts'
 
-const controlsPresent = packet => packet.length > 0
-const controlsValid = packet => packet.length % 5 === 0
+const controlsPresent = packet => packet.length >= INPUT_CONTROL_SIZE_BYTES * MAX_INPUTS
+const controlsValid = packet => packet.length % INPUT_CONTROL_SIZE_BYTES === 0
 
-const groupsPresent = packet => packet.length >= 12
-const groupsValid = packet => (packet.length - 12) % 4 === 0
+const groupsPresent = packet => packet.length >= MAX_GROUPS * GROUP_SIZE_BYTES
+const groupsValid = packet => (packet.length - (MAX_GROUPS * GROUP_SIZE_BYTES)) % ENTRY_SIZE_BYTES === 0
 
 function* transmitAction(command, data = []) {
   const { id } = yield select(getOutputDeviceId)
@@ -101,7 +102,6 @@ function* handleReceiveMessage({ payload: { device, data } }) {
 
       case SYSEX_MSG_SEND_GROUPS:
         /* istanbul ignore if */
-
         if (groupsPresent(packet) && groupsValid(packet)) {
           yield put(shiftGroupActions.receivedGroups(packet))
         } else {

@@ -34,7 +34,11 @@ const useStyles = makeStyles(({ mixins: { paddingR, rem } }) => ({
     borderRadius: 8,
     minHeight: 50,
   },
-}), { name: 'GridControls2' })
+  controls: {
+    display: 'flex',
+    flexFlow: 'row nowrap',
+  },
+}), { name: 'GridControls' })
 
 const noMapping = 'No Mapping'
 
@@ -94,7 +98,7 @@ const GridControls = ({ groupId }) => {
               placement="top"
               title="The CC and channel that enables this group"
             >
-              <div>
+              <div className={classes.controls}>
                 <CCPicker
                   disabled={disabled}
                   onChange={newValue => dispatch(shiftGroupActions.changeGroupValue(groupId, newValue))}

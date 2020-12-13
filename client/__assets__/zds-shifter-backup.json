@@ -131,8 +131,7 @@
     ]
   },
   "version": {
-    "firmware": 10,
-    "proModel": false
+    "firmware": 30
   },
   "inputControls": [
     {

@@ -1,10 +1,9 @@
-import React, { Component } from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import withStyles from '@material-ui/core/styles/withStyles'
 import Tab from '@material-ui/core/Tab'
 import { DropTarget } from 'react-dnd'
-import { compose } from 'redux'
+import makeStyles from '@material-ui/core/styles/makeStyles'
 import DragTypes from '../../core/dragTypes'
 
 export const boxTarget = {
@@ -16,25 +15,25 @@ export const boxTarget = {
   },
 }
 
-const styles = theme => ({
+const useStyles = makeStyles(({ mixins: { rem }, palette }) => ({
   activeLabel: {
-    color: theme.palette.primary[50],
+    color: palette.primary[50],
   },
   controlsLabel: {
     position: 'absolute',
-    bottom: 1,
+    bottom: -1,
     paddingLeft: 5,
-    fontSize: '0.75rem',
+    fontSize: rem(1.15),
   },
   dropTarget: {
     background: '#90283c',
-    color: 'white',
+    color: palette.common.white,
   },
   dropTargetOver: {
-    background: 'green',
-    color: 'white',
+    background: palette.common.green,
+    color: palette.common.white,
   },
-})
+}), { name: 'GroupTab' })
 
 const builtDropTarget = DropTarget(DragTypes.ENTRY, boxTarget, (connect, monitor) => ({
   connectDropTarget: connect.dropTarget(),
@@ -42,64 +41,64 @@ const builtDropTarget = DropTarget(DragTypes.ENTRY, boxTarget, (connect, monitor
   canDrop: monitor.canDrop(),
 }))
 
-class GroupTab extends Component {
-  render() {
-    const {
-      active,
-      canDrop,
-      classes,
-      connectDropTarget,
-      controlLabels,
-      groupId,
-      isOver,
-      selected,
-      ...rest
-    } = this.props
+const GroupTab = (props) => {
+  const {
+    active,
+    canDrop,
+    connectDropTarget,
+    controlLabels,
+    groupId,
+    isOver,
+    selected,
+    ...rest
+  } = props
+  const classes = useStyles()
 
-    const labelClassName = classNames({
+  const labelClassName = useMemo(
+    () => classNames({
       [classes.controlsLabel]: true,
       [classes.activeLabel]: selected,
-    })
+    }),
+    [classes.activeLabel, classes.controlsLabel, selected],
+  )
 
-    const tabClassName = classNames({
+  const tabClassName = useMemo(
+    () => classNames({
       [classes.dropTarget]: canDrop,
       [classes.dropTargetOver]: canDrop && isOver,
-    })
+    }),
+    [canDrop, classes.dropTarget, classes.dropTargetOver, isOver],
+  )
 
-    const renderedOutput = (
-      <div>
-        <Tab
-          {...rest}
-          active={active ? 'true' : 'false'}
-          className={tabClassName}
-          selected={selected}
-        />
-        <div className={labelClassName}>{controlLabels.join(', ')}</div>
-      </div>
-    )
+  const renderedOutput = (
+    <div>
+      <Tab
+        {...rest}
+        active={active ? 'true' : 'false'}
+        className={tabClassName}
+        selected={selected}
+      />
+      <div className={labelClassName}>{controlLabels.join(', ')}</div>
+    </div>
+  )
 
-    return connectDropTarget(renderedOutput)
-  }
+  return connectDropTarget(renderedOutput)
 }
 
 GroupTab.propTypes = {
-  selected: PropTypes.bool.isRequired,
   active: PropTypes.bool.isRequired,
-  connectDropTarget: PropTypes.func,
   canDrop: PropTypes.bool,
-  isOver: PropTypes.bool,
-  groupId: PropTypes.number.isRequired,
+  connectDropTarget: PropTypes.func,
   controlLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
-  classes: PropTypes.object.isRequired,
+  groupId: PropTypes.number.isRequired,
+  isOver: PropTypes.bool,
+  selected: PropTypes.bool.isRequired,
 }
 
 GroupTab.defaultProps = {
   canDrop: false,
-  isOver: false,
   connectDropTarget: null,
+  isOver: false,
 }
 
-export default compose(
-  builtDropTarget,
-  withStyles(styles),
-)(GroupTab)
+export default builtDropTarget(GroupTab)

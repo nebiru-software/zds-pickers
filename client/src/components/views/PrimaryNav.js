@@ -1,6 +1,6 @@
 import React from 'react'
 import makeStyles from '@material-ui/core/styles/makeStyles'
-import { padding } from 'polished'
+import { border, padding } from 'polished'
 import UserInfo from '../user/UserInfo'
 import MainMenu from '../MainMenu'
 import Logo from '../../images/shifter.svg'
@@ -20,8 +20,9 @@ const useStyles = makeStyles(({ constants, palette }) => ({
     height: constants.headerHeight,
     ...padding(10, 16, 10),
     margin: 0,
-    backgroundColor: palette.background.paperSecondary,
+    backgroundColor: palette.common.white,
     color: palette.text.primary,
+    ...border('bottom', 1, 'solid', palette.grey[300]),
 
     display: 'flex',
     flexDirection: 'row',

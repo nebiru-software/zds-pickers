@@ -16,13 +16,10 @@ const useStyles = makeStyles(() => ({
   root: {
     height: '100%',
     width: '100%',
-
     display: 'flex',
     flexFlow: 'column nowrap',
     justifyContent: 'center',
     alignItems: 'center',
-    background: 'linear-gradient(to right, rgba(0, 0, 0, 0.24) 0%,rgba(255, 255, 255, 0) 49% rgba(0, 0, 0, 0.24) 100%)',
-    filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d000000',endColorstr='#3d000000', GradientType=1)",
   },
 }), { name: 'App' })
 

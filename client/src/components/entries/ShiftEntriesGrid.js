@@ -3,7 +3,8 @@ import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { assertRange } from 'zds-pickers'
 import { useDispatch, useSelector } from 'react-redux'
-import { entryGrid } from '../../styles/shiftGroupTable.scss'
+import makeStyles from '@material-ui/core/styles/makeStyles'
+import { margin } from 'polished'
 import { compareEntry } from '../../reducers/shiftEntry'
 import { delay } from '../../core/fp/utils'
 import { actions } from '../../reducers/shiftGroups'
@@ -13,11 +14,35 @@ import { isDisabled } from '../../selectors/shifter'
 import { stateMappings } from '../../selectors'
 import GridRow from './GridRow'
 
+const useStyles = makeStyles(({ constants, mixins: { important }, palette }) => ({
+  root: {
+    backgroundColor: palette.common.white,
+    height: important(`calc(100vh - ${constants.gridHeight}px)`),
+    overflow: important('hidden'),
+    ...margin(0, 3, 3),
+    outline: 'none',
+
+    '& > div:first-of-type': {
+      overflowY: 'auto',
+      height: '100%',
+
+      '& > div:nth-child(even)': {
+        backgroundColor: palette.background.default,
+      },
+
+      '& > div:nth-child(odd)': {
+        backgroundColor: palette.borderLight,
+      },
+    },
+  },
+}), { name: 'ShiftEntriesGrid' })
+
 const ShiftEntriesGrid = ({ groupId }) => {
   const dispatch = useDispatch()
   const shiftGroup = useParamSelector(getShiftGroup, groupId) || {}
   const disabled = useSelector(isDisabled)
   const { channels } = useSelector(stateMappings)
+  const classes = useStyles()
 
   const { entries, selectedRows, sortBy, sortDir, sortOn } = shiftGroup
 
@@ -114,7 +139,7 @@ const ShiftEntriesGrid = ({ groupId }) => {
 
   return (
     <div
-      className={entryGrid}
+      className={classes.root}
       onKeyDown={handleKeyDown}
       role="menuitem"
       tabIndex={0}
