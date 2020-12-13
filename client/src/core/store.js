@@ -1,17 +1,10 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import setup from 'redux-midi-fork'
-// import thunk from 'redux-thunk'
-import * as reducers from '../reducers'
-import sagas from '../sagas'
-// import sysexInputMiddleware from '../middleware/sysexInput'
-// import sysexOutputMiddleware from '../middleware/sysexOutput'
-// import hardwareTestOutputMiddleware from '../middleware/hardwareTestOutput'
-// import fileExport from '../middleware/fileExport'
-// import fileImport from '../middleware/fileImport'
-// import { watchForDeviceChange } from '../midi'
-import { isDevEnv } from '../selectors'
-import { sortObject } from './fp/objects'
+import * as reducers from 'reducers/index'
+import sagas from 'sagas/index'
+import { isDevEnv } from 'selectors/index'
+import { sortObject } from 'fp/objects'
 
 const combinedReducers = combineReducers(sortObject(reducers))
 const sagaMiddleware = createSagaMiddleware()
@@ -69,56 +62,3 @@ const storeFactory = async (initialState = {}) => {
 }
 
 export default storeFactory
-
-// export default function storeFactory(initialState) {
-//   const isDev = isDevEnv()
-//   /* istanbul ignore if */
-//   // if (!test) {
-//   const { inputMiddleware, outputMiddleware } = setup({ midiOptions: { sysex: true } })
-//   middlewares = [
-//     ...middlewares,
-//     inputMiddleware,
-//     outputMiddleware,
-//     sysexInputMiddleware,
-//     sysexOutputMiddleware,
-//     hardwareTestOutputMiddleware,
-//     fileExport,
-//     fileImport,
-//   ]
-//   // }
-
-//   /* eslint-disable indent */
-//   const store = (isDev
-//     ? compose(
-//         applyMiddleware(...middlewares),
-//         applyMiddleware(logger),
-//         window.devToolsExtension ? window.devToolsExtension() : f => f,
-//       )
-//     : applyMiddleware(...middlewares))(createStore)(rootReducer, initialState)
-//   /* eslint-enable indent */
-
-//   /* istanbul ignore if */
-//   // if (module.hot) {
-//   //   module.hot.accept('./reducers', () => {
-//   //     // eslint-disable-next-line
-//   //     const nextRootReducer = require('./reducers/index')
-//   //     store.replaceReducer(nextRootReducer)
-//   //   })
-//   // }
-
-//   /* istanbul ignore if */
-//   // if (!test) {
-//   /*
-//      * This effectively bootstraps the application.
-//      *
-//      * Whenever our device is detected, either initially or due to being
-//      * plugged in, watchForDeviceChange will dispatch shifterFound().
-//      * This action is intercepted in /middleware/sysexInput, which then
-//      * dispatches additional events to request the internal state of the
-//      * device.
-//      */
-//   watchForDeviceChange(store)
-//   // }
-
-//   return store
-// }

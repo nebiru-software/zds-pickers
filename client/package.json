@@ -99,7 +99,6 @@
     "core-js-pure": "3.8.1",
     "date-fns": "2.16.1",
     "file-saver": "2.0.5",
-    "fp": "^0.1.0",
     "immer": "8.0.0",
     "monet": "0.9.1",
     "nanoid": "3.1.20",
@@ -126,10 +125,28 @@
     "redux-logger": "3.0.6",
     "redux-midi-fork": "2.0.3",
     "redux-saga": "1.1.3",
-    "redux-thunk": "2.3.0",
     "reselect": "4.0.0",
     "shallowequal": "1.1.0",
     "zds-mappings": "1.4.9",
     "zds-pickers": "3.1.0"
+  },
+  "alias": {
+    "controls": "./src/components/controls",
+    "components": "./src/components",
+    "fp": "./src/core/fp",
+    "core": "./src/core",
+    "hoc": "./src/hoc",
+    "hooks": "./src/hooks",
+    "images": "./src/images",
+    "locale": "./src/locale",
+    "midi": "./src/midi",
+    "projections": "./src/projections",
+    "reducers": "./src/reducers",
+    "routing": "./src/routing",
+    "sagas": "./src/sagas",
+    "selectors": "./src/selectors",
+    "styles": "./src/styles",
+    "views": "./src/views",
+    "xlsx": "./node_modules/xlsx/dist/xlsx.mini.min.js"
   }
 }

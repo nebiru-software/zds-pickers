@@ -72,6 +72,28 @@ module.exports = {
   },
   settings: {
     'import/resolver': {
+      alias: {
+        map: [
+          ['controls', './src/components/controls'],
+          ['components', './src/components'],
+          ['fp', './src/core/fp'],
+          ['core', './src/core'],
+          ['hoc', './src/hoc'],
+          ['hooks', './src/hooks'],
+          ['images', './src/images'],
+          ['locale', './src/locale'],
+          ['midi', './src/midi'],
+          ['projections', './src/projections'],
+          ['reducers', './src/reducers'],
+          ['routing', './src/routing'],
+          ['sagas', './src/sagas'],
+          ['selectors', './src/selectors'],
+          ['styles', './src/styles'],
+          ['views', './src/views'],
+
+        ],
+        extensions: ['.js', '.json', '.spec.js'],
+      },
       parcel: {
         rootDir: 'src',
       },

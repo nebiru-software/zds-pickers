@@ -2,7 +2,7 @@
 import { sendMidiMessage } from 'redux-midi-fork'
 // import now from 'performance-now'
 import { combineStatus } from 'zds-pickers'
-import { delay } from '../core/fp/utils'
+import { delay } from 'fp/utils'
 import { shifterOutputId } from './devices'
 import {
   SYSEX_END,

@@ -1,10 +1,10 @@
 import { assertRange } from 'zds-pickers'
-import { arraySequence, chunk, splitAt } from '../core/fp/arrays'
-import { sum } from '../core/fp/numbers'
-import { GROUP_SIZE_BYTES, MAX_ENTRIES, MAX_GROUPS } from '../core/consts'
+import { arraySequence, chunk, splitAt } from 'fp/arrays'
+import { sum } from 'fp/numbers'
+import { GROUP_SIZE_BYTES, MAX_ENTRIES, MAX_GROUPS } from 'core/consts'
 import { createReducer } from './utils'
 import shiftGroup from './shiftGroup'
-import actionTypes from './actionTypes.js'
+import actionTypes from './actionTypes'
 
 export const actions = {
   askForGroups: () => ({

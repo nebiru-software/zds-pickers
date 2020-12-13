@@ -61,7 +61,7 @@ module.exports = {
     '^@reducers/(.*)$': '<rootDir>/src/reducers/__data__/$1',
     '^@reviews/(.*)$': '<rootDir>/src/components/assignments/reviews/__data__/$1',
 
-    '^common/(.*)$': '<rootDir>/src/components/common/$1',
+    '^controls/(.*)$': '<rootDir>/src/components/controls/$1',
     '^components/(.*)$': '<rootDir>/src/components/$1',
     '^fp/(.*)$': '<rootDir>/src/core/fp/$1',
     '^core/(.*)$': '<rootDir>/src/core/$1',
@@ -69,6 +69,7 @@ module.exports = {
     '^hooks/(.*)$': '<rootDir>/src/hooks/$1',
     '^images/(.*)$': '<rootDir>/src/images/$1',
     '^locale/(.*)$': '<rootDir>/src/locale/$1',
+    '^midi/(.*)$': '<rootDir>/src/midi/$1',
     '^projections/(.*)$': '<rootDir>/src/projections/$1',
     '^reducers/(.*)$': '<rootDir>/src/reducers/$1',
     '^routing/(.*)$': '<rootDir>/src/routing/$1',

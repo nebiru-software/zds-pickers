@@ -1,6 +1,7 @@
 import { sendMidiMessage } from 'redux-midi-fork'
 import { call, put, select, takeLatest } from 'redux-saga/effects'
-import { CURRENT_CLIENT_VERSION, SHIFTER_DEVICE_ID } from '../midi'
+import { getInputDeviceId, getOutputDeviceId } from 'selectors/midi'
+import { ENTRY_SIZE_BYTES, GROUP_SIZE_BYTES, INPUT_CONTROL_SIZE_BYTES, MAX_GROUPS, MAX_INPUTS } from 'core/consts'
 import {
   SYSEX_END,
   SYSEX_MSG_AVAILABILITY,
@@ -16,15 +17,13 @@ import {
   SYSEX_START,
   marshalMSB,
   parseMSB,
-} from '../midi/sysex'
-import { actions as versionActions } from '../reducers/version'
-import { actions } from '../reducers/inputControls'
-import { actions as shiftGroupActions } from '../reducers/shiftGroups'
-import { actions as shifterActions } from '../reducers/shifter'
-import actionTypes from '../reducers/actionTypes'
-import { getInputDeviceId, getOutputDeviceId } from '../selectors/midi'
-import { actions as userActions } from '../reducers/user'
-import { ENTRY_SIZE_BYTES, GROUP_SIZE_BYTES, INPUT_CONTROL_SIZE_BYTES, MAX_GROUPS, MAX_INPUTS } from '../core/consts'
+} from 'midi/sysex'
+import { actions as versionActions } from 'reducers/version'
+import { actions } from 'reducers/inputControls'
+import { actions as shiftGroupActions } from 'reducers/shiftGroups'
+import { actions as shifterActions } from 'reducers/shifter'
+import actionTypes from 'reducers/actionTypes'
+import { CURRENT_CLIENT_VERSION, SHIFTER_DEVICE_ID } from '../midi'
 
 const controlsPresent = packet => packet.length >= INPUT_CONTROL_SIZE_BYTES * MAX_INPUTS
 const controlsValid = packet => packet.length % INPUT_CONTROL_SIZE_BYTES === 0

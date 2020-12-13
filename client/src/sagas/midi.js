@@ -2,11 +2,11 @@ import { call, cancel, delay, fork, put, select, take, takeLatest } from 'redux-
 import isPast from 'date-fns/isPast'
 import subSeconds from 'date-fns/subSeconds'
 import { setListeningDevices } from 'redux-midi-fork'
-import { getInputDeviceId, getOutputDeviceId } from '../selectors/midi'
-import { actions, actions as shifterActions } from '../reducers/shifter'
-import { actions as versionActions } from '../reducers/version'
-import actionTypes from '../reducers/actionTypes'
-import { doesShifterExist } from '../selectors/shifter'
+import { getInputDeviceId, getOutputDeviceId } from 'selectors/midi'
+import { actions, actions as shifterActions } from 'reducers/shifter'
+import { actions as versionActions } from 'reducers/version'
+import actionTypes from 'reducers/actionTypes'
+import { doesShifterExist } from 'selectors/shifter'
 
 function* handleReceiveDeviceList() {
   const shifterInput = yield select(getInputDeviceId)
