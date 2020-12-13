@@ -226,10 +226,12 @@ module.exports = {
     'react/jsx-no-undef': 'error',
     'react/jsx-one-expression-per-line': 'off',
     'react/jsx-props-no-spreading': 'off',
+    "react/jsx-uses-react": "off",
     'react/no-array-index-key': 'off',
     'react/no-danger': 'off',
     'react/jsx-pascal-case': 'error',
     'react/prop-types': ['error', { ignore: ['className'] }],
+    "react/react-in-jsx-scope": "off",
     semi: ['error', 'never'],
   },
   overrides: [

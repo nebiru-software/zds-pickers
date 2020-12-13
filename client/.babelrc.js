@@ -19,7 +19,12 @@ module.exports = {
     },
     test: {},
   },
-  presets: ['@babel/preset-env', '@babel/preset-react'],
+  presets: [
+    '@babel/preset-env',
+    ["@babel/preset-react", {
+      "runtime": "automatic"
+    }]
+  ],
   plugins: [
     // ['@babel/plugin-proposal-class-properties', { loose: true }],
     '@babel/plugin-proposal-export-default-from',
