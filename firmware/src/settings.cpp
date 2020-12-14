@@ -67,7 +67,7 @@ static int eepromIndex = 0;
 // cppcheck-suppress unusedFunction
 void hardReset(bool preserveSerial) {
   if (preserveSerial) {
-    for (uint16_t i = LOCATION_OF_CONTROLS; i < MAX_BYTES; i++) {
+    for (uint16_t i = 15; i < MAX_BYTES; i++) {
       EEPROM.update(i, 255);
     }
   } else {

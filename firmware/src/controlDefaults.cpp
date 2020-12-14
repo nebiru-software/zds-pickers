@@ -15,7 +15,6 @@ void resetControls() {
   for (uint8_t i = 0; i < MAX_INPUT_CONTROLS; i++) {
     jack.idx         = i;
     jack.status      = CC;
-    jack.data        = 110 + i;
     jack.controlType = 0;
     jack.threshold   = 0;
     jack.sensitivity = 127;
@@ -28,21 +27,28 @@ void resetControls() {
       case 1:
       case 2:
         jack.controlType = CONTROL_TYPE_BUTTON;
+        jack.data        = 110 + i;
         jack.status      = CC;
         break;
 
       case 3:
+        jack.data = 7;
       case 4:
         jack.controlType = CONTROL_TYPE_POT;
+        jack.data        = 64;
         jack.status      = CC;
         jack.threshold   = 0;
         break;
 
       case 5:
+        jack.data = 35;
       case 6:
+        jack.data = 36;
       case 7:
+        jack.data = 42;
       case 8:
         jack.controlType = CONTROL_TYPE_TRIGGER;
+        jack.data        = 46;
         jack.status      = NOTE_ON;
         jack.threshold   = 1;
         jack.sensitivity = 24;

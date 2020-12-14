@@ -65,6 +65,7 @@ export default {
   },
   greyed: '#babbbd',
   important: common.darkRed,
+  led: '#8dbdf1',
   primary,
   ribbon: greyDark,
   secondary: {

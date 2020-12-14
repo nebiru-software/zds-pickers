@@ -55,7 +55,6 @@ const CCControl = (props) => {
     // changeInputControlValue,
     controlId,
     lit,
-    ...rest
   } = props
 
   const handleChangeValue = useCallback((value) => {
@@ -84,9 +83,8 @@ const CCControl = (props) => {
   return (
     <div className={classes.root}>
       <Led
-        label={`FS${controlId + 1}`}
+        label={`FS${controlId + 1} ${controlId}`}
         lit={lit}
-        {...rest}
       />
       <CCPicker
         {...pickerProps}

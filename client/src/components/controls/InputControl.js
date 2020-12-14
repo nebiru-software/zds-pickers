@@ -3,7 +3,7 @@ import CCControl from './CCControl'
 
 const InputControl = (props) => {
   const { controlId } = props
-  // For now, only worry about the two CC foot switches
+  // For now, only worry about displaying the CC foot switches
   return controlId < 3 ? <CCControl {...props} /> : <div>control #{controlId}</div>
 }
 
