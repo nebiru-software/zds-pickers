@@ -6,11 +6,13 @@ import { Titled } from 'react-titled'
 import Favicon from 'react-favicon'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import makeStyles from '@material-ui/core/styles/makeStyles'
+import { useMemo } from 'react'
 import MainInterface from 'views/MainInterface'
 import UnsupportedBrowser from 'views/UnsupportedBrowser'
 import theme from 'styles/theme'
 import FavIconUrl from 'images/favicon.ico'
 import CssGlobals from 'styles/theme/CssGlobals'
+import { isDevEnv } from 'selectors/index'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -33,16 +35,18 @@ const browserHandler = {
 
 const App = () => {
   const classes = useStyles()
-  // console.log(theme({}))
+  const themeInstance = useMemo(() => theme({}), [])
 
   return (
-    <ThemeProvider theme={theme({})}>
+    <ThemeProvider theme={themeInstance}>
       <Titled title={() => 'ZDS Shifter Pro'} />
       <Favicon url={FavIconUrl} />
       <CssBaseline />
       <CssGlobals />
       <div className={classes.root}>
-        <BrowserDetection>{browserHandler}</BrowserDetection>
+        {isDevEnv()
+          ? <MainInterface />
+          : <BrowserDetection>{browserHandler}</BrowserDetection>}
       </div>
     </ThemeProvider>
   )

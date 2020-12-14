@@ -83,7 +83,7 @@ const CCControl = (props) => {
   return (
     <div className={classes.root}>
       <Led
-        label={`FS${controlId + 1} ${controlId}`}
+        label={`FS${controlId + 1}`}
         lit={lit}
       />
       <CCPicker
