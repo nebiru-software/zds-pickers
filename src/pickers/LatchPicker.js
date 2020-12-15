@@ -1,8 +1,8 @@
 import React from 'react'
-import Select from 'react-select'
+import PropTypes from 'prop-types'
+import Select from './Select'
 
 const options = [
-  //
   { value: 0, label: 'Momentary' },
   { value: 1, label: 'Latching' },
 ]
@@ -13,5 +13,10 @@ const LatchPicker = props => (
     {...props}
   />
 )
+
+LatchPicker.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.number.isRequired,
+}
 
 export default LatchPicker

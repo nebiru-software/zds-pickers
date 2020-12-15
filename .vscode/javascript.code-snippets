@@ -1,0 +1,229 @@
+{
+  "Debugger": {
+    "prefix": "db",
+    "body": ["debugger // eslint-disable-line"],
+    "description": "Break for debugger, but have eslint leave us alone."
+  },
+
+  "Print to console": {
+    "prefix": "lg",
+    "body": ["console.log($1)", "$2"],
+    "description": "Log output to console"
+  },
+
+  "Print debug to console": {
+    "prefix": "lgw",
+    "body": ["console.log(wrapper.debug())"],
+    "description": "Log output to console"
+  },
+
+  "Import act (for enzyme only)": {
+    "prefix": "ac",
+    "body": ["import { act } from 'react-dom/test-utils'"],
+    "description": "Import act() suitable for Enzyme"
+  },
+
+  "Import PropTypes": {
+    "prefix": "pt",
+    "body": ["import PropTypes from 'prop-types'"],
+    "description": "Adds import for PropTypes"
+  },
+
+  "Import classNames": {
+    "prefix": "cl",
+    "body": ["import cl from 'classnames'"],
+    "description": "Adds import for classnames"
+  },
+
+  "Import makeStyles": {
+    "prefix": "ms",
+    "body": ["import makeStyles from '@material-ui/core/styles/makeStyles'"],
+    "description": "Adds import for makeStyles"
+  },
+
+  "Import matchmedia mock": {
+    "prefix": "mm",
+    "body": [
+      "import '@mocks/matchMedia-mock'",
+    ],
+    "description": "Adds import for the matchmedia mock"
+  },
+
+  "Import styled": {
+    "prefix": "sty",
+    "body": ["import styled from '@material-ui/core/styles/styled'"],
+    "description": "Adds import for styled"
+  },
+
+  "Add a useState declaration": {
+    "prefix": "ss",
+    "body": ["const [${1/(.*)/${1}, set${1:/capitalize}/}] = useState()"],
+    "description": "Adds a state hook"
+  },
+
+  "useStyles": {
+    "prefix": "us",
+    "body": [
+      "const useStyles = makeStyles(({ mixins: { rem }, palette }) => ({",
+      "  root: {",
+      "  },",
+      "}), { name: '${1:$TM_FILENAME_BASE}' })"
+    ],
+    "description": "Adds useStyles"
+  },
+
+  "Insert styles": {
+    "prefix": "uss",
+    "body": ["const classes = useStyles()"],
+    "description": "Get classes from useStyles hook"
+  },
+
+  "use styled": {
+    "prefix": "st",
+    "body": [
+      "export default styled(${1:$TM_FILENAME_BASE})(({ theme: { mixins: {}, palette } }) => ({",
+      "}), { name: '${1:$TM_FILENAME_BASE}' })",
+    ],
+    "description": "the styled components form of makeStyles"
+  },
+
+  "React pure function": {
+    "prefix": "rcp",
+    "body": [
+      "import PropTypes from 'prop-types'",
+      "",
+      "const ${1:$TM_FILENAME_BASE} = (props) => {",
+      "  const { } = props",
+      "  return <div>${1:$TM_FILENAME_BASE}</div>",
+      "}",
+      "",
+      "${1:$TM_FILENAME_BASE}.propTypes = {}",
+      "",
+      "export default ${1:$TM_FILENAME_BASE}",
+      "",
+    ],
+    "description": "Shell for a simple react component"
+  },
+
+  "React styled component": {
+    "prefix": "rcs",
+    "body": [
+      "import styled from '@material-ui/core/styles/styled'",
+      "",
+      "const ${1:$TM_FILENAME_BASE} = ({ className }) => {",
+      "  return <div className={className}>${1:$TM_FILENAME_BASE}</div>",
+      "}",
+      "",
+      "export default styled(${1:$TM_FILENAME_BASE})(({ theme: { mixins: {}, palette } }) => ({",
+      "}), { name: '${1:$TM_FILENAME_BASE}' })",
+      "",
+    ],
+    "description": "Shell for a simple styled component"
+  },
+
+  "React pure function useStyles": {
+    "prefix": "rcps",
+    "body": [
+      "import PropTypes from 'prop-types'",
+      "import makeStyles from '@material-ui/core/styles/makeStyles'",
+      "",
+      "const useStyles = makeStyles(({ mixins: {}, palette }) => ({",
+      "  root: {},",
+      "}), { name: '${1:$TM_FILENAME_BASE}' })",
+      "",
+      "const ${1:$TM_FILENAME_BASE} = (props) => {",
+      "  const { } = props",
+      "  const classes = useStyles()",
+      "",
+      "  return <div className={classes.root}>${1:$TM_FILENAME_BASE}</div>",
+      "}",
+      "",
+      "${1:$TM_FILENAME_BASE}.propTypes = {}",
+      "",
+      "export default ${1:$TM_FILENAME_BASE}",
+      "",
+    ],
+    "description": "Shell for simple react component with useStyles"
+  },
+
+  "Empty reducer": {
+    "prefix": "red",
+    "body": [
+      "import PropTypes from 'prop-types'",
+      "import { createReducer } from '../utils'",
+      "",
+      "export const actionTypes = {}",
+      "",
+      "export const initialState = {}",
+      "",
+      "export const ${1:name}Shape = PropTypes.shape({})",
+      "",
+      "export const actions = {}",
+      "",
+      "export default createReducer(initialState, {})",
+      ""
+    ],
+    "description": ""
+  },
+
+  "Component test shell": {
+    "prefix": "rct",
+    "body": [
+      "import { compose } from 'redux'",
+      "import ${TM_FILENAME_BASE/(?:\\.spec$)/${1}/g} from './${TM_FILENAME_BASE/(?:\\.spec$)/${1}/g}'",
+      "",
+      "describe('<${TM_FILENAME_BASE/(?:\\.spec$)/${1}/g} />', () => {",
+      "  const defaultProps = {}",
+      "",
+      "  beforeEach(jest.resetAllMocks)",
+      "",
+      "  const getWrapper = compose(",
+      "    mount,",
+      "    createElement(${TM_FILENAME_BASE/(?:\\.spec$)/${1}/g}),",
+      "    withProps(defaultProps),",
+      "  )",
+      "",
+      "  it('should render', () => {",
+      "    const wrapper = getWrapper()",
+      "    console.log(wrapper.debug())",
+      "  })",
+      "})",
+      "",
+    ],
+    "description": "Shell for typical component test"
+  },
+
+  "Component test shell (RTL)": {
+    "prefix": "rctl",
+    "body": [
+      "import '@config/testingLibrary'",
+      "import { compose } from 'redux'",
+      "import { screen } from '@testing-library/dom'",
+      "import { act } from '@testing-library/react'",
+      "import userEvent from '@testing-library/user-event'",
+      "import ${TM_FILENAME_BASE/(?:\\.spec$)/${1}/g} from './${TM_FILENAME_BASE/(?:\\.spec$)/${1}/g}'",
+      "",
+      "describe('<${TM_FILENAME_BASE/(?:\\.spec$)/${1}/g} />', () => {",
+        "  const defaultProps = {}",
+        "",
+        "  beforeEach(jest.resetAllMocks)",
+        "  afterEach(cleanup)",
+        "",
+        "  const { debug, getByTestId } = screen",
+        "",
+        "  const getWrapper = compose(",
+        "    render,",
+        "    createElement(${TM_FILENAME_BASE/(?:\\.spec$)/${1}/g}),",
+        "    withProps(defaultProps),",
+        "  )",
+        "",
+        "  it('should render', () => {",
+        "    getWrapper()",
+        "    debug()",
+        "  })",
+        "})",
+        "",
+    ],
+    "description": "Shell for typical component test, using RTL"
+  },
+}

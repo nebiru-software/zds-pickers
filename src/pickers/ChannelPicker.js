@@ -1,17 +1,20 @@
 import React from 'react'
-import Select from 'react-select'
+import PropTypes from 'prop-types'
 import { arraySequence } from '../utils'
+import Select from './Select'
 
-const ChannelPicker = (props) => {
-  const options = arraySequence(16).map(value => ({ value, label: value + 1 }))
+const options = arraySequence(16).map(value => ({ value, label: `Channel ${value + 1}` }))
 
-  return (
-    <Select
-      // renderValue={val => `Channel ${val + 1}`}
-      options={options}
-      {...props}
-    />
-  )
+const ChannelPicker = props => (
+  <Select
+    options={options}
+    {...props}
+  />
+)
+
+ChannelPicker.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.number.isRequired,
 }
 
 export default ChannelPicker

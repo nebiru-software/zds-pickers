@@ -1,27 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Select from 'react-select'
 import ccValues from '../midi/ccValues'
+import Select from './Select'
 
-const CCPicker = (props) => {
-  const { onChange, ...rest } = props
-
-  const dropdownProps = {
-    onChange: ({ target }) => onChange(target.value),
-    disableUnderline: true,
-  }
-  return (
-    <Select
-      {...dropdownProps}
-      {...rest}
-      options={ccValues}
-    />
-  )
-}
+const CCPicker = props => (
+  <Select
+    options={ccValues}
+    {...props}
+  />
+)
 
 CCPicker.propTypes = {
-  value: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
+  value: PropTypes.number.isRequired,
 }
 
 export default CCPicker

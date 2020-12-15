@@ -1,12 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Select from 'react-select'
+import Select from './Select'
 
-const PolarityPicker = (props) => {
-  const { labelOn, labelOff, ...rest } = props
-
+const PolarityPicker = ({ labelOff, labelOn, ...rest }) => {
   const options = [
-    //
     { value: 0, label: labelOff },
     { value: 1, label: labelOn },
   ]
@@ -20,8 +17,10 @@ const PolarityPicker = (props) => {
 }
 
 PolarityPicker.propTypes = {
-  labelOn: PropTypes.string,
   labelOff: PropTypes.string,
+  labelOn: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.number.isRequired,
 }
 
 PolarityPicker.defaultProps = {
