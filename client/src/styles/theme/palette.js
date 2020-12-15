@@ -19,7 +19,7 @@ const primary = {
 }
 
 const accentLight = primary[500]
-const accent = primary[700]
+const accent = primary[600]
 const accentDark = primary[900]
 
 const secondaryLight = '#e4f5fc'

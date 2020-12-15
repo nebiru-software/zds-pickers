@@ -7,17 +7,16 @@ import Tooltip from '@material-ui/core/Tooltip'
 import Typography from '@material-ui/core/Typography'
 import { useDispatch, useSelector } from 'react-redux'
 import makeStyles from '@material-ui/core/styles/makeStyles'
-import MappingsDialog from '../mappings/MappingsDialog'
+import { CCPicker, ChannelPicker } from 'zds-pickers'
+import { isDisabled } from 'selectors/shifter'
+import { actions as mappingActions } from 'reducers/mappings'
+import useParamSelector from 'hooks/useParamSelector'
+import { canAddEntryToShiftGroup, getShiftGroup } from 'selectors/shiftGroups'
+import { stateMappings, stateShiftGroups } from 'selectors/index'
+import { actions as shiftGroupActions } from 'reducers/shiftGroups'
+import { isDefined } from 'fp/utils'
 import UserMappingsDialog from '../mappings/UserMappingsDialog'
-import CCPicker from '../controls/CCPicker'
-import ChannelPicker from '../controls/ChannelPicker'
-import { isDisabled } from '../../selectors/shifter'
-import { actions as mappingActions } from '../../reducers/mappings'
-import useParamSelector from '../../hooks/useParamSelector'
-import { canAddEntryToShiftGroup, getShiftGroup } from '../../selectors/shiftGroups'
-import { stateMappings, stateShiftGroups } from '../../selectors'
-import { actions as shiftGroupActions } from '../../reducers/shiftGroups'
-import { isDefined } from '../../core/fp/utils'
+import MappingsDialog from '../mappings/MappingsDialog'
 
 const useStyles = makeStyles(({ mixins: { paddingR, rem } }) => ({
   addIcon: {
@@ -106,11 +105,13 @@ const GridControls = ({ groupId }) => {
                   value={value}
                 />
 
+                &nbsp;
+
                 <ChannelPicker
-                  channel={channel}
                   disabled={disabled}
                   onChange={newChannel => dispatch(shiftGroupActions.changeGroupChannel(groupId, newChannel))}
                   style={{ maxWidth: 120 }}
+                  value={channel}
                 />
               </div>
             </Tooltip>

@@ -3,7 +3,7 @@ import {
   // STATUS_CHANNEL_PRESSURE,
   STATUS_NOTE_OFF,
   STATUS_NOTE_ON,
-} from 'zds-pickers/dist/midi/statuses'
+} from 'zds-pickers'
 
 export default [
   // GROUP A

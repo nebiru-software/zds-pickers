@@ -1,4 +1,5 @@
 import withStyles from '@material-ui/core/styles/withStyles'
+import zdsPickers from './zdsPickers'
 // import elements from './elements'
 // import forms from './forms'
 // import a11y from './a11y'
@@ -50,6 +51,7 @@ export default withStyles((theme) => {
       // ...printing(theme),
       // ...globals,
       // ...thirdParty,
+      ...zdsPickers(theme),
     },
   }
 }, { name: 'CssGlobals' })(() => null)

@@ -1,4 +1,4 @@
-import { STATUS_CONTROL_CHANGE, STATUS_NOTE_ON } from 'zds-pickers/dist/midi/statuses'
+import { STATUS_CONTROL_CHANGE, STATUS_NOTE_ON } from 'zds-pickers'
 
 export default [
   {

@@ -9,11 +9,9 @@ import mixins from './mixins'
 import themePalette from './palette'
 import globals from './globals'
 import constants from './constants'
-// import thirdParty from './thirdParty'
 
 export default compose(
   f => ({ ...f }),
-  // thirdParty,
   overrides,
   constants,
   typography,
