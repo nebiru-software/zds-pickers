@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
-import Select from 'react-select'
 import { mappingShape } from '../shapes'
 import { assertRange } from '../utils'
 import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
+import Select from './Select'
 
 const formattedMapEntry = ({ note, name }) => `${note} ${name.length ? '-' : ''} ${name}`
 const formattedListEntry = (label, idx) => ({ label, value: idx + 1 })
 
-const NotePicker = (props) => {
+const NotePicker = forwardRef((props, ref) => {
   const { channel, disabled, mapping, onChange, status, value: initialValue, ...rest } = props
   const options = mapping.map(formattedMapEntry).map(formattedListEntry)
   const [value, setValue] = useStateWithDynamicDefault(initialValue)
@@ -27,19 +27,19 @@ const NotePicker = (props) => {
     <Select
       isDisabled={disabled}
       options={options}
-      value={options[value - 1]}
+      value={value}// {options[value - 1]}
       onChange={handleChange}
+      ref={ref}
       {...rest}
     />
   )
-}
+})
 
 NotePicker.propTypes = {
   mapping: PropTypes.arrayOf(mappingShape).isRequired,
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   value: PropTypes.number,
-  inputRef: PropTypes.any,
   channel: PropTypes.number.isRequired,
   status: PropTypes.number.isRequired,
 }
@@ -47,7 +47,6 @@ NotePicker.propTypes = {
 NotePicker.defaultProps = {
   disabled: false,
   value: undefined,
-  inputRef: null,
 }
 
 export default NotePicker

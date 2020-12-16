@@ -1,18 +1,12 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
 
-const ValuePicker = (props) => {
-  // const inputRef = useRef()
-
-  // const focus = () => {
-  //   inputRef.focus()
-  // }
-
+const ValuePicker = forwardRef((props, inputRef) => {
   const { onChange, ...rest } = props
 
   return (
     <input
-      // ref={inputRef}
+      ref={inputRef}
       type="number"
       onChange={({ target }) => {
         onChange(target.value)
@@ -23,7 +17,7 @@ const ValuePicker = (props) => {
       {...rest}
     />
   )
-}
+})
 
 ValuePicker.propTypes = { onChange: PropTypes.func.isRequired }
 

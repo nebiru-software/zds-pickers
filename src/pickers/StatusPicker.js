@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Select from 'react-select'
+import Select from './Select'
 
-const StatusPicker = (statuses, ...rest) => (
+const StatusPicker = ({ statuses, ...rest }) => (
   <Select
     options={statuses}
     {...rest}
