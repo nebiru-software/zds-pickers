@@ -1,18 +1,13 @@
+import LibraryAdd from '@material-ui/icons/LibraryAdd'
+import Forward from '@material-ui/icons/Forward'
 import PropTypes from 'prop-types'
 import { STATUS_NOTE_OFF } from 'zds-pickers'
 
-const InputStatusIcon = (props) => {
-  const { status } = props
-
-  return (
-    <i
-      className="material-icons"
-      style={{ color: '#555' }}
-    >
-      {status === STATUS_NOTE_OFF ? 'library_add' : 'forward'}
-    </i>
-  )
-}
+const InputStatusIcon = ({ status }) => (
+  status === STATUS_NOTE_OFF
+    ? <LibraryAdd />
+    : <Forward />
+)
 
 InputStatusIcon.propTypes = {
   status: PropTypes.number.isRequired,

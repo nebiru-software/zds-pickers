@@ -6,12 +6,7 @@ export const downloadFile = (data, filename) => {
   FileSaver.saveAs(blob, filename)
 }
 
-export default (store) => {
-  const {
-    shifter: { exportFilename, exportBuffer },
-    version: { firmware },
-  } = store.getState()
-
+export const exportFile = (firmware, exportBuffer) => {
   let output = [
     firmware, //
     ...exportBuffer,
@@ -19,5 +14,5 @@ export default (store) => {
 
   output = [Hash(output), ...output].map(value => `${value} `)
 
-  return { output, exportFilename }
+  return output
 }

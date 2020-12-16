@@ -1,53 +1,71 @@
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import Button from '@material-ui/core/Button'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogActions from '@material-ui/core/DialogActions'
-import { actions as shifterActions } from '../../reducers/shifter'
-import { shifterShape } from '../../core/shapes'
-import Dialog from '../Dialog'
-import ExportSettingsForm from './ExportSettingsForm'
+import { useDispatch, useSelector } from 'react-redux'
+import { useCallback, useEffect, useState } from 'react'
+import Dialog from 'components/Dialog'
+import { stateShifter } from 'selectors/index'
+import TextField from 'components/controls/textInputs/TextField'
+import useStateWithDynamicDefault from 'hooks/useStateWithDynamicDefault'
+import { fieldFilename, fieldRequired } from 'fp/strings'
+import { isDefined } from 'fp/utils'
+import { actions } from 'reducers/shifter'
 
-export const ExportSettings = ({ shifter: { exportDialogVisible }, showExportDialog, submitExportForm }) => (
-  <Dialog
-    onClose={() => showExportDialog(false)}
-    open={exportDialogVisible}
-  >
-    <DialogTitle>Backup Settings</DialogTitle>
-    <DialogContent>
-      <ExportSettingsForm />
-    </DialogContent>
-    <DialogActions>
-      <Button
-        onClick={() => showExportDialog(false)}
-        tag="btnCancel"
-      >
-        Cancel
-      </Button>
-      <Button
-        color="primary"
-        onClick={submitExportForm}
-        tag="btnSave"
-        variant="contained"
-      >
-        Save
-      </Button>
-    </DialogActions>
-  </Dialog>
-)
+export const ExportSettings = ({ hideDialog }) => {
+  const dispatch = useDispatch()
+  const { exportFilename } = useSelector(stateShifter)
+  const [errorMsg, setErrorMsg] = useState(undefined)
+  const [filename, setFilename] = useStateWithDynamicDefault(exportFilename)
 
-ExportSettings.propTypes = {
-  shifter: shifterShape.isRequired,
-  showExportDialog: PropTypes.func.isRequired,
-  submitExportForm: PropTypes.func.isRequired,
+  useEffect(() => {
+    setErrorMsg(fieldRequired(filename) || fieldFilename(filename))
+  }, [filename])
+
+  const handleClick = useCallback(() => {
+    dispatch(actions.exportSettings(filename))
+    hideDialog()
+  }, [dispatch, filename, hideDialog])
+
+  return (
+    <Dialog
+      onClose={hideDialog}
+      open
+    >
+      <DialogTitle>Backup Settings</DialogTitle>
+
+      <DialogContent>
+        <TextField
+          error={isDefined(errorMsg)}
+          helperText={errorMsg}
+          label="Filename"
+          onChange={({ target }) => setFilename(target.value)}
+          required
+          style={{ width: 300, marginBottom: 30 }}
+          value={filename}
+        />
+      </DialogContent>
+
+      <DialogActions>
+        <Button onClick={hideDialog}>
+          Cancel
+        </Button>
+        <Button
+          color="primary"
+          disabled={isDefined(errorMsg)}
+          onClick={handleClick}
+          variant="contained"
+        >
+          Download
+        </Button>
+      </DialogActions>
+    </Dialog>
+  )
 }
 
-export const mapStateToProps = ({ shifter }) => ({ shifter })
-export const mapDispatchToProps = dispatch => bindActionCreators(shifterActions, dispatch)
+ExportSettings.propTypes = {
+  hideDialog: PropTypes.func.isRequired,
+}
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ExportSettings)
+export default ExportSettings

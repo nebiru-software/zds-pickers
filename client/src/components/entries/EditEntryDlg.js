@@ -4,11 +4,11 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Button from '@material-ui/core/Button'
 import ReactModal from 'react-modal'
-import EntryControls from '../controls/EntryControls'
-import { actions as shiftGroupActions } from '../../reducers/shiftGroups'
-import { actions as shiftEntryActions } from '../../reducers/shiftEntry'
-import { instructions } from '../../styles/entryDlg.scss'
-import { groupsShape, mappingsShape } from '../../core/shapes'
+import EntryControls from 'controls/EntryControls'
+import { actions as shiftGroupActions } from 'reducers/shiftGroups'
+import { actions as shiftEntryActions } from 'reducers/shiftEntry'
+import { groupsShape, mappingsShape } from 'core/shapes'
+import Instructions from 'components/Instructions'
 
 /**
  * We ran into a huge issue with material-ui dialog here.
@@ -87,13 +87,13 @@ export class EditEntryDlg extends Component {
           onSubmit={submit}
         />
 
-        <div className={instructions}>
+        <Instructions>
           When Group {String.fromCharCode(65 + selectedGroupIdx)} is enabled, this rule will alter any messages that
           match the INPUT so that they take on the characteristics of the OUTPUT.
           <br />
           <br />
           If Note Stack is selected for OUTPUT, then set the stacked note # there.
-        </div>
+        </Instructions>
 
         <div style={actionStyle}>
           <Button

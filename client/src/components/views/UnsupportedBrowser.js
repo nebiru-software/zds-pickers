@@ -1,6 +1,6 @@
 import styles from '../../styles/unsupportedBrowser.scss'
-import ChromeIcon from '../../images/Chrome.svg.js'
-import OperaIcon from '../../images/Opera.svg.js'
+import ChromeIcon from '../../images/Chrome.svg'
+import OperaIcon from '../../images/Opera.svg'
 
 const UnsupportedBrowser = () => (
   <div className={styles.outer}>

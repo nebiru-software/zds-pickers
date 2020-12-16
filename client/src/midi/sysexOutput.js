@@ -38,9 +38,9 @@ export const askForModel = (dispatch) => {
   dispatch(transmitAction(SYSEX_MSG_GET_MODEL))
 }
 
-export const askForControls = (dispatch) => {
-  dispatch(transmitAction(SYSEX_MSG_GET_CONTROLS))
-}
+// export const askForControls = (dispatch) => {
+//   dispatch(transmitAction(SYSEX_MSG_GET_CONTROLS))
+// }
 
 export const transmitControls = (dispatch, controls) => {
   const data = controls.reduce((acc, control) => {
@@ -58,9 +58,9 @@ export const transmitControls = (dispatch, controls) => {
   dispatch(transmitAction(SYSEX_MSG_SEND_CONTROLS, data))
 }
 
-export const askForGroups = (dispatch) => {
-  dispatch(transmitAction(SYSEX_MSG_GET_GROUPS))
-}
+// export const askForGroups = (dispatch) => {
+//   dispatch(transmitAction(SYSEX_MSG_GET_GROUPS))
+// }
 
 export const restart = (dispatch) => {
   dispatch(transmitAction(SYSEX_MSG_RESTART))
@@ -81,32 +81,32 @@ export const setFlags = (dispatch, { midiActivityLEDMode, serialMidiOutEnabled, 
   dispatch(transmitAction(SYSEX_MSG_RECEIVE_FLAGS, [newFlag]))
 }
 
-export const transmitShiftGroupChannel = (dispatch, { groupId, channel }) => {
-  dispatch(transmitAction(SYSEX_MSG_CHANGE_GROUP_CHANNEL, [groupId, channel]))
-}
+// export const transmitShiftGroupChannel = (dispatch, { groupId, channel }) => {
+//   dispatch(transmitAction(SYSEX_MSG_CHANGE_GROUP_CHANNEL, [groupId, channel]))
+// }
 
-export const transmitShiftGroupValue = (dispatch, { groupId, value }) => {
-  dispatch(transmitAction(SYSEX_MSG_CHANGE_GROUP_VALUE, [groupId, value]))
-}
+// export const transmitShiftGroupValue = (dispatch, { groupId, value }) => {
+//   dispatch(transmitAction(SYSEX_MSG_CHANGE_GROUP_VALUE, [groupId, value]))
+// }
 
-export const removeShiftEntry = (dispatch, { groupId, entryId }) => {
-  if (Array.isArray(entryId)) {
-    entryId.forEach((id) => {
-      dispatch(transmitAction(SYSEX_MSG_REMOVE_ENTRY, [groupId, id]))
-      delay(100)
-    })
-  } else {
-    dispatch(transmitAction(SYSEX_MSG_REMOVE_ENTRY, [groupId, entryId]))
-  }
-}
+// export const removeShiftEntry = (dispatch, { groupId, entryId }) => {
+//   if (Array.isArray(entryId)) {
+//     entryId.forEach((id) => {
+//       dispatch(transmitAction(SYSEX_MSG_REMOVE_ENTRY, [groupId, id]))
+//       delay(100)
+//     })
+//   } else {
+//     dispatch(transmitAction(SYSEX_MSG_REMOVE_ENTRY, [groupId, entryId]))
+//   }
+// }
 
-export const saveShiftEntry = (dispatch, { groupId, editQueue }) => {
-  let { entryId } = editQueue
-  if (entryId === -1) {
-    entryId = 255
-  }
-  dispatch(transmitAction(SYSEX_MSG_SAVE_ENTRY_EDIT, [groupId, entryId, ...reduceEntry(editQueue)]))
-}
+// export const saveShiftEntry = (dispatch, { groupId, editQueue }) => {
+//   let { entryId } = editQueue
+//   if (entryId === -1) {
+//     entryId = 255
+//   }
+//   dispatch(transmitAction(SYSEX_MSG_SAVE_ENTRY_EDIT, [groupId, entryId, ...reduceEntry(editQueue)]))
+// }
 
 export const askForBackup = (dispatch) => {
   dispatch(transmitAction(SYSEX_MSG_BACKUP))

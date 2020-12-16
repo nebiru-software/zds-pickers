@@ -22,7 +22,9 @@ import UserRegistration from './user/UserRegistration'
 const MainMenu = () => {
   const dispatch = useDispatch()
   const [anchorEl, setAnchorEl] = useState()
-  const [dialogVisible, setDialogVisible] = useState(false)
+  const [registrationDialogVisible, setRegistrationDialogVisible] = useState(false)
+  const [exportDialogVisible, setExportDialogVisible] = useState(false)
+  const [importDialogVisible, setImportDialogVisible] = useState(false)
   const { found, ready, responding } = useSelector(stateShifter)
 
   const handleClick = (event) => {
@@ -61,7 +63,7 @@ const MainMenu = () => {
       >
         <MenuItem
           icon="perm_identity"
-          onClick={() => setDialogVisible(true)}
+          onClick={() => setRegistrationDialogVisible(true)}
           tag="miRegistration"
           value="user"
         >
@@ -78,7 +80,7 @@ const MainMenu = () => {
 
         <MenuItem
           disabled={!(found && responding)}
-          onClick={() => dispatch(shifterActions.showExportDialog(true))}
+          onClick={() => setExportDialogVisible(true)}
           tag="miExport"
         >
           <ListItemIcon>
@@ -92,7 +94,7 @@ const MainMenu = () => {
 
         <MenuItem
           disabled={!(found && responding)}
-          onClick={() => dispatch(shifterActions.showImportDialog(true))}
+          onClick={() => setImportDialogVisible(true)}
           tag="miImport"
         >
           <ListItemIcon>
@@ -121,14 +123,19 @@ const MainMenu = () => {
         </MenuItem>
       </Menu>
 
-      <ExportSettings />
-      <ImportSettings />
+      {Boolean(exportDialogVisible) && (
+        <ExportSettings hideDialog={() => setExportDialogVisible(false)} />
+      )}
+
+      {Boolean(importDialogVisible) && (
+        <ImportSettings hideDialog={() => setImportDialogVisible(false)} />
+      )}
 
       <FactoryReset />
 
       <UserRegistration
-        active={dialogVisible}
-        hideDialog={() => setDialogVisible(false)}
+        active={registrationDialogVisible}
+        hideDialog={() => setRegistrationDialogVisible(false)}
       />
     </>
   ) : null

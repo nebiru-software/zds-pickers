@@ -8,7 +8,7 @@ export const actions = {
   acknowledgeInvalidFile: () => ({ type: actionTypes.INVALID_SETTINGS_FILE_ACK }),
   confirmFactoryReset: showResetDialog => ({ type: actionTypes.CONFIRM_FACTORY_RESET, showResetDialog }),
   dismissError: () => ({ type: actionTypes.DISMISS_ERROR }),
-  exportSettings: ({ exportFilename }) => ({ type: actionTypes.EXPORT_SETTINGS, exportDialogVisible: false, exportFilename }),
+  exportSettings: exportFilename => ({ type: actionTypes.EXPORT_SETTINGS, exportFilename }),
   hideHardwareTestDialog: () => ({ type: actionTypes.HIDE_HARDWARE_TEST_DIALOG }),
   importSettings: File => ({ type: actionTypes.IMPORT_SETTINGS, importDialogVisible: false, File }),
   midiInActivityChanged: midiInActivity => ({ type: actionTypes.MIDI_IN_ACTIVITY, midiInActivity }),
@@ -29,11 +29,8 @@ export const actions = {
   settingsFileInvalid: reason => ({ type: actionTypes.INVALID_SETTINGS_FILE, invalidSettingsFile: reason }),
   shifterFound: deviceId => ({ type: actionTypes.SHIFTER_FOUND, deviceId }),
   shifterMissing: () => ({ type: actionTypes.SHIFTER_MISSING }),
-  showExportDialog: exportDialogVisible => ({ type: actionTypes.SHOW_EXPORT_DIALOG, exportDialogVisible }),
   showHardwareTestDialog: () => ({ type: actionTypes.SHOW_HARDWARE_TEST_DIALOG }),
-  showImportDialog: importDialogVisible => ({ type: actionTypes.SHOW_IMPORT_DIALOG, importDialogVisible }),
-  submitExportForm: () => (dispatch) => { dispatch(submit('exportSettingsForm')) },
-  submitImportForm: () => (dispatch) => { dispatch(submit('importSettingsForm')) },
+
   testInterfaceFound: () => ({ type: actionTypes.TEST_INTERFACE_FOUND }),
   testInterfaceMissing: () => ({ type: actionTypes.TEST_INTERFACE_MISSING }),
 }
@@ -43,11 +40,9 @@ export const defaultState = {
   errorMessage: '',
   errorVisible: false,
   exportBuffer: [],
-  exportDialogVisible: false,
-  exportFilename: localStorage.getItem('exportFilename') || 'zds-shifter-backup.txt',
+  exportFilename: localStorage.getItem('exportFilename') || 'zds-shifter-pro-backup.txt',
   found: false,
   hardwareTestVisible: false,
-  importDialogVisible: false,
   importInProcess: false,
   invalidSettingsFile: null,
   midiActivityLEDMode: ACTIVITY_LED_MODE_ALWAYS_OFF,
@@ -168,17 +163,10 @@ const factoryResetPerformed = (state, { packet }) => {
   }
 }
 
-const showExportDialog = (state, { exportDialogVisible = true }) => ({
-  ...state,
-  exportDialogVisible,
-  exportBuffer: [],
-})
-
-const exportSettings = (state, { exportDialogVisible, exportFilename }) => {
+const exportSettings = (state, { exportFilename }) => {
   localStorage.setItem('exportFilename', exportFilename)
   return {
     ...state,
-    exportDialogVisible,
     exportFilename,
   }
 }
@@ -186,11 +174,6 @@ const exportSettings = (state, { exportDialogVisible, exportFilename }) => {
 const receivedExportPacket = (state, { packet }) => ({
   ...state,
   exportBuffer: [...state.exportBuffer, ...packet],
-})
-
-const showImportDialog = (state, { importDialogVisible = true }) => ({
-  ...state,
-  importDialogVisible,
 })
 
 const importSettings = state => ({
@@ -241,9 +224,7 @@ export default createReducer(defaultState, {
    * of the reset, which is when it exports internal state.
    */
   [actionTypes.RECEIVED_STATE]: factoryResetPerformed,
-  [actionTypes.SHOW_EXPORT_DIALOG]: showExportDialog,
   [actionTypes.EXPORT_SETTINGS]: exportSettings,
-  [actionTypes.SHOW_IMPORT_DIALOG]: showImportDialog,
   [actionTypes.IMPORT_SETTINGS]: importSettings,
   /* When importing, we know it's done for sure when we receive the updated groups.
    */

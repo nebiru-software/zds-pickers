@@ -1,5 +1,5 @@
 import MuiDialog from '@material-ui/core/Dialog'
-import withTabSupport from '../hoc/withTabSupport'
+import withTabSupport from 'hoc/withTabSupport'
 import Transition from './Transition'
 
 const TabSupportedDialog = withTabSupport(MuiDialog)

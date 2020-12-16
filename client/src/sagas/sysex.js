@@ -1,17 +1,23 @@
 import { sendMidiMessage } from 'redux-midi-fork'
 import { call, put, select, takeLatest } from 'redux-saga/effects'
+import { combineStatus } from 'zds-pickers'
 import { getInputDeviceId, getOutputDeviceId } from 'selectors/midi'
 import { ENTRY_SIZE_BYTES, GROUP_SIZE_BYTES, INPUT_CONTROL_SIZE_BYTES, MAX_GROUPS, MAX_INPUTS } from 'core/consts'
 import {
   SYSEX_END,
   SYSEX_MSG_AVAILABILITY,
   SYSEX_MSG_BACKUP,
+  SYSEX_MSG_CHANGE_GROUP_CHANNEL,
+  SYSEX_MSG_CHANGE_GROUP_VALUE,
+  SYSEX_MSG_FACTORY_RESET,
   SYSEX_MSG_GET_CONTROLS,
   SYSEX_MSG_GET_GROUPS,
   SYSEX_MSG_GET_STATE,
   SYSEX_MSG_GET_VERSION,
   SYSEX_MSG_RECEIVE_MODEL,
   SYSEX_MSG_RECEIVE_VERSION,
+  SYSEX_MSG_REMOVE_ENTRY,
+  SYSEX_MSG_SAVE_ENTRY_EDIT,
   SYSEX_MSG_SEND_CONTROLS,
   SYSEX_MSG_SEND_GROUPS,
   SYSEX_START,
@@ -23,7 +29,13 @@ import { actions } from 'reducers/inputControls'
 import { actions as shiftGroupActions } from 'reducers/shiftGroups'
 import { actions as shifterActions } from 'reducers/shifter'
 import actionTypes from 'reducers/actionTypes'
+import { stateShifter, stateVersion } from 'selectors/index'
+import { downloadFile, exportFile } from 'midi/export'
 import { CURRENT_CLIENT_VERSION, SHIFTER_DEVICE_ID } from '../midi'
+
+const reduceMidiMessage = ({ channel, status, value }) => [combineStatus(channel, status), value]
+
+const reduceEntry = ({ input, output }) => [...reduceMidiMessage(input), ...reduceMidiMessage(output)]
 
 const controlsPresent = packet => packet.length >= INPUT_CONTROL_SIZE_BYTES * MAX_INPUTS
 const controlsValid = packet => packet.length % INPUT_CONTROL_SIZE_BYTES === 0
@@ -142,10 +154,88 @@ function* handleGetVersion(action) {
   )
 }
 
+function* handleSaveEntry({ groupId, editQueue }) {
+  let { entryId } = editQueue
+  if (entryId === -1) {
+    entryId = 255
+  }
+
+  yield call(
+    transmitAction,
+    SYSEX_MSG_SAVE_ENTRY_EDIT,
+    [groupId, entryId, ...reduceEntry(editQueue)],
+  )
+}
+
+function* handleRemoveEntry({ groupId, entryId }) {
+  if (Array.isArray(entryId)) {
+    yield entryId.map(id => call(
+      transmitAction,
+      SYSEX_MSG_REMOVE_ENTRY,
+      [groupId, id],
+    ))
+  } else {
+    yield call(
+      transmitAction,
+      SYSEX_MSG_REMOVE_ENTRY,
+      [groupId, entryId],
+    )
+  }
+}
+
+function* handleChangeGroupValue({ groupId, value }) {
+  yield call(
+    transmitAction,
+    SYSEX_MSG_CHANGE_GROUP_VALUE,
+    [groupId, value],
+  )
+}
+
+function* handleChangeGroupChannel({ groupId, channel }) {
+  yield call(
+    transmitAction,
+    SYSEX_MSG_CHANGE_GROUP_CHANNEL,
+    [groupId, channel],
+  )
+}
+
+function* handleFactoryReset({ restartToo }) {
+  yield call(
+    transmitAction,
+    SYSEX_MSG_FACTORY_RESET,
+    [restartToo],
+  )
+}
+
+function* handleStartExport() {
+  yield call(transmitAction, SYSEX_MSG_BACKUP)
+}
+
+function* handleReceivedBackupPacket() {
+  const { firmware } = yield select(stateVersion)
+  const { exportBuffer, exportFilename } = yield select(stateShifter)
+
+  if (exportBuffer.length === 2034) {
+    const output = yield exportFile(firmware, exportBuffer)
+    yield call(downloadFile, output, exportFilename)
+  }
+}
+
 export default function* sysexSaga() {
   yield takeLatest(actionTypes.GET_SYSEX_CONTROLS, handleGetControls)
   yield takeLatest(actionTypes.GET_SYSEX_GROUPS, handleGetGroups)
   yield takeLatest(actionTypes.GET_SYSEX_VERSION, handleGetVersion)
+
+  yield takeLatest(actionTypes.SAVE_ENTRY_EDIT, handleSaveEntry)
+  yield takeLatest(actionTypes.REMOVE_ENTRY, handleRemoveEntry)
+
+  yield takeLatest(actionTypes.CHANGE_GROUP_VALUE, handleChangeGroupValue)
+  yield takeLatest(actionTypes.CHANGE_GROUP_CHANNEL, handleChangeGroupChannel)
+
+  yield takeLatest(actionTypes.FACTORY_RESET, handleFactoryReset)
+
+  yield takeLatest(actionTypes.EXPORT_SETTINGS, handleStartExport)
+  yield takeLatest(actionTypes.EXPORT_SETTINGS_PACKET, handleReceivedBackupPacket)
 
   yield takeLatest('redux-midi/midi/RECEIVE_MIDI_MESSAGE', handleReceiveMessage)
   // yield fork(deviceCheckFlow)

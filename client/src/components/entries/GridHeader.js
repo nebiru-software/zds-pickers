@@ -1,16 +1,20 @@
 import PropTypes from 'prop-types'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import { border, padding } from 'polished'
-import { SORT_BY_ALL, SORT_BY_CHANNEL, SORT_BY_MESSAGE, SORT_BY_VALUE } from '../../core/consts'
-import { getShiftGroup } from '../../selectors/shiftGroups'
-import useParamSelector from '../../hooks/useParamSelector'
+import { SORT_BY_ALL, SORT_BY_CHANNEL, SORT_BY_MESSAGE, SORT_BY_VALUE } from 'core/consts'
+import { getShiftGroup } from 'selectors/shiftGroups'
+import useParamSelector from 'hooks/useParamSelector'
 import SortControls from './SortControls'
 
 const useStyles = makeStyles(({ mixins: { absWidth }, palette }) => ({
   root: {
     backgroundColor: palette.common.white,
-    color: palette.text.primary,
     textAlign: 'center',
+
+    '& a': {
+      color: palette.text.dimmer,
+      textDecoration: 'none',
+    },
 
     '& header, & footer': {
       ...border('bottom', 1, 'solid', palette.text.primary),

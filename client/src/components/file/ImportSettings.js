@@ -1,27 +1,24 @@
 import PropTypes from 'prop-types'
-import { connect, useSelector } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import Button from '@material-ui/core/Button'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogActions from '@material-ui/core/DialogActions'
 import LinearProgress from '@material-ui/core/LinearProgress'
+import { useSelector } from 'react-redux'
 import { stateShifter } from 'selectors/index'
-import { actions as shifterActions } from '../../reducers/shifter'
-import { shifterShape } from '../../core/shapes'
-import Dialog from '../Dialog'
+import Dialog from 'components/Dialog'
 import InvalidSettingsFile from './InvalidSettingsFile'
 import ImportSettingsForm from './ImportSettingsForm'
 
-export const ImportSettings = () => {
-  const { importDialogVisible, importInProcess } = useSelector(stateShifter)
+export const ImportSettings = ({ hideDialog }) => {
+  const { importInProcess } = useSelector(stateShifter)
 
   return (
     <>
       <Dialog
-        // onClose={() => showImportDialog(false)}
-        open={importDialogVisible}
+        onClose={hideDialog}
+        open
       >
         <DialogTitle>Restore Settings</DialogTitle>
         <DialogContent>
@@ -29,7 +26,7 @@ export const ImportSettings = () => {
         </DialogContent>
         <DialogActions>
           <Button
-            // onClick={() => showImportDialog(false)}
+            onClick={hideDialog}
             tag="btnCancel"
           >
             Cancel
@@ -73,5 +70,9 @@ export const ImportSettings = () => {
 //     dispatch, //
 //   ) => dispatch(shifterActions.importSettings(importFilename)),
 // }
+
+ImportSettings.propTypes = {
+  hideDialog: PropTypes.func.isRequired,
+}
 
 export default ImportSettings

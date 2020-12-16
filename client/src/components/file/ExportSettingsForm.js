@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { actions as shifterActions } from '../../reducers/shifter'
-import { fieldFilename, fieldRequired } from '../../core/fp/strings'
+import { actions as shifterActions } from 'reducers/shifter'
+import { fieldFilename, fieldRequired } from 'fp/strings'
 
 export const ExportSettingsForm = ({ error, handleSubmit }) => (
   <form onSubmit={handleSubmit}>

@@ -1,80 +1,84 @@
-import { Component, createRef } from 'react'
+import { useRef } from 'react'
 import PropTypes from 'prop-types'
+import Grid from '@material-ui/core/Grid'
 import { STATUS_CONTROL_CHANGE } from 'zds-pickers'
-import InputStatusIcon from '../InputStatusIcon'
-import { entryControls } from '../../styles/entryDlg.scss'
-import { groupShape, mappingsShape } from '../../core/shapes'
+import InputStatusIcon from 'components/InputStatusIcon'
+import { groupShape, mappingsShape } from 'core/shapes'
 import EntryControlSet from './EntryControlSet'
 
-class EntryControls extends Component {
-  constructor(props) {
-    super(props)
-    this.outputRef = createRef()
-    this.inputRef = createRef()
-  }
+const EntryControls = (props) => {
+  const {
+    changeChannel,
+    changeStatus,
+    changeValue,
+    group: {
+      groupId,
+      editQueue,
+    },
+    mappings,
+    okButtonRef,
+  } = props
 
-  onPressedEnter = (isInput, actuallyTheyPressedTab, okButtonRef) => {
-    const { group: { editQueue } } = this.props
+  const outputRef = useRef()
+  const inputRef = useRef()
 
+  const onPressedEnter = (isInput, actuallyTheyPressedTab) => {
     const { output: { status } } = editQueue
 
     if (status !== STATUS_CONTROL_CHANGE && isInput) {
-      this.outputRef.current.focusValueControl()
+      outputRef.current.focusValueControl()
     } else if (!actuallyTheyPressedTab) {
       okButtonRef.current.focus()
     }
   }
 
-  render() {
-    const {
-      changeChannel,
-      changeStatus,
-      changeValue,
-      group: { groupId, editQueue },
-      mappings,
-      okButtonRef,
-    } = this.props
+  const { input, output } = editQueue
+  const inputProps = {
+    groupId,
+    entry: input,
+    isInput: true,
+    changeStatus,
+    changeChannel,
+    changeValue,
+    mappings,
+    okButtonRef,
+    onPressedEnter,
+  }
+  const outputProps = {
+    groupId,
+    entry: output,
+    isInput: false,
+    changeStatus,
+    changeChannel,
+    changeValue,
+    mappings,
+    okButtonRef,
+    onPressedEnter,
+  }
 
-    const { input, output } = editQueue
-    const inputProps = {
-      groupId,
-      entry: input,
-      isInput: true,
-      changeStatus,
-      changeChannel,
-      changeValue,
-      mappings,
-      okButtonRef,
-      onPressedEnter: this.onPressedEnter,
-    }
-    const outputProps = {
-      groupId,
-      entry: output,
-      isInput: false,
-      changeStatus,
-      changeChannel,
-      changeValue,
-      mappings,
-      okButtonRef,
-      onPressedEnter: this.onPressedEnter,
-    }
-
-    return (
-      <section className={entryControls}>
+  return (
+    <Grid container>
+      <Grid item>
         <EntryControlSet
           {...inputProps}
           otherEntry={outputProps.entry}
-          ref={this.inputRef}
+          ref={inputRef}
         />
+      </Grid>
+
+      <Grid item>
         <InputStatusIcon {...input} />
+      </Grid>
+
+      <Grid item>
         <EntryControlSet
           {...outputProps}
           otherEntry={inputProps.entry}
-          ref={this.outputRef}
+          ref={outputRef}
         />
-      </section>
-    )
-  }
+      </Grid>
+    </Grid>
+  )
 }
 
 EntryControls.propTypes = {

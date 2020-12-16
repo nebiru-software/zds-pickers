@@ -98,9 +98,7 @@ export const shifterShape = shape({
   midiOutActivity: bool.isRequired,
   showResetDialog: bool.isRequired,
   resetInProcess: bool.isRequired,
-  exportDialogVisible: bool.isRequired,
   exportFilename: string.isRequired,
-  importDialogVisible: bool.isRequired,
   importInProcess: bool.isRequired,
   invalidSettingsFile: string,
   midiActivityLEDMode: oneOf([

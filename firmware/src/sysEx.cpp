@@ -197,7 +197,7 @@ static void sendBackup() {
   uint16_t blockIdx = 0;
   data[blockIdx++]  = SYSEX_MSG_BACKUP;
 
-  while (eepromIdx <= MAX_SYSEX_BYTES) {
+  while (eepromIdx <= MAX_BYTES) {
     data[blockIdx++] = EEPROM.read(eepromIdx++);
 
     if (blockIdx > blocksize) {
@@ -364,7 +364,7 @@ void sysexStop() {
         break;
 
       case SYSEX_MSG_FACTORY_RESET:
-        if (size == 2) {
+        if (size == 4) {
           performFactoryReset(data[1]);
         }
         break;
@@ -410,7 +410,7 @@ void sysexStop() {
         break;
 
       case SYSEX_MSG_CHANGE_GROUP_CHANNEL:
-        if (size == 3) {
+        if (size == 5) {
           shifter_group* group;
           group          = &shifter_groups[data[1]];
           group->channel = data[2];
@@ -421,7 +421,7 @@ void sysexStop() {
         break;
 
       case SYSEX_MSG_CHANGE_GROUP_VALUE:
-        if (size == 3) {
+        if (size == 5) {
           shifter_group* group;
           group            = &shifter_groups[data[1]];
           group->cc_number = data[2];
@@ -432,7 +432,7 @@ void sysexStop() {
         break;
 
       case SYSEX_MSG_REMOVE_ENTRY:
-        if (size == 3) {
+        if (size == 5) {
           shifter_group* group;
           uint8_t        i;
           group = &shifter_groups[data[1]];
@@ -450,7 +450,7 @@ void sysexStop() {
         break;
 
       case SYSEX_MSG_SAVE_ENTRY_EDIT:
-        if (size == 7) {
+        if (size == 8) {
           shifter_group* group;
           uint8_t        entryId;
 
@@ -483,7 +483,7 @@ void sysexStop() {
         break;
 
       case SYSEX_MSG_BACKUP:
-        if (size == 1) {
+        if (size == 3) {
           sendBackup();
         }
         break;
