@@ -2,20 +2,10 @@ module.exports = {
   env: {
     test: {},
     development: {
-      plugins: [
-        [
-          'babel-plugin-jsx-remove-data-test-id',
-          { attributes: 'data-testid' },
-        ],
-      ],
+      plugins: [],
     },
     production: {
-      plugins: [
-        [
-          'babel-plugin-jsx-remove-data-test-id',
-          { attributes: 'data-testid' },
-        ],
-      ],
+      plugins: [],
     },
   },
   presets: ['@babel/preset-env', '@babel/preset-react'],
