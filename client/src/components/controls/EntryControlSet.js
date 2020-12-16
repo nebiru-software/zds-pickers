@@ -1,6 +1,8 @@
 import { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
 import {
+  CCPicker,
+  ChannelPicker,
   NotePicker,
   STATUS_CONTROL_CHANGE,
   STATUS_NOTE_OFF,
@@ -10,11 +12,9 @@ import {
   ValuePicker,
   statuses,
 } from 'zds-pickers'
-import { entryControlSet, notePicker, valuePicker } from '../../styles/entryDlg.scss'
-import { getMapping, getNoteValue } from '../../reducers/mappings'
-import { mappingsShape, midiMessageShape } from '../../core/shapes'
-import CCPicker from './CCPicker'
-import ChannelPicker from './ChannelPicker'
+import { entryControlSet, notePicker, valuePicker } from 'styles/entryDlg.scss'
+import { getMapping, getNoteValue } from 'reducers/mappings'
+import { mappingsShape, midiMessageShape } from 'core/shapes'
 
 class EntryControlSet extends Component {
   constructor(props) {

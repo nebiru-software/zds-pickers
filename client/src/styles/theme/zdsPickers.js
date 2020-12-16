@@ -1,6 +1,6 @@
 import { padding } from 'polished'
 
-export default ({ palette }) => ({
+export default ({ mixins: { absWidth, borderS }, palette }) => ({
   'body .zds-pickers__control': {
     background: palette.accent,
     minWidth: 120,
@@ -18,6 +18,40 @@ export default ({ palette }) => ({
 
     '& .zds-pickers__dropdown-indicator': {
       ...padding(0, 4),
+    },
+  },
+
+  'body .zds-pickers__menu': {
+    color: palette.text.primary,
+
+    '& .zds-pickers__menu-list': {
+
+    },
+
+    '& .zds-pickers__option': {
+
+    },
+  },
+
+  'body .channel-picker': {
+    '& .zds-pickers__menu': {
+      maxWidth: 280,
+      margin: 0,
+      '& .zds-pickers__menu-list': {
+        display: 'flex',
+        flexFlow: 'row wrap',
+
+        padding: 0,
+      },
+
+      '& .zds-pickers__option': {
+        ...absWidth(40),
+        padding: 0,
+        ...borderS(palette.border),
+        // display: 'flex',
+        // alignContent: 'center',
+        textAlign: 'center',
+      },
     },
   },
 

@@ -7,7 +7,7 @@ import { CCPicker, ChannelPicker, LatchPicker, PolarityPicker } from 'zds-picker
 import Led from 'components/Led'
 import { actions } from 'reducers/inputControls'
 
-const useStyles = makeStyles(({ mixins: { importantPx, rem }, palette }) => ({
+const useStyles = makeStyles(({ palette }) => ({
   root: {
     ...margin(0, 10),
     ...padding(10, 5, 10),
@@ -39,17 +39,11 @@ const CCControl = (props) => {
     controlId,
     latching,
     lit,
-    // changeInputControlChannel,
-    // changeInputControlLatching,
-    // changeInputControlPolarity,
-    // changeInputControlValue,
     polarity,
     value,
   } = props
 
   const handleChangeValue = useCallback((v) => {
-    console.log('in callback')
-
     dispatch(actions.changeInputControlValue(controlId, v))
   }, [controlId, dispatch])
 
