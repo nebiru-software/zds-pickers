@@ -41,7 +41,7 @@ const PrimaryNav = () => {
   return (
     <div>
       <div className={classes.topBar}>
-        <Logo width={300} />
+        <Logo width={350} />
         <section>
           <UserInfo />
           <Documentation />
