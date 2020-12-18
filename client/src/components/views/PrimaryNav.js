@@ -33,10 +33,6 @@ const useStyles = makeStyles(({ constants, palette }) => ({
       flexFlow: 'row nowrap',
       alignItems: 'center',
     },
-
-    '& svg': {
-      fill: palette.text.secondary, // $color-text-dimmer;
-    },
   },
 }), { name: 'PrimaryNav' })
 
@@ -45,7 +41,7 @@ const PrimaryNav = () => {
   return (
     <div>
       <div className={classes.topBar}>
-        <Logo />
+        <Logo width={300} />
         <section>
           <UserInfo />
           <Documentation />
