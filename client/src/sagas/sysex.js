@@ -1,3 +1,4 @@
+/* eslint-disable no-bitwise */
 import { sendMidiMessage } from 'redux-midi-fork'
 import { call, delay, put, select, takeLatest } from 'redux-saga/effects'
 import { combineStatus } from 'zds-pickers'
@@ -32,7 +33,7 @@ import { actions } from 'reducers/inputControls'
 import { actions as shiftGroupActions } from 'reducers/shiftGroups'
 import { actions as shifterActions } from 'reducers/shifter'
 import actionTypes from 'reducers/actionTypes'
-import { stateShifter, stateVersion } from 'selectors/index'
+import { stateInputControls, stateShifter, stateVersion } from 'selectors/index'
 import { downloadFile, exportFile } from 'midi/export'
 import { chunk } from 'fp/arrays'
 import { promiseToEither } from 'fp/utils'
@@ -273,10 +274,34 @@ function* handleImportSettings({ File, callback }) {
   }
 }
 
+function* handleTransmitControls() {
+  const controls = yield select(stateInputControls)
+
+  const data = controls.reduce((acc, control) => {
+    // reduce control
+    const { calibrationHigh, calibrationLow, curve, latching, polarity } = control
+    const flags = Number(latching) | (Number(polarity) << 1) | (curve << 2)
+    return [
+      ...acc, // ==
+      ...reduceMidiMessage(control),
+      flags,
+      calibrationLow,
+      calibrationHigh,
+    ]
+  }, [])
+  yield call(transmitAction, SYSEX_MSG_SEND_CONTROLS, data)
+}
+
 export default function* sysexSaga() {
   yield takeLatest(actionTypes.GET_SYSEX_CONTROLS, handleGetControls)
   yield takeLatest(actionTypes.GET_SYSEX_GROUPS, handleGetGroups)
   yield takeLatest(actionTypes.GET_SYSEX_VERSION, handleGetVersion)
+
+  yield takeLatest(actionTypes.CHANGE_CONTROL_TYPE, handleTransmitControls) // Not yet used
+  yield takeLatest(actionTypes.CHANGE_INPUT_CONTROL_CHANNEL, handleTransmitControls)
+  yield takeLatest(actionTypes.CHANGE_INPUT_CONTROL_LATCHING, handleTransmitControls)
+  yield takeLatest(actionTypes.CHANGE_INPUT_CONTROL_POLARITY, handleTransmitControls)
+  yield takeLatest(actionTypes.CHANGE_INPUT_CONTROL_VALUE, handleTransmitControls)
 
   yield takeLatest(actionTypes.SAVE_ENTRY_EDIT, handleSaveEntry)
   yield takeLatest(actionTypes.REMOVE_ENTRY, handleRemoveEntry)

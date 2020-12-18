@@ -32,6 +32,7 @@ extern bool serialMidiEnabled;
 extern bool usbMidiEnabled;
 
 void initSettings();
+void loadSettings(bool dueToReset);
 void resetSettings(bool restartToo);
 void restartShifter(bool dueToReset);
 void hardReset(bool preserveSerial);

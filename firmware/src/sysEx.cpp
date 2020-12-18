@@ -162,6 +162,8 @@ static void receiveControls(midi::DataByte* data, size_t size) {
       EEPROM.update(LOCATION_OF_CONTROLS + i - 1, data[i]);
     }
   }
+
+  loadSettings(false);
 }
 
 static void performFactoryReset(bool restartToo) {
@@ -394,8 +396,7 @@ void sysexStop() {
         break;
 
       case SYSEX_MSG_RECEIVE_CONTROLS:
-        // 11 for just two controls; 31 for all six.
-        if ((size == 11) || (size == 31)) {
+        if (size == 47) {
           receiveControls(data, size);
         }
 
