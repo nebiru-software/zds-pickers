@@ -33,7 +33,7 @@ extern bool usbMidiEnabled;
 
 void initSettings();
 void resetSettings(bool restartToo);
-void restart(bool dueToReset);
+void restartShifter(bool dueToReset);
 void hardReset(bool preserveSerial);
 void validateFirmwareVersion();
 void saveGroups();

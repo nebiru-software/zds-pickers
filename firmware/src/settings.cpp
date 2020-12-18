@@ -329,13 +329,12 @@ void startup() {
   engineActive = true;
 }
 
-void restart(bool dueToReset) {
+void restartShifter(bool dueToReset) {
   loadSettings(dueToReset);
   delay(200);
 #if SETTINGS_DEBUG_MODE
   Serial.println("Initializing controls");
 #endif // if SETTINGS_DEBUG_MODE
-       // init_controls();
 }
 
 void resetSettings(bool andRestart) {
@@ -355,7 +354,7 @@ void resetSettings(bool andRestart) {
   EEPROM.update(LOCATION_OF_FLAGS, 12); // 00001100
 
   if (andRestart) {
-    restart(true);
+    restartShifter(true);
   }
 }
 

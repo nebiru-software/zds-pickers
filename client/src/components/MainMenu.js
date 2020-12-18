@@ -37,12 +37,14 @@ const MainMenu = () => {
 
   const open = Boolean(anchorEl)
 
-  return ready ? (
+  return (
     <>
+
       <IconButton
         aria-haspopup="true"
         aria-label="More"
         aria-owns={open ? 'long-menu' : null}
+        disabled={!ready}
         onClick={handleClick}
       >
         <Tooltip title="Settings">
@@ -138,7 +140,7 @@ const MainMenu = () => {
         hideDialog={() => setRegistrationDialogVisible(false)}
       />
     </>
-  ) : null
+  )
 }
 
 export default MainMenu

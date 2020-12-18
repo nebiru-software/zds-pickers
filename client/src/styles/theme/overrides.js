@@ -76,7 +76,7 @@ export default theme => produce(theme, (draft) => {
       },
     },
     MuiListItem: {
-      default: {
+      root: {
         paddingTop: 3,
         paddingBottom: 3,
       },

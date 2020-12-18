@@ -65,17 +65,17 @@ export const fieldFilename = value => value && !/^[\w,\s-]+\.[A-Za-z]{3}$/i.test
 
 export const validateFile = (file) => {
   let result = ''
-  const fileMinSize = 1024
-  const fileMaxSize = 1024 * 5
+  const fileMinSize = 4096
+  const fileMaxSize = fileMinSize + 200
 
   if (file) {
     const { name, size } = file
     if (!name.endsWith('.txt')) {
       result = 'Settings files must use .txt extension'
     } else if (size < fileMinSize) {
-      result = 'File must be at least 1Kb in size'
+      result = 'File must be at least 4Kb in size'
     } else if (size > fileMaxSize) {
-      result = 'File cannot exceed 5Kb in size'
+      result = 'File cannot exceed 4.2Kb in size'
     }
   } else {
     result = 'Required'

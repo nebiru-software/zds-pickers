@@ -1,6 +1,8 @@
 import { sendMidiMessage } from 'redux-midi-fork'
-import { call, put, select, takeLatest } from 'redux-saga/effects'
+import { call, delay, put, select, takeLatest } from 'redux-saga/effects'
 import { combineStatus } from 'zds-pickers'
+import PromiseFileReader from 'promise-file-reader'
+import Hash from 'object-hash'
 import { getInputDeviceId, getOutputDeviceId } from 'selectors/midi'
 import { ENTRY_SIZE_BYTES, GROUP_SIZE_BYTES, INPUT_CONTROL_SIZE_BYTES, MAX_GROUPS, MAX_INPUTS } from 'core/consts'
 import {
@@ -17,6 +19,7 @@ import {
   SYSEX_MSG_RECEIVE_MODEL,
   SYSEX_MSG_RECEIVE_VERSION,
   SYSEX_MSG_REMOVE_ENTRY,
+  SYSEX_MSG_RESTORE,
   SYSEX_MSG_SAVE_ENTRY_EDIT,
   SYSEX_MSG_SEND_CONTROLS,
   SYSEX_MSG_SEND_GROUPS,
@@ -31,6 +34,8 @@ import { actions as shifterActions } from 'reducers/shifter'
 import actionTypes from 'reducers/actionTypes'
 import { stateShifter, stateVersion } from 'selectors/index'
 import { downloadFile, exportFile } from 'midi/export'
+import { chunk } from 'fp/arrays'
+import { promiseToEither } from 'fp/utils'
 import { CURRENT_CLIENT_VERSION, SHIFTER_DEVICE_ID } from '../midi'
 
 const reduceMidiMessage = ({ channel, status, value }) => [combineStatus(channel, status), value]
@@ -221,6 +226,53 @@ function* handleReceivedBackupPacket() {
   }
 }
 
+function* invalidFile(callback) {
+  yield put(shifterActions.settingsFileInvalid('Invalid settings file'))
+  yield call(callback)
+}
+
+// Params are hash, version, then the rest
+function* process([, , ...rest], callback) {
+  const BLOCK_SIZE = 51
+  try {
+    const chunks = chunk(BLOCK_SIZE)(rest)
+    let block
+    for (let blockIdx = 0; blockIdx < chunks.length; blockIdx += 1) {
+      block = chunks[blockIdx]
+      yield delay(200)
+
+      yield call(
+        transmitAction,
+        SYSEX_MSG_RESTORE,
+        [blockIdx, BLOCK_SIZE, block.length, ...block],
+      )
+    }
+    yield call(callback)
+  } catch (e) {
+    call(invalidFile, callback)
+  }
+}
+
+function* handleImportSettings({ File, callback }) {
+  const isValidFile = ([fileChecksum, ...rest]) => Hash(rest) === fileChecksum
+  const either = yield promiseToEither(PromiseFileReader.readAsText(File, 'UTF-8'))
+
+  if (either.isRight()) {
+    const data = either.right()
+      .trim()
+      .split(' ')
+      .map((value, idx) => (idx === 0 ? value : Number(value)))
+
+    if (isValidFile(data)) {
+      yield call(process, data, callback)
+    } else {
+      yield call(invalidFile, callback)
+    }
+  } else {
+    yield call(invalidFile, callback)
+  }
+}
+
 export default function* sysexSaga() {
   yield takeLatest(actionTypes.GET_SYSEX_CONTROLS, handleGetControls)
   yield takeLatest(actionTypes.GET_SYSEX_GROUPS, handleGetGroups)
@@ -236,6 +288,8 @@ export default function* sysexSaga() {
 
   yield takeLatest(actionTypes.EXPORT_SETTINGS, handleStartExport)
   yield takeLatest(actionTypes.EXPORT_SETTINGS_PACKET, handleReceivedBackupPacket)
+
+  yield takeLatest(actionTypes.IMPORT_SETTINGS, handleImportSettings)
 
   yield takeLatest('redux-midi/midi/RECEIVE_MIDI_MESSAGE', handleReceiveMessage)
   // yield fork(deviceCheckFlow)

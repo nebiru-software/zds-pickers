@@ -5,14 +5,18 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogActions from '@material-ui/core/DialogActions'
 import LinearProgress from '@material-ui/core/LinearProgress'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
 import { stateShifter } from 'selectors/index'
 import Dialog from 'components/Dialog'
+import FileInput from 'components/FileInput'
+import { actions } from 'reducers/shifter'
 import InvalidSettingsFile from './InvalidSettingsFile'
-import ImportSettingsForm from './ImportSettingsForm'
 
 export const ImportSettings = ({ hideDialog }) => {
+  const dispatch = useDispatch()
   const { importInProcess } = useSelector(stateShifter)
+  const [selectedFile, setSelectedFile] = useState(undefined)
 
   return (
     <>
@@ -21,9 +25,15 @@ export const ImportSettings = ({ hideDialog }) => {
         open
       >
         <DialogTitle>Restore Settings</DialogTitle>
+
         <DialogContent>
-          <ImportSettingsForm />
+          <FileInput
+            label="Filename"
+            name="importFilename"
+            onReady={setSelectedFile}
+          />
         </DialogContent>
+
         <DialogActions>
           <Button
             onClick={hideDialog}
@@ -33,12 +43,11 @@ export const ImportSettings = ({ hideDialog }) => {
           </Button>
           <Button
             color="primary"
-            // disabled={invalid || submitting || pristine}
-            // onClick={submitImportForm}
-            tag="btnLoad"
+            disabled={!selectedFile || importInProcess}
+            onClick={() => dispatch(actions.importSettings(selectedFile, hideDialog))}
             variant="contained"
           >
-            Load
+            Restore
           </Button>
         </DialogActions>
       </Dialog>
@@ -54,22 +63,10 @@ export const ImportSettings = ({ hideDialog }) => {
         </DialogActions>
       </Dialog>
 
-      {/* <InvalidSettingsFile
-        acknowledgeInvalidFile={acknowledgeInvalidFile}
-        invalidSettingsFile={invalidSettingsFile}
-      /> */}
+      <InvalidSettingsFile />
     </>
   )
 }
-
-// const formOptions = {
-//   form: 'importSettingsForm',
-//   enableReinitialize: true,
-//   onSubmit: /* istanbul ignore next */ (
-//     { importFilename },
-//     dispatch, //
-//   ) => dispatch(shifterActions.importSettings(importFilename)),
-// }
 
 ImportSettings.propTypes = {
   hideDialog: PropTypes.func.isRequired,

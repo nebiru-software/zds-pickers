@@ -18,6 +18,7 @@ const FactoryReset = () => {
   return (
     <>
       <Dialog
+        maxWidth="xs"
         onClose={/* istanbul ignore next */ () => dispatch(actions.confirmFactoryReset(false))}
         open={showResetDialog}
       >
@@ -27,7 +28,8 @@ const FactoryReset = () => {
             <b>Sure to perform reset?</b>
             <br />
             <br />
-            This will remove all shift groups and return the foot switches to their factory defaults.
+            {/* eslint-disable-next-line max-len */}
+            This will remove all shift groups and return the CC jacks, trigger jacks and CC buttons to their factory defaults.
           </DialogContentText>
         </DialogContent>
         <DialogActions>

@@ -1,32 +1,32 @@
 import PropTypes from 'prop-types'
+import { useState } from 'react'
+import { validateFile } from 'fp/strings'
 
-const adaptFileEventToValue = delegate => e => delegate(e.target.files[0])
+const FileInput = ({ onReady, ...rest }) => {
+  const [errorMsg, setErrorMsg] = useState('')
 
-const FileInput = ({
-  input: { value: omitValue, onChange, onBlur, ...inputProps },
-  meta: { touched, error, warning },
-  ...props
-}) => (
-  <div>
-    <input
-      accept="text/plain"
-      onBlur={adaptFileEventToValue(onBlur)}
-      onChange={adaptFileEventToValue(onChange)}
-      type="file"
-      {...inputProps}
-      {...props}
-    />
-    <p>{touched ? error || warning : ''}</p>
-  </div>
-)
+  const handleFileSelected = ({ target }) => {
+    const result = validateFile(target.files[0])
+    onReady(result === '' ? target.files[0] : undefined)
+    setErrorMsg(result)
+  }
+
+  return (
+    <div>
+      <input
+        accept="text/plain"
+        onBlur={handleFileSelected}
+        onChange={handleFileSelected}
+        type="file"
+        {...rest}
+      />
+      <p>{errorMsg}</p>
+    </div>
+  )
+}
 
 FileInput.propTypes = {
-  input: PropTypes.object.isRequired, // eslint-disable-line
-  meta: PropTypes.shape({
-    touched: PropTypes.bool,
-    error: PropTypes.string,
-    warning: PropTypes.string,
-  }).isRequired,
+  onReady: PropTypes.func.isRequired,
 }
 
 export default FileInput

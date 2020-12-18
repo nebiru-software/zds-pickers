@@ -213,18 +213,33 @@ static void receiveBackup(midi::DataByte* data, size_t size) {
 #if SYSEX_DEBUG_MODE
   Serial.println("Receiving backup.");
 #endif // if SYSEX_DEBUG_MODE
-
+  // data[1] is block index
+  // data[2] is size of each block
+  // data[3] is size of THIS block
   uint16_t startFrom = LOCATION_OF_FLAGS + (data[1] * data[2]);
 
   for (uint16_t i = 0; i < data[3]; i++) {
-    if (startFrom + i < MAX_SYSEX_BYTES) {
+    if (startFrom + i < MAX_BYTES) {
       EEPROM.update(startFrom + i, data[i + 4]);
     }
   }
 
-  if (startFrom + data[2] > MAX_SYSEX_BYTES) {
-    // All done, reset.
-    restart(true);
+  if (startFrom + data[2] > MAX_BYTES) {
+// All done, reset.
+#if SYSEX_DEBUG_MODE
+    Serial.println("Restarting in 200ms...");
+#endif
+    delay(200);
+    restartShifter(true);
+
+    delay(300);
+    sendControls();
+
+    delay(500);
+    sendGroups();
+
+    delay(500);
+    sendInternalState();
   }
 }
 
@@ -348,7 +363,7 @@ void sysexStop() {
 
       case SYSEX_MSG_RESTART:
         if (size == 1) {
-          restart(true);
+          restartShifter(true);
 
           if (clientIsConnected) {
             delay(500);
@@ -384,7 +399,7 @@ void sysexStop() {
           receiveControls(data, size);
         }
 
-        restart(true);
+        restartShifter(true);
         break;
 
       case SYSEX_MSG_GET_GROUPS:
@@ -405,7 +420,7 @@ void sysexStop() {
       case SYSEX_MSG_RECEIVE_FLAGS:
         if (size == 2) {
           EEPROM.update(LOCATION_OF_FLAGS, data[1]);
-          restart(true);
+          restartShifter(true);
         }
         break;
 

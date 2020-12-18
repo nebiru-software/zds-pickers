@@ -108,10 +108,10 @@ export const setFlags = (dispatch, { midiActivityLEDMode, serialMidiOutEnabled, 
 //   dispatch(transmitAction(SYSEX_MSG_SAVE_ENTRY_EDIT, [groupId, entryId, ...reduceEntry(editQueue)]))
 // }
 
-export const askForBackup = (dispatch) => {
-  dispatch(transmitAction(SYSEX_MSG_BACKUP))
-}
+// export const askForBackup = (dispatch) => {
+//   dispatch(transmitAction(SYSEX_MSG_BACKUP))
+// }
 
-export const transmitBackup = (dispatch, packet) => {
-  dispatch(transmitAction(SYSEX_MSG_RESTORE, packet))
-}
+// export const transmitBackup = (dispatch, packet) => {
+//   dispatch(transmitAction(SYSEX_MSG_RESTORE, packet))
+// }

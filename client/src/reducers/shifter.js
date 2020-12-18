@@ -10,7 +10,7 @@ export const actions = {
   dismissError: () => ({ type: actionTypes.DISMISS_ERROR }),
   exportSettings: exportFilename => ({ type: actionTypes.EXPORT_SETTINGS, exportFilename }),
   hideHardwareTestDialog: () => ({ type: actionTypes.HIDE_HARDWARE_TEST_DIALOG }),
-  importSettings: File => ({ type: actionTypes.IMPORT_SETTINGS, importDialogVisible: false, File }),
+  importSettings: (File, callback) => ({ type: actionTypes.IMPORT_SETTINGS, File, callback }),
   midiInActivityChanged: midiInActivity => ({ type: actionTypes.MIDI_IN_ACTIVITY, midiInActivity }),
   midiOutActivityChanged: midiOutActivity => ({ type: actionTypes.MIDI_OUT_ACTIVITY, midiOutActivity }),
   notResponding: () => ({ type: actionTypes.NOT_RESPONDING }),
@@ -30,7 +30,6 @@ export const actions = {
   shifterFound: deviceId => ({ type: actionTypes.SHIFTER_FOUND, deviceId }),
   shifterMissing: () => ({ type: actionTypes.SHIFTER_MISSING }),
   showHardwareTestDialog: () => ({ type: actionTypes.SHOW_HARDWARE_TEST_DIALOG }),
-
   testInterfaceFound: () => ({ type: actionTypes.TEST_INTERFACE_FOUND }),
   testInterfaceMissing: () => ({ type: actionTypes.TEST_INTERFACE_MISSING }),
 }
@@ -178,7 +177,6 @@ const receivedExportPacket = (state, { packet }) => ({
 
 const importSettings = state => ({
   ...state,
-  importDialogVisible: false,
   importInProcess: true,
 })
 
@@ -189,17 +187,19 @@ const importComplete = state => ({
 
 const settingsFileInvalid = (state, { invalidSettingsFile }) => ({
   ...state,
+  importInProcess: false,
   invalidSettingsFile,
 })
 
 const acknowledgedInvalidFile = state => ({
   ...state,
+  importInProcess: false,
   invalidSettingsFile: null,
 })
 
 const receivedAvailability = (state, { ready }) => ({
   ...state,
-  ready,
+  ready: ready && !state.importInProcess,
 })
 
 export default createReducer(defaultState, {
