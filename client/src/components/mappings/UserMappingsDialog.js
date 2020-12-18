@@ -9,20 +9,62 @@ import DialogContent from '@material-ui/core/DialogContent'
 import Tooltip from '@material-ui/core/Tooltip'
 import DialogActions from '@material-ui/core/DialogActions'
 import { useDispatch, useSelector } from 'react-redux'
-import mappingsStyle from '../../styles/mappings.scss'
-import Dialog from '../Dialog'
-import { stateMappings } from '../../selectors'
-import { actions } from '../../reducers/mappings'
+import makeStyles from '@material-ui/core/styles/makeStyles'
+import DeleteForever from '@material-ui/icons/DeleteForever'
+import Dialog from 'components/Dialog'
+import { stateMappings } from 'selectors/index'
+import { actions as mappingActions } from 'reducers/mappings'
+import { actions as errorActions } from 'reducers/errorLog'
+
+const useStyles = makeStyles(({ mixins: { borderS, important, rem }, palette }) => ({
+  root: {
+    '& section': {
+      ...borderS(palette.border),
+      borderRadius: 3,
+      width: 300,
+      height: 300,
+      padding: rem(2),
+      overflowY: 'auto',
+
+      '& article': {
+        display: 'flex',
+        flexFlow: 'row nowrap',
+        alignItems: 'center',
+        marginBottom: rem(2),
+        minWidth: 250,
+        fontSize: rem(1.6),
+
+        '& aside': {
+          paddingTop: 4,
+          marginRight: rem(1),
+          cursor: 'pointer',
+        },
+      },
+    },
+  },
+  noUserMappings: {
+    fontStyle: 'italic',
+    fontSize: rem(2),
+    color: palette.text.secondary,
+    width: '100%',
+    textAlign: 'center',
+    marginTop: 30,
+  },
+  buttonBar: {
+    justifyContent: important('space-between'),
+  },
+}), { name: 'UserMappingsDialog' })
 
 const UserMappingsDialog = () => {
   const dispatch = useDispatch()
+  const classes = useStyles()
   const {
     userDialogVisible,
     userMappings,
   } = useSelector(stateMappings)
 
   const hideUserMappingsDialog = useCallback(() => {
-    dispatch(actions.hideUserMappingsDialog())
+    dispatch(mappingActions.hideUserMappingsDialog())
   }, [dispatch])
 
   const handleFileUploaded = (FileObject) => {
@@ -30,18 +72,17 @@ const UserMappingsDialog = () => {
     reader.onload = ({ target }) => {
       const content = target.result.trim()
       if (validateContent(content)) {
-        dispatch(actions.importMapping(
-          //
+        dispatch(mappingActions.importMapping(
           FileObject.name.split('.')[0],
           content,
         ))
       } else {
-        dispatch(actions.reportError('Not a valid ZenEdit mapping file.'))
+        dispatch(errorActions.reportError('Not a valid ZenEdit mapping file.'))
       }
     }
 
     reader.onerror = ({ target }) => {
-      dispatch(actions.reportError(`File could not be read! Code ${target.error.code}`))
+      dispatch(errorActions.reportError(`File could not be read! Code ${target.error.code}`))
     }
 
     reader.readAsText(FileObject)
@@ -50,7 +91,7 @@ const UserMappingsDialog = () => {
 
   return (
     <Dialog
-      className={mappingsStyle.userMappingsDialog}
+      className={classes.root}
       onClose={hideUserMappingsDialog}
       open={userDialogVisible}
     >
@@ -64,25 +105,21 @@ const UserMappingsDialog = () => {
                   <Tooltip
                     enterDelay={250}
                     placement="left"
-                    title="Delete entry"
+                    title="Delete mapping"
                   >
-                    <i
-                      className="material-icons"
-                      onClick={() => dispatch(actions.deleteMapping(name))}
-                    >
-                      delete_forever
-                    </i>
+                    <DeleteForever onClick={() => dispatch(mappingActions.deleteMapping(name))} />
                   </Tooltip>
                 </aside>
                 <div>{name}</div>
               </article>
             ))
           ) : (
-            <div className={mappingsStyle.noUserMappings}>You&apos;ve not imported any custom mappings yet</div>
+            <div className={classes.noUserMappings}>You&apos;ve not imported any custom mappings yet</div>
           )}
         </section>
       </DialogContent>
-      <DialogActions className={mappingsStyle.buttonBar}>
+
+      <DialogActions className={classes.buttonBar}>
         <FilePicker
           extensions={['txt']}
           onChange={handleFileUploaded}

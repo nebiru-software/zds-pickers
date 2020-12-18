@@ -50,6 +50,7 @@ export default theme => produce(theme, (draft) => {
     MuiDialogTitle: {
       root: {
         '& h2': {
+          userSelect: 'none',
           fontWeight: 'bold',
           fontSize: rem(2),
         },
@@ -110,8 +111,15 @@ export default theme => produce(theme, (draft) => {
         borderColor: palette.primary[500],
         boxShadow: `inset 1px 1px 0 ${palette.primary[400]}`,
       },
+      select: {
+        '&:focus': {
+          backgroundColor: important(palette.primary[500]),
+          color: palette.common.white,
+        },
+      },
       icon: {
         color: 'white',
+        marginRight: rem(1),
       },
     },
     MuiTab: {

@@ -10,6 +10,7 @@ const MappingPicker = (props) => {
   }
   return (
     <Select
+      placeholder="add"
       {...dropdownProps}
       {...rest}
     >

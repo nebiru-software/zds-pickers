@@ -62,6 +62,7 @@ export default {
     150: greyLight,
     200: grey,
     300: greyDark,
+    400: greyDarkest,
   },
   greyed: '#babbbd',
   important: common.darkRed,

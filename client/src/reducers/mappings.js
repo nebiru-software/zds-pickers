@@ -1,7 +1,7 @@
 import { getMapping as zdsGetMapping, getStockNames, getUserMappingNames } from 'zds-mappings'
-import { removeMapping, storeMapping } from 'zds-mappings/dist/userMappings'
-import { arraySequence } from '../core/fp/arrays'
-import { getSetting } from '../core/utils'
+import { arraySequence } from 'fp/arrays'
+import { getSetting } from 'core/utils'
+import { success } from 'sagas/utils'
 import { createReducer } from './utils'
 import actionTypes from './actionTypes'
 
@@ -45,25 +45,9 @@ export const actions = {
     userDialogVisible: false,
   }),
 
-  importMapping: (name, contents) => (dispatch) => {
-    try {
-      storeMapping(name, contents)
-    } catch (E) {
-      dispatch({
-        type: actionTypes.REPORT_ERROR,
-        errorMessage: 'Unable to import.  Not a valid ZenEdit map file.',
-      })
-      return
-    }
+  importMapping: (name, contents) => ({ type: actionTypes.IMPORT_MAPPING, name, contents }),
 
-    dispatch({ type: actionTypes.IMPORT_MAPPING, name })
-  },
-
-  deleteMapping: name => (dispatch) => {
-    removeMapping(name)
-
-    dispatch({ type: actionTypes.DELETE_MAPPING, name })
-  },
+  deleteMapping: name => ({ type: actionTypes.DELETE_MAPPING, name }),
 }
 
 const handleShowDialog = (state, { dialogVisible }) => ({ ...state, dialogVisible })
@@ -78,7 +62,6 @@ const handleMappingSelected = (state, { channel, mappingName }) => {
   return newState
 }
 
-/* istanbul ignore next */
 const userMappingsChanged = state => ({
   ...state,
   stockMappings: getStockNames(),
@@ -96,6 +79,6 @@ export default createReducer(defaultState, {
   [actionTypes.SHOW_MAPPINGS_DLG]: handleShowDialog,
   [actionTypes.MAPPING_CHANGED]: handleMappingSelected,
   [actionTypes.SHOW_USER_MAPPINGS_DIALOG]: handleShowUserDialog,
-  [actionTypes.IMPORT_MAPPING]: userMappingsChanged,
-  [actionTypes.DELETE_MAPPING]: userMappingsChanged,
+  [success(actionTypes.IMPORT_MAPPING)]: userMappingsChanged,
+  [success(actionTypes.DELETE_MAPPING)]: userMappingsChanged,
 })

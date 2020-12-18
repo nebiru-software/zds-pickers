@@ -2,6 +2,7 @@ import { get } from '../core/fp/objects'
 
 export const isDevEnv = () => process.env.NODE_ENV === 'development'
 
+export const stateErrorLog = get('errorLog')
 export const stateInputControls = get('inputControls')
 export const stateMappings = get('mappings')
 export const stateMidi = get('midi')

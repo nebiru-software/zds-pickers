@@ -11791,7 +11791,7 @@ zds-mappings@1.4.9:
   resolved "https://registry.yarnpkg.com/zds-mappings/-/zds-mappings-1.4.9.tgz#0ad0fdc2100756b2b64e215ee3b24fbbbe6df89a"
   integrity sha512-8eTLWiBYwuFSZ0wukJd4a+lVglVyAr3ClzVZgVlkxIWL8HwntWx7tQ0H/Hbin3WTk8mM2W7wVckKWN5LEecj0g==
 
-zds-pickers@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/zds-pickers/-/zds-pickers-3.1.0.tgz#e39b26b8fb4cdc1e4c35778ba5adcb379ddad042"
-  integrity sha512-YxsCRc3zl1SzmPcElXVddNW1ucQF4MnNgg0cVes53MZaKks8hCvbNc7jzJMacaxQRW+P4/wxdvNJXKeN2I+k0g==
+zds-pickers@3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/zds-pickers/-/zds-pickers-3.2.0.tgz#f5601bd57c67ea57c798930f3779a46bae361ff7"
+  integrity sha512-P++LcjOFr/8KmqeeDzNcnpnI8rDSOT7wMQHF7oCDALjU1ZpeVjcBCYy30JavVkolZTH8FsXA86iuSd1O7mQIvA==

@@ -34,9 +34,9 @@ const transmitAction = (command, data = []) => sendMidiMessage({
   device: shifterOutputId(),
 })
 
-export const askForModel = (dispatch) => {
-  dispatch(transmitAction(SYSEX_MSG_GET_MODEL))
-}
+// export const askForModel = (dispatch) => {
+//   dispatch(transmitAction(SYSEX_MSG_GET_MODEL))
+// }
 
 // export const askForControls = (dispatch) => {
 //   dispatch(transmitAction(SYSEX_MSG_GET_CONTROLS))
@@ -62,13 +62,13 @@ export const transmitControls = (dispatch, controls) => {
 //   dispatch(transmitAction(SYSEX_MSG_GET_GROUPS))
 // }
 
-export const restart = (dispatch) => {
-  dispatch(transmitAction(SYSEX_MSG_RESTART))
-}
+// export const restart = (dispatch) => {
+//   dispatch(transmitAction(SYSEX_MSG_RESTART))
+// }
 
-export const performFactoryReset = (dispatch, restartToo) => {
-  dispatch(transmitAction(SYSEX_MSG_FACTORY_RESET, [restartToo]))
-}
+// export const performFactoryReset = (dispatch, restartToo) => {
+//   dispatch(transmitAction(SYSEX_MSG_FACTORY_RESET, [restartToo]))
+// }
 
 export const setFlags = (dispatch, { midiActivityLEDMode, serialMidiOutEnabled, usbMidiOutEnabled }) => {
   let newFlag = midiActivityLEDMode

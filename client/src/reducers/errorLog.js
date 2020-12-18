@@ -2,13 +2,13 @@ import { createReducer } from './utils'
 import actionTypes from './actionTypes'
 
 export const initialState = {
-  currentMessage: '',
+  currentMessage: undefined,
   logVisible: false,
   messages: [],
 }
 
 export const actions = {
-  reportError: ({ message }) => ({
+  reportError: message => ({
     type: actionTypes.ERROR_OCCURRED,
     message,
   }),
@@ -22,7 +22,7 @@ export const actions = {
 
 const handleError = (state, { message }) => {
   const messages = [...state.messages]
-  const newMessage = String(message.message ? message.message : message)
+  const newMessage = String(message?.message ? message.message : message)
 
   if (messages.length && messages[messages.length - 1].text === newMessage) {
     messages[messages.length - 1].count += 1
@@ -37,10 +37,10 @@ const handleError = (state, { message }) => {
   }
 }
 
-const clearError = state => ({ ...state, currentMessage: '' })
+const clearError = state => ({ ...state, currentMessage: undefined })
 const clearAll = state => ({
   ...state,
-  currentMessage: '',
+  currentMessage: undefined,
   logVisible: false,
   messages: [],
 })

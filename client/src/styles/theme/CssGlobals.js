@@ -36,6 +36,7 @@ export default withStyles((theme) => {
           outlineStyle: 'none',
         },
         background: palette.background.default,
+        userSelect: 'none',
       },
       // section: {
       //   paddingTop: rem(4),

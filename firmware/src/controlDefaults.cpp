@@ -50,7 +50,7 @@ void resetControls() {
         jack.controlType = CONTROL_TYPE_TRIGGER;
         jack.data        = 46;
         jack.status      = NOTE_ON;
-        jack.threshold   = 1;
+        jack.threshold   = 2;
         jack.sensitivity = 24;
         break;
     }
