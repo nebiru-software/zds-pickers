@@ -14,7 +14,6 @@ import {
   ValuePicker,
   statuses,
 } from 'zds-pickers'
-// import { entryControlSet, notePicker, valuePicker } from 'styles/entryDlg.scss'
 import { getMapping, getNoteValue } from 'reducers/mappings'
 import { mappingsShape, midiMessageShape } from 'core/shapes'
 
