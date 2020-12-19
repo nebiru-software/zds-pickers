@@ -17,7 +17,7 @@ import GridRow from './GridRow'
 const useStyles = makeStyles(({ constants, mixins: { important }, palette }) => ({
   root: {
     backgroundColor: palette.common.white,
-    height: important(`calc(100vh - ${constants.gridHeight}px)`),
+    // height: important(`calc(100vh - ${constants.gridHeight}px)`),
     overflow: important('hidden'),
     ...margin(0, 3, 3),
     outline: 'none',

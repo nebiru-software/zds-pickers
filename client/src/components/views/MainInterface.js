@@ -5,7 +5,6 @@ import NoShifterFound from 'components/device/NoShifterFound'
 import NotResponding from 'components/device/NotResponding'
 import VersionNotSupported from 'components/device/VersionNotSupported'
 import MidiSecurity from 'components/device/MidiSecurity'
-import InfoPanel from 'components/InfoPanel'
 import HardwareTest from 'components/device/hardwareTest/HardwareTest'
 import PrimaryNav from './PrimaryNav'
 
@@ -30,7 +29,6 @@ const MainInterface = () => {
       <NotResponding />
       <VersionNotSupported />
       <NoShifterFound />
-      <InfoPanel />
     </div>
   )
 }

@@ -122,33 +122,33 @@ export default theme => produce(theme, (draft) => {
         marginRight: rem(1),
       },
     },
-    MuiTab: {
-      root: {
-        backgroundColor: palette.primary[100],
-        minWidth: '130px !important',
-        maxWidth: '130px !important',
-        borderRadius: '8px 8px 0 0',
-        marginRight: 5,
-        '&$selected': {
-          backgroundColor: important(palette.primary[500]),
-          color: palette.common.white,
-        },
-      },
-      textColorInherit: {
-        color: palette.text.dimmer,
-      },
-      wrapper: {
-        flexDirection: 'row',
-      },
-      labelIcon: {
-        minHeight: 48,
-      },
-    },
-    MuiTabs: {
-      indicator: {
-        display: 'none',
-      },
-    },
+    // MuiTab: {
+    //   root: {
+    //     backgroundColor: palette.primary[100],
+    //     minWidth: '130px !important',
+    //     maxWidth: '130px !important',
+    //     borderRadius: '8px 8px 0 0',
+    //     marginRight: 5,
+    //     '&$selected': {
+    //       backgroundColor: important(palette.primary[500]),
+    //       color: palette.common.white,
+    //     },
+    //   },
+    //   textColorInherit: {
+    //     color: palette.text.dimmer,
+    //   },
+    //   wrapper: {
+    //     flexDirection: 'row',
+    //   },
+    //   labelIcon: {
+    //     minHeight: 48,
+    //   },
+    // },
+    // MuiTabs: {
+    //   indicator: {
+    //     display: 'none',
+    //   },
+    // },
     MuiToolbar: {
       root: {
         color: 'white',

@@ -18,9 +18,9 @@ const primary = {
   contrastLightColors: ['300', '400', '500', '600', '700', '800', '900', 'A400', 'A700'],
 }
 
-const accentLight = primary[500]
-const accent = primary[600]
-const accentDark = primary[900]
+const accentLight = '#333333'
+const accent = '#222222'
+const accentDark = '#000000'
 
 const secondaryLight = '#e4f5fc'
 const secondary = '#00abe6'
@@ -31,7 +31,7 @@ const grey = '#e1e1e1'
 const greyDark = '#939598'
 const greyDarkest = '#4b4a4b'
 
-const paperSecondary = greyLight
+const paperSecondary = greyDarkest
 
 const common = {
   black: '#1c1c1c',
@@ -50,7 +50,7 @@ export default {
   accentLight,
   accent,
   accentDark,
-  background: { default: '#ddd', paperSecondary },
+  background: { default: '#000', paperSecondary },
   border: grey,
   borderDark: '#1C1C1C',
   borderLight: '#eee',

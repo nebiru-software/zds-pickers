@@ -16,7 +16,6 @@ const useStyles = makeStyles(({ constants, mixins: { important }, palette }) => 
     textAlign: 'center',
     fontSize: 24,
     // color: '$color-text-dimmer',
-    height: important(`calc(100vh - ${constants.gridHeight}px + 55px)`),
     overflow: important('hidden'),
   },
   container: {

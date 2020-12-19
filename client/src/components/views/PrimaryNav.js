@@ -1,19 +1,20 @@
+import { useState } from 'react'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import { border, padding } from 'polished'
+import Tab from '@material-ui/core/Tab'
+import Grid from '@material-ui/core/Grid'
 import UserInfo from 'components/user/UserInfo'
 import MainMenu from 'components/MainMenu'
 import Logo from 'images/shifter.svg'
 import EditEntryDlg from 'components/entries/EditEntryDlg'
 import ErrorDialog from 'components/ErrorDialog'
 import Documentation from 'components/Documentation'
+import InfoPanel from 'components/InfoPanel'
+import VerticalTabs from 'components/tabs/VerticalTabs'
 import ShiftGroups from './ShiftGroups'
 import InputControls from './InputControls'
 
-const useStyles = makeStyles(({ constants, palette }) => ({
-  mainContent: {
-    ...padding(0, 4),
-    margin: 0,
-  },
+const useStyles = makeStyles(({ constants, mixins: { important }, palette }) => ({
   topBar: {
     boxSizing: 'border-box',
     height: constants.headerHeight,
@@ -34,12 +35,33 @@ const useStyles = makeStyles(({ constants, palette }) => ({
       alignItems: 'center',
     },
   },
+
+  sidebar: {
+    ...border('right', 1, 'solid', palette.grey[300]),
+  },
+
+  viewport: {
+    backgroundColor: palette.greyed,
+    height: important(`calc(100vh - ${constants.headerHeight}px)`),
+    overflowY: 'auto',
+  },
 }), { name: 'PrimaryNav' })
+
+const AvailableTabs = [
+  <InputControls />,
+  <ShiftGroups />,
+  <InputControls />,
+  <ShiftGroups />,
+]
 
 const PrimaryNav = () => {
   const classes = useStyles()
+  const [selectedTabIdx, setSelectedTabIdx] = useState(0)
+
+  const selectedTab = AvailableTabs[selectedTabIdx]
+
   return (
-    <div>
+    <>
       <div className={classes.topBar}>
         <Logo width={350} />
         <section>
@@ -49,13 +71,41 @@ const PrimaryNav = () => {
         </section>
       </div>
 
-      <section className={classes.mainContent}>
-        <InputControls />
-        <ShiftGroups />
-        <EditEntryDlg />
-        <ErrorDialog />
-      </section>
-    </div>
+      <Grid container>
+        <Grid
+          className={classes.sidebar}
+          item
+          xs={2}
+        >
+          <VerticalTabs
+            onChange={(_, newIdx) => setSelectedTabIdx(newIdx)}
+            orientation="vertical"
+            value={selectedTabIdx}
+            // variant="scrollable"
+          >
+            <Tab label="CC Buttons" />
+            <Tab label="CC Jacks" />
+            <Tab label="Trigger Jacks" />
+            <Tab label="Shift Groups" />
+          </VerticalTabs>
+
+          <InfoPanel />
+        </Grid>
+
+        <Grid
+          item
+          xs={10}
+        >
+          <div className={classes.viewport}>
+            {selectedTab}
+          </div>
+        </Grid>
+
+      </Grid>
+
+      <EditEntryDlg />
+      <ErrorDialog />
+    </>
   )
 }
 
