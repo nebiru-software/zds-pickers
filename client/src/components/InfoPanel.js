@@ -1,22 +1,32 @@
 import { useSelector } from 'react-redux'
 import makeStyles from '@material-ui/core/styles/makeStyles'
+import { padding } from 'polished'
 import { stateVersion } from 'selectors/index'
 
 const useStyles = makeStyles(({ mixins: { rem }, palette }) => ({
   root: {
-    position: 'absolute',
-    bottom: 0,
     color: palette.text.secondary,
     fontSize: rem(1.8),
 
     '& div': {
-      padding: 10,
+      ...padding(5, 10),
     },
+  },
+
+  version: {
+    display: 'flex',
+    width: '100%',
+    flexFlow: 'row nowrap',
+    justifyContent: 'space-between',
+    '& b, span': { display: 'block' },
   },
 
   copyright: {
     fontSize: rem(1.2),
     fontWeight: 100,
+    marginTop: 10,
+    textAlign: 'right',
+    lineHeight: 1.2,
   },
 }), { name: 'InfoPanel' })
 
@@ -30,12 +40,19 @@ export const InfoPanel = () => {
   return (
     <footer className={classes.root}>
 
-      <div><b>Client:</b> {formatted(client)}</div>
-      <div><b>Firmware:</b> {foundVersion()}</div>
+      <div className={classes.version}>
+        <b>Client:</b>
+        <span>{formatted(client)}</span>
+      </div>
+
+      <div className={classes.version}>
+        <b>Firmware:</b>
+        <span>{foundVersion()}</span>
+      </div>
 
       <div className={classes.copyright}>
         &copy; Copyright {year()}<br />
-        Zendrum Studio
+        Nebiru Software
       </div>
     </footer>
   )

@@ -1,26 +1,27 @@
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Tabs from '@material-ui/core/Tabs'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import { border } from 'polished'
-import ShiftGroup from '../ShiftGroup'
-import { actions } from '../../reducers/shiftGroups'
-import GroupTab from '../entries/GroupTab'
-import { stateShiftGroups, stateShifter } from '../../selectors'
-import { getShiftGroups } from '../../selectors/shiftGroups'
+import HorizontalTabs from 'components/tabs/HorizontalTabs'
+import { actions } from 'reducers/shiftGroups'
+import { stateShiftGroups, stateShifter } from 'selectors/index'
+import { getShiftGroups } from 'selectors/shiftGroups'
+import GroupTab from 'components/entries/GroupTab'
+import ShiftGroup from 'components/ShiftGroup'
 
-const useStyles = makeStyles(({ constants, mixins: { important }, palette }) => ({
-  root: { },
+const useStyles = makeStyles(({ mixins: { important }, palette }) => ({
+  root: {
+    width: '100%',
+  },
   loadingCont: {
     paddingTop: 80,
     textAlign: 'center',
     fontSize: 24,
-    // color: '$color-text-dimmer',
     overflow: important('hidden'),
   },
   container: {
     ...border(4, 'solid', palette.accent),
-    borderRadius: '0 4px 4px 4px',
+    borderRadius: 4,
   },
 }), { name: 'ShiftGroups' })
 
@@ -37,27 +38,23 @@ export const ShiftGroups = () => {
   }, [dispatch])
 
   return (
-    <div>
-      <div className={classes.root}>
-
-        {/* classes.tabsCont */}
-        <Tabs
-          disabled={!ready}
-          onChange={handleTabChange}
-          value={selectedGroupIdx}
-        >
-          {groups.map(({ label, active, groupId, controlLabels }, idx) => ready ? (
-            <GroupTab
-              active={active}
-              color="primary"
-              controlLabels={controlLabels}
-              groupId={groupId}
-              key={idx}
-              label={label}
-            />
-          ) : null)}
-        </Tabs>
-      </div>
+    <div className={classes.root}>
+      <HorizontalTabs
+        disabled={!ready}
+        onChange={handleTabChange}
+        value={selectedGroupIdx}
+      >
+        {groups.map(({ label, active, groupId, controlLabels }, idx) => ready ? (
+          <GroupTab
+            active={active}
+            color="primary"
+            controlLabels={controlLabels}
+            groupId={groupId}
+            key={idx}
+            label={label}
+          />
+        ) : null)}
+      </HorizontalTabs>
 
       <div className={classes.container}>
         <ShiftGroup groupId={selectedGroupIdx} />

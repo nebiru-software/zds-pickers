@@ -1,6 +1,6 @@
 export const add = (key, value) => theme => ({ ...theme, [key]: value })
 
-export const maxContainerWidth = 1150
+export const maxContainerWidth = 1000
 
 export const breakpoints = {
   values: {

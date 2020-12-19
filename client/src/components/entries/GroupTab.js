@@ -24,6 +24,8 @@ const useStyles = makeStyles(({ mixins: { rem }, palette }) => ({
     bottom: -1,
     paddingLeft: 5,
     fontSize: rem(1.15),
+    color: palette.text.inverted,
+    cursor: 'pointer',
   },
   dropTarget: {
     background: '#90283c',

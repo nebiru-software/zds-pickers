@@ -38,20 +38,24 @@ const useStyles = makeStyles(({ constants, mixins: { important }, palette }) => 
 
   sidebar: {
     ...border('right', 1, 'solid', palette.grey[300]),
+    '& > div': { height: '100%' },
+    marginBottom: 5,
+    paddingRight: 3,
   },
 
   viewport: {
     backgroundColor: palette.greyed,
     height: important(`calc(100vh - ${constants.headerHeight}px)`),
+    overflowX: 'hidden',
     overflowY: 'auto',
   },
 }), { name: 'PrimaryNav' })
 
 const AvailableTabs = [
-  <InputControls />,
-  <ShiftGroups />,
-  <InputControls />,
-  <ShiftGroups />,
+  { label: 'CC Buttons', content: <InputControls /> },
+  { label: 'CC/EXP Jacks', content: <ShiftGroups /> },
+  { label: 'Trigger Jacks', content: <InputControls /> },
+  { label: 'Shift Groups', content: <ShiftGroups /> },
 ]
 
 const PrimaryNav = () => {
@@ -77,19 +81,33 @@ const PrimaryNav = () => {
           item
           xs={2}
         >
-          <VerticalTabs
-            onChange={(_, newIdx) => setSelectedTabIdx(newIdx)}
-            orientation="vertical"
-            value={selectedTabIdx}
-            // variant="scrollable"
-          >
-            <Tab label="CC Buttons" />
-            <Tab label="CC Jacks" />
-            <Tab label="Trigger Jacks" />
-            <Tab label="Shift Groups" />
-          </VerticalTabs>
 
-          <InfoPanel />
+          <Grid
+            container
+            direction="column"
+            justify="space-between"
+          >
+            <Grid item>
+              <VerticalTabs
+                onChange={(_, newIdx) => setSelectedTabIdx(newIdx)}
+                orientation="vertical"
+                value={selectedTabIdx}
+                variant="scrollable"
+              >
+                {AvailableTabs.map(({ label }) => (
+                  <Tab
+                    key={`label ${label}`}
+                    label={label}
+                  />
+                ))}
+              </VerticalTabs>
+            </Grid>
+
+            <Grid item>
+              <InfoPanel />
+            </Grid>
+          </Grid>
+
         </Grid>
 
         <Grid
@@ -97,7 +115,7 @@ const PrimaryNav = () => {
           xs={10}
         >
           <div className={classes.viewport}>
-            {selectedTab}
+            {selectedTab.content}
           </div>
         </Grid>
 

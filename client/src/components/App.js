@@ -14,14 +14,16 @@ import FavIconUrl from 'images/favicon.ico'
 import CssGlobals from 'styles/theme/CssGlobals'
 import { isDevEnv } from 'selectors/index'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(({ breakpoints }) => ({
   root: {
     height: '100%',
     width: '100%',
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    justifyContent: 'center',
-    alignItems: 'center',
+    [breakpoints.up('md')]: {
+      display: 'flex',
+      flexFlow: 'column nowrap',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
   },
 }), { name: 'App' })
 

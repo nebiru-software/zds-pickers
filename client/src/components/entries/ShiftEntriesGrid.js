@@ -5,19 +5,19 @@ import { assertRange } from 'zds-pickers'
 import { useDispatch, useSelector } from 'react-redux'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import { margin } from 'polished'
-import { compareEntry } from '../../reducers/shiftEntry'
-import { delay } from '../../core/fp/utils'
-import { actions } from '../../reducers/shiftGroups'
-import useParamSelector from '../../hooks/useParamSelector'
-import { getShiftGroup } from '../../selectors/shiftGroups'
-import { isDisabled } from '../../selectors/shifter'
-import { stateMappings } from '../../selectors'
+import { compareEntry } from 'reducers/shiftEntry'
+import { delay } from 'fp/utils'
+import { actions } from 'reducers/shiftGroups'
+import useParamSelector from 'hooks/useParamSelector'
+import { getShiftGroup } from 'selectors/shiftGroups'
+import { isDisabled } from 'selectors/shifter'
+import { stateMappings } from 'selectors/index'
 import GridRow from './GridRow'
 
 const useStyles = makeStyles(({ constants, mixins: { important }, palette }) => ({
   root: {
     backgroundColor: palette.common.white,
-    // height: important(`calc(100vh - ${constants.gridHeight}px)`),
+    height: important(`calc(100vh - ${constants.gridHeight}px)`),
     overflow: important('hidden'),
     ...margin(0, 3, 3),
     outline: 'none',
@@ -27,7 +27,7 @@ const useStyles = makeStyles(({ constants, mixins: { important }, palette }) => 
       height: '100%',
 
       '& > div:nth-child(even)': {
-        backgroundColor: palette.background.default,
+        backgroundColor: palette.background.border,
       },
 
       '& > div:nth-child(odd)': {

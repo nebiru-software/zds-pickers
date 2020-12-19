@@ -1,4 +1,5 @@
 import produce from 'immer'
+import { maxContainerWidth } from './utils'
 
 export default theme => produce(theme, (draft) => {
   const constants = {
@@ -9,16 +10,14 @@ export default theme => produce(theme, (draft) => {
     tabBorderWidth: 4,
     tabsHeight: 48,
     viewportMargin: 30,
-    viewportWidth: 900,
+    viewportWidth: maxContainerWidth,
   }
 
   draft.constants = { ...constants }
 
-  draft.constants.gridHeight = constants.footerHeight
-    + constants.gridControlsHeight
+  draft.constants.gridHeight = constants.gridControlsHeight
     + constants.headerHeight
-    + constants.inputControlsHeight
-    + (constants.tabBorderWidth * 2 + 42)
+    + (constants.tabBorderWidth * 2 + 58)
     + constants.tabsHeight
     + constants.viewportMargin
 })

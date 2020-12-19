@@ -8,9 +8,10 @@ import MidiSecurity from 'components/device/MidiSecurity'
 import HardwareTest from 'components/device/hardwareTest/HardwareTest'
 import PrimaryNav from './PrimaryNav'
 
-const useStyles = makeStyles(({ constants, palette, mixins: { absWidth, borderS } }) => ({
+const useStyles = makeStyles(({ breakpoints, constants, palette, mixins: { absWidth, borderS } }) => ({
   root: {
-    ...absWidth(constants.viewportWidth),
+    // minWidth: constants.viewportWidth,
+    [breakpoints.up('lg')]: absWidth(constants.viewportWidth),
     ...borderS(palette.grey[300]),
     borderWidth: '0 1px',
     backgroundColor: palette.background.paperSecondary,
