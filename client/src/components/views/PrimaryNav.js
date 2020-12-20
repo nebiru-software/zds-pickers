@@ -3,6 +3,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles'
 import { border, padding } from 'polished'
 import Tab from '@material-ui/core/Tab'
 import Grid from '@material-ui/core/Grid'
+import { useSelector } from 'react-redux'
 import UserInfo from 'components/user/UserInfo'
 import MainMenu from 'components/MainMenu'
 import Logo from 'images/shifter.svg'
@@ -11,8 +12,12 @@ import ErrorDialog from 'components/ErrorDialog'
 import Documentation from 'components/Documentation'
 import InfoPanel from 'components/InfoPanel'
 import VerticalTabs from 'components/tabs/VerticalTabs'
+import { stateShifter } from 'selectors/index'
+import WaitingOnShifter from 'components/WaitingOnShifter'
 import ShiftGroups from './ShiftGroups'
-import InputControls from './InputControls'
+import CCButtons from './CCButtons'
+import CCJacks from './CCJacks'
+import TriggerJacks from './TriggerJacks'
 
 const useStyles = makeStyles(({ constants, mixins: { important }, palette }) => ({
   topBar: {
@@ -49,17 +54,25 @@ const useStyles = makeStyles(({ constants, mixins: { important }, palette }) => 
     overflowX: 'hidden',
     overflowY: 'auto',
   },
+
+  loadingCont: {
+    paddingTop: 80,
+    textAlign: 'center',
+    fontSize: 24,
+    overflow: important('hidden'),
+  },
 }), { name: 'PrimaryNav' })
 
 const AvailableTabs = [
-  { label: 'CC Buttons', content: <InputControls /> },
-  { label: 'CC/EXP Jacks', content: <ShiftGroups /> },
-  { label: 'Trigger Jacks', content: <InputControls /> },
+  { label: 'CC Buttons', content: <CCButtons /> },
+  { label: 'CC/EXP Jacks', content: <CCJacks /> },
+  { label: 'Trigger Jacks', content: <TriggerJacks /> },
   { label: 'Shift Groups', content: <ShiftGroups /> },
 ]
 
 const PrimaryNav = () => {
   const classes = useStyles()
+  const { found, ready, responding } = useSelector(stateShifter)
   const [selectedTabIdx, setSelectedTabIdx] = useState(0)
 
   const selectedTab = AvailableTabs[selectedTabIdx]
@@ -114,8 +127,23 @@ const PrimaryNav = () => {
           item
           xs={10}
         >
+
           <div className={classes.viewport}>
-            {selectedTab.content}
+            {ready
+              ? selectedTab.content
+              : (
+                <section>
+                  {
+                    (found && responding)
+                      ? <WaitingOnShifter />
+                      : (
+                        <div className={classes.loadingCont}>
+                          Searching for attached ZDS Shifter...
+                        </div>
+                      )
+                  }
+                </section>
+              )}
           </div>
         </Grid>
 

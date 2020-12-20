@@ -9,15 +9,9 @@ import { getShiftGroups } from 'selectors/shiftGroups'
 import GroupTab from 'components/entries/GroupTab'
 import ShiftGroup from 'components/ShiftGroup'
 
-const useStyles = makeStyles(({ mixins: { important }, palette }) => ({
+const useStyles = makeStyles(({ palette }) => ({
   root: {
     width: '100%',
-  },
-  loadingCont: {
-    paddingTop: 80,
-    textAlign: 'center',
-    fontSize: 24,
-    overflow: important('hidden'),
   },
   container: {
     ...border(4, 'solid', palette.accent),
@@ -58,10 +52,6 @@ export const ShiftGroups = () => {
 
       <div className={classes.container}>
         <ShiftGroup groupId={selectedGroupIdx} />
-
-        {Boolean(groups.length === 0 || !ready) && (
-          <div className={classes.loadingCont}>Searching for attached ZDS Shifter...</div>
-        )}
       </div>
     </div>
   )

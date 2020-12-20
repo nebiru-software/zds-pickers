@@ -70,7 +70,6 @@ const receivedControls = (
       latching: flags & MASK_LATCHING,
       status: ((status & MASK_STATUS) >> 4) | 8,
       value,
-      active: false,
       lit: false,
     },
     { type: 'NO_ACTION' },
@@ -78,10 +77,13 @@ const receivedControls = (
 
 const receivedInternalState = (state, { packet }) => {
   const [numControls, ...rest] = packet
-  rest.pop() // Settings flag
-  const [active, lit] = chunk(numControls)(rest.map(val => Boolean(val)))
 
-  return state.map((control, idx) => ({ ...control, active: active[idx], lit: lit[idx] }))
+  const litStates = rest.map(val => Boolean(val)).slice(0, numControls)
+
+  return state.map((control, idx) => ({
+    ...control,
+    lit: litStates[idx],
+  }))
 }
 
 const handleShifterUnplugged = () => []

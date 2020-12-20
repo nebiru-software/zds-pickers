@@ -1,5 +1,5 @@
 import { inputControls, shifter, store, version } from '../../../__mocks__'
-import { InputControls, mapDispatchToProps, mapStateToProps } from './InputControls'
+import CCButtons, { mapDispatchToProps, mapStateToProps } from './CCButtons'
 
 const setFlags = jest.fn()
 
@@ -10,11 +10,11 @@ const props = {
   setFlags,
 }
 
-describe('InputControls tests', () => {
+describe('CCButtons tests', () => {
   beforeEach(jest.clearAllMocks)
 
   it('renders correctly', () => {
-    shallowExpect(InputControls)(props).toMatchSnapshot()
+    shallowExpect(CCButtons)(props).toMatchSnapshot()
   })
 
   it('should utilize mapStateToProps', () => {
