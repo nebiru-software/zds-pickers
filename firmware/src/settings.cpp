@@ -122,7 +122,7 @@ static void loadInput(input_control* jack, uint8_t idx) {
   jack->ledLit    = false;
 
   if (jack->latching) {
-    jack->latched = !jack->polarity;
+    jack->latched = jack->polarity;
   }
 
   switch (idx) {

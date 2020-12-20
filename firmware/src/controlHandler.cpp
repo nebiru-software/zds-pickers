@@ -123,8 +123,7 @@ static void buttonStateChanged(input_control* jack) {
         }
       } else { // LATCHING:
 
-        // Only change state on button up
-        if (jack->state == BUTTON_UP) {
+        if (jack->state == BUTTON_DOWN) {
           jack->latched = !jack->latched;
 
           lightLED = jack->latched;
@@ -286,6 +285,13 @@ void initControls() {
         pinMode(jack->dataPin, INPUT_PULLUP);
         if (jack->ledPin != 255) {
           pinMode(jack->ledPin, OUTPUT);
+        }
+        if (jack->latched) {
+          jack->state   = BUTTON_DOWN;
+          jack->latched = false;
+
+          // fire action (toggles jack->latched)
+          buttonStateChanged(jack);
         }
         break;
       case CONTROL_TYPE_TRIGGER:
