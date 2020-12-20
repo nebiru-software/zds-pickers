@@ -78,6 +78,8 @@ export const tap = (desc = 'TAP') => (data) => {
 
 export const takeX = idx => (...args) => args?.[idx]
 
+export const takeFirst = takeX(0)
+
 export const takeSecond = takeX(1)
 
 export const takeThird = takeX(2)

@@ -10,7 +10,6 @@ const useStyles = makeStyles(({ mixins: { borderS, size }, palette }) => ({
     alignItems: 'center',
     margin: 0,
     justifyContent: 'flex-start',
-    textTransform: 'uppercase',
   },
   ledRoot: {
     borderRadius: '50%',

@@ -1,6 +1,14 @@
 import { padding } from 'polished'
 
 export default ({ mixins: { absWidth, borderS }, palette }) => ({
+  'body .zds-pickers__container': {
+    '& > span, > div': {
+      display: 'inline-block',
+    },
+    '& > span': { maxWidth: 100 },
+    '& > div': { minWidth: 300 },
+  },
+
   'body .zds-pickers__control': {
     background: palette.accent,
     minWidth: 120,

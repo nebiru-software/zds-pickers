@@ -1,4 +1,4 @@
-import { arrayOf, bool, number, oneOf, shape, string } from 'prop-types'
+import { arrayOf, bool, func, number, oneOf, shape, string } from 'prop-types'
 import {
   ACTIVITY_LED_MODE_ALWAYS_OFF,
   ACTIVITY_LED_MODE_ALWAYS_ON,
@@ -58,10 +58,17 @@ export const inputControlShape = shape({
   curve: number.isRequired,
   polarity: number.isRequired,
   latching: number.isRequired,
-  status: number.isRequired,
+  status: number,
   value: number.isRequired,
   active: bool.isRequired,
   lit: bool.isRequired,
+})
+
+export const inputEventsShape = shape({
+  handleChangeValue: func.isRequired,
+  handleChangeChannel: func.isRequired,
+  handleChangeLatching: func.isRequired,
+  handleChangePolarity: func.isRequired,
 })
 
 export const mappingGroupShape = shape({

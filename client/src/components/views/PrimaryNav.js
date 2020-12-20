@@ -73,7 +73,7 @@ const AvailableTabs = [
 const PrimaryNav = () => {
   const classes = useStyles()
   const { found, ready, responding } = useSelector(stateShifter)
-  const [selectedTabIdx, setSelectedTabIdx] = useState(0)
+  const [selectedTabIdx, setSelectedTabIdx] = useState(1)
 
   const selectedTab = AvailableTabs[selectedTabIdx]
 

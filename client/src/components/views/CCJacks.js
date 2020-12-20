@@ -1,33 +1,16 @@
-import { useSelector } from 'react-redux'
-import makeStyles from '@material-ui/core/styles/makeStyles'
-import { stateInputControls } from 'selectors/index'
-import InputControl from 'components/controls/InputControl'
+import { createElement } from 'react'
+import Inputs from 'components/controls/Inputs'
 
-const useStyles = makeStyles(({ mixins: { rem }, palette }) => ({
-  root: {
-  },
-}), { name: 'CCJacks' })
-
-const CCJacks = () => {
-  const inputControls = useSelector(stateInputControls)
-
-  const classes = useStyles()
-
-  const visibleControls = inputControls.filter((control, idx) => idx < 3)
-
-  return (
-    <div className={classes.root}>
-      <section>
-        {visibleControls.map((control, idx) => (
-          <InputControl
-            key={idx}
-            {...control}
-            layout={idx === 1 ? 'right' : 'left'}
-          />
-        ))}
-      </section>
-    </div>
-  )
-}
-
-export default CCJacks
+export default props => createElement(Inputs, {
+  from: 3,
+  to: 4,
+  name: [
+    'Expression Jack A',
+    'Expression Jack B',
+  ],
+  details: [
+    'Located on the rear of the Shifter.<br />Jack "A" is on the bottom.',
+    'Located on the rear of the Shifter.<br />Jack "B" is the topmost.',
+  ],
+  ...props,
+})
