@@ -70,7 +70,17 @@ const InputControl = (props) => {
     dispatch(actions.changeInputControlPolarity(controlId, v))
   }, [controlId, dispatch])
 
+  const handleChangeCalibrationHigh = useCallback((v) => {
+    dispatch(actions.changeInputControlCalibrationHigh(controlId, v))
+  }, [controlId, dispatch])
+
+  const handleChangeCalibrationLow = useCallback((v) => {
+    dispatch(actions.changeInputControlCalibrationLow(controlId, v))
+  }, [controlId, dispatch])
+
   const events = {
+    handleChangeCalibrationHigh,
+    handleChangeCalibrationLow,
     handleChangeValue,
     handleChangeChannel,
     handleChangeLatching,

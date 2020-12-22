@@ -25,6 +25,8 @@ const modifyField = fieldName => (
   : { ...state }
 
 export default createReducer(defaultState, {
+  [actionTypes.CHANGE_INPUT_CONTROL_CALIBRATION_HIGH]: modifyField('calibrationHigh'),
+  [actionTypes.CHANGE_INPUT_CONTROL_CALIBRATION_LOW]: modifyField('calibrationLow'),
   [actionTypes.CHANGE_INPUT_CONTROL_CHANNEL]: modifyField('channel'),
   [actionTypes.CHANGE_INPUT_CONTROL_LATCHING]: modifyField('latching'),
   [actionTypes.CHANGE_INPUT_CONTROL_POLARITY]: modifyField('polarity'),

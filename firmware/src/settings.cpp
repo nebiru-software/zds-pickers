@@ -141,14 +141,14 @@ static void loadInput(input_control* jack, uint8_t idx) {
     case 3:
       jack->dataPin = 16;
       jack->ledPin  = 255;
-      jack->analog  = ResponsiveAnalogRead(16, false);
+      jack->analog  = ResponsiveAnalogRead(jack->dataPin, false);
       jack->analog.setAnalogResolution(1023);
       jack->analog.enableEdgeSnap();
       break;
     case 4:
       jack->dataPin = 15;
       jack->ledPin  = 255;
-      jack->analog  = ResponsiveAnalogRead(15, false);
+      jack->analog  = ResponsiveAnalogRead(jack->dataPin, false);
       jack->analog.setAnalogResolution(1023);
       jack->analog.enableEdgeSnap();
       break;

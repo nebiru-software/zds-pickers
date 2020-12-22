@@ -44,6 +44,18 @@ export const actions = {
     value: assertRange(value, 127, 0),
   }),
 
+  changeInputControlCalibrationHigh: (controlId, value) => ({
+    type: actionTypes.CHANGE_INPUT_CONTROL_CALIBRATION_HIGH,
+    controlId,
+    value: assertRange(value, 127, 0),
+  }),
+
+  changeInputControlCalibrationLow: (controlId, value) => ({
+    type: actionTypes.CHANGE_INPUT_CONTROL_CALIBRATION_LOW,
+    controlId,
+    value: assertRange(value, 127, 0),
+  }),
+
   receivedInternalState: packet => ({
     type: actionTypes.RECEIVED_STATE,
     packet,
@@ -89,6 +101,8 @@ const receivedInternalState = (state, { packet }) => {
 const handleShifterUnplugged = () => []
 
 export default createReducer([], {
+  [actionTypes.CHANGE_INPUT_CONTROL_CALIBRATION_HIGH]: modifyControl,
+  [actionTypes.CHANGE_INPUT_CONTROL_CALIBRATION_LOW]: modifyControl,
   [actionTypes.CHANGE_INPUT_CONTROL_CHANNEL]: modifyControl,
   [actionTypes.CHANGE_INPUT_CONTROL_LATCHING]: modifyControl,
   [actionTypes.CHANGE_INPUT_CONTROL_POLARITY]: modifyControl,

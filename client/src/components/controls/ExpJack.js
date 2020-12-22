@@ -1,14 +1,16 @@
-import { CCPicker, ChannelPicker, LatchPicker, PolarityPicker } from 'zds-pickers'
+import { CCPicker, ChannelPicker, PolarityPicker, ValuePicker } from 'zds-pickers'
 import { inputControlShape, inputEventsShape } from 'core/shapes'
 
 const ExpJack = (props) => {
   const {
+    calibrationHigh,
+    calibrationLow,
     channel,
+    handleChangeCalibrationHigh,
+    handleChangeCalibrationLow,
     handleChangeChannel,
-    handleChangeLatching,
     handleChangePolarity,
     handleChangeValue,
-    latching,
     polarity,
     value,
   } = props
@@ -25,17 +27,24 @@ const ExpJack = (props) => {
         onChange={handleChangeChannel}
         value={channel}
       />
-      <LatchPicker
-        label="Mode"
-        onChange={handleChangeLatching}
-        value={latching}
-      />
       <PolarityPicker
         label="Polarity"
-        labelOff={latching ? 'Initially Off' : 'Normally Off'}
-        labelOn={latching ? 'Initially On' : 'Normally On'}
+        labelOff="Normal"
+        labelOn="Inverted"
         onChange={handleChangePolarity}
         value={polarity}
+      />
+
+      <ValuePicker
+        label="Low"
+        onChange={handleChangeCalibrationLow}
+        value={calibrationLow}
+      />
+
+      <ValuePicker
+        label="High"
+        onChange={handleChangeCalibrationHigh}
+        value={calibrationHigh}
       />
     </>
   )

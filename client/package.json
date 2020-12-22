@@ -128,7 +128,7 @@
     "reselect": "4.0.0",
     "shallowequal": "1.1.0",
     "zds-mappings": "1.4.9",
-    "zds-pickers": "3.2.3"
+    "zds-pickers": "3.2.4"
   },
   "alias": {
     "controls": "./src/components/controls",
