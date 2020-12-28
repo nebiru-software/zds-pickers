@@ -1,4 +1,5 @@
 #include "initializeEEPROM.h"
+#include "settings.h"
 #include <Arduino.h>
 #include <EEPROM.h>
 
@@ -19,7 +20,7 @@ bool initEEPROM() {
 
     // To ensure we never send a value exceeding 127 over sysex,
     // set all bytes to 0
-    for (uint16_t i = 1; i < MAX_BYTES; i++) {
+    for (uint16_t i = SERIAL_NUMBER_SIZE; i < MAX_BYTES; i++) {
       EEPROM.update(i, 0);
     }
 

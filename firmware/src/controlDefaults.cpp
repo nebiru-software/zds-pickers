@@ -41,17 +41,33 @@ void resetControls() {
         break;
 
       case 5:
-        jack.data = 35;
+        jack.controlType = CONTROL_TYPE_TRIGGER;
+        jack.data        = 35;
+        jack.status      = NOTE_ON;
+        jack.threshold   = 0;
+        // jack.sensitivity = 24;
+        break;
       case 6:
-        jack.data = 36;
+        jack.controlType = CONTROL_TYPE_TRIGGER;
+        jack.data        = 36;
+        jack.status      = NOTE_ON;
+        jack.threshold   = 0;
+        // jack.sensitivity = 24;
+        break;
+
       case 7:
-        jack.data = 42;
+        jack.controlType = CONTROL_TYPE_TRIGGER;
+        jack.data        = 42;
+        jack.status      = NOTE_ON;
+        jack.threshold   = 0;
+        // jack.sensitivity = 24;
+        break;
       case 8:
         jack.controlType = CONTROL_TYPE_TRIGGER;
         jack.data        = 46;
         jack.status      = NOTE_ON;
-        jack.threshold   = 2;
-        jack.sensitivity = 24;
+        jack.threshold   = 0;
+        // jack.sensitivity = 24;
         break;
     }
 

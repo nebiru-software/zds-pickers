@@ -66,12 +66,13 @@ static int eepromIndex = 0;
 
 // cppcheck-suppress unusedFunction
 void hardReset(bool preserveSerial) {
+  uint16_t i;
   if (preserveSerial) {
-    for (uint16_t i = 15; i < MAX_BYTES; i++) {
+    for (i = SERIAL_NUMBER_SIZE + 1; i < MAX_BYTES; i++) {
       EEPROM.update(i, 255);
     }
   } else {
-    for (uint16_t i = 0; i < MAX_BYTES; i++) {
+    for (i = 0; i < MAX_BYTES; i++) {
       EEPROM.update(i, 255);
     }
   }
@@ -174,7 +175,7 @@ static void loadInput(input_control* jack, uint8_t idx) {
       break;
   }
 
-  jack->rawThreshold   = map(jack->threshold, 0, 127, 0, 1023);
+  jack->rawThreshold   = map(jack->threshold, 0, 127, 12, 1023);
   jack->rawSensitivity = map(jack->sensitivity, 0, 127, 0, 1023);
 }
 
@@ -385,9 +386,12 @@ bool isRegistered() {
   bool result   = false;
   bool badBytes = false;
 
+  Serial.println("CHECKING SERIAL");
+
   for (uint8_t i = 0; i < SERIAL_NUMBER_SIZE; i++) {
     uint8_t val = EEPROM.read(LOCATION_OF_SERIAL_NUMBER + i);
-
+    Serial.print(val);
+    Serial.print(" ");
     /**
      * TODO
      * Is it worth pulling in the std::regexp library for this?
@@ -403,6 +407,9 @@ bool isRegistered() {
       }
     }
   }
+  Serial.println("");
+  Serial.println(result);
+  Serial.println(badBytes);
   return result && !badBytes;
 }
 
