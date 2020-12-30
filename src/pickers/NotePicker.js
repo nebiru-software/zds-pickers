@@ -9,7 +9,7 @@ const formattedMapEntry = ({ note, name }) => `${note} ${name.length ? '-' : ''}
 const formattedListEntry = (label, idx) => ({ label, value: idx + 1 })
 
 const NotePicker = forwardRef((props, ref) => {
-  const { channel, disabled, mapping, onChange, status, value: initialValue, ...rest } = props
+  const { channel, disabled, mapping, onChange, value: initialValue, ...rest } = props
   const options = mapping.map(formattedMapEntry).map(formattedListEntry)
   const [value, setValue] = useStateWithDynamicDefault(initialValue)
 
@@ -41,7 +41,6 @@ NotePicker.propTypes = {
   disabled: PropTypes.bool,
   value: PropTypes.number,
   channel: PropTypes.number.isRequired,
-  status: PropTypes.number.isRequired,
 }
 
 NotePicker.defaultProps = {
