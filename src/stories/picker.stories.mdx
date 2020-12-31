@@ -1,0 +1,178 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+import { boolean, number, text } from '@storybook/addon-knobs'
+import { action } from '@storybook/addon-actions'
+import { STATUS_NOTE_ON } from '../midi/statuses'
+import statuses from '../midi/statuses'
+import CCPicker from '../pickers/CCPicker'
+import ChannelPicker from '../pickers/ChannelPicker'
+import LatchPicker from '../pickers/LatchPicker'
+import MappingPicker from '../pickers/MappingPicker'
+import NotePicker from '../pickers//NotePicker'
+import PolarityPicker from '../pickers/PolarityPicker'
+import StatusPicker from '../pickers/StatusPicker'
+import ValuePicker from '../pickers/ValuePicker'
+import gmMapping from './assets/General MIDI.js'
+import './assets/sampleStyles.css'
+
+<Meta title="Pickers"/>
+
+# CCPicker
+
+<Canvas withToolbar>
+  <Story
+    height={120}
+    name="CCPicker"
+  >
+    <CCPicker
+      label={text('label', 'CC #', 'CCPicker')}
+      onChange={action('handleChange')}
+      value={number('value', 7, 'CCPicker')}
+    />
+  </Story>
+</Canvas>
+
+<ArgsTable of={CCPicker} />
+
+# ChannelPicker
+
+<Canvas withToolbar>
+  <Story
+    height={120}
+    name="ChannelPicker"
+  >
+    <ChannelPicker
+      label={text('label', 'Channel', 'ChannelPicker')}
+      onChange={action('handleChange')}
+      value={number('value', 9, 'ChannelPicker')}
+    />
+  </Story>
+</Canvas>
+
+<ArgsTable of={ChannelPicker} />
+
+
+# LatchPicker
+
+<Canvas withToolbar>
+  <Story
+    height={120}
+    name="LatchPicker"
+  >
+    <LatchPicker
+      label={text('label', 'Mode', 'LatchPicker')}
+      onChange={action('handleChange')}
+      value={number('value', 0, 'LatchPicker')}
+    />
+  </Story>
+</Canvas>
+
+<ArgsTable of={LatchPicker} />
+
+# MappingPicker
+
+<Canvas withToolbar>
+  <Story
+    height={120}
+    name="MappingPicker"
+  >
+    <MappingPicker
+      label={text('label', 'Mapping', 'MappingPicker')}
+      onChange={action('handleChange')}
+      value={number('value', 0, 'MappingPicker')}
+    />
+  </Story>
+</Canvas>
+
+<ArgsTable of={MappingPicker} />
+
+# NotePicker
+
+<Canvas withToolbar>
+  <Story
+    height={120}
+    name="NotePicker"
+  >
+    <NotePicker
+      channel={number('channel', 0, 'NotePicker')}
+      disabled={boolean('disabled', false, 'NotePicker')}
+      label={text('label', 'Note #', 'NotePicker')}
+      mapping={gmMapping}
+      onChange={action('handleChange')}
+      value={number('value', 38, 'NotePicker')}
+    />
+  </Story>
+</Canvas>
+
+<ArgsTable of={NotePicker} />
+
+# PolarityPicker
+
+<Canvas withToolbar>
+  <Story
+    height={120}
+    name="PolarityPicker"
+  >
+    <PolarityPicker
+      label={text('label', 'Polarity', 'PolarityPicker')}
+      labelOff={text('labelOff', 'Normally Off', 'PolarityPicker')}
+      labelOn={text('labelOn', 'Normally On', 'PolarityPicker')}
+      disabled={boolean('disabled', false, 'PolarityPicker')}
+      onChange={action('handleChange')}
+      value={number('value', 0, 'PolarityPicker')}
+    />
+  </Story>
+</Canvas>
+
+<ArgsTable of={PolarityPicker} />
+
+# StatusPicker
+
+<Canvas withToolbar>
+  <Story
+    height={120}
+    name="StatusPicker"
+  >
+    <StatusPicker
+      label={text('label', 'Status Msg', 'StatusPicker')}
+      disabled={boolean('disabled', false, 'StatusPicker')}
+      onChange={action('handleChange')}
+      statuses={statuses}
+      value={number('value', STATUS_NOTE_ON, 'StatusPicker')}
+    />
+  </Story>
+</Canvas>
+
+<ArgsTable of={StatusPicker} />
+
+# ValuePicker
+
+<Canvas withToolbar>
+  <Story
+    height={120}
+    name="ValuePicker"
+  >
+    <ChannelPicker
+      label={text('label', 'Channel', 'ChannelPicker')}
+      onChange={action('handleChange')}
+      value={number('value', 9, 'ChannelPicker')}
+    />
+    <ValuePicker
+      label={text('label', 'Value', 'ValuePicker')}
+      disabled={boolean('disabled', false, 'ValuePicker')}
+      onChange={action('handleChange')}
+      value={number('value', 36, 'ValuePicker')}
+    />
+    <ChannelPicker
+      label={text('label', 'Channel', 'ChannelPicker')}
+      onChange={action('handleChange')}
+      value={number('value', 9, 'ChannelPicker')}
+    />
+    <ChannelPicker
+      label={text('label', 'Channel', 'ChannelPicker')}
+      onChange={action('handleChange')}
+      value={number('value', 9, 'ChannelPicker')}
+    />
+  </Story>
+</Canvas>
+
+<ArgsTable of={ValuePicker} />

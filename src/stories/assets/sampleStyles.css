@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+body {
+  background: #333;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body .zds-pickers__label {
+  color: #fff;
+  min-width: 100px;
+  height: 100%;
+}
+
+body .zds-pickers__container > span,
+body .zds-pickers__container > div {
+  display: inline-block;
+  margin-bottom: 3px;
+}
+/* body .zds-pickers__container > span { max-width: 100px; } */
+body .zds-pickers__container > div { min-width: 300px; }
+
+body .zds-pickers__control {
+  background: #222;
+  min-width: 120px;
+  min-height: 20px;
+  border-color: #4b4a4b;
+}
+body .zds-pickers__control div[class$="singleValue"] { color: #fff; }
+body .zds-pickers__control .zds-pickers__indicator-separator { display: none; }
+body .zds-pickers__control .zds-pickers__dropdown-indicator { padding: 0 4px; }
+
+body .zds-pickers__menu { color: #4b4a4b; }
+/* .zds-pickers__menu .zds-pickers__menu-list { }
+.zds-pickers__menu .zds-pickers__option{ } */
+
+body .channel-picker .zds-pickers__menu {
+  width: 160px;
+  min-width: 160px;
+  max-width: 160px;
+  margin: 0;
+}
+body .channel-picker .zds-pickers__menu .zds-pickers__menu-list {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0;
+}
+body .channel-picker .zds-pickers__menu .zds-pickers__option {
+  width: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  padding: 0;
+  border: 1px solid #e1e1e1;
+  text-align: center;
+}
+
+body .value-picker__label {
+  position: relative;
+  top: -12px;
+}
+body .value-picker .zds-pickers__control {
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  box-sizing: border-box;
+}
+body .value-picker .zds-pickers__control:hover {
+  border-color: #e1e1e1;
+}
+body .value-picker .zds-pickers__control:focus-within {
+  border-color: #2684ff;
+}
+body .value-picker .zds-pickers__control:focus-within:hover {
+  border-color: #2684ff;
+  /* border-width: 2px; */
+}
+body .value-picker .zds-pickers__value-container  {
+  height: 36px;
+}
+body .value-picker .zds-pickers__value-container .react-numeric-input {
+  position: absolute !important;
+  right: 0;
+  left: 0;
+}
+body .value-picker .zds-pickers__value-container .react-numeric-input input {
+  border: unset !important;
+  color: #fff;
+  height: 36px;
+  background-color: inherit;
+  outline: none;
+  padding-left: 10px !important;
+  width: 100% !important;
+}
+body .value-picker .zds-pickers__value-container .react-numeric-input b:nth-of-type(1) i {
+  border-color: transparent transparent #fff !important;
+}
+body .value-picker .zds-pickers__value-container .react-numeric-input b:nth-of-type(2) i {
+  border-color: #fff transparent transparent !important;
+}

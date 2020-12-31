@@ -32,12 +32,13 @@ const Select = forwardRef(({ label, onChange, options, value, ...rest }, ref) =>
 Select.propTypes = {
   label: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  options: PropTypes.arrayOf(PropTypes.object).isRequired,
+  options: PropTypes.arrayOf(PropTypes.object),
   value: PropTypes.number,
 }
 
 Select.defaultProps = {
   label: undefined,
+  options: undefined,
   value: undefined,
 }
 
