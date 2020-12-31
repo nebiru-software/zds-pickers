@@ -1,4 +1,4 @@
-import Select from 'react-select'
+import Select from './Select'
 
 const MappingPicker = props => <Select {...props} />
 

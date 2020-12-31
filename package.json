@@ -1,6 +1,6 @@
 {
   "name": "zds-pickers",
-  "version": "3.2.4",
+  "version": "3.2.5",
   "homepage": "https://github.com/dkadrios/zds-pickers#readme",
   "license": "MIT",
   "main": "dist/index.js",
@@ -29,7 +29,9 @@
     "lint:fix": "npm run lint -- --fix",
     "prepublish": "npm run build",
     "test": "TZ=America/Los_Angeles NODE_ENV=test jest --env=jsdom",
-    "test:watch": "TZ=America/Los_Angeles NODE_ENV=test jest --watchAll"
+    "test:watch": "TZ=America/Los_Angeles NODE_ENV=test jest --watchAll",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
     "@babel/cli": "7.12.10",
@@ -44,7 +46,13 @@
     "@babel/plugin-transform-runtime": "7.12.10",
     "@babel/preset-env": "7.12.10",
     "@babel/preset-react": "7.12.10",
+    "@storybook/addon-actions": "6.1.11",
+    "@storybook/addon-essentials": "6.1.11",
+    "@storybook/addon-knobs": "6.1.11",
+    "@storybook/addon-links": "6.1.11",
+    "@storybook/react": "6.1.11",
     "babel-eslint": "10.1.0",
+    "babel-loader": "8.2.2",
     "classnames": "2.2.6",
     "eslint": "7.15.0",
     "eslint-config-airbnb": "18.2.1",
@@ -62,6 +70,7 @@
     "prop-types": "15.7.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-numeric-input2": "3.0.3",
     "react-select": "3.1.1"
   },
   "dependencies": {},
@@ -69,6 +78,7 @@
     "classnames": "^2.2.6",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
+    "react-numeric-input2": "^3.0.3",
     "react-select": "^3.0.8"
   }
 }
