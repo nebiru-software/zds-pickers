@@ -7,19 +7,19 @@ const options = arraySequence(16).map(value => ({ value, label: value }))
 
 const ChannelMappingPicker = ({ channels, ...rest }) => {
   const formatOptionLabel = useCallback(
-    ({ value }) => {
+    ({ value }, { context }) => {
       const mapping = channels[value]
 
       return mapping
         ? (
           <span className="mapping-entry">
-            <b>{value + 1}</b>
+            <b>{value + 1}{context === 'value' && ' -'}</b>
             <span className="mapping-entry-label">{mapping}</span>
           </span>
         )
         : (
           <span className="mapping-entry empty-mapping-entry">
-            <b>{value + 1}</b>
+            <b>{value + 1}{context === 'value' && ' -'}</b>
             <span className="mapping-entry-label">no mapping</span>
           </span>
         )
