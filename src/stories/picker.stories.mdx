@@ -9,6 +9,8 @@ import LatchPicker from '../pickers/LatchPicker'
 import MappingPicker from '../pickers/MappingPicker'
 import NotePicker from '../pickers//NotePicker'
 import PolarityPicker from '../pickers/PolarityPicker'
+import ResponseCurve from '../pickers/ResponseCurve'
+import ResponseCurvePicker from '../pickers/ResponseCurvePicker'
 import StatusPicker from '../pickers/StatusPicker'
 import ValuePicker from '../pickers/ValuePicker'
 import gmMapping from './assets/General MIDI.js'
@@ -124,6 +126,41 @@ import './assets/sampleStyles.css'
 </Canvas>
 
 <ArgsTable of={PolarityPicker} />
+
+# ResponseCurve
+
+<Canvas withToolbar>
+  <Story
+    height={120}
+    name="ResponseCurve"
+  >
+    <ResponseCurve
+      inverted={boolean('inverted', false, 'ResponseCurve')}
+      onChange={action('handleChange')}
+      value={number('value', 0, 'ResponseCurve')}
+    />
+  </Story>
+</Canvas>
+
+<ArgsTable of={ResponseCurve} />
+
+# ResponseCurvePicker
+
+<Canvas withToolbar>
+  <Story
+    height={120}
+    name="ResponseCurvePicker"
+  >
+    <ResponseCurvePicker
+      inverted={boolean('inverted', false, 'ResponseCurvePicker')}
+      label="Response"
+      onChange={action('handleChange')}
+      value={number('value', 0, 'ResponseCurvePicker')}
+    />
+  </Story>
+</Canvas>
+
+<ArgsTable of={ResponseCurvePicker} />
 
 # StatusPicker
 

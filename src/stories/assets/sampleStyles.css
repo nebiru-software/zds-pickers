@@ -96,3 +96,41 @@ body .value-picker .zds-pickers__value-container .react-numeric-input b:nth-of-t
 body .value-picker .zds-pickers__value-container .react-numeric-input b:nth-of-type(2) i {
   border-color: #fff transparent transparent !important;
 }
+
+body .response-curve-picker rect.container { fill: #e6e6e8 }
+body .response-curve-picker text.axis {
+  font-size: 10pt;
+  font-style: italic;
+  fill: #12131b;
+}
+body .response-curve-picker line.axis { stroke: #12131b }
+body .response-curve-picker path.curve {
+  stroke: #4d505b;
+  stroke-dasharray: 8;
+  fill: transparent;
+  pointer-events: visibleStroke;
+}
+body .response-curve-picker path.curve-selected {
+  stroke: #222;
+  stroke-dasharray: 0;
+  fill: transparent;
+}
+body .response-curve-picker rect.button {
+  fill: #ddd;
+  stroke: #4d505b;
+  cursor: pointer;
+}
+body .response-curve-picker rect.button:hover {
+  fill: #666;
+  stroke: #222;
+}
+body .response-curve-picker rect.button-selected { fill: #222 }
+body .response-curve-picker text.button {
+  font-size: 8pt;
+  pointer-events: none;
+}
+body .response-curve-picker text.button-selected {
+  font-size: 8pt;
+  fill: white;
+  font-weight: bold;
+}

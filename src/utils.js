@@ -10,4 +10,4 @@ export const assertRange = (value, max = 127, min = 0) => {
   return result >= min ? (result <= max ? result : max) : min
 }
 
-export default arraySequence
+export const findObj = (key, value) => arr => arr?.find(item => item?.[key] === value)
