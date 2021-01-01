@@ -2,7 +2,7 @@ import React, { forwardRef, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import ReactSelect from 'react-select'
 
-const Select = forwardRef(({ label, onChange, options, value, ...rest }, ref) => {
+const Select = forwardRef(({ disabled, label, onChange, options, value, ...rest }, ref) => {
   const handleChange = useCallback((option) => {
     onChange(option.value)
   }, [onChange])
@@ -20,6 +20,7 @@ const Select = forwardRef(({ label, onChange, options, value, ...rest }, ref) =>
       <ReactSelect
         classNamePrefix="zds-pickers"
         {...rest}
+        isDisabled={disabled}
         onChange={handleChange}
         value={selectedOption}
         options={options}
@@ -30,13 +31,15 @@ const Select = forwardRef(({ label, onChange, options, value, ...rest }, ref) =>
 })
 
 Select.propTypes = {
+  disabled: PropTypes.bool,
   label: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.object),
-  value: PropTypes.number,
+  value: PropTypes.any, // PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 }
 
 Select.defaultProps = {
+  disabled: false,
   label: undefined,
   options: undefined,
   value: undefined,

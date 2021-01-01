@@ -5,6 +5,7 @@ import { STATUS_NOTE_ON } from '../midi/statuses'
 import statuses from '../midi/statuses'
 import CCPicker from '../pickers/CCPicker'
 import ChannelPicker from '../pickers/ChannelPicker'
+import ChannelMappingPicker from '../pickers/ChannelMappingPicker'
 import LatchPicker from '../pickers/LatchPicker'
 import MappingPicker from '../pickers/MappingPicker'
 import NotePicker from '../pickers//NotePicker'
@@ -19,13 +20,13 @@ import './assets/sampleStyles.css'
 <Meta title="Pickers"/>
 
 # CCPicker
-
 <Canvas withToolbar>
   <Story
     height={120}
     name="CCPicker"
   >
     <CCPicker
+      disabled={boolean('disabled', false, 'CCPicker')}
       label={text('label', 'CC #', 'CCPicker')}
       onChange={action('handleChange')}
       value={number('value', 7, 'CCPicker')}
@@ -36,13 +37,13 @@ import './assets/sampleStyles.css'
 <ArgsTable of={CCPicker} />
 
 # ChannelPicker
-
 <Canvas withToolbar>
   <Story
     height={120}
     name="ChannelPicker"
   >
     <ChannelPicker
+      disabled={boolean('disabled', false, 'ChannelPicker')}
       label={text('label', 'Channel', 'ChannelPicker')}
       onChange={action('handleChange')}
       value={number('value', 9, 'ChannelPicker')}
@@ -52,15 +53,49 @@ import './assets/sampleStyles.css'
 
 <ArgsTable of={ChannelPicker} />
 
+# ChannelMappingPicker
+<Canvas withToolbar>
+  <Story
+    height={120}
+    name="ChannelMappingPicker"
+  >
+    <ChannelMappingPicker
+      channels={[
+        null,
+        null,
+        null,
+        'Alesis DM Pro',
+        null,
+        null,
+        null,
+        'BFD3',
+        null,
+        null,
+        'Roland TD-20',
+        'Roland TD-30 Perc 1 (Latin)',
+        null,
+        null,
+        null,
+        null,
+      ]}
+      disabled={boolean('disabled', false, 'ChannelMappingPicker')}
+      label={text('label', 'Channel', 'ChannelMappingPicker')}
+      onChange={action('handleChange')}
+      value={number('value', 9, 'ChannelMappingPicker')}
+    />
+  </Story>
+</Canvas>
+
+<ArgsTable of={ChannelMappingPicker} />
 
 # LatchPicker
-
 <Canvas withToolbar>
   <Story
     height={120}
     name="LatchPicker"
   >
     <LatchPicker
+      disabled={boolean('disabled', false, 'LatchPicker')}
       label={text('label', 'Mode', 'LatchPicker')}
       onChange={action('handleChange')}
       value={number('value', 0, 'LatchPicker')}
@@ -71,16 +106,17 @@ import './assets/sampleStyles.css'
 <ArgsTable of={LatchPicker} />
 
 # MappingPicker
-
 <Canvas withToolbar>
   <Story
     height={120}
     name="MappingPicker"
   >
     <MappingPicker
+      allowClearing={boolean('allowClearing', true, 'MappingPicker')}
+      disabled={boolean('disabled', false, 'MappingPicker')}
       label={text('label', 'Mapping', 'MappingPicker')}
       onChange={action('handleChange')}
-      value={number('value', 0, 'MappingPicker')}
+      value={text('value', 'General MIDI', 'MappingPicker')}
     />
   </Story>
 </Canvas>
@@ -88,7 +124,6 @@ import './assets/sampleStyles.css'
 <ArgsTable of={MappingPicker} />
 
 # NotePicker
-
 <Canvas withToolbar>
   <Story
     height={120}
@@ -108,17 +143,16 @@ import './assets/sampleStyles.css'
 <ArgsTable of={NotePicker} />
 
 # PolarityPicker
-
 <Canvas withToolbar>
   <Story
     height={120}
     name="PolarityPicker"
   >
     <PolarityPicker
+      disabled={boolean('disabled', false, 'PolarityPicker')}
       label={text('label', 'Polarity', 'PolarityPicker')}
       labelOff={text('labelOff', 'Normally Off', 'PolarityPicker')}
       labelOn={text('labelOn', 'Normally On', 'PolarityPicker')}
-      disabled={boolean('disabled', false, 'PolarityPicker')}
       onChange={action('handleChange')}
       value={number('value', 0, 'PolarityPicker')}
     />
@@ -128,13 +162,13 @@ import './assets/sampleStyles.css'
 <ArgsTable of={PolarityPicker} />
 
 # ResponseCurve
-
 <Canvas withToolbar>
   <Story
     height={120}
     name="ResponseCurve"
   >
     <ResponseCurve
+      disabled={boolean('disabled', false, 'ResponseCurve')}
       inverted={boolean('inverted', false, 'ResponseCurve')}
       onChange={action('handleChange')}
       value={number('value', 0, 'ResponseCurve')}
@@ -145,13 +179,13 @@ import './assets/sampleStyles.css'
 <ArgsTable of={ResponseCurve} />
 
 # ResponseCurvePicker
-
 <Canvas withToolbar>
   <Story
     height={120}
     name="ResponseCurvePicker"
   >
     <ResponseCurvePicker
+      disabled={boolean('disabled', false, 'ResponseCurvePicker')}
       inverted={boolean('inverted', false, 'ResponseCurvePicker')}
       label="Response"
       onChange={action('handleChange')}
@@ -163,15 +197,14 @@ import './assets/sampleStyles.css'
 <ArgsTable of={ResponseCurvePicker} />
 
 # StatusPicker
-
 <Canvas withToolbar>
   <Story
     height={120}
     name="StatusPicker"
   >
     <StatusPicker
-      label={text('label', 'Status Msg', 'StatusPicker')}
       disabled={boolean('disabled', false, 'StatusPicker')}
+      label={text('label', 'Status Msg', 'StatusPicker')}
       onChange={action('handleChange')}
       statuses={statuses}
       value={number('value', STATUS_NOTE_ON, 'StatusPicker')}
@@ -182,32 +215,16 @@ import './assets/sampleStyles.css'
 <ArgsTable of={StatusPicker} />
 
 # ValuePicker
-
 <Canvas withToolbar>
   <Story
     height={120}
     name="ValuePicker"
   >
-    <ChannelPicker
-      label={text('label', 'Channel', 'ChannelPicker')}
-      onChange={action('handleChange')}
-      value={number('value', 9, 'ChannelPicker')}
-    />
     <ValuePicker
-      label={text('label', 'Value', 'ValuePicker')}
       disabled={boolean('disabled', false, 'ValuePicker')}
+      label={text('label', 'Value', 'ValuePicker')}
       onChange={action('handleChange')}
       value={number('value', 36, 'ValuePicker')}
-    />
-    <ChannelPicker
-      label={text('label', 'Channel', 'ChannelPicker')}
-      onChange={action('handleChange')}
-      value={number('value', 9, 'ChannelPicker')}
-    />
-    <ChannelPicker
-      label={text('label', 'Channel', 'ChannelPicker')}
-      onChange={action('handleChange')}
-      value={number('value', 9, 'ChannelPicker')}
     />
   </Story>
 </Canvas>

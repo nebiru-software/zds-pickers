@@ -28,6 +28,15 @@ body .zds-pickers__control {
 body .zds-pickers__control div[class$="singleValue"] { color: #fff; }
 body .zds-pickers__control .zds-pickers__indicator-separator { display: none; }
 body .zds-pickers__control .zds-pickers__dropdown-indicator { padding: 0 4px; }
+body .zds-pickers--is-disabled,
+body .zds-pickers__single-value--is-disabled,
+body .zds-pickers--is-disabled input,
+body .zds-pickers--is-disabled div[class$="singleValue"],
+body .zds-pickers--is-disabled .zds-pickers__dropdown-indicator {
+  font-style: italic !important;
+  color: grey !important;
+  text-shadow: none !important;
+}
 
 body .zds-pickers__menu { color: #4b4a4b; }
 /* .zds-pickers__menu .zds-pickers__menu-list { }
@@ -51,6 +60,15 @@ body .channel-picker .zds-pickers__menu .zds-pickers__option {
   padding: 0;
   border: 1px solid #e1e1e1;
   text-align: center;
+}
+
+body .channel-mapping-picker .empty-mapping-entry .mapping-entry-label {
+  font-style: italic;
+  color: grey;
+}
+body .channel-mapping-picker .mapping-entry b {
+  display: inline-block;
+  width: 25px;
 }
 
 body .value-picker__label {

@@ -1,4 +1,4 @@
-import { Fragment, createElement, useRef } from 'react'
+import React, { Fragment, createElement, useRef } from 'react'
 import PropTypes from 'prop-types'
 import useComponentSize from '@rehooks/component-size'
 import Text from 'react-svg-text'
@@ -59,7 +59,7 @@ const axisX1 = axisOffset
 const axisY1 = axisOffset
 
 const ResponseCurve = (props) => {
-  const { Tooltip, autosize, inverted, onChange, value: responseCurve } = props
+  const { Tooltip, autosize, disabled, inverted, onChange, value: responseCurve } = props
 
   const ref = useRef(null)
   const svgRef = useRef(null)
@@ -224,7 +224,7 @@ const ResponseCurve = (props) => {
                 height={buttonSize}
                 transform={`translate(${labelX + 3} ${labelY - buttonSize / 1.05}) rotate(45)`}
                 className={value === responseCurve ? 'button-selected' : 'button'}
-                onClick={() => onChange({ target: { value } })}
+                onClick={disabled ? null : () => onChange({ target: { value } })}
               />
             </Tooltip>
 
@@ -245,13 +245,14 @@ const ResponseCurve = (props) => {
 ResponseCurve.propTypes = {
   autosize: PropTypes.bool,
   value: PropTypes.number.isRequired,
-  inverted: PropTypes.bool.isRequired,
+  inverted: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   Tooltip: PropTypes.elementType,
 }
 
 ResponseCurve.defaultProps = {
   autosize: false,
+  inverted: false,
   Tooltip: DefaultTooltip,
 }
 

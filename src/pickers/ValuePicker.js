@@ -1,8 +1,9 @@
 import React, { forwardRef, useCallback } from 'react'
+import cl from 'classnames'
 import PropTypes from 'prop-types'
 import NumericInput from 'react-numeric-input2'
 
-const ValuePicker = forwardRef(({ label, onChange, value, ...rest }, ref) => {
+const ValuePicker = forwardRef(({ disabled, label, onChange, value, ...rest }, ref) => {
   const handleChange = useCallback((option) => {
     onChange(option.value)
   }, [onChange])
@@ -11,7 +12,7 @@ const ValuePicker = forwardRef(({ label, onChange, value, ...rest }, ref) => {
     <div className="zds-pickers__container">
       {Boolean(label) && <span className="zds-pickers__label value-picker__label">{label}</span>}
       <div
-        className="value-picker"
+        className={cl({ 'value-picker': true, 'zds-pickers--is-disabled': disabled })}
         style={{
           position: 'relative',
           boxSizing: 'border-box',
@@ -42,6 +43,7 @@ const ValuePicker = forwardRef(({ label, onChange, value, ...rest }, ref) => {
 
             <NumericInput
               {...rest}
+              disabled={disabled}
               onChange={handleChange}
               value={value}
               ref={ref}
@@ -54,6 +56,7 @@ const ValuePicker = forwardRef(({ label, onChange, value, ...rest }, ref) => {
 })
 
 ValuePicker.propTypes = {
+  disabled: PropTypes.bool,
   label: PropTypes.string,
   max: PropTypes.number,
   min: PropTypes.number,
@@ -62,6 +65,7 @@ ValuePicker.propTypes = {
 }
 
 ValuePicker.defaultProps = {
+  disabled: false,
   label: undefined,
   max: 127,
   min: 0,

@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { mappingShape } from '../shapes'
 import { assertRange } from '../utils'
@@ -13,7 +13,7 @@ const NotePicker = forwardRef((props, ref) => {
   const options = mapping.map(formattedMapEntry).map(formattedListEntry)
   const [value, setValue] = useStateWithDynamicDefault(initialValue)
 
-  const handleChange = (event) => {
+  const handleChange = useCallback((event) => {
     const { value: v } = event
     const possibleNoteNumber = assertRange(v, 128, 0)
 
@@ -21,10 +21,11 @@ const NotePicker = forwardRef((props, ref) => {
       onChange(possibleNoteNumber)
     }
     setValue(v)
-  }
+  }, [onChange, setValue])
 
   return (
     <Select
+      disabled={disabled}
       isDisabled={disabled}
       options={options}
       value={value}// {options[value - 1]}

@@ -5,6 +5,7 @@ export { default as LatchPicker } from './pickers/LatchPicker'
 export { default as MappingPicker } from './pickers/MappingPicker'
 export { default as NotePicker } from './pickers/NotePicker'
 export { default as PolarityPicker } from './pickers/PolarityPicker'
+export { default as ResponseCurvePicker } from './pickers/ResponseCurvePicker'
 export { default as StatusPicker } from './pickers/StatusPicker'
 export { default as ValuePicker } from './pickers/ValuePicker'
 
@@ -24,6 +25,11 @@ export {
   MASK_CHANNEL,
   MASK_STATUS,
 } from './midi/statuses'
+
+export {
+  default as ResponseCurve,
+  RESPONSE_CURVES,
+} from './pickers/ResponseCurve'
 
 export { default as ccValues } from './midi/ccValues'
 
