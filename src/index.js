@@ -1,11 +1,13 @@
 // Pickers
 export { default as CCPicker } from './pickers/CCPicker'
 export { default as ChannelPicker } from './pickers/ChannelPicker'
+export { default as ChannelMappingPicker } from './pickers/ChannelMappingPicker'
 export { default as LatchPicker } from './pickers/LatchPicker'
 export { default as MappingPicker } from './pickers/MappingPicker'
 export { default as NotePicker } from './pickers/NotePicker'
 export { default as PolarityPicker } from './pickers/PolarityPicker'
 export { default as ResponseCurvePicker } from './pickers/ResponseCurvePicker'
+export { default as Select } from './pickers/Select'
 export { default as StatusPicker } from './pickers/StatusPicker'
 export { default as ValuePicker } from './pickers/ValuePicker'
 
