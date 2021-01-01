@@ -6,7 +6,7 @@ import Select from './Select'
 
 const options = arraySequence(16).map(value => ({ value, label: `Channel ${value + 1}` }))
 
-const ChannelPicker = ({ className, ...props }) => {
+const ChannelPicker = ({ className, ...rest }) => {
   const formatOptionLabel = useCallback(
     (option, { context }) => context === 'value' ? option.label : option.value + 1,
     [],
@@ -16,7 +16,7 @@ const ChannelPicker = ({ className, ...props }) => {
       className={cl(className, 'channel-picker')}
       formatOptionLabel={formatOptionLabel}
       options={options}
-      {...props}
+      {...rest}
     />
   )
 }

@@ -1,34 +1,38 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
-import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
+import { arraySequence } from '../utils'
 import Select from './Select'
 
-const ChannelMappingPicker = (props) => {
-  const { channels, onChange, value: initialValue, ...rest } = props
-  const [value, setValue] = useStateWithDynamicDefault(initialValue)
+const options = arraySequence(16).map(value => ({ value, label: value }))
 
-  const options = useMemo(
-    () => channels.map((name, channel) => ({
-      value: channel,
-      label: name
-        ? <span className="mapping-entry"><b>{channel + 1}</b> <span className="mapping-entry-label">{name}</span></span>
-        : <span className="mapping-entry empty-mapping-entry"><b>{channel + 1}</b> <span className="mapping-entry-label">no mapping</span></span>,
-    })),
+const ChannelMappingPicker = ({ channels, ...rest }) => {
+  const formatOptionLabel = useCallback(
+    ({ value }) => {
+      const mapping = channels[value]
+
+      return mapping
+        ? (
+          <span className="mapping-entry">
+            <b>{value + 1}</b>
+            <span className="mapping-entry-label">{mapping}</span>
+          </span>
+        )
+        : (
+          <span className="mapping-entry empty-mapping-entry">
+            <b>{value + 1}</b>
+            <span className="mapping-entry-label">no mapping</span>
+          </span>
+        )
+    },
     [channels],
   )
 
-  const handleChange = useCallback((channel) => {
-    setValue(channel)
-    onChange(channel)
-  }, [onChange, setValue])
-
   return (
     <Select
-      {...rest}
       className="channel-mapping-picker"
-      value={options.find(option => option.value === value)}
-      onChange={handleChange}
       options={options}
+      formatOptionLabel={formatOptionLabel}
+      {...rest}
     />
   )
 }
