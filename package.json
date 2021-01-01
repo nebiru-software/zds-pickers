@@ -1,6 +1,6 @@
 {
   "name": "zds-pickers",
-  "version": "3.2.9",
+  "version": "3.2.10",
   "homepage": "https://github.com/dkadrios/zds-pickers#readme",
   "license": "MIT",
   "main": "dist/index.js",
@@ -73,7 +73,8 @@
     "react-dom": "17.0.1",
     "react-numeric-input2": "3.0.3",
     "react-select": "3.1.1",
-    "react-svg-text": "0.1.2"
+    "react-svg-text": "0.1.2",
+    "zds-mappings": "1.4.9"
   },
   "dependencies": {},
   "peerDependencies": {
@@ -83,6 +84,7 @@
     "react": "^16.12.0",
     "react-numeric-input2": "^3.0.3",
     "react-select": "^3.0.8",
-    "react-svg-text": "^0.1.2"
+    "react-svg-text": "^0.1.2",
+    "zds-mappings": "^1.4.9"
   }
 }
