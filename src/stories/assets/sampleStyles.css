@@ -19,6 +19,8 @@ body .zds-pickers__container > div {
 /* body .zds-pickers__container > span { max-width: 100px; } */
 body .zds-pickers__container > div { min-width: 300px; }
 
+body .zds-pickers__input { color: #fff; }
+
 body .zds-pickers__control {
   background: #222;
   min-width: 120px;

@@ -13,8 +13,7 @@ const NotePicker = forwardRef((props, ref) => {
   const options = mapping.map(formattedMapEntry).map(formattedListEntry)
   const [value, setValue] = useStateWithDynamicDefault(initialValue)
 
-  const handleChange = useCallback((event) => {
-    const { value: v } = event
+  const handleChange = useCallback((v) => {
     const possibleNoteNumber = assertRange(v, 128, 0)
 
     if (possibleNoteNumber > 0) {
@@ -28,7 +27,7 @@ const NotePicker = forwardRef((props, ref) => {
       disabled={disabled}
       isDisabled={disabled}
       options={options}
-      value={value}// {options[value - 1]}
+      value={value}
       onChange={handleChange}
       ref={ref}
       {...rest}
