@@ -79,6 +79,4 @@ const mapper = (raw, fillMissing = true) => {
     : availableNotes
 }
 
-export const emptyMapping = () => mapper([], true)
-
 export default mapper

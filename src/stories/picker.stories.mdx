@@ -137,6 +137,14 @@ import './assets/sampleStyles.css'
       onChange={action('handleChange')}
       value={number('value', 38, 'NotePicker')}
     />
+    <br />
+    <NotePicker
+      channel={number('channel', 0, 'NotePicker2')}
+      disabled={boolean('disabled', false, 'NotePicker2')}
+      label="No mapping"
+      onChange={action('handleChange2')}
+      value={number('value', 38, 'NotePicker2')}
+    />
   </Story>
 </Canvas>
 

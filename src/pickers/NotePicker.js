@@ -1,5 +1,6 @@
 import React, { forwardRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
+import { emptyMapping } from 'zds-mappings'
 import { mappingShape } from '../shapes'
 import { assertRange } from '../utils'
 import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
@@ -10,7 +11,7 @@ const formattedListEntry = (label, idx) => ({ label, value: idx + 1 })
 
 const NotePicker = forwardRef((props, ref) => {
   const { channel, disabled, mapping, onChange, value: initialValue, ...rest } = props
-  const options = mapping.map(formattedMapEntry).map(formattedListEntry)
+  const options = (mapping || emptyMapping()).map(formattedMapEntry).map(formattedListEntry)
   const [value, setValue] = useStateWithDynamicDefault(initialValue)
 
   const handleChange = useCallback((v) => {
@@ -36,7 +37,7 @@ const NotePicker = forwardRef((props, ref) => {
 })
 
 NotePicker.propTypes = {
-  mapping: PropTypes.arrayOf(mappingShape).isRequired,
+  mapping: PropTypes.arrayOf(mappingShape),
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   value: PropTypes.number,
@@ -45,6 +46,7 @@ NotePicker.propTypes = {
 
 NotePicker.defaultProps = {
   disabled: false,
+  mapping: undefined,
   value: undefined,
 }
 
