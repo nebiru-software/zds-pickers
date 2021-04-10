@@ -127,6 +127,6 @@ const CC_NAMES = [
   'Omni Mode On',
   'Mono Mode On',
   '',
-].map((label, value) => ({ label: `${value} ${label}`, value }))
+].map((label, value) => ({ label: `${value} - ${label}`, value }))
 
 export default CC_NAMES
