@@ -19,19 +19,20 @@
     "url": "git+https://github.com/dkadrios/zds-pickers.git"
   },
   "scripts": {
-    "build": "npm run clean && babel src -d dist --ignore **/*.spec.js,*/__config__",
+    "build-storybook": "build-storybook",
     "build:watch": "babel src -w -d dist",
+    "build": "npm run clean && babel src -d dist --ignore **/*.spec.js,*/__config__",
     "clean": "rimraf dist",
-    "cov": "TZ=America/Los_Angeles NODE_ENV=test jest --coverage",
     "cov:open": "open ./coverage/lcov-report/index.html",
     "cov:watch": "TZ=America/Los_Angeles NODE_ENV=test jest --coverage --watchAll",
-    "lint": "eslint 'src/**'",
+    "cov": "TZ=America/Los_Angeles NODE_ENV=test jest --coverage",
     "lint:fix": "npm run lint -- --fix",
+    "lint": "eslint 'src/**'",
+    "postinstall": "touch ./node_modules/.metadata_never_index",
     "prepublish": "npm run build",
-    "test": "TZ=America/Los_Angeles NODE_ENV=test jest --env=jsdom",
-    "test:watch": "TZ=America/Los_Angeles NODE_ENV=test jest --watchAll",
     "sb": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "test:watch": "TZ=America/Los_Angeles NODE_ENV=test jest --watchAll",
+    "test": "TZ=America/Los_Angeles NODE_ENV=test jest --env=jsdom"
   },
   "devDependencies": {
     "@babel/cli": "7.13.14",
