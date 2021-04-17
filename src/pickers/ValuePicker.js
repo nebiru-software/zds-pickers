@@ -1,67 +1,59 @@
-import { forwardRef, useCallback } from 'react'
+import { forwardRef } from 'react'
 import cl from 'classnames'
 import PropTypes from 'prop-types'
 import NumericInput from 'react-numeric-input2'
 
-const ValuePicker = forwardRef(({ disabled, label, onChange, value, ...rest }, ref) => {
-  const handleChange = useCallback(
-    (v) => {
-      onChange(v)
-    },
-    [onChange],
-  )
-
-  return (
-    <div className="zds-pickers__container">
-      {Boolean(label) && (
-        <span className="zds-pickers__label value-picker__label">
-          {label}
-        </span>
-      )}
+const ValuePicker = forwardRef(({ disabled, label, onChange, value, ...rest }, ref) => (
+  <div className="zds-pickers__container">
+    {Boolean(label) && (
+      <span className="zds-pickers__label value-picker__label">
+        {label}
+      </span>
+    )}
+    <div
+      className={cl({
+        'value-picker': true,
+        'zds-pickers--is-disabled': disabled,
+      })}
+      style={{
+        position: 'relative',
+        boxSizing: 'border-box',
+      }}
+    >
       <div
-        className={cl({
-          'value-picker': true,
-          'zds-pickers--is-disabled': disabled,
-        })}
+        className="zds-pickers__control"
         style={{
-          position: 'relative',
-          boxSizing: 'border-box',
+          cursor: 'default',
+          display: 'flex',
+          transition: 'all 100ms',
         }}
       >
         <div
-          className="zds-pickers__control"
+          className="zds-pickers__value-container"
           style={{
-            cursor: 'default',
+            alignItems: 'center',
             display: 'flex',
-            transition: 'all 100ms',
+            flex: '1',
+            flexWrap: 'wrap',
+            padding: '2px 8px',
+            position: 'relative',
+            overflow: 'hidden',
+            boxSizing: 'border-box',
           }}
         >
-          <div
-            className="zds-pickers__value-container"
-            style={{
-              alignItems: 'center',
-              display: 'flex',
-              flex: '1',
-              flexWrap: 'wrap',
-              padding: '2px 8px',
-              position: 'relative',
-              overflow: 'hidden',
-              boxSizing: 'border-box',
-            }}
-          >
-            <NumericInput
-              {...rest}
-              disabled={disabled}
-              onChange={handleChange}
-              ref={ref}
-              value={value}
-            />
-          </div>
+          <NumericInput
+            {...rest}
+            disabled={disabled}
+            onChange={onChange}
+            ref={ref}
+            strict
+            value={value}
+          />
         </div>
       </div>
     </div>
-  )
-})
+  </div>
+))
 
 ValuePicker.propTypes = {
   disabled: PropTypes.bool,
