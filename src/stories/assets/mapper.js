@@ -2,44 +2,44 @@ import { arraySequence } from './utils'
 
 export const standardizeGroup = (name) => {
   switch (String(name).toLocaleLowerCase()) {
-    case 'cymbals':
-    case 'cymbal':
-    case 'cym':
-      return 'Cymbals'
+  case 'cymbals':
+  case 'cymbal':
+  case 'cym':
+    return 'Cymbals'
 
-    case 'hats':
-    case 'hat':
-    case 'hi-hat':
-    case 'hi-hats':
-      return 'Hats'
+  case 'hats':
+  case 'hat':
+  case 'hi-hat':
+  case 'hi-hats':
+    return 'Hats'
 
-    case 'kicks':
-    case 'kick':
-      return 'Kicks'
+  case 'kicks':
+  case 'kick':
+    return 'Kicks'
 
-    case 'perc':
-    case 'percussion':
-      return 'Perc'
+  case 'perc':
+  case 'percussion':
+    return 'Perc'
 
-    case 'rides':
-    case 'ride':
-      return 'Rides'
+  case 'rides':
+  case 'ride':
+    return 'Rides'
 
-    case 'snares':
-    case 'snare':
-      return 'Snares'
+  case 'snares':
+  case 'snare':
+    return 'Snares'
 
-    case 'toms':
-    case 'tom':
-    case 'tom-tom':
-      return 'Toms'
+  case 'toms':
+  case 'tom':
+  case 'tom-tom':
+    return 'Toms'
 
-    case 'aux':
-    case 'auxillary':
-      return 'aux'
+  case 'aux':
+  case 'auxillary':
+    return 'aux'
 
-    default:
-      return name
+  default:
+    return name
   }
 }
 

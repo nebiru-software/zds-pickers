@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useMemo } from 'react'
+import { forwardRef, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import ReactSelect from 'react-select'
 
@@ -22,9 +22,9 @@ const Select = forwardRef(({ disabled, label, onChange, options, value, ...rest 
         {...rest}
         isDisabled={disabled}
         onChange={handleChange}
-        value={selectedOption}
         options={options}
         ref={ref}
+        value={selectedOption}
       />
     </div>
   )

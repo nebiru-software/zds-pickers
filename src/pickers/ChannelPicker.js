@@ -1,14 +1,19 @@
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import cl from 'classnames'
 import { arraySequence } from '../utils'
 import Select from './Select'
 
-const options = arraySequence(16).map(value => ({ value, label: `Channel ${value + 1}` }))
+const options = arraySequence(16).map(value => ({
+  value,
+  label: `Channel ${value + 1}`,
+}))
 
 const ChannelPicker = ({ className, ...rest }) => {
   const formatOptionLabel = useCallback(
-    (option, { context }) => context === 'value' ? option.label : option.value + 1,
+    (option, { context }) => context === 'value'
+      ? option.label
+      : option.value + 1,
     [],
   )
   return (

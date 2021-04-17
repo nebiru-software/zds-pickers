@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { getStockNames, getUserMappingNames } from 'zds-mappings'
 import Select from './Select'

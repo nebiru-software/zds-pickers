@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback } from 'react'
+import { forwardRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { emptyMapping } from 'zds-mappings'
 import { mappingShape } from '../shapes'
@@ -27,10 +27,10 @@ const NotePicker = forwardRef((props, ref) => {
     <Select
       disabled={disabled}
       isDisabled={disabled}
-      options={options}
-      value={value}
       onChange={handleChange}
+      options={options}
       ref={ref}
+      value={value}
       {...rest}
     />
   )

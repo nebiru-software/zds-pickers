@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { arraySequence } from '../utils'
 import Select from './Select'
@@ -10,19 +10,23 @@ const ChannelMappingPicker = ({ channels, ...rest }) => {
     ({ value }, { context }) => {
       const mapping = channels[value]
 
-      return mapping
-        ? (
-          <span className="mapping-entry">
-            <b>{value + 1}{context === 'value' && ' -'}</b>
-            <span className="mapping-entry-label">{mapping}</span>
-          </span>
-        )
-        : (
-          <span className="mapping-entry empty-mapping-entry">
-            <b>{value + 1}{context === 'value' && ' -'}</b>
-            <span className="mapping-entry-label">no mapping</span>
-          </span>
-        )
+      return mapping ? (
+        <span className="mapping-entry">
+          <b>
+            {value + 1}
+            {context === 'value' && ' -'}
+          </b>
+          <span className="mapping-entry-label">{mapping}</span>
+        </span>
+      ) : (
+        <span className="mapping-entry empty-mapping-entry">
+          <b>
+            {value + 1}
+            {context === 'value' && ' -'}
+          </b>
+          <span className="mapping-entry-label">no mapping</span>
+        </span>
+      )
     },
     [channels],
   )
@@ -30,8 +34,8 @@ const ChannelMappingPicker = ({ channels, ...rest }) => {
   return (
     <Select
       className="channel-mapping-picker"
-      options={options}
       formatOptionLabel={formatOptionLabel}
+      options={options}
       {...rest}
     />
   )

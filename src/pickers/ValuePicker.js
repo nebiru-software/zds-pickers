@@ -1,18 +1,28 @@
-import React, { forwardRef, useCallback } from 'react'
+import { forwardRef, useCallback } from 'react'
 import cl from 'classnames'
 import PropTypes from 'prop-types'
 import NumericInput from 'react-numeric-input2'
 
 const ValuePicker = forwardRef(({ disabled, label, onChange, value, ...rest }, ref) => {
-  const handleChange = useCallback((option) => {
-    onChange(option.value)
-  }, [onChange])
+  const handleChange = useCallback(
+    (v) => {
+      onChange(v)
+    },
+    [onChange],
+  )
 
   return (
     <div className="zds-pickers__container">
-      {Boolean(label) && <span className="zds-pickers__label value-picker__label">{label}</span>}
+      {Boolean(label) && (
+        <span className="zds-pickers__label value-picker__label">
+          {label}
+        </span>
+      )}
       <div
-        className={cl({ 'value-picker': true, 'zds-pickers--is-disabled': disabled })}
+        className={cl({
+          'value-picker': true,
+          'zds-pickers--is-disabled': disabled,
+        })}
         style={{
           position: 'relative',
           boxSizing: 'border-box',
@@ -26,7 +36,6 @@ const ValuePicker = forwardRef(({ disabled, label, onChange, value, ...rest }, r
             transition: 'all 100ms',
           }}
         >
-
           <div
             className="zds-pickers__value-container"
             style={{
@@ -40,13 +49,12 @@ const ValuePicker = forwardRef(({ disabled, label, onChange, value, ...rest }, r
               boxSizing: 'border-box',
             }}
           >
-
             <NumericInput
               {...rest}
               disabled={disabled}
               onChange={handleChange}
-              value={value}
               ref={ref}
+              value={value}
             />
           </div>
         </div>

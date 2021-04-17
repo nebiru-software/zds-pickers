@@ -1,4 +1,4 @@
-import { shape, string, number } from 'prop-types'
+import { number, shape, string } from 'prop-types'
 
 export const mappingShape = shape({
   note: number.isRequired,

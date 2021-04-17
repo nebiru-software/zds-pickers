@@ -1,4 +1,3 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 import ccValues from '../midi/ccValues'
 import Select from './Select'
