@@ -18,8 +18,8 @@ const Select = forwardRef(({ disabled, label, onChange, options, value, ...rest 
     <div className="zds-pickers__container">
       {Boolean(label) && <span className="zds-pickers__label">{label}</span>}
       <ReactSelect
-        classNamePrefix="zds-pickers"
         {...rest}
+        classNamePrefix="zds-pickers"
         isDisabled={disabled}
         onChange={handleChange}
         options={options}

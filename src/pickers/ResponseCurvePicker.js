@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types'
+import { forwardRef } from 'react'
 import { findObj } from '../utils'
 import ResponseCurve, { DefaultTooltip, RESPONSE_CURVES } from './ResponseCurve'
 import Select from './Select'
 
-const ResponseCurvePicker = (props) => {
+const ResponseCurvePicker = forwardRef((props, ref) => {
   const { Tooltip, inverted, onChange, value, ...rest } = props
 
   return (
     <Select
-      onChange={f => f}
       {...rest}
       components={{
         Placeholder: () => (
@@ -30,10 +30,12 @@ const ResponseCurvePicker = (props) => {
           />
         ),
       }}
+      onChange={f => f}
+      ref={ref}
       value={value}
     />
   )
-}
+})
 
 ResponseCurvePicker.propTypes = {
   value: PropTypes.number.isRequired,

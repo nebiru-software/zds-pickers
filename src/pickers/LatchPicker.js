@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { forwardRef } from 'react'
 import Select from './Select'
 
 const options = [
@@ -6,12 +7,13 @@ const options = [
   { value: 1, label: 'Latching' },
 ]
 
-const LatchPicker = props => (
+const LatchPicker = forwardRef((props, ref) => (
   <Select
-    options={options}
     {...props}
+    options={options}
+    ref={ref}
   />
-)
+))
 
 LatchPicker.propTypes = {
   onChange: PropTypes.func.isRequired,

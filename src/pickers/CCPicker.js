@@ -1,13 +1,15 @@
 import PropTypes from 'prop-types'
+import { forwardRef } from 'react'
 import ccValues from '../midi/ccValues'
 import Select from './Select'
 
-const CCPicker = props => (
+const CCPicker = forwardRef((props, ref) => (
   <Select
-    options={ccValues}
     {...props}
+    options={ccValues}
+    ref={ref}
   />
-)
+))
 
 CCPicker.propTypes = {
   onChange: PropTypes.func.isRequired,

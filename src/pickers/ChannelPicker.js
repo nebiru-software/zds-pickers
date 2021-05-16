@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { forwardRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import cl from 'classnames'
 import { arraySequence } from '../utils'
@@ -9,7 +9,7 @@ const options = arraySequence(16).map(value => ({
   label: `Channel ${value + 1}`,
 }))
 
-const ChannelPicker = ({ className, ...rest }) => {
+const ChannelPicker = forwardRef(({ className, ...rest }, ref) => {
   const formatOptionLabel = useCallback(
     (option, { context }) => context === 'value'
       ? option.label
@@ -18,13 +18,14 @@ const ChannelPicker = ({ className, ...rest }) => {
   )
   return (
     <Select
+      {...rest}
       className={cl(className, 'channel-picker')}
       formatOptionLabel={formatOptionLabel}
       options={options}
-      {...rest}
+      ref={ref}
     />
   )
-}
+})
 
 ChannelPicker.propTypes = {
   className: PropTypes.string,

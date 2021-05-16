@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types'
+import { forwardRef } from 'react'
 import Select from './Select'
 
-const StatusPicker = ({ statuses, ...rest }) => (
+const StatusPicker = forwardRef(({ statuses, ...rest }, ref) => (
   <Select
-    options={statuses}
     {...rest}
+    options={statuses}
+    ref={ref}
   />
-)
+))
 
 const statusShape = {
   value: PropTypes.number,

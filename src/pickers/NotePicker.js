@@ -25,13 +25,13 @@ const NotePicker = forwardRef((props, ref) => {
 
   return (
     <Select
+      {...rest}
       disabled={disabled}
       isDisabled={disabled}
       onChange={handleChange}
       options={options}
       ref={ref}
       value={value}
-      {...rest}
     />
   )
 })

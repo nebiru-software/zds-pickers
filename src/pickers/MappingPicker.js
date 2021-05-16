@@ -1,9 +1,9 @@
-import { useMemo } from 'react'
+import { forwardRef, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { getStockNames, getUserMappingNames } from 'zds-mappings'
 import Select from './Select'
 
-const MappingPicker = ({ allowClearing, ...rest }) => {
+const MappingPicker = forwardRef(({ allowClearing, ...rest }, ref) => {
   const stockMappings = getStockNames()
   const userMappings = getUserMappingNames()
 
@@ -32,10 +32,11 @@ const MappingPicker = ({ allowClearing, ...rest }) => {
     <Select
       {...rest}
       options={options}
+      ref={ref}
       value="General MIDI"
     />
   )
-}
+})
 
 MappingPicker.propTypes = {
   allowClearing: PropTypes.bool,

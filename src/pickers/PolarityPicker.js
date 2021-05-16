@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types'
+import { forwardRef } from 'react'
 import Select from './Select'
 
-const PolarityPicker = ({ labelOff, labelOn, ...rest }) => {
+const PolarityPicker = forwardRef(({ labelOff, labelOn, ...rest }, ref) => {
   const options = [
     { value: 0, label: labelOff },
     { value: 1, label: labelOn },
@@ -9,11 +10,12 @@ const PolarityPicker = ({ labelOff, labelOn, ...rest }) => {
 
   return (
     <Select
-      options={options}
       {...rest}
+      options={options}
+      ref={ref}
     />
   )
-}
+})
 
 PolarityPicker.propTypes = {
   labelOff: PropTypes.string,
