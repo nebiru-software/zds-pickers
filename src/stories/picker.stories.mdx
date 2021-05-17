@@ -29,7 +29,8 @@ import './assets/sampleStyles.css'
       disabled={boolean('disabled', false, 'CCPicker')}
       label={text('label', 'CC #', 'CCPicker')}
       onChange={action('handleChange')}
-      value={number('value', 7, 'CCPicker')}
+      shrinkLabel={boolean('shrinkLabel', false, 'CCPicker')}
+      value={number('value', 7, {}, 'CCPicker')}
     />
   </Story>
 </Canvas>
@@ -46,7 +47,8 @@ import './assets/sampleStyles.css'
       disabled={boolean('disabled', false, 'ChannelPicker')}
       label={text('label', 'Channel', 'ChannelPicker')}
       onChange={action('handleChange')}
-      value={number('value', 9, 'ChannelPicker')}
+      shrinkLabel={boolean('shrinkLabel', false, 'ChannelPicker')}
+      value={number('value', 9, {}, 'ChannelPicker')}
     />
   </Story>
 </Canvas>
@@ -81,7 +83,8 @@ import './assets/sampleStyles.css'
       disabled={boolean('disabled', false, 'ChannelMappingPicker')}
       label={text('label', 'Channel', 'ChannelMappingPicker')}
       onChange={action('handleChange')}
-      value={number('value', 7, 'ChannelMappingPicker')}
+      shrinkLabel={boolean('shrinkLabel', false, 'ChannelMappingPicker')}
+      value={number('value', 7, {}, 'ChannelMappingPicker')}
     />
   </Story>
 </Canvas>
@@ -98,7 +101,8 @@ import './assets/sampleStyles.css'
       disabled={boolean('disabled', false, 'LatchPicker')}
       label={text('label', 'Mode', 'LatchPicker')}
       onChange={action('handleChange')}
-      value={number('value', 0, 'LatchPicker')}
+      shrinkLabel={boolean('shrinkLabel', false, 'LatchPicker')}
+      value={number('value', 0, {}, 'LatchPicker')}
     />
   </Story>
 </Canvas>
@@ -116,6 +120,7 @@ import './assets/sampleStyles.css'
       disabled={boolean('disabled', false, 'MappingPicker')}
       label={text('label', 'Mapping', 'MappingPicker')}
       onChange={action('handleChange')}
+      shrinkLabel={boolean('shrinkLabel', false, 'MappingPicker')}
       value={text('value', 'General MIDI', 'MappingPicker')}
     />
   </Story>
@@ -135,7 +140,8 @@ import './assets/sampleStyles.css'
       label={text('label', 'Note #', 'NotePicker')}
       mapping={gmMapping}
       onChange={action('handleChange')}
-      value={number('value', 38, 'NotePicker')}
+      shrinkLabel={boolean('shrinkLabel', false, 'NotePicker')}
+      value={number('value', 38, {}, 'NotePicker')}
     />
     <br />
     <NotePicker
@@ -143,7 +149,8 @@ import './assets/sampleStyles.css'
       disabled={boolean('disabled', false, 'NotePicker2')}
       label="No mapping"
       onChange={action('handleChange2')}
-      value={number('value', 38, 'NotePicker2')}
+      shrinkLabel={boolean('shrinkLabel', false, 'NotePicker')}
+      value={number('value', 38, {}, 'NotePicker2')}
     />
   </Story>
 </Canvas>
@@ -162,7 +169,8 @@ import './assets/sampleStyles.css'
       labelOff={text('labelOff', 'Normally Off', 'PolarityPicker')}
       labelOn={text('labelOn', 'Normally On', 'PolarityPicker')}
       onChange={action('handleChange')}
-      value={number('value', 0, 'PolarityPicker')}
+      shrinkLabel={boolean('shrinkLabel', false, 'PolarityPicker')}
+      value={number('value', 0, {}, 'PolarityPicker')}
     />
   </Story>
 </Canvas>
@@ -179,7 +187,7 @@ import './assets/sampleStyles.css'
       disabled={boolean('disabled', false, 'ResponseCurve')}
       inverted={boolean('inverted', false, 'ResponseCurve')}
       onChange={action('handleChange')}
-      value={number('value', 0, 'ResponseCurve')}
+      value={number('value', 0, {}, 'ResponseCurve')}
     />
   </Story>
 </Canvas>
@@ -197,7 +205,8 @@ import './assets/sampleStyles.css'
       inverted={boolean('inverted', false, 'ResponseCurvePicker')}
       label="Response"
       onChange={action('handleChange')}
-      value={number('value', 0, 'ResponseCurvePicker')}
+      shrinkLabel={boolean('shrinkLabel', false, 'ResponseCurvePicker')}
+      value={number('value', 0, {}, 'ResponseCurvePicker')}
     />
   </Story>
 </Canvas>
@@ -214,8 +223,8 @@ import './assets/sampleStyles.css'
       disabled={boolean('disabled', false, 'StatusPicker')}
       label={text('label', 'Status Msg', 'StatusPicker')}
       onChange={action('handleChange')}
+      shrinkLabel={boolean('shrinkLabel', false, 'StatusPicker')}
       statuses={statuses}
-      value={number('value', STATUS_NOTE_ON, 'StatusPicker')}
     />
   </Story>
 </Canvas>
@@ -231,8 +240,10 @@ import './assets/sampleStyles.css'
     <ValuePicker
       disabled={boolean('disabled', false, 'ValuePicker')}
       label={text('label', 'Value', 'ValuePicker')}
+      max={number('max', 127, {}, 'ValuePicker')}
+      min={number('min', 0, {}, 'ValuePicker')}
       onChange={action('handleChange')}
-      value={number('value', 36, 'ValuePicker')}
+      shrinkLabel={boolean('shrinkLabel', false, 'ValuePicker')}
     />
   </Story>
 </Canvas>

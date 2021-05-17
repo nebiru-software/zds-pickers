@@ -1,72 +1,49 @@
-import { forwardRef } from 'react'
-import cl from 'classnames'
+import { forwardRef, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import NumericInput from 'react-numeric-input2'
+import { arraySequence, assertRange } from '../utils'
+import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
+import Select from './Select'
 
-const ValuePicker = forwardRef(({ disabled, label, onChange, value, ...rest }, ref) => (
-  <div className="zds-pickers__container">
-    {Boolean(label) && (
-      <span className="zds-pickers__label value-picker__label">
-        {label}
-      </span>
-    )}
-    <div
-      className={cl({
-        'value-picker': true,
-        'zds-pickers--is-disabled': disabled,
-      })}
-      style={{
-        position: 'relative',
-        boxSizing: 'border-box',
-      }}
-    >
-      <div
-        className="zds-pickers__control"
-        style={{
-          cursor: 'default',
-          display: 'flex',
-          transition: 'all 100ms',
-        }}
-      >
-        <div
-          className="zds-pickers__value-container"
-          style={{
-            alignItems: 'center',
-            display: 'flex',
-            flex: '1',
-            flexWrap: 'wrap',
-            padding: '2px 8px',
-            position: 'relative',
-            overflow: 'hidden',
-            boxSizing: 'border-box',
-          }}
-        >
-          <NumericInput
-            {...rest}
-            disabled={disabled}
-            onChange={onChange}
-            ref={ref}
-            strict
-            value={value}
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-))
+const ValuePicker = forwardRef((props, ref) => {
+  const { disabled, max, min, onChange, value: initialValue, ...rest } = props
+  const options = useMemo(() => arraySequence(max - min)
+    .map(i => min + i)
+    .map(value => ({ value, label: value })), [max, min])
+
+  const [value, setValue] = useStateWithDynamicDefault(initialValue)
+
+  const handleChange = useCallback((v) => {
+    const possibleNumericNumber = assertRange(v, max, min)
+
+    if (possibleNumericNumber > 0) {
+      onChange(possibleNumericNumber)
+    }
+    setValue(v)
+  }, [max, min, onChange, setValue])
+
+  return (
+    <Select
+      {...rest}
+      disabled={disabled}
+      isDisabled={disabled}
+      onChange={handleChange}
+      options={options}
+      ref={ref}
+      value={value}
+    />
+  )
+})
 
 ValuePicker.propTypes = {
-  disabled: PropTypes.bool,
-  label: PropTypes.string,
   max: PropTypes.number,
   min: PropTypes.number,
   onChange: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
   value: PropTypes.number,
 }
 
 ValuePicker.defaultProps = {
   disabled: false,
-  label: undefined,
   max: 127,
   min: 0,
   value: undefined,

@@ -40,6 +40,9 @@ body .zds-pickers--is-disabled .zds-pickers__dropdown-indicator {
   text-shadow: none !important;
 }
 
+body .zds-pickers__placeholder {color: grey}
+body .zds-pickers__placeholder.shrunk {color: #fff}
+
 body .zds-pickers__menu { color: #4b4a4b; }
 /* .zds-pickers__menu .zds-pickers__menu-list { }
 .zds-pickers__menu .zds-pickers__option{ } */
