@@ -6,7 +6,7 @@ import Select from './Select'
 
 const ValuePicker = forwardRef((props, ref) => {
   const { disabled, max, min, onChange, value: initialValue, ...rest } = props
-  const options = useMemo(() => arraySequence(max - min)
+  const options = useMemo(() => arraySequence(max - min + 1)
     .map(i => min + i)
     .map(value => ({ value, label: value })), [max, min])
 
