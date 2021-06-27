@@ -13,11 +13,8 @@ const ValuePicker = forwardRef((props, ref) => {
   const [value, setValue] = useStateWithDynamicDefault(initialValue)
 
   const handleChange = useCallback((v) => {
-    const possibleNumericNumber = assertRange(v, max, min)
+    onChange(assertRange(v, max, min))
 
-    if (possibleNumericNumber > 0) {
-      onChange(possibleNumericNumber)
-    }
     setValue(v)
   }, [max, min, onChange, setValue])
 
