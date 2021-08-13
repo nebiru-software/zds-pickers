@@ -5,10 +5,16 @@ import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
 import Select from './Select'
 
 const ValuePicker = forwardRef((props, ref) => {
-  const { disabled, max, min, onChange, value: initialValue, ...rest } = props
-  const options = useMemo(() => arraySequence(max - min + 1)
-    .map(i => min + i)
-    .map(value => ({ value, label: value })), [max, min])
+  const { disabled, highToLow, max, min, onChange, value: initialValue, ...rest } = props
+  const options = useMemo(
+    () => {
+      const result = arraySequence(max - min + 1)
+        .map(i => min + i)
+        .map(value => ({ value, label: value }))
+      return highToLow ? result.reverse() : result
+    },
+    [highToLow, max, min],
+  )
 
   const [value, setValue] = useStateWithDynamicDefault(initialValue)
 
@@ -32,15 +38,17 @@ const ValuePicker = forwardRef((props, ref) => {
 })
 
 ValuePicker.propTypes = {
+  disabled: PropTypes.bool,
+  highToLow: PropTypes.bool,
   max: PropTypes.number,
   min: PropTypes.number,
   onChange: PropTypes.func.isRequired,
-  disabled: PropTypes.bool,
   value: PropTypes.number,
 }
 
 ValuePicker.defaultProps = {
   disabled: false,
+  highToLow: false,
   max: 127,
   min: 0,
   value: undefined,
