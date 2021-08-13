@@ -6,6 +6,7 @@ import statuses from '../midi/statuses'
 import CCPicker from '../pickers/CCPicker'
 import ChannelPicker from '../pickers/ChannelPicker'
 import ChannelMappingPicker from '../pickers/ChannelMappingPicker'
+import Knob from '../pickers/Knob'
 import LatchPicker from '../pickers/LatchPicker'
 import MappingPicker from '../pickers/MappingPicker'
 import NotePicker from '../pickers//NotePicker'
@@ -90,6 +91,19 @@ import './assets/sampleStyles.css'
 </Canvas>
 
 <ArgsTable of={ChannelMappingPicker} />
+
+# Knob
+<Canvas withToolbar>
+  <Story
+    height={120}
+    name="Knob"
+  >
+    <Knob      size={number('size', 50, {}, 'Knob')}    />
+  </Story>
+</Canvas>
+
+<ArgsTable of={Knob} />
+
 
 # LatchPicker
 <Canvas withToolbar>
@@ -239,6 +253,7 @@ import './assets/sampleStyles.css'
   >
     <ValuePicker
       disabled={boolean('disabled', false, 'ValuePicker')}
+      highToLow={boolean('highToLow', false, 'ValuePicker')}
       label={text('label', 'Value', 'ValuePicker')}
       max={number('max', 127, {}, 'ValuePicker')}
       min={number('min', 0, {}, 'ValuePicker')}

@@ -73,7 +73,9 @@
     "react-svg-text": "0.1.2",
     "zds-mappings": "1.4.9"
   },
-  "dependencies": {},
+  "dependencies": {
+    "rc-knob": "ssh://git@github.com:vallsv/rc-knob#9ebe0c2"
+  },
   "peerDependencies": {
     "@rehooks/component-size": "^1.0.3",
     "classnames": "^2",
@@ -81,6 +83,7 @@
     "react": "^17",
     "react-select": "^4",
     "react-svg-text": "^0.1.2",
+    "rc-knob": "ssh://git@github.com:vallsv/rc-knob#9ebe0c2",
     "zds-mappings": "^1.4.9"
   }
 }

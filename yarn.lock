@@ -8983,6 +8983,10 @@ raw-loader@^4.0.2:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
 
+"rc-knob@ssh://git@github.com:vallsv/rc-knob#9ebe0c2":
+  version "1.1.0-dev"
+  resolved "ssh://git@github.com:vallsv/rc-knob#9ebe0c2645f96bbd2150c0fabd26c1464548f1c0"
+
 rc@^1.1.0:
   version "1.2.8"
   resolved "https://registry.yarnpkg.com/rc/-/rc-1.2.8.tgz#cd924bf5200a075b83c188cd6b9e211b7fc0d3ed"
