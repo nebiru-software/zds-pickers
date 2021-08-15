@@ -11,6 +11,7 @@ const Knob = (props) => {
     min,
     onChange,
     value: initialValue,
+    wheelEnabled,
     wheelSensitivity,
     ...rest
   } = props
@@ -43,7 +44,7 @@ const Knob = (props) => {
       clampMin={40}
       disabled={disabled}
       onChange={handleChange}
-      onWheel={handleWheel}
+      onWheel={wheelEnabled ? handleWheel : undefined}
       preciseMode={false}
       rotateDegrees={180}
       // To see all skins:
@@ -60,6 +61,7 @@ Knob.propTypes = {
   disabled: PropTypes.bool,
   max: PropTypes.number,
   min: PropTypes.number,
+  wheelEnabled: PropTypes.bool,
   onChange: PropTypes.func,
   value: PropTypes.number,
   wheelSensitivity: PropTypes.number,
@@ -70,6 +72,7 @@ Knob.defaultProps = {
   min: 0,
   onChange: undefined,
   value: 0,
+  wheelEnabled: false,
   wheelSensitivity: 0.1,
 }
 

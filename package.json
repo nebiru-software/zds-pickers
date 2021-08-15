@@ -1,6 +1,6 @@
 {
   "name": "zds-pickers",
-  "version": "3.6.4",
+  "version": "3.6.6",
   "homepage": "https://github.com/dkadrios/zds-pickers#readme",
   "license": "MIT",
   "main": "dist/index.js",

@@ -15,6 +15,7 @@ const KnobPicker = forwardRef((props, ref) => {
     min,
     shrinkLabel,
     size,
+    wheelEnabled,
     wheelSensitivity,
     ...rest
   } = props
@@ -50,6 +51,7 @@ const KnobPicker = forwardRef((props, ref) => {
             max,
             min,
             size,
+            wheelEnabled,
             wheelSensitivity,
             ...rest,
           }}
@@ -71,6 +73,7 @@ KnobPicker.propTypes = {
   shrinkLabel: PropTypes.bool,
   size: PropTypes.number,
   value: PropTypes.number,
+  wheelEnabled: PropTypes.bool,
   wheelSensitivity: PropTypes.number,
 }
 
@@ -85,6 +88,7 @@ KnobPicker.defaultProps = {
   shrinkLabel: false,
   size: 100,
   value: 0,
+  wheelEnabled: false,
   wheelSensitivity: 0.1,
 }
 

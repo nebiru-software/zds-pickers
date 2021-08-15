@@ -14,8 +14,10 @@ const KnobPicker = forwardRef((props, ref) => {
     label,
     max,
     min,
+    onChange,
     shrinkLabel,
-    size,
+    value,
+    wheelEnabled,
     wheelSensitivity,
     ...rest
   } = props
@@ -24,7 +26,7 @@ const KnobPicker = forwardRef((props, ref) => {
     () => {
       const result = arraySequence(max - min + 1)
         .map(i => min + i)
-        .map(value => ({ value, label: value }))
+        .map(i => ({ value: i, label: i }))
       return highToLow ? result.reverse() : result
     },
     [highToLow, max, min],
@@ -36,11 +38,15 @@ const KnobPicker = forwardRef((props, ref) => {
       <div style={{ display: 'inline-flex', gap: 10, alignItems: 'center' }}>
         {Boolean(includePicker) && (
           <Select
-            {...rest}
-            disabled={disabled}
-            isDisabled={disabled}
-            options={options}
-            ref={ref}
+            {...{
+              ...rest,
+              disabled,
+              isDisabled: disabled,
+              onChange,
+              options,
+              ref,
+              value,
+            }}
           />
         )}
 
@@ -49,7 +55,9 @@ const KnobPicker = forwardRef((props, ref) => {
             disabled,
             max,
             min,
-            size,
+            onChange,
+            value,
+            wheelEnabled,
             wheelSensitivity,
             ...knobProps,
           }}
@@ -70,8 +78,8 @@ KnobPicker.propTypes = {
   min: PropTypes.number,
   onChange: PropTypes.func.isRequired,
   shrinkLabel: PropTypes.bool,
-  size: PropTypes.number,
   value: PropTypes.number,
+  wheelEnabled: PropTypes.bool,
   wheelSensitivity: PropTypes.number,
 }
 
@@ -85,8 +93,8 @@ KnobPicker.defaultProps = {
   max: 127,
   min: 0,
   shrinkLabel: false,
-  size: 100,
   value: 0,
+  wheelEnabled: false,
   wheelSensitivity: 0.1,
 }
 

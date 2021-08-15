@@ -13,6 +13,7 @@ const Knob = (props) => {
     onChange,
     size,
     value: initialValue,
+    wheelEnabled,
     wheelSensitivity,
     ...rest
   } = props
@@ -62,7 +63,7 @@ const Knob = (props) => {
           onChange={evt => handleChange(evt.target.value)}
           onFocus={includeLabel ? ({ target }) => target.select() : undefined}
           onKeyPress={includeLabel ? disabled ? null : handleKeyPress : undefined}
-          onWheel={handleWheel}
+          onWheel={wheelEnabled ? handleWheel : undefined}
           style={
             includeLabel
               ? {}
@@ -92,6 +93,7 @@ Knob.propTypes = {
   onChange: PropTypes.func,
   size: PropTypes.number,
   value: PropTypes.number,
+  wheelEnabled: PropTypes.bool,
   wheelSensitivity: PropTypes.number,
 }
 Knob.defaultProps = {
@@ -102,6 +104,7 @@ Knob.defaultProps = {
   onChange: undefined,
   size: 100,
   value: 0,
+  wheelEnabled: false,
   wheelSensitivity: 0.1,
 }
 
