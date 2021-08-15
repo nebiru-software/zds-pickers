@@ -2,6 +2,8 @@
 export { default as CCPicker } from './pickers/CCPicker'
 export { default as ChannelPicker } from './pickers/ChannelPicker'
 export { default as ChannelMappingPicker } from './pickers/ChannelMappingPicker'
+export { default as Knob } from './pickers/Knob'
+export { default as KnobPicker } from './pickers/KnobPicker'
 export { default as LatchPicker } from './pickers/LatchPicker'
 export { default as MappingPicker } from './pickers/MappingPicker'
 export { default as NotePicker } from './pickers/NotePicker'
