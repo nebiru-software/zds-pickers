@@ -1,8 +1,8 @@
 import { useMemo, useRef } from 'react'
 import cl from 'classnames'
 import PropTypes from 'prop-types'
-import useStateWithDynamicDefault from '../../hooks/useStateWithDynamicDefault'
-import { assertRange } from '../../utils'
+import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
+import { assertRange } from '../utils'
 
 const Knob = (props) => {
   const {

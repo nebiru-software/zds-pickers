@@ -2,7 +2,7 @@ import { forwardRef, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { arraySequence } from '../utils'
 import Select from './Select'
-import Knob from './Knob'
+import Knob from './KnobOld'
 
 const KnobPicker = forwardRef((props, ref) => {
   const {
@@ -10,7 +10,6 @@ const KnobPicker = forwardRef((props, ref) => {
     highToLow,
     includeLabel,
     includePicker,
-    knobProps,
     label,
     max,
     min,
@@ -33,7 +32,7 @@ const KnobPicker = forwardRef((props, ref) => {
   return (
     <div className="zds-pickers__container">
       {Boolean(!shrinkLabel && Boolean(label)) && <span className="zds-pickers__label">{label}</span>}
-      <div style={{ display: 'inline-flex', gap: 10, alignItems: 'center' }}>
+      <div style={{ display: 'inline-flex', gap: 10 }}>
         {Boolean(includePicker) && (
           <Select
             {...rest}
@@ -47,11 +46,12 @@ const KnobPicker = forwardRef((props, ref) => {
         <Knob
           {...{
             disabled,
+            includeLabel,
             max,
             min,
             size,
             wheelSensitivity,
-            ...knobProps,
+            ...rest,
           }}
         />
       </div>
@@ -64,7 +64,6 @@ KnobPicker.propTypes = {
   highToLow: PropTypes.bool,
   includeLabel: PropTypes.bool,
   includePicker: PropTypes.bool,
-  knobProps: PropTypes.object,
   label: PropTypes.string,
   max: PropTypes.number,
   min: PropTypes.number,
@@ -80,7 +79,6 @@ KnobPicker.defaultProps = {
   highToLow: false,
   includeLabel: true,
   includePicker: false,
-  knobProps: undefined,
   label: undefined,
   max: 127,
   min: 0,

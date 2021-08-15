@@ -6,7 +6,9 @@ import statuses from '../midi/statuses'
 import CCPicker from '../pickers/CCPicker'
 import ChannelPicker from '../pickers/ChannelPicker'
 import ChannelMappingPicker from '../pickers/ChannelMappingPicker'
+import KnobOld from '../pickers/KnobOld'
 import Knob from '../pickers/Knob'
+import KnobPickerOld from '../pickers/KnobPickerOld'
 import KnobPicker from '../pickers/KnobPicker'
 import LatchPicker from '../pickers/LatchPicker'
 import MappingPicker from '../pickers/MappingPicker'
@@ -99,13 +101,21 @@ import './assets/sampleStyles.css'
     height={120}
     name="Knob"
   >
-    <Knob
+    <KnobOld
       disabled={boolean('disabled', false, 'Knob')}
       max={number('max', 127, {}, 'Knob')}
       min={number('min', 0, {}, 'Knob')}
       size={number('size', 35, {}, 'Knob')}
       value={number('value', 0, {}, 'Knob')}
     />
+    <hr />
+    <Knob
+      disabled={boolean('disabled', false, 'Knob')}
+      max={number('max', 127, {}, 'Knob')}
+      min={number('min', 0, {}, 'Knob')}
+      value={number('value', 0, {}, 'Knob')}
+    />
+    <hr />
   </Story>
 </Canvas>
 
@@ -117,7 +127,7 @@ import './assets/sampleStyles.css'
     height={120}
     name="KnobPicker"
   >
-    <KnobPicker
+    <KnobPickerOld
       disabled={boolean('disabled', false, 'KnobPicker')}
       label="With Label"
       max={number('max', 127, {}, 'KnobPicker')}
@@ -128,10 +138,22 @@ import './assets/sampleStyles.css'
       value={number('value', 0, {}, 'KnobPicker')}
     />
     <br />
-    <KnobPicker
+    <KnobPickerOld
       disabled={boolean('disabled', false, 'KnobPicker')}
       label="No Label"
       includeLabel={false}
+      max={number('max', 127, {}, 'KnobPicker')}
+      min={number('min', 0, {}, 'KnobPicker')}
+      onChange={action('KnobPicker')}
+      shrinkLabel={boolean('shrinkLabel', false, 'KnobPicker')}
+      size={number('size', 35, {}, 'KnobPicker')}
+      value={number('value', 0, {}, 'KnobPicker')}
+    />
+    <br />
+    <KnobPickerOld
+      disabled={boolean('disabled', false, 'KnobPicker')}
+      includePicker
+      label={text('label', 'Sensitivity', 'KnobPicker')}
       max={number('max', 127, {}, 'KnobPicker')}
       min={number('min', 0, {}, 'KnobPicker')}
       onChange={action('KnobPicker')}
