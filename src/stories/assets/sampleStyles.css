@@ -185,6 +185,9 @@ body .response-curve-picker text.button-selected {
   position: relative;
   left: -1px;
 }
+.Knob-value.no-label::selection {
+  background: transparent;
+}
 
 .Knob-value::-webkit-inner-spin-button,
 .Knob-value::-webkit-outer-spin-button {

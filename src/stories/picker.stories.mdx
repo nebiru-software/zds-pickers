@@ -119,7 +119,19 @@ import './assets/sampleStyles.css'
   >
     <KnobPicker
       disabled={boolean('disabled', false, 'KnobPicker')}
-      label={text('label', 'Sensitivity', 'KnobPicker')}
+      label="With Label"
+      max={number('max', 127, {}, 'KnobPicker')}
+      min={number('min', 0, {}, 'KnobPicker')}
+      onChange={action('KnobPicker')}
+      shrinkLabel={boolean('shrinkLabel', false, 'KnobPicker')}
+      size={number('size', 35, {}, 'KnobPicker')}
+      value={number('value', 0, {}, 'KnobPicker')}
+    />
+    <br />
+    <KnobPicker
+      disabled={boolean('disabled', false, 'KnobPicker')}
+      label="No Label"
+      includeLabel={false}
       max={number('max', 127, {}, 'KnobPicker')}
       min={number('min', 0, {}, 'KnobPicker')}
       onChange={action('KnobPicker')}

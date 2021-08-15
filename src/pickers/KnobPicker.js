@@ -8,11 +8,14 @@ const KnobPicker = forwardRef((props, ref) => {
   const {
     disabled,
     highToLow,
+    includeLabel,
     includePicker,
     label,
     max,
     min,
     shrinkLabel,
+    size,
+    wheelSensitivity,
     ...rest
   } = props
 
@@ -40,7 +43,17 @@ const KnobPicker = forwardRef((props, ref) => {
           />
         )}
 
-        <Knob {...{ max, min, ...rest }} />
+        <Knob
+          {...{
+            disabled,
+            includeLabel,
+            max,
+            min,
+            size,
+            wheelSensitivity,
+            ...rest,
+          }}
+        />
       </div>
     </div>
   )
@@ -49,6 +62,7 @@ const KnobPicker = forwardRef((props, ref) => {
 KnobPicker.propTypes = {
   disabled: PropTypes.bool,
   highToLow: PropTypes.bool,
+  includeLabel: PropTypes.bool,
   includePicker: PropTypes.bool,
   label: PropTypes.string,
   max: PropTypes.number,
@@ -63,6 +77,7 @@ KnobPicker.propTypes = {
 KnobPicker.defaultProps = {
   disabled: false,
   highToLow: false,
+  includeLabel: true,
   includePicker: false,
   label: undefined,
   max: 127,

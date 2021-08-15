@@ -1,11 +1,13 @@
 import { useMemo, useRef } from 'react'
+import cl from 'classnames'
 import PropTypes from 'prop-types'
-import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
-import { assertRange } from '../utils'
+import useStateWithDynamicDefault from '../../hooks/useStateWithDynamicDefault'
+import { assertRange } from '../../utils'
 
 const Knob = (props) => {
   const {
     disabled,
+    includeLabel,
     max,
     min,
     onChange,
@@ -48,17 +50,30 @@ const Knob = (props) => {
   return (
     <div
       className="Knob"
-      style={{ width: size, height: size }}
+      style={{
+        height: size,
+        width: size,
+      }}
     >
       <div className="Knob-label">
         <input
-          className="Knob-value"
+          className={cl({ 'Knob-value': true, 'no-label': !includeLabel })}
+          disabled={disabled || !includeLabel}
           onChange={evt => handleChange(evt.target.value)}
-          onFocus={({ target }) => target.select()}
-          onKeyPress={disabled ? null : handleKeyPress}
+          onFocus={includeLabel ? ({ target }) => target.select() : undefined}
+          onKeyPress={includeLabel ? disabled ? null : handleKeyPress : undefined}
           onWheel={handleWheel}
+          style={
+            includeLabel
+              ? {}
+              : {
+                color: 'transparent',
+                cursor: 'default',
+                userSelect: 'none',
+              }
+          }
           type="number"
-          {...{ disabled, max, min, ref, value, ...rest }}
+          {...{ max, min, ref, value, ...rest }}
         />
       </div>
       <div
@@ -71,6 +86,7 @@ const Knob = (props) => {
 
 Knob.propTypes = {
   disabled: PropTypes.bool,
+  includeLabel: PropTypes.bool,
   max: PropTypes.number,
   min: PropTypes.number,
   onChange: PropTypes.func,
@@ -80,6 +96,7 @@ Knob.propTypes = {
 }
 Knob.defaultProps = {
   disabled: false,
+  includeLabel: true,
   max: 127,
   min: 0,
   onChange: undefined,
