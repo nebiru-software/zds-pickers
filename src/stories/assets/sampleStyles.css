@@ -157,3 +157,63 @@ body .response-curve-picker text.button-selected {
   fill: white;
   font-weight: bold;
 }
+
+/* **************************************************************** */
+
+.Knob {
+  background: #eee;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.Knob-label {
+  flex: none;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.Knob-value {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  text-align: center;
+  position: relative;
+  left: -1px;
+}
+
+.Knob-value::-webkit-inner-spin-button,
+.Knob-value::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.Knob-spinner {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgb(243, 243, 243);
+  border: 1px solid rgb(232, 232, 232);
+  border-radius: 50%;
+  z-index: 1;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.Knob-spinner::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  margin: 4px;
+  border-radius: 50%;
+  background: #000;
+}

@@ -1,176 +1,91 @@
-import { Arc, Knob as RcKnob, Pointer, Scale } from 'rc-knob'
+import { useMemo, useRef } from 'react'
 import PropTypes from 'prop-types'
+import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
+import { assertRange } from '../utils'
 
-const Knob = ({ size }) => {
-  const scaleSize = 10
-  const margin = 2
-  const backKnobSize = size - (scaleSize + margin) * 2
-  const knobSize = 0.686 * backKnobSize
-  const ptWidth = (7.2 / 100) * backKnobSize
+const Knob = (props) => {
+  const {
+    disabled,
+    max,
+    min,
+    onChange,
+    size,
+    value: initialValue,
+    wheelSensitivity,
+    ...rest
+  } = props
+  const ref = useRef()
+  const [value, setValue] = useStateWithDynamicDefault(initialValue)
+  const degree = useMemo(() => Math.round((value / max) * 270), [max, value])
+
+  const handleChange = (val) => {
+    if (disabled) return
+    const newValue = assertRange(parseInt(val, 10), max, min)
+    setValue(newValue)
+    if (onChange) {
+      onChange(newValue)
+    }
+  }
+
+  const handleWheel = ({ deltaY }) => {
+    let change = Math.trunc(deltaY * wheelSensitivity)
+    if (change === 0 && deltaY !== 0) {
+      // Assure that at least a tiny change happens
+      change += deltaY > 0 ? 1 : -1
+    }
+
+    handleChange(value + change)
+  }
+
+  const handleKeyPress = (event) => {
+    const { key } = event
+    if (key === 'Enter' || key === ' ') {
+      event.preventDefault()
+      event.target.select()
+    }
+  }
 
   return (
-    <RcKnob
-      angleOffset={220}
-      angleRange={280}
-      max={100}
-      min={0}
-      onChange={value => console.log(value)}
-      size={size}
+    <div
+      className="Knob"
+      style={{ width: size, height: size }}
     >
-      <defs>
-        <radialGradient
-          cx="1"
-          cy="0.5"
-          gradientTransform="scale(.5 1)"
-          gradientUnits="objectBoundingBox"
-          id="k2bg1"
-          r="1"
-        >
-          <stop
-            offset="0"
-            stopColor="#6c6f76"
-          />
-          <stop
-            offset="1"
-            stopColor="#333535"
-          />
-        </radialGradient>
-
-        <linearGradient
-          gradientUnits="objectBoundingBox"
-          id="k2bg2"
-          x1="0.46"
-          x2="0.72"
-          y1="0.17"
-          y2="0.92"
-        >
-          <stop
-            offset="0"
-            stopColor="#6f6c6b"
-          />
-          <stop
-            offset="1"
-            stopColor="#494848"
-          />
-        </linearGradient>
-        <linearGradient
-          gradientUnits="objectBoundingBox"
-          id="k2bg2s"
-          x1="0.39"
-          x2="0.90"
-          y1="0.19"
-          y2="0.8"
-        >
-          <stop
-            offset="0"
-            stopColor="#b2adac"
-          />
-          <stop
-            offset=".22368"
-            stopColor="#63605f"
-          />
-          <stop
-            offset="1"
-            stopColor="#6d6968"
-          />
-        </linearGradient>
-
-        <linearGradient
-          gradientUnits="objectBoundingBox"
-          id="k2pt1"
-          x1="0"
-          x2="0"
-          y1="0"
-          y2="1"
-        >
-          <stop
-            offset="0"
-            stopColor="#cbc8c3"
-          />
-          <stop
-            offset=".9127"
-            stopColor="#e7e5e2"
-          />
-          <stop
-            offset="1"
-            stopColor="#ffffff"
-          />
-        </linearGradient>
-        <linearGradient
-          gradientUnits="objectBoundingBox"
-          id="k2pt2"
-          x1="0"
-          x2="0"
-          y1="0"
-          y2="1"
-        >
-          <stop
-            offset="0"
-            stopColor="#f3f2f1"
-          />
-          <stop
-            offset=".036396"
-            stopColor="#eeedeb"
-          />
-          <stop
-            offset="1"
-            stopColor="#cdcac4"
-          />
-        </linearGradient>
-      </defs>
-      <circle
-        cx={size / 2}
-        cy={size / 2}
-        fill="url(#k2bg1)"
-        r={backKnobSize / 2}
+      <div className="Knob-label">
+        <input
+          className="Knob-value"
+          onChange={evt => handleChange(evt.target.value)}
+          onFocus={({ target }) => target.select()}
+          onKeyPress={disabled ? null : handleKeyPress}
+          onWheel={handleWheel}
+          type="number"
+          {...{ disabled, max, min, ref, value, ...rest }}
+        />
+      </div>
+      <div
+        className="Knob-spinner"
+        style={{ transform: `rotate(${-45 + degree}deg)` }}
       />
-      <circle
-        cx={size / 2}
-        cy={size / 2}
-        fill="url(#k2bg2)"
-        r={knobSize / 2}
-        stroke="url(#k2bg2s)"
-        strokeWidth="2"
-      />
-      <Scale
-        color="#505050"
-        radius={size / 2}
-        steps={8}
-        tickHeight={scaleSize}
-        tickWidth={4}
-      />
-      <Pointer
-        height={0}
-        radius={0}
-        useRotation
-        width={0}
-      >
-        <g>
-          <rect
-            fill="url(#k2pt1)"
-            height={backKnobSize / 2 - knobSize / 2}
-            width={ptWidth}
-            x={-ptWidth / 2}
-            y={-backKnobSize / 2}
-          />
-          <rect
-            fill="url(#k2pt2)"
-            height={ptWidth / 2 + knobSize / 2}
-            width={ptWidth}
-            x={-ptWidth / 2}
-            y={-knobSize / 2}
-          />
-        </g>
-      </Pointer>
-    </RcKnob>
+    </div>
   )
 }
 
 Knob.propTypes = {
+  disabled: PropTypes.bool,
+  max: PropTypes.number,
+  min: PropTypes.number,
+  onChange: PropTypes.func,
   size: PropTypes.number,
+  value: PropTypes.number,
+  wheelSensitivity: PropTypes.number,
 }
 Knob.defaultProps = {
-  size: 50,
+  disabled: false,
+  max: 127,
+  min: 0,
+  onChange: undefined,
+  size: 100,
+  value: 0,
+  wheelSensitivity: 0.1,
 }
 
 export default Knob
