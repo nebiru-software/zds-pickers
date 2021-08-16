@@ -42,6 +42,7 @@ const Knob = (props) => {
     <RotaryKnob
       clampMax={320}
       clampMin={40}
+      className="zds-pickers__knob-container"
       disabled={disabled}
       onChange={handleChange}
       onWheel={wheelEnabled ? handleWheel : undefined}
