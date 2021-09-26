@@ -9280,14 +9280,7 @@ react-refresh@^0.8.3:
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.8.3.tgz#721d4657672d400c5e3c75d063c4a85fb2d5d68f"
   integrity sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
 
-react-rotary-knob-skin-pack@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/react-rotary-knob-skin-pack/-/react-rotary-knob-skin-pack-1.0.2.tgz#b90619c312e2c562d42be98fbd13ab59267f6377"
-  integrity sha512-QnuEIyAsJVP+KRsBDUQRTxy5n+4q8Z0DseMhXBKF2OfS/VZMohR8qJW1Xxzo1V94oX38oFK9jNvxFQ/gkZApVw==
-  dependencies:
-    react-rotary-knob "^1.0.13"
-
-react-rotary-knob@1.1.8, react-rotary-knob@^1.0.13:
+react-rotary-knob@1.1.8:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/react-rotary-knob/-/react-rotary-knob-1.1.8.tgz#d42ae85dfc7be335ca9b6e5feb8410d288703f60"
   integrity sha512-K/RfMCM1OcDUMPdP7uR/uDBcg84rFgvC1HkgS89EGvZzaHwURCV/9JQTmJNxWeaCZhd2piFKFPoej3QAu6DAWQ==

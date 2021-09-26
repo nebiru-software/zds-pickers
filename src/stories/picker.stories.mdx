@@ -6,13 +6,11 @@ import statuses from '../midi/statuses'
 import CCPicker from '../pickers/CCPicker'
 import ChannelPicker from '../pickers/ChannelPicker'
 import ChannelMappingPicker from '../pickers/ChannelMappingPicker'
-import KnobOld from '../pickers/KnobOld'
 import Knob from '../pickers/Knob'
-import KnobPickerOld from '../pickers/KnobPickerOld'
 import KnobPicker from '../pickers/KnobPicker'
 import LatchPicker from '../pickers/LatchPicker'
 import MappingPicker from '../pickers/MappingPicker'
-import NotePicker from '../pickers//NotePicker'
+import NotePicker from '../pickers/NotePicker'
 import PolarityPicker from '../pickers/PolarityPicker'
 import ResponseCurve from '../pickers/ResponseCurve'
 import ResponseCurvePicker from '../pickers/ResponseCurvePicker'
@@ -101,15 +99,6 @@ import './assets/sampleStyles.css'
     height={120}
     name="Knob"
   >
-    <KnobOld
-      disabled={boolean('disabled', false, 'Knob')}
-      max={number('max', 127, {}, 'Knob')}
-      min={number('min', 0, {}, 'Knob')}
-      size={number('size', 35, {}, 'Knob')}
-      value={number('value', 0, {}, 'Knob')}
-      wheelEnabled={boolean('wheelEnabled', false, 'Knob')}
-    />
-    <hr />
     <Knob
       disabled={boolean('disabled', false, 'Knob')}
       max={number('max', 127, {}, 'Knob')}
@@ -129,44 +118,6 @@ import './assets/sampleStyles.css'
     height={120}
     name="KnobPicker"
   >
-    <KnobPickerOld
-      disabled={boolean('disabled', false, 'KnobPicker')}
-      label="With Label"
-      max={number('max', 127, {}, 'KnobPicker')}
-      min={number('min', 0, {}, 'KnobPicker')}
-      onChange={action('KnobPicker')}
-      shrinkLabel={boolean('shrinkLabel', false, 'KnobPicker')}
-      size={number('size', 35, {}, 'KnobPicker')}
-      value={number('value', 0, {}, 'KnobPicker')}
-      wheelEnabled={boolean('wheelEnabled', false, 'KnobPicker')}
-    />
-    <br />
-    <KnobPickerOld
-      disabled={boolean('disabled', false, 'KnobPicker')}
-      label="No Label"
-      includeLabel={false}
-      max={number('max', 127, {}, 'KnobPicker')}
-      min={number('min', 0, {}, 'KnobPicker')}
-      onChange={action('KnobPicker')}
-      shrinkLabel={boolean('shrinkLabel', false, 'KnobPicker')}
-      size={number('size', 35, {}, 'KnobPicker')}
-      value={number('value', 0, {}, 'KnobPicker')}
-      wheelEnabled={boolean('wheelEnabled', false, 'KnobPicker')}
-    />
-    <br />
-    <KnobPickerOld
-      disabled={boolean('disabled', false, 'KnobPicker')}
-      includePicker
-      label={text('label', 'Sensitivity', 'KnobPicker')}
-      max={number('max', 127, {}, 'KnobPicker')}
-      min={number('min', 0, {}, 'KnobPicker')}
-      onChange={action('KnobPicker')}
-      shrinkLabel={boolean('shrinkLabel', false, 'KnobPicker')}
-      size={number('size', 35, {}, 'KnobPicker')}
-      value={number('value', 0, {}, 'KnobPicker')}
-      wheelEnabled={boolean('wheelEnabled', false, 'KnobPicker')}
-    />
-    <br />
     <KnobPicker
       disabled={boolean('disabled', false, 'KnobPicker')}
       includePicker

@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 import { Knob as RotaryKnob } from 'react-rotary-knob'
-import * as skins from 'react-rotary-knob-skin-pack'
 import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
 import { assertRange } from '../utils'
+import knobSkin10 from './knobSkin10'
 
 const Knob = (props) => {
   const {
@@ -48,9 +48,14 @@ const Knob = (props) => {
       onWheel={wheelEnabled ? handleWheel : undefined}
       preciseMode={false}
       rotateDegrees={180}
-      // To see all skins:
-      // http://react-rotary-knob-skins-preview.surge.sh/
-      skin={skins.s10}
+      /**
+       * To see all skins:
+       * http://react-rotary-knob-skins-preview.surge.sh/
+       *
+       * NOTE: we've copied the one we use into this package because the skins
+       * pack package does not work in Electron.
+       */
+      skin={knobSkin10}
       style={{ opacity: disabled ? 0.4 : 1 }}
       unlockDistance={0}
       {...{ max, min, value, ...rest }}
