@@ -1,4 +1,4 @@
-import { forwardRef, useMemo } from 'react'
+import React, { forwardRef, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { arraySequence } from '../utils'
 import Select from './Select'

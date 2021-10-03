@@ -1,4 +1,4 @@
-import { Children, forwardRef, useCallback, useMemo } from 'react'
+import React, { Children, forwardRef, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import ReactSelect, { components } from 'react-select'
 

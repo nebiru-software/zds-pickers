@@ -1,3 +1,4 @@
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Knob as RotaryKnob } from 'react-rotary-knob'
 import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'

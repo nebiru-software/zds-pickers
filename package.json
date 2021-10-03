@@ -1,6 +1,6 @@
 {
   "name": "zds-pickers",
-  "version": "3.7.2",
+  "version": "3.8.0",
   "homepage": "https://github.com/dkadrios/zds-pickers#readme",
   "license": "MIT",
   "main": "dist/index.js",
@@ -81,7 +81,7 @@
     "prop-types": "^15",
     "react": "^17",
     "react-rotary-knob": "^1.1.8",
-    "react-select": "^4",
+    "react-select": ">4",
     "react-svg-text": "^0.1.2",
     "zds-mappings": "^1.4.9"
   }

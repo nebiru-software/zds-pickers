@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { forwardRef } from 'react'
+import React, { forwardRef } from 'react'
 import { findObj } from '../utils'
 import ResponseCurve, { DefaultTooltip, RESPONSE_CURVES } from './ResponseCurve'
 import Select from './Select'

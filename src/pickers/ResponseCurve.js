@@ -1,4 +1,4 @@
-import { Fragment, createElement, useRef } from 'react'
+import React, { Fragment, createElement, useRef } from 'react'
 import PropTypes from 'prop-types'
 import useComponentSize from '@rehooks/component-size'
 import Text from 'react-svg-text'

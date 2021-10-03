@@ -1,4 +1,4 @@
-export default {
+const knobSkin10 = {
   knobX: 71.44,
   knobY: 71.44,
   svg: `
@@ -90,3 +90,5 @@ export default {
     },
   ],
 }
+
+export default knobSkin10
