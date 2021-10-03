@@ -11,6 +11,7 @@ export { default as PolarityPicker } from './pickers/PolarityPicker'
 export { default as ResponseCurvePicker } from './pickers/ResponseCurvePicker'
 export { default as Select } from './pickers/Select'
 export { default as StatusPicker } from './pickers/StatusPicker'
+export { default as SVGText } from './other/SVGText'
 export { default as ValuePicker } from './pickers/ValuePicker'
 
 // MIDI
@@ -36,5 +37,6 @@ export {
 } from './pickers/ResponseCurve'
 
 export { default as ccValues } from './midi/ccValues'
+export { default as getStringWidth } from './other/getStringWidth'
 
-export { assertRange } from './utils'
+export { assertRange, memoize } from './utils'

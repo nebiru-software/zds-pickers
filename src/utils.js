@@ -11,3 +11,15 @@ export const assertRange = (value, max = 127, min = 0) => {
 }
 
 export const findObj = (key, value) => arr => arr?.find(item => item?.[key] === value)
+
+export const memoize = (functionParam) => {
+  const cacheMap = new Map()
+
+  return (...argsObj) => {
+    const key = argsObj[0]
+    if (cacheMap.has(key)) return cacheMap.get(key)
+    const resultSet = functionParam(...argsObj)
+    cacheMap.set(key, resultSet)
+    return resultSet
+  }
+}

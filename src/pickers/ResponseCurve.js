@@ -1,7 +1,7 @@
 import React, { Fragment, createElement, useRef } from 'react'
 import PropTypes from 'prop-types'
-import useComponentSize from '@rehooks/component-size'
-import Text from 'react-svg-text'
+import useComponentSize from '../hooks/useComponentSize'
+import SVGText from '../other/SVGText'
 
 export const DefaultTooltip = ({ children }) => createElement(Fragment, null, children)
 
@@ -179,20 +179,20 @@ const ResponseCurve = (props) => {
           y={0}
         />
 
-        <Text
+        <SVGText
           className="axis"
           textAnchor="middle"
           transform={`translate(${axisX1 - 14} ${height / 2}) rotate(90)`}
         >
           Applied force
-        </Text>
-        <Text
+        </SVGText>
+        <SVGText
           className="axis"
           textAnchor="middle"
           transform={`translate(${width / 2} ${axisY2 + 13})`}
         >
           Output (velocity)
-        </Text>
+        </SVGText>
 
         <line
           className="axis"
