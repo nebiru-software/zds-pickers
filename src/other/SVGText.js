@@ -6,14 +6,14 @@ import PropTypes from 'prop-types'
 import reduceCSSCalc from 'reduce-css-calc'
 import getStringWidth from './getStringWidth'
 
-const calculateWordWidths = (props) => {
+const calculateWordWidths = ({ children, style }) => {
   try {
-    const words = props.children ? props.children.toString().split(/\s+/) : []
+    const words = children ? children.toString().split(/\s+/) : []
     const wordsWithComputedWidth = words.map(word => (
-      { word, width: getStringWidth(word, props.style) }
+      { word, width: getStringWidth(word, style) }
     ))
 
-    const spaceWidth = getStringWidth('\u00A0', props.style)
+    const spaceWidth = getStringWidth('\u00A0', style)
 
     return { wordsWithComputedWidth, spaceWidth }
   } catch (e) {
@@ -29,10 +29,12 @@ const Text = (props) => {
   const {
     angle,
     capHeight,
+    children,
     dx,
     dy,
     lineHeight,
     scaleToFit,
+    style,
     textAnchor,
     verticalAnchor,
     width,
@@ -43,8 +45,8 @@ const Text = (props) => {
   const y = textProps.y + dy
 
   useEffect(() => {
-    const updateWordsWithoutCalculate = ({ children }) => {
-      const words = children ? props.toString().split(/\s+/) : []
+    const updateWordsWithoutCalculate = () => {
+      const words = children ? children.toString().split(/\s+/) : []
       setWordsByLines([{ words }])
     }
 
@@ -71,15 +73,15 @@ const Text = (props) => {
 
     const updateWordsByLines = () => {
     // Only perform calculations if using features that require them (multiline, scaleToFit)
-      if ((width || props.scaleToFit)) {
-        const wordWidths = calculateWordWidths(props)
+      if ((width || scaleToFit)) {
+        const wordWidths = calculateWordWidths({ children, style })
 
         if (wordWidths) {
           const { spaceWidth: sw, wordsWithComputedWidth: www } = wordWidths
           setSpaceWidth(sw)
           setWordsWithComputedWidth(www)
         } else {
-          updateWordsWithoutCalculate(props)
+          updateWordsWithoutCalculate()
 
           return
         }
@@ -87,16 +89,17 @@ const Text = (props) => {
         const newWordsByLines = calculateWordsByLines(
           wordsWithComputedWidth,
           spaceWidth,
-          props.width,
+          width,
         )
+
         setWordsByLines(newWordsByLines)
       } else {
-        updateWordsWithoutCalculate(props)
+        updateWordsWithoutCalculate()
       }
     }
 
     updateWordsByLines(true)
-  }, [props, scaleToFit, spaceWidth, width, wordsWithComputedWidth])
+  }, [children, scaleToFit, spaceWidth, style, width, wordsWithComputedWidth])
 
   let startDy
   switch (verticalAnchor) {
@@ -152,6 +155,7 @@ const Text = (props) => {
 Text.propTypes = {
   angle: PropTypes.number,
   capHeight: PropTypes.string,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.elementType]),
   dx: PropTypes.number,
   dy: PropTypes.number,
   lineHeight: PropTypes.string,
@@ -167,6 +171,7 @@ Text.propTypes = {
 Text.defaultProps = {
   angle: undefined,
   capHeight: '0.71em', // Magic number from d3
+  children: undefined,
   dx: 0,
   dy: 0,
   lineHeight: '1em',
