@@ -1,7 +1,7 @@
 // Adapted from https://github.com/techniq/react-svg-text
 
 /* eslint-disable no-use-before-define */
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import reduceCSSCalc from 'reduce-css-calc'
 import getStringWidth from './getStringWidth'
@@ -44,13 +44,8 @@ const Text = (props) => {
   const x = textProps.x + dx
   const y = textProps.y + dy
 
-  useEffect(() => {
-    const updateWordsWithoutCalculate = () => {
-      const words = children ? children.toString().split(/\s+/) : []
-      setWordsByLines([{ words }])
-    }
-
-    const calculateWordsByLines = (
+  const calculateWordsByLines = useCallback(
+    (
       www,
       sw,
       lineWidth,
@@ -58,48 +53,46 @@ const Text = (props) => {
       const currentLine = result[result.length - 1]
 
       if (currentLine && (lineWidth == null || scaleToFit
-          || (currentLine.width + w + sw) < lineWidth)) {
-        // Word can be added to an existing line
+        || (currentLine.width + w + sw) < lineWidth)) {
+      // Word can be added to an existing line
         currentLine.words.push(word)
         currentLine.width += w + sw
       } else {
-        // Add first word to line or word is too long to scaleToFit on existing line
+      // Add first word to line or word is too long to scaleToFit on existing line
         const newLine = { words: [word], width: w }
         result.push(newLine)
       }
 
       return result
-    }, [])
+    }, []),
+    [scaleToFit],
+  )
 
-    const updateWordsByLines = () => {
+  useEffect(() => {
+    const words = children ? children.toString().split(/\s+/) : []
+    setWordsByLines([{ words }])
+  }, [children])
+
+  useEffect(() => {
     // Only perform calculations if using features that require them (multiline, scaleToFit)
-      if ((width || scaleToFit)) {
-        const wordWidths = calculateWordWidths({ children, style })
+    if ((width || scaleToFit)) {
+      const wordWidths = calculateWordWidths({ children, style })
 
-        if (wordWidths) {
-          const { spaceWidth: sw, wordsWithComputedWidth: www } = wordWidths
-          setSpaceWidth(sw)
-          setWordsWithComputedWidth(www)
-        } else {
-          updateWordsWithoutCalculate()
-
-          return
-        }
-
-        const newWordsByLines = calculateWordsByLines(
-          wordsWithComputedWidth,
-          spaceWidth,
-          width,
-        )
-
-        setWordsByLines(newWordsByLines)
-      } else {
-        updateWordsWithoutCalculate()
+      if (wordWidths) {
+        const { spaceWidth: sw, wordsWithComputedWidth: www } = wordWidths
+        setSpaceWidth(sw)
+        setWordsWithComputedWidth(www)
       }
-    }
 
-    updateWordsByLines(true)
-  }, [children, scaleToFit, spaceWidth, style, width, wordsWithComputedWidth])
+      const newWordsByLines = calculateWordsByLines(
+        wordsWithComputedWidth,
+        spaceWidth,
+        width,
+      )
+
+      setWordsByLines(newWordsByLines)
+    }
+  }, [calculateWordsByLines, children, scaleToFit, spaceWidth, style, width, wordsWithComputedWidth])
 
   let startDy
   switch (verticalAnchor) {
