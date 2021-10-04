@@ -37,6 +37,5 @@ export {
 } from './pickers/ResponseCurve'
 
 export { default as ccValues } from './midi/ccValues'
-export { default as getStringWidth } from './other/getStringWidth'
 
 export { assertRange, memoize } from './utils'
