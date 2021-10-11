@@ -40,9 +40,12 @@ const Select = forwardRef((props, ref) => {
   }, [onChange])
 
   const selectedOption = useMemo(
-    () => options && options.find
-      ? options?.find(option => value === option.value)
-      : undefined,
+    () => {
+      const flatOptionsList = options.reduce((acc, entry) => entry.options
+        ? [...acc, ...entry.options]
+        : [...acc, entry], [])
+      return flatOptionsList.find(option => value === option.value)        || undefined
+    },
     [options, value],
   )
 
@@ -110,7 +113,7 @@ Select.propTypes = {
 Select.defaultProps = {
   disabled: false,
   label: undefined,
-  options: undefined,
+  options: [],
   shrinkLabel: false,
   value: undefined,
 }
