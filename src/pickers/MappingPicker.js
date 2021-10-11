@@ -10,7 +10,7 @@ const MappingPicker = forwardRef(({ allowClearing, ...rest }, ref) => {
   const options = useMemo(() => {
     const result = allowClearing
       ? [{
-        value: -1,
+        value: 'No Mapping',
         label: <span className="zds-mappings-clear-mapping">No Mapping</span>,
       }]
       : []
