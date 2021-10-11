@@ -39,15 +39,11 @@ const Select = forwardRef((props, ref) => {
     onChange(option.value)
   }, [onChange])
 
-  const selectedOption = useMemo(
-    () => {
-      const flatOptionsList = options.reduce((acc, entry) => entry.options
-        ? [...acc, ...entry.options]
-        : [...acc, entry], [])
-      return flatOptionsList.find(option => value === option.value)        || undefined
-    },
-    [options, value],
-  )
+  const flatOptionsList = options.reduce((acc, entry) => entry.options
+    ? [...acc, ...entry.options]
+    : [...acc, entry], [])
+
+  const selectedOption = flatOptionsList.find(option => value === option.value) || undefined
 
   return shrinkLabel
     ? (

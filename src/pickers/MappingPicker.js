@@ -8,24 +8,28 @@ const MappingPicker = forwardRef(({ allowClearing, ...rest }, ref) => {
   const userMappings = getUserMappingNames()
 
   const options = useMemo(() => {
-    const result = [
+    const result = allowClearing
+      ? [{
+        value: -1,
+        label: <span className="zds-mappings-clear-mapping">No Mapping</span>,
+      }]
+      : []
+
+    return [
+      ...result,
+
       {
-        label: '',
+        label: allowClearing ? <hr /> : '',
         options: userMappings.map(label => ({ value: label, label: <span className="zds-mappings-user-mapping">{label}</span> })),
       },
 
       {
-        label: userMappings.length ? <hr /> : '',
+        label: userMappings.length
+          ? <hr />
+          : allowClearing ? <hr /> : '',
         options: stockMappings.map(label => ({ label, value: label })),
-      }]
-
-    return allowClearing
-      ? [...result,
-        {
-          label: <hr />,
-          options: [{ value: -1, label: <span className="zds-mappings-clear-mapping">No Mapping</span> }],
-        }]
-      : result
+      },
+    ]
   }, [allowClearing, stockMappings, userMappings])
 
   return (
@@ -33,7 +37,6 @@ const MappingPicker = forwardRef(({ allowClearing, ...rest }, ref) => {
       {...rest}
       options={options}
       ref={ref}
-      value="General MIDI"
     />
   )
 })
@@ -41,11 +44,12 @@ const MappingPicker = forwardRef(({ allowClearing, ...rest }, ref) => {
 MappingPicker.propTypes = {
   allowClearing: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
 }
 
 MappingPicker.defaultProps = {
   allowClearing: true,
+  value: 'General MIDI',
 }
 
 export default MappingPicker
