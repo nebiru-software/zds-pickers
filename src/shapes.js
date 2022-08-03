@@ -1,4 +1,6 @@
-import { number, shape, string } from 'prop-types'
+import { number, oneOfType, shape, string } from 'prop-types'
+
+export const numberOrString = oneOfType([number, string])
 
 export const mappingShape = shape({
   note: number.isRequired,

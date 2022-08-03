@@ -5,8 +5,8 @@ import Select from './Select'
 
 const CCPicker = forwardRef((props, ref) => (
   <Select
-    {...props}
     options={ccValues}
+    {...props}
     ref={ref}
   />
 ))

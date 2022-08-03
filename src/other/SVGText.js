@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
+import { numberOrString } from '../shapes'
 import { MEASUREMENT_ELEMENT_ID, calculateWordWidths, calculateWordsByLines } from './utils'
 
 const Text = (props) => {
@@ -97,7 +98,8 @@ Text.propTypes = {
   maxHeight: PropTypes.number,
   maxWidth: PropTypes.number,
   verticalAnchor: PropTypes.oneOf(['start', 'middle', 'end']),
-  x: PropTypes.number,
+  x: numberOrString,
+  y: numberOrString,
 }
 
 Text.defaultProps = {
@@ -106,7 +108,8 @@ Text.defaultProps = {
   maxHeight: undefined,
   maxWidth: undefined,
   verticalAnchor: 'start',
-  x: 0,
+  x: '50%',
+  y: '50%',
 }
 
 export default Text
