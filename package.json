@@ -1,6 +1,6 @@
 {
   "name": "zds-pickers",
-  "version": "3.8.12",
+  "version": "3.8.13",
   "homepage": "https://github.com/dkadrios/zds-pickers#readme",
   "license": "MIT",
   "main": "dist/index.js",
@@ -25,7 +25,7 @@
     "clean": "rimraf dist",
     "lint:fix": "npm run lint -- --fix",
     "lint": "eslint 'src/**'",
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "sb": "start-storybook -p 6006"
   },
   "devDependencies": {

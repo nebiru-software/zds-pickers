@@ -183,6 +183,8 @@ const ResponseCurve = (props) => {
           className="axis"
           textAnchor="middle"
           transform={`translate(${axisX1 - 14} ${height / 2}) rotate(90)`}
+          x={0}
+          y={0}
         >
           Applied force
         </SVGText>
@@ -190,6 +192,8 @@ const ResponseCurve = (props) => {
           className="axis"
           textAnchor="middle"
           transform={`translate(${width / 2} ${axisY2 + 13})`}
+          x={0}
+          y={0}
         >
           Output (velocity)
         </SVGText>
