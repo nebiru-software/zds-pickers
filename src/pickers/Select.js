@@ -2,7 +2,30 @@ import React, { Children, forwardRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import ReactSelect, { components } from 'react-select'
 
-const { Placeholder, ValueContainer } = components
+const { IndicatorsContainer, Placeholder, ValueContainer } = components
+
+const CustomIndicatorsContainer = ({ children, ...rest }) => {
+  const actionButton = rest.selectProps?.selectProps?.actionButton
+
+  return (
+    <IndicatorsContainer {...rest}>
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+      <div
+        onMouseDown={(e) => {
+          e.stopPropagation()
+          e.preventDefault()
+        }}
+        style={{ display: 'flex' }}
+      >
+        {actionButton}
+        {children}
+      </div>
+    </IndicatorsContainer>
+  )
+}
+CustomIndicatorsContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+}
 
 const CustomValueContainer = ({ children, ...props }) => (
   <ValueContainer {...props}>
@@ -52,6 +75,7 @@ const Select = forwardRef((props, ref) => {
           {...rest}
           classNamePrefix="zds-pickers"
           components={{
+            IndicatorsContainer: CustomIndicatorsContainer,
             ValueContainer: CustomValueContainer,
           }}
           isDisabled={disabled}
@@ -87,6 +111,9 @@ const Select = forwardRef((props, ref) => {
         <ReactSelect
           {...rest}
           classNamePrefix="zds-pickers"
+          components={{
+            IndicatorsContainer: CustomIndicatorsContainer,
+          }}
           isDisabled={disabled}
           onChange={handleChange}
           options={options}

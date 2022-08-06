@@ -195,6 +195,19 @@ import './assets/sampleStyles.css'
       shrinkLabel={boolean('shrinkLabel', false, 'NotePicker')}
       value={number('value', 38, {}, 'NotePicker2')}
     />
+    <br />
+    <NotePicker
+      channel={number('channel', 0, 'NotePicker3')}
+      disabled={boolean('disabled', false, 'NotePicker3')}
+      label="Action button"
+      mapping={gmMapping}
+      onChange={action('handleChange3')}
+      selectProps={{actionButton:<button onClick={e=>{
+        console.log('click')
+        }}>?</button>}}
+      shrinkLabel={boolean('shrinkLabel', false, 'NotePicker')}
+      value={number('value', 38, {}, 'NotePicker3')}
+    />
   </Story>
 </Canvas>
 
