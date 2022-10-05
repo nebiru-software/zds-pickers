@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { numberOrString } from '../shapes'
