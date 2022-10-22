@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   extends: [
     'airbnb',
     'plugin:import/errors',
@@ -237,6 +237,7 @@ module.exports = {
     'react/forbid-prop-types': 'off',
     'react-hooks/exhaustive-deps': 'warn',
     'react-hooks/rules-of-hooks': 'error',
+    'react/function-component-definition': ['error', { namedComponents: 'arrow-function' }],
     'react/jsx-curly-brace-presence': 'error',
     'react/jsx-curly-spacing': ['error', { when: 'never', children: true }],
     'react/jsx-filename-extension': ['error', { extensions: ['.js'] }],

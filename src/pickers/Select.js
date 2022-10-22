@@ -1,8 +1,8 @@
 import React, { Children, forwardRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
-import ReactSelect, { components } from 'react-select'
+import ReactSelect, { components as originalComponents } from 'react-select'
 
-const { IndicatorsContainer, Placeholder, ValueContainer } = components
+const { IndicatorsContainer, Placeholder, ValueContainer } = originalComponents
 
 const CustomIndicatorsContainer = ({ children, ...rest }) => {
   const actionButton = rest.selectProps?.selectProps?.actionButton
@@ -49,6 +49,7 @@ CustomValueContainer.defaultProps = { isFocused: false }
 
 const Select = forwardRef((props, ref) => {
   const {
+    components,
     disabled,
     label,
     onChange,
@@ -77,6 +78,7 @@ const Select = forwardRef((props, ref) => {
           components={{
             IndicatorsContainer: CustomIndicatorsContainer,
             ValueContainer: CustomValueContainer,
+            ...components,
           }}
           isDisabled={disabled}
           onChange={handleChange}
@@ -113,6 +115,7 @@ const Select = forwardRef((props, ref) => {
           classNamePrefix="zds-pickers"
           components={{
             IndicatorsContainer: CustomIndicatorsContainer,
+            ...components,
           }}
           isDisabled={disabled}
           onChange={handleChange}
@@ -125,6 +128,7 @@ const Select = forwardRef((props, ref) => {
 })
 
 Select.propTypes = {
+  components: PropTypes.object,
   disabled: PropTypes.bool,
   label: PropTypes.string,
   onChange: PropTypes.func.isRequired,
@@ -134,6 +138,7 @@ Select.propTypes = {
 }
 
 Select.defaultProps = {
+  components: undefined,
   disabled: false,
   label: undefined,
   options: [],
