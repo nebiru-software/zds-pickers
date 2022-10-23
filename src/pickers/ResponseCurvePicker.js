@@ -31,10 +31,10 @@ const ResponseCurvePicker = forwardRef((props, ref) => {
     <Select
       {...rest}
       components={{
-        Input: () => null,
         Placeholder,
         MenuList,
       }}
+      isSearchable={false}
       onChange={f => f}
       ref={ref}
       value={value}
