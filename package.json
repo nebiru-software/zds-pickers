@@ -69,7 +69,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-rotary-knob": "1.1.8",
-    "react-select": "5.5.4",
+    "react-select": "5.7.0",
     "reduce-css-calc": "2.1.8",
     "zds-mappings": "1.4.9"
   },
