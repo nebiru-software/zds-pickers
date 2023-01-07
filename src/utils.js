@@ -10,7 +10,11 @@ export const assertRange = (value, max = 127, min = 0) => {
   return result >= min ? (result <= max ? result : max) : min
 }
 
+export const compose = (...fns) => (...args) => fns.reduceRight((arg, fn) => fn(arg), ...args)
+
 export const findObj = (key, value) => arr => arr?.find(item => item?.[key] === value)
+
+export const flatten = (arr = []) => arr.reduce((a, b) => a.concat(b), [])
 
 export const memoize = (functionParam) => {
   const cacheMap = new Map()
@@ -23,3 +27,20 @@ export const memoize = (functionParam) => {
     return resultSet
   }
 }
+
+export const omit = (...keys) => obj => Object.entries(obj)
+  .filter(([key]) => !flatten([...keys])
+    .map(String)
+    .includes(key))
+  .reduce((_obj, [key, val]) => Object.assign(_obj, { [key]: val }), {})
+
+export const pick = (...keys) => obj => Object.entries(obj)
+  .filter(([key]) => flatten([...keys])
+    .map(String)
+    .includes(key))
+  .reduce((_obj, [key, val]) => Object.assign(_obj, { [key]: val }), {})
+
+export const set = (key, value) => obj => ({
+  ...obj,
+  [key]: value,
+})

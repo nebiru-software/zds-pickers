@@ -1,6 +1,7 @@
-import React, { Children, forwardRef, useCallback } from 'react'
+import React, { Children, forwardRef, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import ReactSelect, { components as originalComponents } from 'react-select'
+import { compose, omit, set } from '../utils'
 
 const { IndicatorsContainer, Placeholder, ValueContainer } = originalComponents
 
@@ -54,6 +55,7 @@ const Select = forwardRef((props, ref) => {
     label,
     onChange,
     options,
+    preserveMenuWidth,
     shrinkLabel,
     value,
     ...rest
@@ -68,6 +70,43 @@ const Select = forwardRef((props, ref) => {
     : [...acc, entry], [])
 
   const selectedOption = flatOptionsList.find(option => value === option.value) || undefined
+
+  const styles = useMemo(() => {
+    const base = preserveMenuWidth
+      ? {
+        menu: omit('width'),
+        menuList: set('overflowX', 'hidden'),
+        option: compose(
+          set('whiteSpace', 'nowrap'),
+          set('paddingRight', 10),
+        ),
+      }
+      : {}
+
+    return shrinkLabel
+      ? {
+        ...base,
+        container: (provided/* , state */) => ({
+          ...provided,
+          marginTop: 10,
+        }),
+        placeholder: (provided, state) => ({
+          ...provided,
+          position: 'absolute',
+          left: state.hasValue || state.selectProps.inputValue ? -2 : '4%',
+          top: state.hasValue || state.selectProps.inputValue ? -12 : '50%',
+          transition: 'top 0.1s, font-size 0.1s, color 0.1s',
+          fontSize: (state.hasValue || state.selectProps.inputValue) && 13,
+        }),
+        valueContainer: (provided/* , state */) => ({
+          ...provided,
+          overflow: 'visible',
+        }),
+      }
+      : {
+        ...base,
+      }
+  }, [preserveMenuWidth, shrinkLabel])
 
   return shrinkLabel
     ? (
@@ -85,24 +124,7 @@ const Select = forwardRef((props, ref) => {
           options={options}
           placeholder={label}
           ref={ref}
-          styles={{
-            container: (provided/* , state */) => ({
-              ...provided,
-              marginTop: 10,
-            }),
-            valueContainer: (provided/* , state */) => ({
-              ...provided,
-              overflow: 'visible',
-            }),
-            placeholder: (provided, state) => ({
-              ...provided,
-              position: 'absolute',
-              left: state.hasValue || state.selectProps.inputValue ? -2 : '4%',
-              top: state.hasValue || state.selectProps.inputValue ? -12 : '50%',
-              transition: 'top 0.1s, font-size 0.1s, color 0.1s',
-              fontSize: (state.hasValue || state.selectProps.inputValue) && 13,
-            }),
-          }}
+          styles={styles}
           value={selectedOption}
         />
       </div>
@@ -121,6 +143,7 @@ const Select = forwardRef((props, ref) => {
           onChange={handleChange}
           options={options}
           ref={ref}
+          styles={styles}
           value={selectedOption}
         />
       </div>
@@ -133,6 +156,7 @@ Select.propTypes = {
   label: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.object),
+  preserveMenuWidth: PropTypes.bool,
   shrinkLabel: PropTypes.bool,
   value: PropTypes.any, // PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 }
@@ -142,6 +166,7 @@ Select.defaultProps = {
   disabled: false,
   label: undefined,
   options: [],
+  preserveMenuWidth: false,
   shrinkLabel: false,
   value: undefined,
 }

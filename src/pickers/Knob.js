@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Knob as RotaryKnob } from 'react-rotary-knob'
+import { Knob as RotaryKnob } from 'nebiru-react-rotary-knob'
 import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
 import { assertRange } from '../utils'
 import knobSkin10 from './knobSkin10'

@@ -20,14 +20,20 @@ const MappingPicker = forwardRef(({ allowClearing, ...rest }, ref) => {
 
       {
         label: allowClearing ? <hr /> : '',
-        options: userMappings.map(label => ({ value: label, label: <span className="zds-mappings-user-mapping">{label}</span> })),
+        options: userMappings.map(label => ({
+          value: label,
+          label: <span className="zds-mappings-user-mapping">{label}</span>,
+        })),
       },
 
       {
         label: userMappings.length
           ? <hr />
           : allowClearing ? <hr /> : '',
-        options: stockMappings.map(label => ({ label, value: label })),
+        options: stockMappings.map(label => ({
+          label,
+          value: label,
+        })),
       },
     ]
   }, [allowClearing, stockMappings, userMappings])

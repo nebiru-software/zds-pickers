@@ -8515,6 +8515,18 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
 
+nebiru-react-rotary-knob@1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/nebiru-react-rotary-knob/-/nebiru-react-rotary-knob-1.1.8.tgz#b70d954b1ca439be03f79ea1e0cf245a96d0743d"
+  integrity sha512-nDZ9Zr9Zw9nKHPr68BsOBB4dTbxhuSdmMFM+k5miZ6lWhWGwXCgfHzXCXCfsDt9V6iLwjhfOxDumjx0W/f1aAg==
+  dependencies:
+    d3-drag "^1.2.1"
+    d3-scale "^2.0.0"
+    d3-selection "^1.3.0"
+    prop-types "^15.6.0"
+    react-svgmt "^1.1.7"
+    uuid "^3.2.1"
+
 negotiator@0.6.3:
   version "0.6.3"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.3.tgz#58e323a72fedc0d6f9cd4d31fe49f51479590ccd"
@@ -9717,18 +9729,6 @@ react-refresh@^0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.11.0.tgz#77198b944733f0f1f1a90e791de4541f9f074046"
   integrity sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==
-
-react-rotary-knob@1.1.8:
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/react-rotary-knob/-/react-rotary-knob-1.1.8.tgz#d42ae85dfc7be335ca9b6e5feb8410d288703f60"
-  integrity sha512-K/RfMCM1OcDUMPdP7uR/uDBcg84rFgvC1HkgS89EGvZzaHwURCV/9JQTmJNxWeaCZhd2piFKFPoej3QAu6DAWQ==
-  dependencies:
-    d3-drag "^1.2.1"
-    d3-scale "^2.0.0"
-    d3-selection "^1.3.0"
-    prop-types "^15.6.0"
-    react-svgmt "^1.1.7"
-    uuid "^3.2.1"
 
 react-select@5.7.0:
   version "5.7.0"

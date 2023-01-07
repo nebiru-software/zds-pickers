@@ -1,6 +1,6 @@
 {
   "name": "zds-pickers",
-  "version": "3.9.2",
+  "version": "3.9.6",
   "homepage": "https://github.com/dkadrios/zds-pickers#readme",
   "license": "MIT",
   "main": "dist/index.js",
@@ -65,10 +65,10 @@
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-react": "7.31.10",
     "eslint-plugin-react-hooks": "4.6.0",
+    "nebiru-react-rotary-knob": "1.1.8",
     "prop-types": "15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-rotary-knob": "1.1.8",
     "react-select": "5.7.0",
     "reduce-css-calc": "2.1.8",
     "zds-mappings": "1.4.9"
@@ -76,9 +76,9 @@
   "dependencies": {},
   "peerDependencies": {
     "classnames": "^2.3.2",
+    "nebiru-react-rotary-knob": "1.1.8",
     "prop-types": "^15.8.1",
     "react": ">=18.2.0",
-    "react-rotary-knob": "^1.1.8",
     "react-select": ">=5.5.4",
     "reduce-css-calc": ">=2.1.8",
     "zds-mappings": "^1.4.9"
