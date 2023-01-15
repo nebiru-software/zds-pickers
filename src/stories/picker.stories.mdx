@@ -11,6 +11,7 @@ import KnobPicker from '../pickers/KnobPicker'
 import LatchPicker from '../pickers/LatchPicker'
 import MappingPicker from '../pickers/MappingPicker'
 import NotePicker from '../pickers/NotePicker'
+import PianoPicker from '../pickers/PianoPicker'
 import PolarityPicker from '../pickers/PolarityPicker'
 import ResponseCurve from '../pickers/ResponseCurve'
 import ResponseCurvePicker from '../pickers/ResponseCurvePicker'
@@ -213,6 +214,20 @@ import './assets/sampleStyles.css'
 </Canvas>
 
 <ArgsTable of={NotePicker} />
+
+# PianoPicker
+<Canvas withToolbar>
+  <Story
+    height={120}
+    name="PianoPicker"
+  >
+    <PianoPicker
+      width={number('width', 1000, {}, 'PianoPicker')}
+    />
+  </Story>
+</Canvas>
+
+<ArgsTable of={PolarityPicker} />
 
 # PolarityPicker
 <Canvas withToolbar>
