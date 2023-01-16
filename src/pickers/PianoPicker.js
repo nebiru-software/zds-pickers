@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Piano as ReactPiano } from 'react-piano'
+import { Piano as ReactPiano } from 'zds-react-piano'
 import SoundfontProvider from '../other/SoundFontProvider'
 import DefaultTooltip from '../other/DefaultTooltip'
 

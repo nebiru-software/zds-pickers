@@ -294,6 +294,12 @@ body .response-curve-picker text.button-selected {
   height: 98%;
 }
 
+.ReactPiano__Key--middleC > div::before {
+  content: "◆";
+  position: absolute;
+  top: 30%;
+}
+
 /*
  * Styles for disabled state
  */
