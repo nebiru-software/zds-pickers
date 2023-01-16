@@ -12,6 +12,7 @@ const SoundfontProvider = (props) => {
     format,
     hostname,
     instrumentName,
+    onChange,
     render,
     soundfont,
   } = props
@@ -57,10 +58,12 @@ const SoundfontProvider = (props) => {
   }, [instrument, instrumentName])
 
   const playNote = (midiNumber) => {
-    audioContext.resume().then(() => {
-      const audioNode = instrument.play(midiNumber)
-      setActiveAudioNodes(prev => ({ ...prev, [midiNumber]: audioNode }))
-    })
+    if (instrument) {
+      audioContext.resume().then(() => {
+        const audioNode = instrument.play(midiNumber)
+        setActiveAudioNodes(prev => ({ ...prev, [midiNumber]: audioNode }))
+      })
+    }
   }
 
   const stopNote = (midiNumber) => {
@@ -72,6 +75,7 @@ const SoundfontProvider = (props) => {
       audioNode.stop()
       setActiveAudioNodes(prev => ({ ...prev, [midiNumber]: null }))
     })
+    onChange?.(midiNumber)
   }
 
   // Clear any residual notes that don't get called with stopNote
@@ -100,6 +104,7 @@ SoundfontProvider.propTypes = {
   format: PropTypes.oneOf(['mp3', 'ogg']),
   hostname: PropTypes.string,
   instrumentName: PropTypes.string,
+  onChange: PropTypes.func,
   render: PropTypes.func.isRequired,
   soundfont: PropTypes.oneOf(['MusyngKite', 'FluidR3_GM']),
 }
@@ -108,6 +113,7 @@ SoundfontProvider.defaultProps = {
   format: undefined, // mp3,
   hostname: undefined, // https://d1pzp51pvbm36p.cloudfront.net
   instrumentName: undefined, // acoustic_grand_piano
+  onChange: undefined,
   soundfont: undefined, // MusyngKite,
   // soundfont: 'FluidR3_GM',
 }

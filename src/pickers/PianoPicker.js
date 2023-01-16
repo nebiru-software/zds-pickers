@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Piano as ReactPiano } from 'react-piano'
 import SoundfontProvider from '../other/SoundFontProvider'
+import DefaultTooltip from '../other/DefaultTooltip'
 
 const firstNote = 21
 const lastNote = 108
@@ -32,6 +33,7 @@ const WithProvider = ({
   height,
   hostname,
   instrumentName,
+  onChange,
   soundfont,
   width,
 }) => (
@@ -41,6 +43,7 @@ const WithProvider = ({
       format,
       hostname,
       instrumentName,
+      onChange,
       soundfont,
     }}
     render={({ isLoading, playNote, stopNote }) => (
@@ -57,12 +60,19 @@ const WithProvider = ({
   />
 )
 
+PianoPicker.propTypes = {
+  height: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
+}
+
 WithProvider.propTypes = {
   format: PropTypes.oneOf(['mp3', 'ogg']),
   height: PropTypes.number.isRequired,
   hostname: PropTypes.string,
   instrumentName: PropTypes.string,
+  onChange: PropTypes.func,
   soundfont: PropTypes.oneOf(['MusyngKite', 'FluidR3_GM']),
+  Tooltip: PropTypes.elementType,
   width: PropTypes.number.isRequired,
 }
 
@@ -70,12 +80,9 @@ WithProvider.defaultProps = {
   format: undefined, // 'mp3',
   hostname: undefined,
   instrumentName: undefined,
+  onChange: undefined,
   soundfont: undefined, // 'MusyngKite',
-}
-
-PianoPicker.propTypes = {
-  height: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired,
+  Tooltip: DefaultTooltip,
 }
 
 export default WithProvider

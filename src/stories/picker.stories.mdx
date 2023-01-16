@@ -232,7 +232,8 @@ import './assets/sampleStyles.css'
     height={120}
     name="PianoPicker"
   >
-    {(args) => <PianoPicker {...args} />}
+    {(args) => <PianoPicker {...args} onChange={value=>console.log(value)
+    } />}
   </Story>
 </Canvas>
 

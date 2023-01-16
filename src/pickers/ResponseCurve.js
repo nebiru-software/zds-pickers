@@ -1,11 +1,8 @@
-import React, { Fragment, createElement, useRef } from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import useComponentSize from '../hooks/useComponentSize'
 import SVGText from '../other/SVGText'
-
-export const DefaultTooltip = ({ children }) => createElement(Fragment, null, children)
-
-DefaultTooltip.propTypes = { children: PropTypes.element.isRequired }
+import DefaultTooltip from '../other/DefaultTooltip'
 
 const RESPONSE_CURVE_0 = 0
 const RESPONSE_CURVE_1 = 1

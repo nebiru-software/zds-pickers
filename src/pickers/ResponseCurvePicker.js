@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types'
 import React, { forwardRef, useCallback } from 'react'
+import DefaultTooltip from '../other/DefaultTooltip'
 import { findObj } from '../utils'
-import ResponseCurve, { DefaultTooltip, RESPONSE_CURVES } from './ResponseCurve'
+import ResponseCurve, { RESPONSE_CURVES } from './ResponseCurve'
 import Select from './Select'
 
 const ResponseCurvePicker = forwardRef((props, ref) => {
