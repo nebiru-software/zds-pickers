@@ -1,37 +1,81 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { MidiNumbers, Piano as ReactPiano } from 'react-piano'
+import { Piano as ReactPiano } from 'react-piano'
+import SoundfontProvider from '../other/SoundFontProvider'
 
-const PianoPicker = ({ width }) => {
-  // const firstNote = MidiNumbers.fromNote('c3')
-  // const lastNote = MidiNumbers.fromNote('f5')
-  const firstNote = 21
-  const lastNote = 108
-  console.log(width)
+const firstNote = 21
+const lastNote = 108
+const numNotes = lastNote - firstNote - 1
+
+const whiteNotes = numNotes * 0.7 // approx
+
+const audioContext = new (window.AudioContext || window.webkitAudioContext)()
+
+const PianoPicker = ({ height, width, ...rest }) => {
+  const keyWidth = (width / whiteNotes) + 2
+  const keyWidthToHeight = keyWidth / height
 
   return (
     <div>
       <ReactPiano
-      // keyboardShortcuts={keyboardShortcuts}
+        keyWidthToHeight={keyWidthToHeight}
         noteRange={{ first: firstNote, last: lastNote }}
-        playNote={(midiNumber) => {
-        // Play a given note - see notes below
-        }}
-        stopNote={(midiNumber) => {
-        // Stop playing a given note - see notes below
-        }}
         width={width}
+        {...rest}
       />
     </div>
   )
 }
 
+const WithProvider = ({
+  format,
+  height,
+  hostname,
+  instrumentName,
+  soundfont,
+  width,
+}) => (
+  <SoundfontProvider
+    {...{
+      audioContext,
+      format,
+      hostname,
+      instrumentName,
+      soundfont,
+    }}
+    render={({ isLoading, playNote, stopNote }) => (
+      <PianoPicker
+        disabled={isLoading}
+        playNote={playNote}
+        stopNote={stopNote}
+        {...{
+          height,
+          width,
+        }}
+      />
+    )}
+  />
+)
+
+WithProvider.propTypes = {
+  format: PropTypes.oneOf(['mp3', 'ogg']),
+  height: PropTypes.number.isRequired,
+  hostname: PropTypes.string,
+  instrumentName: PropTypes.string,
+  soundfont: PropTypes.oneOf(['MusyngKite', 'FluidR3_GM']),
+  width: PropTypes.number.isRequired,
+}
+
+WithProvider.defaultProps = {
+  format: undefined, // 'mp3',
+  hostname: undefined,
+  instrumentName: undefined,
+  soundfont: undefined, // 'MusyngKite',
+}
+
 PianoPicker.propTypes = {
-  width: PropTypes.number,
+  height: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
 }
 
-PianoPicker.defaultProps = {
-  width: 1000,
-}
-
-export default PianoPicker
+export default WithProvider

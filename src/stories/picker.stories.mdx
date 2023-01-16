@@ -218,12 +218,21 @@ import './assets/sampleStyles.css'
 # PianoPicker
 <Canvas withToolbar>
   <Story
+    args={{
+      instrumentName: undefined,
+      height: 100,
+      width: 1000,
+    }}
+    argTypes={{
+      instrumentName:{
+        control: { type: 'select' },
+        options: [undefined, 'acoustic_grand_piano'],
+      }
+    }}
     height={120}
     name="PianoPicker"
   >
-    <PianoPicker
-      width={number('width', 1000, {}, 'PianoPicker')}
-    />
+    {(args) => <PianoPicker {...args} />}
   </Story>
 </Canvas>
 

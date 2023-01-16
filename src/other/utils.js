@@ -48,3 +48,5 @@ const calculateWordWidths = (style, textNode, words) => {
 }
 
 export { calculateWordWidths, calculateWordsByLines, MEASUREMENT_ELEMENT_ID }
+
+export const isDefined = item => item !== undefined && item !== null && item !== Math.NaN
