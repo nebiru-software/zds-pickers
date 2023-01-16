@@ -1,6 +1,6 @@
 {
   "name": "zds-pickers",
-  "version": "3.9.10",
+  "version": "3.9.12",
   "homepage": "https://github.com/dkadrios/zds-pickers#readme",
   "license": "MIT",
   "main": "dist/index.js",
@@ -73,7 +73,7 @@
     "reduce-css-calc": "2.1.8",
     "soundfont-player": "0.12.0",
     "zds-mappings": "1.4.9",
-    "zds-react-piano": "4.0.3"
+    "zds-react-piano": "4.0.4"
   },
   "dependencies": {},
   "peerDependencies": {

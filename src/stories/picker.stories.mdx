@@ -233,9 +233,11 @@ import './assets/sampleStyles.css'
     name="PianoPicker"
   >
     {(args) => {
+      const Tooltip = ({key}) => {}
       return <PianoPicker
         {...args}
         onChange={value=>console.log(value)}
+        Tooltip={Tooltip}
       />
     }}
   </Story>

@@ -34,6 +34,8 @@ const WithProvider = ({
   hostname,
   instrumentName,
   onChange,
+  onKeyMouseEnter,
+  onKeyMouseLeave,
   soundfont,
   width,
 }) => (
@@ -49,10 +51,12 @@ const WithProvider = ({
     render={({ isLoading, playNote, stopNote }) => (
       <PianoPicker
         disabled={isLoading}
-        playNote={playNote}
-        stopNote={stopNote}
         {...{
           height,
+          onKeyMouseEnter,
+          onKeyMouseLeave,
+          playNote,
+          stopNote,
           width,
         }}
       />
@@ -71,6 +75,8 @@ WithProvider.propTypes = {
   hostname: PropTypes.string,
   instrumentName: PropTypes.string,
   onChange: PropTypes.func,
+  onKeyMouseEnter: PropTypes.func,
+  onKeyMouseLeave: PropTypes.func,
   soundfont: PropTypes.oneOf(['MusyngKite', 'FluidR3_GM']),
   Tooltip: PropTypes.elementType,
   width: PropTypes.number.isRequired,
@@ -81,6 +87,8 @@ WithProvider.defaultProps = {
   hostname: undefined,
   instrumentName: undefined,
   onChange: undefined,
+  onKeyMouseEnter: undefined,
+  onKeyMouseLeave: undefined,
   soundfont: undefined, // 'MusyngKite',
   Tooltip: DefaultTooltip,
 }

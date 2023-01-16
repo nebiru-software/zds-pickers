@@ -12109,10 +12109,10 @@ zds-mappings@1.4.9:
   resolved "https://registry.yarnpkg.com/zds-mappings/-/zds-mappings-1.4.9.tgz#0ad0fdc2100756b2b64e215ee3b24fbbbe6df89a"
   integrity sha512-8eTLWiBYwuFSZ0wukJd4a+lVglVyAr3ClzVZgVlkxIWL8HwntWx7tQ0H/Hbin3WTk8mM2W7wVckKWN5LEecj0g==
 
-zds-react-piano@4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/zds-react-piano/-/zds-react-piano-4.0.3.tgz#8b763a1ceb9b46d4820fe6f1000191f581151fa9"
-  integrity sha512-aVGsXg/YfvWYhU+Q/LbdlCK7qTAK2BqgcIsZBeV2jFboVn9juXB5whwnb1sNJBz0Noll1vkSc2AwHDXcpIX+BA==
+zds-react-piano@4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/zds-react-piano/-/zds-react-piano-4.0.4.tgz#6093fcb1021ac371aa1904d383b69b6b7616c3de"
+  integrity sha512-IJ5BnVV6zomjuwPi6F5BbBkdKMg1fqyRw18X1ysk4D0zgPoqDL0RgDQU0RivQwvbOXF0gLGhl6Wh43cYmJLPpw==
   dependencies:
     classnames "^2.2.6"
     just-range "^2.1.0"
