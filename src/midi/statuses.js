@@ -21,7 +21,7 @@ const statuses = [
   { value: STATUS_PITCH_WHEEL, label: 'Pitch Wheel' },
 ]
 
-export const getStatusLabel = val => statuses.filter(({ value }) => value === val)[0].label
+export const getStatusLabel = val => statuses.filter(({ value }) => value === val)[0]?.label || '???'
 
 export const combineStatus = (channel, status) => channel | (status << 4)
 
