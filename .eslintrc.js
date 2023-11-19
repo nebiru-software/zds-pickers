@@ -1,12 +1,7 @@
 module.exports = {
   root: true,
   parser: '@babel/eslint-parser',
-  extends: [
-    'airbnb',
-    'plugin:import/errors',
-    'plugin:import/warnings',
-    'plugin:json/recommended',
-  ],
+  extends: ['airbnb', 'plugin:import/errors', 'plugin:import/warnings', 'plugin:json/recommended', 'plugin:storybook/recommended'],
   env: {
     es6: true,
     browser: true,
