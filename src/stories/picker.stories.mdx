@@ -182,6 +182,7 @@ import './assets/sampleStyles.css'
     <NotePicker
       channel={number('channel', 0, 'NotePicker')}
       disabled={boolean('disabled', false, 'NotePicker')}
+      isMelodicMode={boolean('isMelodicMode', false, 'NotePicker')}
       label={text('label', 'Note #', 'NotePicker')}
       mapping={gmMapping}
       onChange={action('handleChange')}
@@ -192,6 +193,7 @@ import './assets/sampleStyles.css'
     <NotePicker
       channel={number('channel', 0, 'NotePicker2')}
       disabled={boolean('disabled', false, 'NotePicker2')}
+      isMelodicMode={boolean('isMelodicMode', false, 'NotePicker2')}
       label="No mapping"
       onChange={action('handleChange2')}
       shrinkLabel={boolean('shrinkLabel', false, 'NotePicker')}
@@ -201,6 +203,7 @@ import './assets/sampleStyles.css'
     <NotePicker
       channel={number('channel', 0, 'NotePicker3')}
       disabled={boolean('disabled', false, 'NotePicker3')}
+      isMelodicMode={boolean('isMelodicMode', false, 'NotePicker3')}
       label="Action button"
       mapping={gmMapping}
       onChange={action('handleChange3')}
