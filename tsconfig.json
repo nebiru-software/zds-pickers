@@ -25,6 +25,6 @@
 
     "paths": {}
   },
-  "include": ["lib"],
+  "include": ["lib", "stories"],
   "exclude": ["node_modules", "**/*.spec.ts", "**/*.spec.tsx"]
 }

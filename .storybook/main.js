@@ -1,26 +1,22 @@
 module.exports = {
-  stories: [
-    '../src/**/*.stories.mdx',
-    // "../src/**/*.stories.@(js|jsx|ts|tsx)"
-  ],
+  stories: ['../stories/*.stories.ts'],
 
-  addons: [
-    '@storybook/addon-knobs',
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-mdx-gfm',
-  ],
+  addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
 
-  framework: {
-    name: '@storybook/react-webpack5',
-    options: {},
-  },
+  framework: '@storybook/react-vite',
 
   core: {
     disableTelemetry: true,
+    core: {
+      builder: '@storybook/builder-vite',
+    },
   },
 
   docs: {
-    autodocs: true,
+    autodocs: false,
+  },
+
+  typescript: {
+    reactDocgen: 'react-docgen-typescript',
   },
 }
