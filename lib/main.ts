@@ -18,19 +18,20 @@ export { default as ValuePicker } from './pickers/ValuePicker'
 
 // MIDI
 export {
-  default as statuses,
-  getStatusLabel,
   combineStatus,
   extractStatus,
-  STATUS_NOTE_OFF,
-  STATUS_NOTE_ON,
-  STATUS_AFTER_TOUCH,
-  STATUS_CONTROL_CHANGE,
-  STATUS_PROGRAM_CHANGE,
-  STATUS_CHANNEL_PRESSURE,
-  STATUS_PITCH_WHEEL,
+  getStatusLabel,
   MASK_CHANNEL,
   MASK_STATUS,
+  STATUS_AFTER_TOUCH,
+  STATUS_CHANNEL_PRESSURE,
+  STATUS_CONTROL_CHANGE,
+  STATUS_NOTE_OFF,
+  STATUS_NOTE_ON,
+  STATUS_PITCH_WHEEL,
+  STATUS_PROGRAM_CHANGE,
+  statuses,
+  Statuses,
 } from './midi/export'
 
 export {

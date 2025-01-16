@@ -1,5 +1,5 @@
-import type { WithProviderProps } from 'src/other/OctavePlayer'
 import { Piano as ReactPiano } from 'zds-react-piano'
+import type { WithProviderProps } from '../other/OctavePlayer'
 import SoundfontProvider from '../other/SoundFontProvider'
 
 const firstNote = 21

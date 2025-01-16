@@ -22,7 +22,7 @@
       "**/__mocks__",
       "**/__config__",
       "*.spec.*",
-      "acoustic_grand_piano-mp3.ts"
+      "acoustic_grand_piano-mp3.js"
     ]
   },
   "formatter": {

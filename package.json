@@ -1,14 +1,10 @@
 {
   "name": "zds-pickers",
+  "private": true,
   "version": "3.11.3",
+  "type": "module",
   "homepage": "https://github.com/dkadrios/zds-pickers#readme",
   "license": "MIT",
-  "main": "dist/index.js",
-  "files": [
-    "dist/**/*.js",
-    "README.md",
-    "LICENSE"
-  ],
   "author": "Darin Kadrioski <dkadrios@gmail.com>",
   "bugs": {
     "url": "https://github.com/dkadrios/zds-pickers/issues"
@@ -19,16 +15,19 @@
     "url": "git+https://github.com/dkadrios/zds-pickers.git"
   },
   "scripts": {
+    "dev": "vite",
+    "build": "tsc --p ./tsconfig.json && vite build",
     "build-storybook": "storybook build",
     "build:watch": "babel src -w -d dist",
-    "build": "npm run clean && babel src -d dist --ignore **/*.spec.js,*/__config__",
-    "clean": "rimraf dist",
     "lint": "biome check --write",
-    "prepare": "npm run build",
+    "preview": "vite preview",
     "sb": "storybook dev --quiet -p 6006 --ci"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react-swc": "^3.5.0",
     "@storybook/addon-actions": "7.6.20",
     "@storybook/addon-essentials": "7.6.20",
     "@storybook/addon-knobs": "7.1.1",
@@ -37,19 +36,20 @@
     "@storybook/react": "7.6.20",
     "@storybook/react-webpack5": "7.6.20",
     "classnames": "2.5.1",
+    "globals": "^15.14.0",
     "immer": "10.1.1",
     "nebiru-react-rotary-knob": "1.1.8",
     "prop-types": "15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-select": "5.9.0",
-    "rimraf": "6.0.1",
     "soundfont-player": "0.12.0",
     "storybook": "8.4.7",
     "tonal": "5.0.0",
     "typescript": "5.7.3",
     "zds-mappings": "1.4.9",
-    "zds-react-piano": "4.0.10"
+    "zds-react-piano": "4.0.10",
+    "vite": "^6.0.5"
   },
   "dependencies": {
     "caniuse-lite": "^1.0.30001692"

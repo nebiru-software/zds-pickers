@@ -49,4 +49,19 @@ const extractStatus = (status: number) => ({
   channel: status & MASK_CHANNEL,
 })
 
-export { combineStatus, extractStatus, getStatusLabel, statuses, Statuses }
+export {
+  combineStatus,
+  extractStatus,
+  getStatusLabel,
+  MASK_CHANNEL,
+  MASK_STATUS,
+  STATUS_AFTER_TOUCH,
+  STATUS_CHANNEL_PRESSURE,
+  STATUS_CONTROL_CHANGE,
+  STATUS_NOTE_OFF,
+  STATUS_NOTE_ON,
+  STATUS_PITCH_WHEEL,
+  STATUS_PROGRAM_CHANGE,
+  statuses,
+  Statuses,
+}

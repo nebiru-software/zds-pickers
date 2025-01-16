@@ -1,4 +1,4 @@
-import type { Option } from 'src/pickers/Select'
+import type { Option } from '../pickers/Select'
 
 const CC_NAMES = [
   'Bank Select',
