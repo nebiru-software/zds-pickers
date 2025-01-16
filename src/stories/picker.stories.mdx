@@ -1,22 +1,22 @@
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'
 import { boolean, number, text } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
-import { STATUS_NOTE_ON } from '../midi/statuses'
-import statuses from '../midi/statuses'
-import CCPicker from '../pickers/CCPicker'
-import ChannelPicker from '../pickers/ChannelPicker'
-import ChannelMappingPicker from '../pickers/ChannelMappingPicker'
-import Knob from '../pickers/Knob'
-import KnobPicker from '../pickers/KnobPicker'
-import LatchPicker from '../pickers/LatchPicker'
-import MappingPicker from '../pickers/MappingPicker'
-import NotePicker from '../pickers/NotePicker'
-import PianoPicker from '../pickers/PianoPicker'
-import PolarityPicker from '../pickers/PolarityPicker'
-import ResponseCurve from '../pickers/ResponseCurve'
-import ResponseCurvePicker from '../pickers/ResponseCurvePicker'
-import StatusPicker from '../pickers/StatusPicker'
-import ValuePicker from '../pickers/ValuePicker'
+import { STATUS_NOTE_ON } from '../midi/export.js'
+import statuses from '../midi/export.js'
+import CCPicker from '../pickers/CCPicker.js'
+import ChannelPicker from '../pickers/ChannelPicker.js'
+import ChannelMappingPicker from '../pickers/ChannelMappingPicker.js'
+import Knob from '../pickers/Knob.js'
+import KnobPicker from '../pickers/KnobPicker.js'
+import LatchPicker from '../pickers/LatchPicker.js'
+import MappingPicker from '../pickers/MappingPicker.js'
+import NotePicker from '../pickers/NotePicker.js'
+import PianoPicker from '../pickers/PianoPicker.js'
+import PolarityPicker from '../pickers/PolarityPicker.js'
+import ResponseCurve from '../pickers/ResponseCurve.js'
+import ResponseCurvePicker from '../pickers/ResponseCurvePicker.js'
+import StatusPicker from '../pickers/StatusPicker.js'
+import ValuePicker from '../pickers/ValuePicker.js'
 import gmMapping from './assets/General MIDI.js'
 import './assets/sampleStyles.css'
 
@@ -67,7 +67,7 @@ import './assets/sampleStyles.css'
     <ChannelMappingPicker
       channels={[
         null,
-        null,
+        'No Mapping',
         null,
         'Alesis DM Pro',
         null,

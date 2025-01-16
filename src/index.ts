@@ -31,7 +31,7 @@ export {
   STATUS_PITCH_WHEEL,
   MASK_CHANNEL,
   MASK_STATUS,
-} from './midi/statuses'
+} from './midi/export'
 
 export {
   default as ResponseCurve,
@@ -39,5 +39,3 @@ export {
 } from './pickers/ResponseCurve'
 
 export { default as ccValues } from './midi/ccValues'
-
-export { assertRange, memoize } from './utils'

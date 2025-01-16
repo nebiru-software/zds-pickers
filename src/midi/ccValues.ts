@@ -1,3 +1,5 @@
+import type { Option } from 'src/pickers/Select'
+
 const CC_NAMES = [
   'Bank Select',
   'Modulation Wheel',
@@ -127,11 +129,11 @@ const CC_NAMES = [
   'Omni Mode On',
   'Mono Mode On',
   'Poly Mode',
-].map((label, value) => ({
-  label: String(label).length
-    ? `${value} - ${label}`
-    : value,
-  value,
-}))
+].map(
+  (label, value): Option => ({
+    label: String(label).length ? `${value} - ${label}` : String(value),
+    value,
+  }),
+)
 
 export default CC_NAMES

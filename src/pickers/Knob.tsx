@@ -1,35 +1,43 @@
-import React from 'react'
-import PropTypes from 'prop-types'
 import { Knob as RotaryKnob } from 'nebiru-react-rotary-knob'
 import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
-import { assertRange } from '../utils'
-import knobSkin10 from './knobSkin10'
+import { assertRange } from '../utils.ts'
+import knobSkin10 from './knobSkin10.tsx'
 
-const Knob = (props) => {
+type KnobProps = {
+  disabled?: boolean
+  max?: number
+  min?: number
+  onChange?: (value: number) => void
+  value?: number
+  wheelEnabled?: boolean
+  wheelSensitivity?: number
+}
+
+const Knob = (props: KnobProps) => {
   const {
-    disabled,
-    max,
-    min,
+    disabled = false,
+    max = 127,
+    min = 0,
     onChange,
-    value: initialValue,
-    wheelEnabled,
-    wheelSensitivity,
+    value: initialValue = 0,
+    wheelEnabled = false,
+    wheelSensitivity = 0.1,
     ...rest
   } = props
 
   const [value, setValue] = useStateWithDynamicDefault(initialValue)
 
-  const handleChange = (val) => {
+  const handleChange = (val: number) => {
     if (disabled) return
 
-    const newValue = assertRange(parseInt(val, 10), max, min)
+    const newValue = assertRange(Number.parseInt(String(val), 10), max, min)
     setValue(newValue)
     if (onChange) {
       onChange(newValue)
     }
   }
 
-  const handleWheel = ({ deltaY }) => {
+  const handleWheel = ({ deltaY }: WheelEvent) => {
     let change = Math.trunc(deltaY * wheelSensitivity)
     if (change === 0 && deltaY !== 0) {
       // Assure that at least a tiny change happens
@@ -62,25 +70,6 @@ const Knob = (props) => {
       {...{ max, min, value, ...rest }}
     />
   )
-}
-
-Knob.propTypes = {
-  disabled: PropTypes.bool,
-  max: PropTypes.number,
-  min: PropTypes.number,
-  wheelEnabled: PropTypes.bool,
-  onChange: PropTypes.func,
-  value: PropTypes.number,
-  wheelSensitivity: PropTypes.number,
-}
-Knob.defaultProps = {
-  disabled: false,
-  max: 127,
-  min: 0,
-  onChange: undefined,
-  value: 0,
-  wheelEnabled: false,
-  wheelSensitivity: 0.1,
 }
 
 export default Knob

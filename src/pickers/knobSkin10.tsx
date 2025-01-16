@@ -76,7 +76,7 @@ const knobSkin10 = {
   updateAttributes: [
     {
       element: '#labeltext text tspan',
-      content: (props, value) => value.toFixed(0),
+      content: (_props: React.CSSProperties, value: number) => value.toFixed(0),
       attrs: [
         {
           name: 'text-anchor',
