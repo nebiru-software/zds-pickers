@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { getMapping } from 'zds-mappings'
 import { statuses } from '../lib/midi/export.ts'
 import CCPicker from '../lib/pickers/CCPicker.tsx'
-import ChannelPicker from '../lib/pickers/ChannelPicker.tsx'
 import ChannelMappingPicker from '../lib/pickers/ChannelMappingPicker.tsx'
+import ChannelPicker from '../lib/pickers/ChannelPicker.tsx'
 import Knob from '../lib/pickers/Knob.tsx'
 import KnobPicker from '../lib/pickers/KnobPicker.tsx'
 import LatchPicker from '../lib/pickers/LatchPicker.tsx'
@@ -18,6 +19,8 @@ import ValuePicker from '../lib/pickers/ValuePicker.tsx'
 const meta: Meta = {
   title: 'Pickers',
 }
+
+const gmMapping = getMapping('General MIDI')
 
 const CCPickerStory: StoryObj<typeof CCPicker> = {
   render: args => <CCPicker {...args} />,
@@ -122,6 +125,7 @@ const NotePickerStory1: StoryObj<typeof NotePicker> = {
     disabled: false,
     isMelodicMode: false,
     label: 'Note #',
+    mapping: gmMapping,
     shrinkLabel: false,
     value: 38,
   },
@@ -146,6 +150,17 @@ const NotePickerStory3: StoryObj<typeof NotePicker> = {
     disabled: false,
     isMelodicMode: false,
     label: 'Action button',
+    mapping: gmMapping,
+    // selectProps: {
+    //   actionButton: (
+    //     <button
+    //       onClick={e => {
+    //         window.alert('click')
+    //       }}>
+    //       ?
+    //     </button>
+    //   ),
+    // },
     shrinkLabel: false,
     value: 38,
   },

@@ -23,7 +23,7 @@ module.exports = {
         method: 'alphabetical',
       },
       // Converts camelCase to Title Case with spaces
-      storyNameFormatter: (name) => name.replace(/([A-Z])/g, ' $1').trim(),
+      storyNameFormatter: name => name.replace(/([A-Z])/g, ' $1').trim(),
     },
   },
 

@@ -1,7 +1,7 @@
+import type { Preview, StoryContext, StoryFn } from '@storybook/react'
 // biome-ignore lint/correctness/noUnusedImports: <explanation>
 import React from 'react'
 import { useState } from 'react'
-import type { Preview, StoryFn, StoryContext } from '@storybook/react'
 import '../stories/assets/sampleStyles.css'
 
 const preview: Preview = {
