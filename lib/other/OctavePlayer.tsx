@@ -112,21 +112,26 @@ const WithProvider = ({
       playNote: (midiNumber: number) => void
       stopNote: (midiNumber: number) => void
     }) => (
-      <OctavePlayer
-        disabled={isLoading}
-        {...{
-          height,
-          octave,
-          onClick,
-          onDoubleClick,
-          onKeyMouseEnter,
-          onKeyMouseLeave,
-          playNote,
-          stopNote,
-          Tooltip,
-          width,
-        }}
-      />
+      <>
+        <div>
+          <h2>Octave: {octave}</h2>
+        </div>
+        <OctavePlayer
+          disabled={isLoading}
+          {...{
+            height,
+            octave,
+            onClick,
+            onDoubleClick,
+            onKeyMouseEnter,
+            onKeyMouseLeave,
+            playNote,
+            stopNote,
+            Tooltip,
+            width,
+          }}
+        />
+      </>
     )}
   />
 )

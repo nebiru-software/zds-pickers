@@ -107,7 +107,7 @@ const Select = forwardRef<SelectRef, SelectProps>((props, ref) => {
     disabled,
     label,
     onChange,
-    options,
+    options = [],
     preserveMenuWidth,
     shrinkLabel,
     value,

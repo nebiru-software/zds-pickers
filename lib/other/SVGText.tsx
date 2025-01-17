@@ -64,10 +64,11 @@ const calculateWordWidths = (
       // biome-ignore lint/performance/noAccumulatingSpread: <explanation>
       return { ...wordMap, [word]: textNode.getBBox().width }
     }, {})
+
     textNode.textContent = '\u00A0'
-    const spaceWidth = (
-      textNode as SVGTextContentElement
-    ).getComputedTextLength()
+
+    const spaceWidth =
+      (textNode as SVGTextContentElement)?.getComputedTextLength?.() || 8
     const lineHeight = textNode.getBBox().height
 
     textNode.setAttribute('style', '')

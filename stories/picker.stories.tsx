@@ -1,343 +1,279 @@
-import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'
-import { boolean, number, text } from '@storybook/addon-knobs'
-import { action } from '@storybook/addon-actions'
-import { STATUS_NOTE_ON } from '../../lib/midi/export.ts'
-import statuses from '../../lib/midi/export.ts'
-import CCPicker from '../../lib/pickers/CCPicker.tsx'
-import ChannelPicker from '../../lib/pickers/ChannelPicker.tsx'
-import ChannelMappingPicker from '../../lib/pickers/ChannelMappingPicker.tsx'
-import Knob from '../../lib/pickers/Knob.tsx'
-import KnobPicker from '../../lib/pickers/KnobPicker.tsx'
-import LatchPicker from '../../lib/pickers/LatchPicker.tsx'
-import MappingPicker from '../../lib/pickers/MappingPicker.tsx'
-import NotePicker from '../../lib/pickers/NotePicker.tsx'
-import PianoPicker from '../../lib/pickers/PianoPicker.tsx'
-import PolarityPicker from '../../lib/pickers/PolarityPicker.tsx'
-import ResponseCurve from '../../lib/pickers/ResponseCurve.tsx'
-import ResponseCurvePicker from '../../lib/pickers/ResponseCurvePicker.tsx'
-import StatusPicker from '../../lib/pickers/StatusPicker.tsx'
-import ValuePicker from '../../lib/pickers/ValuePicker.tsx'
-import gmMapping from './assets/GeneralMIDI.js'
-import './assets/sampleStyles.css'
+import type { Meta, StoryObj } from '@storybook/react'
+import { statuses } from '../lib/midi/export.ts'
+import CCPicker from '../lib/pickers/CCPicker.tsx'
+import ChannelPicker from '../lib/pickers/ChannelPicker.tsx'
+import ChannelMappingPicker from '../lib/pickers/ChannelMappingPicker.tsx'
+import Knob from '../lib/pickers/Knob.tsx'
+import KnobPicker from '../lib/pickers/KnobPicker.tsx'
+import LatchPicker from '../lib/pickers/LatchPicker.tsx'
+import MappingPicker from '../lib/pickers/MappingPicker.tsx'
+import NotePicker from '../lib/pickers/NotePicker.tsx'
+import PianoPicker from '../lib/pickers/PianoPicker.tsx'
+import PolarityPicker from '../lib/pickers/PolarityPicker.tsx'
+import ResponseCurve from '../lib/pickers/ResponseCurve.tsx'
+import ResponseCurvePicker from '../lib/pickers/ResponseCurvePicker.tsx'
+import StatusPicker from '../lib/pickers/StatusPicker.tsx'
+import ValuePicker from '../lib/pickers/ValuePicker.tsx'
 
-<Meta title="Pickers"/>
+const meta: Meta = {
+  title: 'Pickers',
+}
 
-# CCPicker
-<Canvas withToolbar>
-  <Story
-    height={120}
-    name="CCPicker"
-  >
-    <CCPicker
-      disabled={boolean('disabled', false, 'CCPicker')}
-      label={text('label', 'CC #', 'CCPicker')}
-      onChange={action('handleChange')}
-      shrinkLabel={boolean('shrinkLabel', false, 'CCPicker')}
-      value={number('value', 7, {}, 'CCPicker')}
-    />
-  </Story>
-</Canvas>
+const CCPickerStory: StoryObj<typeof CCPicker> = {
+  render: args => <CCPicker {...args} />,
+  args: {
+    disabled: false,
+    label: 'CC #',
+    shrinkLabel: false,
+    value: 7,
+  },
+}
 
-<ArgsTable of={CCPicker} />
+const ChannelPickerStory: StoryObj<typeof ChannelPicker> = {
+  render: args => <ChannelPicker {...args} />,
+  args: {
+    disabled: false,
+    label: 'Channel',
+    shrinkLabel: false,
+    value: 9,
+  },
+}
 
-# ChannelPicker
-<Canvas withToolbar>
-  <Story
-    height={120}
-    name="ChannelPicker"
-  >
-    <ChannelPicker
-      disabled={boolean('disabled', false, 'ChannelPicker')}
-      label={text('label', 'Channel', 'ChannelPicker')}
-      onChange={action('handleChange')}
-      shrinkLabel={boolean('shrinkLabel', false, 'ChannelPicker')}
-      value={number('value', 9, {}, 'ChannelPicker')}
-    />
-  </Story>
-</Canvas>
+const ChannelMappingPickerStory: StoryObj<typeof ChannelMappingPicker> = {
+  render: args => <ChannelMappingPicker {...args} />,
+  args: {
+    channels: [
+      '',
+      'No Mapping',
+      '',
+      'Alesis DM Pro',
+      '',
+      '',
+      '',
+      'BFD3',
+      '',
+      '',
+      'Roland TD-20',
+      'Roland TD-30 Perc 1 (Latin)',
+      '',
+      '',
+      '',
+      '',
+    ].map((label, value) => ({ label, value })),
+    disabled: false,
+    label: 'Channel',
+    shrinkLabel: false,
+    value: 7,
+  },
+}
 
-<ArgsTable of={ChannelPicker} />
+const KnobStory: StoryObj<typeof Knob> = {
+  render: args => <Knob {...args} />,
+  args: {
+    disabled: false,
+    max: 127,
+    min: 0,
+    value: 0,
+    wheelEnabled: false,
+  },
+}
 
-# ChannelMappingPicker
-<Canvas withToolbar>
-  <Story
-    height={120}
-    name="ChannelMappingPicker"
-  >
-    <ChannelMappingPicker
-      channels={[
-        null,
-        'No Mapping',
-        null,
-        'Alesis DM Pro',
-        null,
-        null,
-        null,
-        'BFD3',
-        null,
-        null,
-        'Roland TD-20',
-        'Roland TD-30 Perc 1 (Latin)',
-        null,
-        null,
-        null,
-        null,
-      ]}
-      disabled={boolean('disabled', false, 'ChannelMappingPicker')}
-      label={text('label', 'Channel', 'ChannelMappingPicker')}
-      onChange={action('handleChange')}
-      shrinkLabel={boolean('shrinkLabel', false, 'ChannelMappingPicker')}
-      value={number('value', 7, {}, 'ChannelMappingPicker')}
-    />
-  </Story>
-</Canvas>
+const KnobPickerStory: StoryObj<typeof KnobPicker> = {
+  render: args => <KnobPicker {...args} />,
+  args: {
+    disabled: false,
+    includePicker: true,
+    label: 'Sensitivity',
+    max: 127,
+    min: 0,
+    shrinkLabel: false,
+    // size: 35,
+    value: 0,
+    wheelEnabled: false,
+  },
+}
 
-<ArgsTable of={ChannelMappingPicker} />
+const LatchPickerStory: StoryObj<typeof LatchPicker> = {
+  render: args => <LatchPicker {...args} />,
+  args: {
+    disabled: false,
+    label: 'Mode',
+    shrinkLabel: false,
+    value: 0,
+  },
+}
 
-# Knob
-<Canvas withToolbar>
-  <Story
-    height={120}
-    name="Knob"
-  >
-    <Knob
-      disabled={boolean('disabled', false, 'Knob')}
-      max={number('max', 127, {}, 'Knob')}
-      min={number('min', 0, {}, 'Knob')}
-      value={number('value', 0, {}, 'Knob')}
-      wheelEnabled={boolean('wheelEnabled', false, 'Knob')}
-    />
-  </Story>
-</Canvas>
+const MappingPickerStory: StoryObj<typeof MappingPicker> = {
+  render: args => <MappingPicker {...args} />,
+  args: {
+    allowClearing: true,
+    disabled: false,
+    label: 'Mapping',
+    preserveMenuWidth: false,
+    shrinkLabel: false,
+    value: 'EZDrummer',
+  },
+}
 
-<ArgsTable of={Knob} />
+const NotePickerStory1: StoryObj<typeof NotePicker> = {
+  render: args => <NotePicker {...args} />,
+  args: {
+    channel: 0,
+    disabled: false,
+    isMelodicMode: false,
+    label: 'Note #',
+    shrinkLabel: false,
+    value: 38,
+  },
+}
 
-# KnobPicker
-<Canvas withToolbar>
-  <Story
-    height={120}
-    name="KnobPicker"
-  >
-    <KnobPicker
-      disabled={boolean('disabled', false, 'KnobPicker')}
-      includePicker
-      label={text('label', 'Sensitivity', 'KnobPicker')}
-      max={number('max', 127, {}, 'KnobPicker')}
-      min={number('min', 0, {}, 'KnobPicker')}
-      onChange={action('KnobPicker')}
-      shrinkLabel={boolean('shrinkLabel', false, 'KnobPicker')}
-      size={number('size', 35, {}, 'KnobPicker')}
-      value={number('value', 0, {}, 'KnobPicker')}
-      wheelEnabled={boolean('wheelEnabled', false, 'KnobPicker')}
-    />
-  </Story>
-</Canvas>
+const NotePickerStory2: StoryObj<typeof NotePicker> = {
+  render: args => <NotePicker {...args} />,
+  args: {
+    channel: 0,
+    disabled: false,
+    isMelodicMode: false,
+    label: 'No mapping',
+    shrinkLabel: false,
+    value: 38,
+  },
+}
 
-<ArgsTable of={KnobPicker} />
+const NotePickerStory3: StoryObj<typeof NotePicker> = {
+  render: args => <NotePicker {...args} />,
+  args: {
+    channel: 0,
+    disabled: false,
+    isMelodicMode: false,
+    label: 'Action button',
+    shrinkLabel: false,
+    value: 38,
+  },
+}
 
-# LatchPicker
-<Canvas withToolbar>
-  <Story
-    height={120}
-    name="LatchPicker"
-  >
-    <LatchPicker
-      disabled={boolean('disabled', false, 'LatchPicker')}
-      label={text('label', 'Mode', 'LatchPicker')}
-      onChange={action('handleChange')}
-      shrinkLabel={boolean('shrinkLabel', false, 'LatchPicker')}
-      value={number('value', 0, {}, 'LatchPicker')}
-    />
-  </Story>
-</Canvas>
+// # NotePicker
+// <Canvas withToolbar>
+//   <Story
+//     height={120}
+//     name="NotePicker"
+//   >
+//     <NotePicker
+//       channel={number('channel', 0, 'NotePicker')}
+//       disabled={boolean('disabled', false, 'NotePicker')}
+//       isMelodicMode={boolean('isMelodicMode', false, 'NotePicker')}
+//       label={text('label', 'Note #', 'NotePicker')}
+//       mapping={gmMapping}
+//       onChange={action('handleChange')}
+//       shrinkLabel={boolean('shrinkLabel', false, 'NotePicker')}
+//       value={number('value', 38, {}, 'NotePicker')}
+//     />
+//     <br />
+//     <NotePicker
+//       channel={number('channel', 0, 'NotePicker2')}
+//       disabled={boolean('disabled', false, 'NotePicker2')}
+//       isMelodicMode={boolean('isMelodicMode', false, 'NotePicker2')}
+//       label="No mapping"
+//       onChange={action('handleChange2')}
+//       shrinkLabel={boolean('shrinkLabel', false, 'NotePicker')}
+//       value={number('value', 38, {}, 'NotePicker2')}
+//     />
+//     <br />
+//     <NotePicker
+//       channel={number('channel', 0, 'NotePicker3')}
+//       disabled={boolean('disabled', false, 'NotePicker3')}
+//       isMelodicMode={boolean('isMelodicMode', false, 'NotePicker3')}
+//       label="Action button"
+//       mapping={gmMapping}
+//       onChange={action('handleChange3')}
+//       selectProps={{actionButton:<button onClick={e=>{
+//         console.log('click')
+//         }}>?</button>}}
+//       shrinkLabel={boolean('shrinkLabel', false, 'NotePicker')}
+//       value={number('value', 38, {}, 'NotePicker3')}
+//     />
+//   </Story>
+// </Canvas>
 
-<ArgsTable of={LatchPicker} />
+const PianoPickerStory: StoryObj<typeof PianoPicker> = {
+  render: args => <PianoPicker {...args} />,
+  args: {
+    instrumentName: 'acoustic_grand_piano',
+    height: 100,
+    width: 1000,
+  },
+}
 
-# MappingPicker
-<Canvas withToolbar>
-  <Story
-    height={120}
-    name="MappingPicker"
-  >
-    <MappingPicker
-      allowClearing={boolean('allowClearing', true, 'MappingPicker')}
-      disabled={boolean('disabled', false, 'MappingPicker')}
-      label={text('label', 'Mapping', 'MappingPicker')}
-      onChange={action('handleChange')}
-      preserveMenuWidth={boolean('preserveMenuWidth', false, 'MappingPicker')}
-      shrinkLabel={boolean('shrinkLabel', false, 'MappingPicker')}
-      value={text('value', 'EZDrummer', 'MappingPicker')}
-    />
-  </Story>
-</Canvas>
+const PolarityPickerStory: StoryObj<typeof PolarityPicker> = {
+  render: args => <PolarityPicker {...args} />,
+  args: {
+    disabled: false,
+    label: 'Polarity',
+    labelOff: 'Normally Off',
+    labelOn: 'Normally On',
+    shrinkLabel: false,
+    value: 0,
+  },
+}
 
-<ArgsTable of={MappingPicker} />
+const ResponseCurveStory: StoryObj<typeof ResponseCurve> = {
+  render: args => <ResponseCurve {...args} />,
+  args: {
+    disabled: false,
+    inverted: false,
+    value: 0,
+  },
+}
 
-# NotePicker
-<Canvas withToolbar>
-  <Story
-    height={120}
-    name="NotePicker"
-  >
-    <NotePicker
-      channel={number('channel', 0, 'NotePicker')}
-      disabled={boolean('disabled', false, 'NotePicker')}
-      isMelodicMode={boolean('isMelodicMode', false, 'NotePicker')}
-      label={text('label', 'Note #', 'NotePicker')}
-      mapping={gmMapping}
-      onChange={action('handleChange')}
-      shrinkLabel={boolean('shrinkLabel', false, 'NotePicker')}
-      value={number('value', 38, {}, 'NotePicker')}
-    />
-    <br />
-    <NotePicker
-      channel={number('channel', 0, 'NotePicker2')}
-      disabled={boolean('disabled', false, 'NotePicker2')}
-      isMelodicMode={boolean('isMelodicMode', false, 'NotePicker2')}
-      label="No mapping"
-      onChange={action('handleChange2')}
-      shrinkLabel={boolean('shrinkLabel', false, 'NotePicker')}
-      value={number('value', 38, {}, 'NotePicker2')}
-    />
-    <br />
-    <NotePicker
-      channel={number('channel', 0, 'NotePicker3')}
-      disabled={boolean('disabled', false, 'NotePicker3')}
-      isMelodicMode={boolean('isMelodicMode', false, 'NotePicker3')}
-      label="Action button"
-      mapping={gmMapping}
-      onChange={action('handleChange3')}
-      selectProps={{actionButton:<button onClick={e=>{
-        console.log('click')
-        }}>?</button>}}
-      shrinkLabel={boolean('shrinkLabel', false, 'NotePicker')}
-      value={number('value', 38, {}, 'NotePicker3')}
-    />
-  </Story>
-</Canvas>
+const ResponseCurvePickerStory: StoryObj<typeof ResponseCurvePicker> = {
+  render: args => <ResponseCurvePicker {...args} />,
+  args: {
+    disabled: false,
+    inverted: false,
+    label: 'Response',
+    shrinkLabel: false,
+    value: 0,
+  },
+}
 
-<ArgsTable of={NotePicker} />
+const StatusPickerStory: StoryObj<typeof StatusPicker> = {
+  render: args => <StatusPicker {...args} />,
+  args: {
+    disabled: false,
+    label: 'Status Msg',
+    shrinkLabel: false,
+    statuses,
+  },
+}
 
-# PianoPicker
-<Canvas withToolbar>
-  <Story
-    args={{
-      instrumentName: undefined,
-      height: 100,
-      width: 1000,
-    }}
-    argTypes={{
-      instrumentName:{
-        control: { type: 'select' },
-        options: [undefined, 'acoustic_grand_piano'],
-      }
-    }}
-    height={120}
-    name="PianoPicker"
-  >
-    {(args) => {
-      const Tooltip = ({key}) => {}
-      return <PianoPicker
-        {...args}
-        onChange={value=>console.log(value)}
-        Tooltip={Tooltip}
-      />
-    }}
-  </Story>
-</Canvas>
+const ValuePickerStory: StoryObj<typeof ValuePicker> = {
+  render: args => <ValuePicker {...args} />,
+  args: {
+    disabled: false,
+    highToLow: false,
+    label: 'Value',
+    max: 127,
+    min: 0,
+    shrinkLabel: false,
+  },
+}
 
-<ArgsTable of={PolarityPicker} />
+export {
+  CCPickerStory as CcPicker,
+  ChannelPickerStory as ChannelPicker,
+  ChannelMappingPickerStory as ChannelMappingPicker,
+  KnobStory as Knob,
+  KnobPickerStory as KnobPicker,
+  LatchPickerStory as LatchPicker,
+  MappingPickerStory as MappingPicker,
+  NotePickerStory1 as NotePickerSimple,
+  NotePickerStory2 as NotePickerNoMapping,
+  NotePickerStory3 as NotePickerActionButton,
+  PianoPickerStory as PianoPicker,
+  PolarityPickerStory as PolarityPicker,
+  ResponseCurveStory as ResponseCurve,
+  ResponseCurvePickerStory as ResponseCurvePicker,
+  StatusPickerStory as StatusPicker,
+  ValuePickerStory as ValuePicker,
+}
 
-# PolarityPicker
-<Canvas withToolbar>
-  <Story
-    height={120}
-    name="PolarityPicker"
-  >
-    <PolarityPicker
-      disabled={boolean('disabled', false, 'PolarityPicker')}
-      label={text('label', 'Polarity', 'PolarityPicker')}
-      labelOff={text('labelOff', 'Normally Off', 'PolarityPicker')}
-      labelOn={text('labelOn', 'Normally On', 'PolarityPicker')}
-      onChange={action('handleChange')}
-      shrinkLabel={boolean('shrinkLabel', false, 'PolarityPicker')}
-      value={number('value', 0, {}, 'PolarityPicker')}
-    />
-  </Story>
-</Canvas>
-
-<ArgsTable of={PolarityPicker} />
-
-# ResponseCurve
-<Canvas withToolbar>
-  <Story
-    height={120}
-    name="ResponseCurve"
-  >
-    <ResponseCurve
-      disabled={boolean('disabled', false, 'ResponseCurve')}
-      inverted={boolean('inverted', false, 'ResponseCurve')}
-      onChange={action('handleChange')}
-      value={number('value', 0, {}, 'ResponseCurve')}
-    />
-  </Story>
-</Canvas>
-
-<ArgsTable of={ResponseCurve} />
-
-# ResponseCurvePicker
-<Canvas withToolbar>
-  <Story
-    height={120}
-    name="ResponseCurvePicker"
-  >
-    <ResponseCurvePicker
-      disabled={boolean('disabled', false, 'ResponseCurvePicker')}
-      inverted={boolean('inverted', false, 'ResponseCurvePicker')}
-      label="Response"
-      onChange={action('handleChange')}
-      shrinkLabel={boolean('shrinkLabel', false, 'ResponseCurvePicker')}
-      value={number('value', 0, {}, 'ResponseCurvePicker')}
-    />
-  </Story>
-</Canvas>
-
-<ArgsTable of={ResponseCurvePicker} />
-
-# StatusPicker
-<Canvas withToolbar>
-  <Story
-    height={120}
-    name="StatusPicker"
-  >
-    <StatusPicker
-      disabled={boolean('disabled', false, 'StatusPicker')}
-      label={text('label', 'Status Msg', 'StatusPicker')}
-      onChange={action('handleChange')}
-      shrinkLabel={boolean('shrinkLabel', false, 'StatusPicker')}
-      statuses={statuses}
-    />
-  </Story>
-</Canvas>
-
-<ArgsTable of={StatusPicker} />
-
-# ValuePicker
-<Canvas withToolbar>
-  <Story
-    height={120}
-    name="ValuePicker"
-  >
-    <ValuePicker
-      disabled={boolean('disabled', false, 'ValuePicker')}
-      highToLow={boolean('highToLow', false, 'ValuePicker')}
-      label={text('label', 'Value', 'ValuePicker')}
-      max={number('max', 127, {}, 'ValuePicker')}
-      min={number('min', 0, {}, 'ValuePicker')}
-      onChange={action('handleChange')}
-      shrinkLabel={boolean('shrinkLabel', false, 'ValuePicker')}
-    />
-  </Story>
-</Canvas>
-
-<ArgsTable of={ValuePicker} />
+export default meta

@@ -1,16 +1,16 @@
 import { forwardRef } from 'react'
 import ccValues from '../midi/ccValues'
-import Select, { type SelectRef } from './Select.tsx'
+import Select, { type SelectProps, type SelectRef } from './Select.tsx'
 
-type Props = {
+type CCPickerProps = SelectProps & {
   onChange: (value: number | string) => void
   value: number
 }
 
-const CCPicker = forwardRef<SelectRef, Props>((props, ref) => (
+const CCPicker = forwardRef<SelectRef, CCPickerProps>((props, ref) => (
   <Select
-    options={ccValues}
     {...props}
+    options={ccValues}
     ref={ref}
   />
 ))

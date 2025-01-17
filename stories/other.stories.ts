@@ -1,5 +1,5 @@
 import OctavePlayer from '../lib/other/OctavePlayer.tsx'
-import type Soundfont from 'soundfont-player'
+import type * as Soundfont from 'soundfont-player'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta: Meta<typeof OctavePlayer> = {
