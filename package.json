@@ -23,7 +23,8 @@
     "build:watch": "babel src -w -d dist",
     "lint": "biome check --write",
     "preview": "vite preview",
-    "sb": "storybook dev --quiet -p 6006 --ci"
+    "sb": "storybook dev --quiet -p 6006 --no-open",
+    "sb:watch": "nodemon --watch .storybook -e ts,tsx,js,jsx --exec 'npm run sb'"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
@@ -31,15 +32,16 @@
     "@storybook/addon-docs": "8.5.0",
     "@storybook/addon-essentials": "8.5.0",
     "@storybook/addon-links": "8.5.0",
-    "@storybook/builder-vite": "^8.5.0",
+    "@storybook/builder-vite": "8.5.0",
     "@storybook/react": "8.5.0",
-    "@storybook/react-vite": "^8.5.0",
+    "@storybook/react-vite": "8.5.0",
     "@types/react": "18.3.18",
     "@types/react-dom": "18.3.5",
     "@vitejs/plugin-react-swc": "3.7.2",
     "classnames": "2.5.1",
     "globals": "15.14.0",
     "immer": "10.1.1",
+    "nodemon": "3.1.9",
     "nebiru-react-rotary-knob": "1.1.8",
     "prop-types": "15.8.1",
     "react": "18.2.0",
@@ -47,7 +49,7 @@
     "react-select": "5.9.0",
     "soundfont-player": "0.12.0",
     "storybook": "8.5.0",
-    "tonal": "5.0.0",
+    "tonal": "5.2.1",
     "typescript": "5.7.3",
     "vite": "6.0.7",
     "vite-plugin-dts": "4.5.0",
@@ -55,16 +57,16 @@
     "zds-react-piano": "4.0.10"
   },
   "dependencies": {
-    "caniuse-lite": "^1.0.30001692"
+    "caniuse-lite": "1.0.30001692"
   },
   "peerDependencies": {
-    "classnames": "^2.3.2",
+    "classnames": "2.5.1",
     "nebiru-react-rotary-knob": "1.1.8",
     "react": ">=19.0.0",
-    "react-select": ">=5.5.4",
+    "react-select": ">=5.9.0",
     "soundfont-player": ">=0.12.0",
-    "tonal": "5.0.1",
-    "zds-mappings": "^1.4.9",
-    "zds-react-piano": ">=4"
+    "tonal": "5.2.1",
+    "zds-mappings": "1.4.9",
+    "zds-react-piano": ">=4.0.10"
   }
 }

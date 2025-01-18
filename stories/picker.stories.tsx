@@ -288,9 +288,9 @@ const ValuePickerStory: StoryObj<typeof ValuePicker> = {
 }
 
 export {
-  CCPickerStory as CcPicker,
   ChannelPickerStory as ChannelPicker,
   ChannelMappingPickerStory as ChannelMappingPicker,
+  CCPickerStory as ContinuousChangePicker,
   KnobStory as Knob,
   KnobPickerStory as KnobPicker,
   LatchPickerStory as LatchPicker,

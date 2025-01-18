@@ -1,4 +1,6 @@
-module.exports = {
+import type { StorybookConfig } from '@storybook/react-vite'
+
+const config: StorybookConfig = {
   stories: ['../stories/*.stories.tsx'],
 
   addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
@@ -17,16 +19,6 @@ module.exports = {
     autodocs: false,
   },
 
-  parameters: {
-    options: {
-      storySort: {
-        method: 'alphabetical',
-      },
-      // Converts camelCase to Title Case with spaces
-      storyNameFormatter: name => name.replace(/([A-Z])/g, ' $1').trim(),
-    },
-  },
-
   typescript: {
     // reactDocgen: 'react-docgen-typescript',
   },
@@ -34,6 +26,9 @@ module.exports = {
   viteFinal(config) {
     return {
       ...config,
+      optimizeDeps: {
+        exclude: ['storybook-dark-mode'],
+      },
       css: {
         postcss: {},
         modules: {
@@ -43,3 +38,5 @@ module.exports = {
     }
   },
 }
+
+export default config
