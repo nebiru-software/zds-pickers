@@ -1,10 +1,21 @@
 {
   "name": "zds-pickers",
-  "private": true,
   "version": "4.0.0",
-  "type": "module",
-  "main": "dist/main.js",
-  "types": "dist/main.d.ts",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/main.d.ts",
+  "files": ["dist"],
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/main.d.ts"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
   "homepage": "https://github.com/dkadrios/zds-pickers#readme",
   "license": "MIT",
   "author": "Darin Kadrioski <dkadrios@gmail.com>",
@@ -20,11 +31,11 @@
     "dev": "vite",
     "build": "tsc --p ./tsconfig.json && vite build",
     "build-storybook": "storybook build",
-    "build:watch": "babel src -w -d dist",
     "lint": "biome check --write",
     "preview": "vite preview",
     "sb": "storybook dev --quiet -p 6006 --no-open",
-    "sb:watch": "nodemon --watch .storybook -e ts,tsx,js,jsx --exec 'npm run sb'"
+    "sb:watch": "nodemon --watch .storybook -e ts,tsx,js,jsx --exec 'npm run sb'",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
@@ -62,7 +73,8 @@
   "peerDependencies": {
     "classnames": "2.5.1",
     "nebiru-react-rotary-knob": "1.1.8",
-    "react": ">=19.0.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
     "react-select": ">=5.9.0",
     "soundfont-player": ">=0.12.0",
     "tonal": "5.2.1",
