@@ -86,6 +86,7 @@ type SelectProps = {
   className?: string
   components?: object
   disabled?: boolean
+  filterOptions?: (candidate: Option, inputValue: string) => boolean
   formatOptionLabel?: (
     option: Option,
     { context }: { context: 'menu' | 'value' },

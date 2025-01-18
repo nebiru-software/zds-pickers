@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import type * as Soundfont from 'soundfont-player'
 import { getMapping } from 'zds-mappings'
 import { statuses } from '../lib/midi/export.ts'
+import OctavePlayer from '../lib/other/OctavePlayer.tsx'
 import CCPicker from '../lib/pickers/CCPicker.tsx'
 import ChannelMappingPicker from '../lib/pickers/ChannelMappingPicker.tsx'
 import ChannelPicker from '../lib/pickers/ChannelPicker.tsx'
@@ -166,6 +168,19 @@ const NotePickerStory3: StoryObj<typeof NotePicker> = {
   },
 }
 
+const OctavePlayerStory: StoryObj<typeof OctavePlayer> = {
+  render: args => <OctavePlayer {...args} />,
+  args: {
+    instrumentName: {
+      control: { type: 'select' },
+      options: [undefined, 'acoustic_grand_piano'],
+    } as unknown as Soundfont.InstrumentName,
+    height: 100,
+    width: 200,
+    octave: 4,
+  },
+}
+
 // # NotePicker
 // <Canvas withToolbar>
 //   <Story
@@ -283,6 +298,7 @@ export {
   NotePickerStory1 as NotePickerSimple,
   NotePickerStory2 as NotePickerNoMapping,
   NotePickerStory3 as NotePickerActionButton,
+  OctavePlayerStory as OctavePlayer,
   PianoPickerStory as PianoPicker,
   PolarityPickerStory as PolarityPicker,
   ResponseCurveStory as ResponseCurve,
