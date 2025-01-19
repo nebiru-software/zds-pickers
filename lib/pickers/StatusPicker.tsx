@@ -1,13 +1,17 @@
+import type { Status } from 'lib/midi/export'
 import { forwardRef } from 'react'
-import Select, { type Option, type SelectProps, type SelectRef } from './Select'
+import type { GroupBase, SelectInstance } from 'react-select'
+import Select from './Select'
+import type { Option, SelectProps } from './Select'
+
+type StatusPickerProps = SelectProps<Status> & { statuses: Option<Status>[] }
 
 const StatusPicker = forwardRef<
-  SelectRef,
-  SelectProps & { statuses: Option[] }
+  SelectInstance<Option<Status>, false, GroupBase<Option<Status>>>,
+  StatusPickerProps
 >(({ statuses, ...rest }, ref) => (
-  <Select
+  <Select<Status>
     {...rest}
-    options={statuses}
     ref={ref}
   />
 ))
