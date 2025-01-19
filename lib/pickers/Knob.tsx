@@ -1,10 +1,9 @@
 import { Knob as RotaryKnob } from 'nebiru-react-rotary-knob'
 import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
 import { assertRange } from '../utils.ts'
-import type { SelectProps } from './Select.tsx'
 import knobSkin10 from './knobSkin10.tsx'
 
-type KnobProps = SelectProps<number> & {
+type KnobProps = {
   disabled?: boolean
   max?: number
   min?: number
