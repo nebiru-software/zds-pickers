@@ -26,7 +26,7 @@ type ResponseCurve = {
   labelY: number
 }
 
-const RESPONSE_CURVES: Option[] = [
+const RESPONSE_CURVES: Option<number>[] = [
   {
     value: RESPONSE_CURVE_7,
     label: 'Always maxed out.',
@@ -69,7 +69,7 @@ const buttonSize = 15
 const axisX1 = axisOffset
 const axisY1 = axisOffset
 
-type Props = {
+type ResponseCurveProps = {
   autosize: boolean
   disabled?: boolean
   inverted: boolean
@@ -78,7 +78,7 @@ type Props = {
   value: number
 }
 
-const ResponseCurve = (props: Props) => {
+const ResponseCurve = (props: ResponseCurveProps) => {
   const {
     Tooltip = DefaultTooltip,
     autosize,
@@ -288,3 +288,5 @@ const ResponseCurve = (props: Props) => {
 export default ResponseCurve
 
 export { RESPONSE_CURVES }
+
+export type { ResponseCurveProps }

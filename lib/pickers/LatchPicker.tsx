@@ -1,13 +1,19 @@
 import { forwardRef } from 'react'
-import Select from './Select.tsx'
-import type { Option, SelectProps, SelectRef } from './Select.tsx'
+import type { GroupBase, SelectInstance } from 'react-select'
+import Select from './Select'
+import type { Option, SelectProps } from './Select'
 
-const options: Option[] = [
+const options: Option<number>[] = [
   { value: 0, label: 'Momentary' },
   { value: 1, label: 'Latching' },
 ]
 
-const LatchPicker = forwardRef<SelectRef, SelectProps>((props, ref) => (
+type LatchPickerProps = SelectProps<number>
+
+const LatchPicker = forwardRef<
+  SelectInstance<Option<number>, false, GroupBase<Option<number>>>,
+  LatchPickerProps
+>((props, ref) => (
   <Select
     {...props}
     options={options}
@@ -16,3 +22,5 @@ const LatchPicker = forwardRef<SelectRef, SelectProps>((props, ref) => (
 ))
 
 export default LatchPicker
+
+export type { LatchPickerProps }

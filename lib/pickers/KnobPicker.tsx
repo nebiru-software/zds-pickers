@@ -1,13 +1,11 @@
 import { forwardRef, useMemo } from 'react'
 import { arraySequence } from '../utils.ts'
 import Knob from './Knob'
-import Select, {
-  type Option,
-  type SelectProps,
-  type SelectRef,
-} from './Select.tsx'
+import type { GroupBase, SelectInstance } from 'react-select'
+import Select from './Select'
+import type { Option, SelectProps } from './Select'
 
-type KnobPickerProps = SelectProps & {
+type KnobPickerProps = SelectProps<number> & {
   highToLow?: boolean
   includeLabel?: boolean
   includePicker?: boolean
@@ -19,7 +17,10 @@ type KnobPickerProps = SelectProps & {
   value: number
 }
 
-const KnobPicker = forwardRef<SelectRef, KnobPickerProps>((props, ref) => {
+const KnobPicker = forwardRef<
+  SelectInstance<Option<number>, false, GroupBase<Option<number>>>,
+  KnobPickerProps
+>((props, ref) => {
   const {
     disabled,
     highToLow,
@@ -40,7 +41,7 @@ const KnobPicker = forwardRef<SelectRef, KnobPickerProps>((props, ref) => {
   const options = useMemo(() => {
     const result = arraySequence(max - min + 1)
       .map(i => min + i)
-      .map((i): Option => ({ value: i, label: String(i) }))
+      .map((i): Option<number> => ({ value: i, label: String(i) }))
     return highToLow ? result.reverse() : result
   }, [highToLow, max, min])
 
@@ -82,3 +83,5 @@ const KnobPicker = forwardRef<SelectRef, KnobPickerProps>((props, ref) => {
 })
 
 export default KnobPicker
+
+export type { KnobPickerProps }

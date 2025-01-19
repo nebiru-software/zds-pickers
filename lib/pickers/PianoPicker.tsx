@@ -73,3 +73,5 @@ const WithProvider = ({
 )
 
 export default WithProvider
+
+export type { PianoProps }

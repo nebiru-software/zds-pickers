@@ -2,19 +2,19 @@ import { forwardRef, useCallback } from 'react'
 import DefaultTooltip, { type TooltipProps } from '../other/DefaultTooltip'
 import { findObj } from '../utils.ts'
 import ResponseCurve, { RESPONSE_CURVES } from './ResponseCurve'
-import Select, {
-  type Option,
-  type SelectProps,
-  type SelectRef,
-} from './Select.tsx'
+import type { GroupBase, SelectInstance } from 'react-select'
+import Select from './Select'
+import type { Option, SelectProps } from './Select'
 
-type Props = SelectProps & {
+type ResponseCurvePickerProps = SelectProps<number> & {
   inverted?: boolean
-  // onChange: (value: number) => void
   Tooltip?: React.FC<TooltipProps>
 }
 
-const ResponseCurvePicker = forwardRef<SelectRef, Props>((props, ref) => {
+const ResponseCurvePicker = forwardRef<
+  SelectInstance<Option<number>, false, GroupBase<Option<number>>>,
+  ResponseCurvePickerProps
+>((props, ref) => {
   const {
     Tooltip = DefaultTooltip,
     inverted = false,
@@ -26,7 +26,7 @@ const ResponseCurvePicker = forwardRef<SelectRef, Props>((props, ref) => {
   const Placeholder = useCallback(
     () => (
       <div className="singleValue">
-        {(findObj('value', value)(RESPONSE_CURVES) as Option)?.label}
+        {(findObj('value', value)(RESPONSE_CURVES) as Option<number>)?.label}
       </div>
     ),
     [value],
@@ -64,3 +64,5 @@ const ResponseCurvePicker = forwardRef<SelectRef, Props>((props, ref) => {
 })
 
 export default ResponseCurvePicker
+
+export type { ResponseCurvePickerProps }

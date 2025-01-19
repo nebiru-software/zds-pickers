@@ -1,15 +1,20 @@
 import { forwardRef, useCallback, useMemo } from 'react'
 import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
 import { arraySequence, assertRange } from '../utils.ts'
-import Select, { type SelectProps, type Option, type SelectRef } from './Select'
+import type { GroupBase, SelectInstance } from 'react-select'
+import Select from './Select'
+import type { Option, SelectProps } from './Select'
 
-type Props = SelectProps & {
+type ValuePickerProps = SelectProps<number> & {
   highToLow?: boolean
   max?: number
   min?: number
 }
 
-const ValuePicker = forwardRef<SelectRef, Props>((props, ref) => {
+const ValuePicker = forwardRef<
+  SelectInstance<Option<number>, false, GroupBase<Option<number>>>,
+  ValuePickerProps
+>((props, ref) => {
   const {
     disabled,
     highToLow,
@@ -23,7 +28,9 @@ const ValuePicker = forwardRef<SelectRef, Props>((props, ref) => {
     const result = arraySequence(max - min + 1)
       .map(i => min + i)
       .map(value => ({ value, label: value }))
-    return (highToLow ? result.reverse() : result) as unknown as Option[]
+    return (highToLow
+      ? result.reverse()
+      : result) as unknown as Option<number>[]
   }, [highToLow, max, min])
 
   const [value, setValue] = useStateWithDynamicDefault(initialValue)
@@ -50,3 +57,5 @@ const ValuePicker = forwardRef<SelectRef, Props>((props, ref) => {
 })
 
 export default ValuePicker
+
+export type { ValuePickerProps }

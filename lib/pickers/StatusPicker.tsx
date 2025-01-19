@@ -12,8 +12,11 @@ const StatusPicker = forwardRef<
 >(({ statuses, ...rest }, ref) => (
   <Select<Status>
     {...rest}
+    options={statuses}
     ref={ref}
   />
 ))
 
 export default StatusPicker
+
+export type { StatusPickerProps }

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import type * as Soundfont from 'soundfont-player'
 import { getMapping } from 'zds-mappings'
-import { statuses } from '../lib/midi/export.ts'
+import { statusOptions } from '../lib/midi/export.ts'
 import OctavePlayer from '../lib/other/OctavePlayer.tsx'
 import CCPicker from '../lib/pickers/CCPicker.tsx'
 import ChannelMappingPicker from '../lib/pickers/ChannelMappingPicker.tsx'
@@ -271,7 +271,7 @@ const StatusPickerStory: StoryObj<typeof StatusPicker> = {
     disabled: false,
     label: 'Status Msg',
     shrinkLabel: false,
-    statuses,
+    statuses: statusOptions,
   },
 }
 

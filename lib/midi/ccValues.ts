@@ -130,7 +130,7 @@ const CC_NAMES = [
   'Mono Mode On',
   'Poly Mode',
 ].map(
-  (label, value): Option => ({
+  (label, value): Option<number> => ({
     label: String(label).length ? `${value} - ${label}` : String(value),
     value,
   }),
