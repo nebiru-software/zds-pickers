@@ -1,7 +1,7 @@
 import { forwardRef, useMemo } from 'react'
+import type { GroupBase, SelectInstance } from 'react-select'
 import { arraySequence } from '../utils.ts'
 import Knob from './Knob'
-import type { GroupBase, SelectInstance } from 'react-select'
 import Select from './Select'
 import type { Option, SelectProps } from './Select'
 

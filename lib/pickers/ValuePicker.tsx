@@ -1,7 +1,7 @@
 import { forwardRef, useCallback, useMemo } from 'react'
+import type { GroupBase, SelectInstance } from 'react-select'
 import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
 import { arraySequence, assertRange } from '../utils.ts'
-import type { GroupBase, SelectInstance } from 'react-select'
 import Select from './Select'
 import type { Option, SelectProps } from './Select'
 

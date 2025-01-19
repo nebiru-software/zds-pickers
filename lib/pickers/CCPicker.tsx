@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
-import ccValues from '../midi/ccValues'
 import type { GroupBase, SelectInstance } from 'react-select'
+import ccValues from '../midi/ccValues'
 import Select from './Select'
 import type { Option, SelectProps } from './Select'
 

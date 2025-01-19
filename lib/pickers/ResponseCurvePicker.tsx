@@ -1,8 +1,8 @@
 import { forwardRef, useCallback } from 'react'
+import type { GroupBase, SelectInstance } from 'react-select'
 import DefaultTooltip, { type TooltipProps } from '../other/DefaultTooltip'
 import { findObj } from '../utils.ts'
 import ResponseCurve, { RESPONSE_CURVES } from './ResponseCurve'
-import type { GroupBase, SelectInstance } from 'react-select'
 import Select from './Select'
 import type { Option, SelectProps } from './Select'
 

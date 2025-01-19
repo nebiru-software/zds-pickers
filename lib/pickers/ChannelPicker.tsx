@@ -1,7 +1,7 @@
 import cl from 'classnames'
 import { forwardRef } from 'react'
-import { arraySequence } from '../utils.ts'
 import type { GroupBase, SelectInstance } from 'react-select'
+import { arraySequence } from '../utils.ts'
 import Select from './Select'
 import type { Option, SelectProps } from './Select'
 

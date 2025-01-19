@@ -1,9 +1,9 @@
 import { forwardRef, useCallback, useMemo } from 'react'
+import type { GroupBase, SelectInstance } from 'react-select'
 import { Midi } from 'tonal'
 import { type MapItem, type Mapping, emptyMapping } from 'zds-mappings'
 import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
 import { assertRange } from '../utils.ts'
-import type { GroupBase, SelectInstance } from 'react-select'
 import Select from './Select'
 import type { Option, SelectProps } from './Select'
 

@@ -1,6 +1,6 @@
 import { forwardRef, useMemo } from 'react'
-import { getStockNames, getUserMappingNames } from 'zds-mappings'
 import type { GroupBase, SelectInstance } from 'react-select'
+import { getStockNames, getUserMappingNames } from 'zds-mappings'
 import Select from './Select'
 import type { Option, SelectProps } from './Select'
 
