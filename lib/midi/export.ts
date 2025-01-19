@@ -1,67 +1,52 @@
-const STATUS_NOTE_OFF = 8 // 1000
-const STATUS_NOTE_ON = 9 // 1001
-const STATUS_AFTER_TOUCH = 10 // 1010
-const STATUS_CONTROL_CHANGE = 11 // 1011
-const STATUS_PROGRAM_CHANGE = 12 // 1100
-const STATUS_CHANNEL_PRESSURE = 13 // 1101
-const STATUS_PITCH_WHEEL = 14 // 1110
+const Statuses = {
+  noteOff: 8, // 1000
+  noteOn: 9, // 1001
+  aftertouch: 10, // 1010
+  controlChange: 11, // 1011
+  programChange: 12, // 1100
+  channelPressure: 13, // 1101
+  pitchWheel: 14, // 1110
+} as const
 
-type Status =
-  | typeof STATUS_NOTE_OFF
-  | typeof STATUS_NOTE_ON
-  | typeof STATUS_AFTER_TOUCH
-  | typeof STATUS_CONTROL_CHANGE
-  | typeof STATUS_PROGRAM_CHANGE
-  | typeof STATUS_CHANNEL_PRESSURE
-  | typeof STATUS_PITCH_WHEEL
-
-const Statuses: Record<string, Status> = {
-  noteOff: STATUS_NOTE_OFF,
-  noteOn: STATUS_NOTE_ON,
-  aftertouch: STATUS_AFTER_TOUCH,
-  controlChange: STATUS_CONTROL_CHANGE,
-  programChange: STATUS_PROGRAM_CHANGE,
-  channelPressure: STATUS_CHANNEL_PRESSURE,
-  pitchWheel: STATUS_PITCH_WHEEL,
-}
+type Status = (typeof Statuses)[keyof typeof Statuses]
 
 const MASK_CHANNEL = 15 // 00001111
 const MASK_STATUS = 240 // 01110000
 
-const statuses: { value: Status; label: string }[] = [
-  { value: STATUS_NOTE_ON, label: 'Note On' },
-  { value: STATUS_NOTE_OFF, label: 'Note Stack' },
-  { value: STATUS_CONTROL_CHANGE, label: 'Control Change' },
-  { value: STATUS_PROGRAM_CHANGE, label: 'Program Change' },
-  { value: STATUS_AFTER_TOUCH, label: 'Aftertouch' },
-  { value: STATUS_CHANNEL_PRESSURE, label: 'Channel Pressure' },
-  { value: STATUS_PITCH_WHEEL, label: 'Pitch Wheel' },
+const statusOptions: { value: Status; label: string }[] = [
+  { value: Statuses.noteOn, label: 'Note On' },
+  { value: Statuses.noteOff, label: 'Note Stack' },
+  { value: Statuses.controlChange, label: 'Control Change' },
+  { value: Statuses.programChange, label: 'Program Change' },
+  { value: Statuses.aftertouch, label: 'Aftertouch' },
+  { value: Statuses.channelPressure, label: 'Channel Pressure' },
+  { value: Statuses.pitchWheel, label: 'Pitch Wheel' },
 ]
 
 const getStatusLabel = (val: Status) =>
-  statuses.filter(({ value }) => value === val)[0]?.label || '???'
+  statusOptions.filter(({ value }) => value === val)[0]?.label || '???'
 
-const combineStatus = (channel: number, status: number) =>
+const combineStatusWithChannel = (channel: number, status: Status) =>
   channel | (status << 4)
 
-const extractStatus = (status: number) => ({
-  status: ((status & MASK_STATUS) >> 4) | 8,
+const extractStatusAndChannel = (
+  status: number,
+): {
+  status: Status
+  channel: number
+} => ({
+  status: (((status & MASK_STATUS) >> 4) | 8) as Status,
   channel: status & MASK_CHANNEL,
 })
 
 export {
-  combineStatus,
-  extractStatus,
+  combineStatusWithChannel,
+  extractStatusAndChannel,
   getStatusLabel,
   MASK_CHANNEL,
   MASK_STATUS,
-  STATUS_AFTER_TOUCH,
-  STATUS_CHANNEL_PRESSURE,
-  STATUS_CONTROL_CHANGE,
-  STATUS_NOTE_OFF,
-  STATUS_NOTE_ON,
-  STATUS_PITCH_WHEEL,
-  STATUS_PROGRAM_CHANGE,
-  statuses,
+  statusOptions,
   Statuses,
 }
+
+export type { Status }

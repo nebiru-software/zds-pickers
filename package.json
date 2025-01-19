@@ -4,16 +4,20 @@
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
   "types": "./dist/main.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
+      "types": "./dist/main.d.ts",
       "import": "./dist/index.es.js",
-      "require": "./dist/index.cjs.js",
-      "types": "./dist/main.d.ts"
+      "require": "./dist/index.cjs.js"
     }
   },
+  "private": false,
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "sideEffects": false,
   "homepage": "https://github.com/dkadrios/zds-pickers#readme",
