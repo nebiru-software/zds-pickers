@@ -1,3 +1,5 @@
+import type { Option } from 'lib/pickers/Select'
+
 const Statuses = {
   noteOff: 8, // 1000
   noteOn: 9, // 1001
@@ -6,14 +8,14 @@ const Statuses = {
   programChange: 12, // 1100
   channelPressure: 13, // 1101
   pitchWheel: 14, // 1110
-}
+} as const
 
 type Status = (typeof Statuses)[keyof typeof Statuses]
 
 const MASK_CHANNEL = 15 // 00001111
 const MASK_STATUS = 240 // 01110000
 
-const statusOptions: { value: Status; label: string }[] = [
+const statusOptions: Option<Status>[] = [
   { value: Statuses.noteOn, label: 'Note On' },
   { value: Statuses.noteOff, label: 'Note Stack' },
   { value: Statuses.controlChange, label: 'Control Change' },

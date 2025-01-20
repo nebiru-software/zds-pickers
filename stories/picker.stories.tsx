@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import type * as Soundfont from 'soundfont-player'
 import { getMapping } from 'zds-mappings'
-import { statusOptions } from '../lib/midi/export.ts'
+import { Statuses, statusOptions } from '../lib/midi/export.ts'
 import OctavePlayer from '../lib/other/OctavePlayer.tsx'
 import CCPicker from '../lib/pickers/CCPicker.tsx'
 import ChannelMappingPicker from '../lib/pickers/ChannelMappingPicker.tsx'
@@ -78,7 +78,7 @@ const KnobStory: StoryObj<typeof Knob> = {
     disabled: false,
     max: 127,
     min: 0,
-    value: 0,
+    value: 45,
     wheelEnabled: false,
   },
 }
@@ -93,7 +93,7 @@ const KnobPickerStory: StoryObj<typeof KnobPicker> = {
     min: 0,
     shrinkLabel: false,
     // size: 35,
-    value: 0,
+    value: 87,
     wheelEnabled: false,
   },
 }
@@ -272,6 +272,7 @@ const StatusPickerStory: StoryObj<typeof StatusPicker> = {
     label: 'Status Msg',
     shrinkLabel: false,
     statuses: statusOptions,
+    value: Statuses.noteOn,
   },
 }
 

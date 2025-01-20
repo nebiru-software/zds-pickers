@@ -1,5 +1,6 @@
-import { Knob as RotaryKnob } from 'nebiru-react-rotary-knob'
+import { useCallback } from 'react'
 import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
+import RotaryKnob from '../rotaryKnob'
 import { assertRange } from '../utils.ts'
 import knobSkin10 from './knobSkin10.tsx'
 
@@ -37,15 +38,30 @@ const Knob = (props: KnobProps) => {
     }
   }
 
-  const handleWheel = ({ deltaY }: WheelEvent) => {
-    let change = Math.trunc(deltaY * wheelSensitivity)
-    if (change === 0 && deltaY !== 0) {
-      // Assure that at least a tiny change happens
-      change += deltaY > 0 ? 1 : -1
-    }
+  const handleWheel = useCallback(
+    (event: React.WheelEvent<HTMLDivElement>) => {
+      if (!wheelEnabled || disabled) return
 
-    handleChange(value + change)
-  }
+      event.preventDefault()
+      const delta = -event.deltaY * wheelSensitivity
+      const newValue = assertRange(value + delta, max, min)
+
+      setValue(newValue)
+      if (onChange) {
+        onChange(newValue)
+      }
+    },
+    [
+      wheelEnabled,
+      disabled,
+      wheelSensitivity,
+      value,
+      max,
+      min,
+      onChange,
+      setValue,
+    ],
+  )
 
   return (
     <RotaryKnob
