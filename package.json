@@ -1,13 +1,12 @@
 {
   "name": "zds-pickers",
-  "version": "4.0.1",
+  "version": "4.0.7",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
-  "types": "./dist/main.d.ts",
-  "files": ["dist"],
+  "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/main.d.ts",
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs.js"
     }
@@ -31,7 +30,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc --p ./tsconfig.json && vite build",
+    "build": "vite build && tsc --emitDeclarationOnly",
     "build-storybook": "storybook build",
     "lint": "biome check --write",
     "preview": "vite preview",

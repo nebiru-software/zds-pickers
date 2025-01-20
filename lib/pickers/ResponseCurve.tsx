@@ -13,8 +13,18 @@ const RESPONSE_CURVE_5 = 5
 const RESPONSE_CURVE_6 = 6
 const RESPONSE_CURVE_7 = 7
 
+type Curve =
+  | typeof RESPONSE_CURVE_0
+  | typeof RESPONSE_CURVE_1
+  | typeof RESPONSE_CURVE_2
+  | typeof RESPONSE_CURVE_3
+  | typeof RESPONSE_CURVE_4
+  | typeof RESPONSE_CURVE_5
+  | typeof RESPONSE_CURVE_6
+  | typeof RESPONSE_CURVE_7
+
 type ResponseCurve = {
-  value: string | number
+  value: Curve
   label: React.ReactNode
   c1: number
   c2: number
@@ -26,7 +36,7 @@ type ResponseCurve = {
   labelY: number
 }
 
-const RESPONSE_CURVES: Option<number>[] = [
+const RESPONSE_CURVES: Option<Curve>[] = [
   {
     value: RESPONSE_CURVE_7,
     label: 'Always maxed out.',
@@ -73,9 +83,9 @@ type ResponseCurveProps = {
   autosize: boolean
   disabled?: boolean
   inverted: boolean
-  onChange: (event: { target: { value: number } }) => void
+  onChange: (event: { target: { value: Curve } }) => void
   Tooltip: React.FC<TooltipProps>
-  value: number
+  value: Curve
 }
 
 const ResponseCurve = (props: ResponseCurveProps) => {
@@ -261,7 +271,9 @@ const ResponseCurve = (props: ResponseCurveProps) => {
                       ? f => f
                       : () =>
                           onChange({
-                            target: { value: Number.parseInt(String(value)) },
+                            target: {
+                              value: Number.parseInt(String(value)) as Curve,
+                            },
                           })
                   }
                   transform={`translate(${labelX + 3} ${labelY - buttonSize / 1.05}) rotate(45)`}
@@ -289,4 +301,4 @@ export default ResponseCurve
 
 export { RESPONSE_CURVES }
 
-export type { ResponseCurveProps }
+export type { Curve, ResponseCurve, ResponseCurveProps }

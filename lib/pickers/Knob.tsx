@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
 import RotaryKnob from '../rotaryKnob'
-import { assertRange } from '../utils.ts'
-import knobSkin10 from './knobSkin10.tsx'
+import { assertRange } from '../utils'
+import knobSkin10 from './knobSkin10'
 
 type KnobProps = {
   disabled?: boolean
@@ -83,7 +83,7 @@ const Knob = (props: KnobProps) => {
       skin={knobSkin10}
       style={{ opacity: disabled ? 0.4 : 1 }}
       unlockDistance={0}
-      {...{ max, min, value, ...rest }}
+      {...{ defaultValue: value, max, min, value, ...rest }}
     />
   )
 }

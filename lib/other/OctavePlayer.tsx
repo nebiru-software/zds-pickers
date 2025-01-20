@@ -1,8 +1,8 @@
 import type Soundfont from 'soundfont-player'
 import { /* Midi, */ Note } from 'tonal'
 import { Piano as ReactPiano } from 'zds-react-piano'
-import type { TooltipProps } from './DefaultTooltip.ts'
-import SoundfontProvider from './SoundFontProvider.tsx'
+import type { TooltipProps } from './DefaultTooltip'
+import SoundfontProvider from './SoundFontProvider'
 
 const baseNotes = [
   'C',

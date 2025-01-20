@@ -8,7 +8,7 @@ const Statuses = {
   programChange: 12, // 1100
   channelPressure: 13, // 1101
   pitchWheel: 14, // 1110
-} as const
+}
 
 type Status = (typeof Statuses)[keyof typeof Statuses]
 

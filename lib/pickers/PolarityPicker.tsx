@@ -3,19 +3,27 @@ import type { GroupBase, SelectInstance } from 'react-select'
 import Select from './Select'
 import type { Option, SelectProps } from './Select'
 
-type PolarityPickerProps = SelectProps<number> & {
+type Polarity = 0 | 1
+
+type PolarityPickerProps = SelectProps<Polarity> & {
   labelOff?: string
   labelOn?: string
 }
 
+type PolarityPickerRef = SelectInstance<
+  Option<Polarity>,
+  false,
+  GroupBase<Option<Polarity>>
+>
+
 const PolarityPicker = forwardRef<
-  SelectInstance<Option<number>, false, GroupBase<Option<number>>>,
+  SelectInstance<Option<Polarity>, false, GroupBase<Option<Polarity>>>,
   PolarityPickerProps
 >(({ labelOff = 'Normally Off', labelOn = 'Normally On', ...rest }, ref) => {
   const options = [
     { value: 0, label: labelOff },
     { value: 1, label: labelOn },
-  ]
+  ] as Option<Polarity>[]
 
   return (
     <Select
@@ -28,4 +36,4 @@ const PolarityPicker = forwardRef<
 
 export default PolarityPicker
 
-export type { PolarityPickerProps }
+export type { Polarity, PolarityPickerProps, PolarityPickerRef }

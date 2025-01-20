@@ -1,7 +1,7 @@
 import cl from 'classnames'
 import { forwardRef, useCallback, useEffect, useState } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
-import { arraySequence } from '../utils.ts'
+import { arraySequence } from '../utils'
 import Select from './Select'
 import type { Option, SelectProps } from './Select'
 
@@ -25,6 +25,12 @@ interface ChannelMappingPickerProps extends SelectProps<InternalValue> {
   value: number
   onChange: (value: InternalValue) => void
 }
+
+type ChannelMappingPickerRef = SelectInstance<
+  Option<number>,
+  false,
+  GroupBase<Option<number>>
+>
 
 type FormatOptionLabelFunction = NonNullable<
   SelectProps<InternalValue>['formatOptionLabel']
@@ -126,4 +132,4 @@ const ChannelMappingPicker = forwardRef<
 
 export default ChannelMappingPicker
 
-export type { ChannelMappingPickerProps }
+export type { ChannelMappingPickerProps, ChannelMappingPickerRef }

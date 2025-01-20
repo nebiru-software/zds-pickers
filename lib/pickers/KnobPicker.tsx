@@ -1,6 +1,6 @@
 import { forwardRef, useMemo } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
-import { arraySequence } from '../utils.ts'
+import { arraySequence } from '../utils'
 import Knob from './Knob'
 import Select from './Select'
 import type { Option, SelectProps } from './Select'
@@ -16,6 +16,12 @@ type KnobPickerProps = SelectProps<number> & {
   wheelSensitivity?: number
   value: number
 }
+
+type KnobPickerRef = SelectInstance<
+  Option<number>,
+  false,
+  GroupBase<Option<number>>
+>
 
 const KnobPicker = forwardRef<
   SelectInstance<Option<number>, false, GroupBase<Option<number>>>,
@@ -84,4 +90,4 @@ const KnobPicker = forwardRef<
 
 export default KnobPicker
 
-export type { KnobPickerProps }
+export type { KnobPickerProps, KnobPickerRef }

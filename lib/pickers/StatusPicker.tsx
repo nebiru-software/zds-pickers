@@ -6,6 +6,12 @@ import type { Option, SelectProps } from './Select'
 
 type StatusPickerProps = SelectProps<Status> & { statuses: Option<Status>[] }
 
+type StatusPickerRef = SelectInstance<
+  Option<Status>,
+  false,
+  GroupBase<Option<Status>>
+>
+
 const StatusPicker = forwardRef<
   SelectInstance<Option<Status>, false, GroupBase<Option<Status>>>,
   StatusPickerProps
@@ -19,4 +25,4 @@ const StatusPicker = forwardRef<
 
 export default StatusPicker
 
-export type { StatusPickerProps }
+export type { StatusPickerProps, StatusPickerRef }

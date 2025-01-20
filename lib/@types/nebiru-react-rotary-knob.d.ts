@@ -10,7 +10,7 @@ declare module 'nebiru-react-rotary-knob' {
     onWheel?: (event: WheelEvent) => void
     preciseMode: boolean
     rotateDegrees: number
-    skin: typeof import('./knobSkin10.tsx').default
+    skin: typeof import('./knobSkin10').default
     style: React.CSSProperties
     unlockDistance: number
     value: number

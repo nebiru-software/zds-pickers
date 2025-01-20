@@ -8,6 +8,12 @@ type MappingPickerProps = SelectProps<string> & {
   allowClearing: boolean
 }
 
+type MappingPickerRef = SelectInstance<
+  Option<string>,
+  false,
+  GroupBase<Option<string>>
+>
+
 const MappingPicker = forwardRef<
   SelectInstance<Option<string>, false, GroupBase<Option<string>>>,
   MappingPickerProps
@@ -59,4 +65,4 @@ const MappingPicker = forwardRef<
 
 export default MappingPicker
 
-export type { MappingPickerProps }
+export type { MappingPickerProps, MappingPickerRef }

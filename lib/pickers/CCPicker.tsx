@@ -6,6 +6,12 @@ import type { Option, SelectProps } from './Select'
 
 type CCPickerProps = SelectProps<number>
 
+type CCPickerRef = SelectInstance<
+  Option<number>,
+  false,
+  GroupBase<Option<number>>
+>
+
 const CCPicker = forwardRef<
   SelectInstance<Option<number>, false, GroupBase<Option<number>>>,
   CCPickerProps
@@ -19,4 +25,4 @@ const CCPicker = forwardRef<
 
 export default CCPicker
 
-export type { CCPickerProps }
+export type { CCPickerProps, CCPickerRef }

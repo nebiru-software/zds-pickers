@@ -1,5 +1,4 @@
-// Pickers
-export { default as CCPicker } from './pickers/CCPicker'
+// Components
 export { default as ChannelMappingPicker } from './pickers/ChannelMappingPicker'
 export { default as ChannelPicker } from './pickers/ChannelPicker'
 export { default as Knob } from './pickers/Knob'
@@ -16,7 +15,25 @@ export { default as StatusPicker } from './pickers/StatusPicker'
 export { default as SVGText } from './other/SVGText'
 export { default as ValuePicker } from './pickers/ValuePicker'
 
-// MIDI
+// Types
+export type * from './pickers/ChannelMappingPicker'
+export type * from './pickers/ChannelPicker'
+export type * from './pickers/Knob'
+export type * from './pickers/KnobPicker'
+export type * from './pickers/LatchPicker'
+export type * from './pickers/MappingPicker'
+export type * from './pickers/NotePicker'
+export type * from './other/OctavePlayer'
+export type * from './pickers/PianoPicker'
+export type * from './pickers/PolarityPicker'
+export type * from './pickers/ResponseCurvePicker'
+export type * from './pickers/Select'
+export type * from './pickers/StatusPicker'
+export type * from './other/SVGText'
+export type * from './pickers/ValuePicker'
+export type * from './midi/export'
+
+// MIDI Values & Functions
 export {
   combineStatusWithChannel,
   extractStatusAndChannel,

@@ -1,18 +1,42 @@
 import cl from 'classnames'
 import { forwardRef } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
-import { arraySequence } from '../utils.ts'
+import { arraySequence } from '../utils'
 import Select from './Select'
 import type { Option, SelectProps } from './Select'
+
+type Channel =
+  | 0
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
 
 interface FormatOptionLabelContext {
   context: 'menu' | 'value'
 }
 
-type ChannelPickerProps = SelectProps<number>
+type ChannelPickerProps = SelectProps<Channel>
 
-const options = arraySequence(16).map(value => ({
-  value,
+type ChannelPickerRef = SelectInstance<
+  Option<Channel>,
+  false,
+  GroupBase<Option<Channel>>
+>
+
+const options: Option<Channel>[] = arraySequence(16).map(value => ({
+  value: value as Channel,
   label: `Channel ${value + 1}`,
 }))
 
@@ -22,7 +46,7 @@ const formatOptionLabel = (
 ) =>
   context === 'value' ? option.label : Number.parseInt(String(option.value)) + 1 // menu, e.g. the list of options
 
-const filterOptions = (option: Option<number>, input: string) => {
+const filterOptions = (option: Option<Channel>, input: string) => {
   // console.log(option, input)
 
   if (input) {
@@ -32,7 +56,7 @@ const filterOptions = (option: Option<number>, input: string) => {
 }
 
 const ChannelPicker = forwardRef<
-  SelectInstance<Option<number>, false, GroupBase<Option<number>>>,
+  SelectInstance<Option<Channel>, false, GroupBase<Option<Channel>>>,
   ChannelPickerProps
 >(({ className, ...rest }, ref) => {
   return (
@@ -49,4 +73,4 @@ const ChannelPicker = forwardRef<
 
 export default ChannelPicker
 
-export type { ChannelPickerProps }
+export type { Channel, ChannelPickerProps, ChannelPickerRef }

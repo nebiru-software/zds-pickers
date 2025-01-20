@@ -3,7 +3,7 @@ import type { GroupBase, SelectInstance } from 'react-select'
 import { Midi } from 'tonal'
 import { type MapItem, type Mapping, emptyMapping } from 'zds-mappings'
 import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
-import { assertRange } from '../utils.ts'
+import { assertRange } from '../utils'
 import Select from './Select'
 import type { Option, SelectProps } from './Select'
 
@@ -23,6 +23,12 @@ type NotePickerProps = SelectProps<number> & {
   mapping?: Mapping
   onChange: (value: number) => void
 }
+
+type NotePickerRef = SelectInstance<
+  Option<number>,
+  false,
+  GroupBase<Option<number>>
+>
 
 const NotePicker = forwardRef<
   SelectInstance<Option<number>, false, GroupBase<Option<number>>>,
@@ -86,4 +92,4 @@ const NotePicker = forwardRef<
 
 export default NotePicker
 
-export type { NotePickerProps }
+export type { NotePickerProps, NotePickerRef }

@@ -16,7 +16,7 @@ import ReactSelect, {
   type StylesConfig,
   type ValueContainerProps,
 } from 'react-select'
-import { omit } from '../utils.ts'
+import { omit } from '../utils'
 
 const { IndicatorsContainer, Placeholder, ValueContainer } = originalComponents
 

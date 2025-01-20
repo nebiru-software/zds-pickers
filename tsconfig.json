@@ -8,12 +8,16 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
+    /* output */
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "emitDeclarationOnly": true,
+    // "preserveConstEnums": true, // we don't use enums
+
     /* Bundler mode */
     "moduleResolution": "Bundler",
-    "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
-    "noEmit": true,
     "jsx": "react-jsx",
 
     /* Linting */
@@ -21,10 +25,10 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
+    "noUncheckedSideEffectImports": true
 
-    "paths": {}
+    // "paths": {}
   },
-  "include": ["lib", "stories"],
-  "exclude": ["node_modules", "**/*.spec.ts", "**/*.spec.tsx"]
+  "include": ["lib"],
+  "exclude": ["node_modules", "**/*.spec.ts", "**/*.spec.tsx", "stories"]
 }

@@ -9,11 +9,11 @@ import { select } from 'd3-selection'
 import type { BaseType, Selection } from 'd3-selection'
 import { useEffect, useRef, useState } from 'react'
 import { SvgLoader, SvgProxy } from 'react-svgmt'
-import InternalInput from './InternalInput.tsx'
-import type { Point } from './Types.ts'
-import { KnobVisualHelpers } from './helpers/KnobVisualHelpers.tsx'
-import defaultSkin from './knobdefaultskin.ts'
-import utils from './utils.ts'
+import InternalInput from './InternalInput'
+import type { Point } from './Types'
+import { KnobVisualHelpers } from './helpers/KnobVisualHelpers'
+import defaultSkin from './knobdefaultskin'
+import utils from './utils'
 
 /**
  * type definition for the skin system attribute modification element
@@ -57,7 +57,7 @@ type KnobProps = Omit<React.ComponentProps<'div'>, 'onChange'> & {
   step?: number
   style: React.CSSProperties
   unlockDistance?: number
-  value: number
+  value?: number
 }
 
 type KnobState = {
@@ -104,7 +104,7 @@ const RotaryKnob = (props: KnobProps) => {
     ...rest
   } = props
 
-  const [isControlled, setIsControlled] = useState(false)
+  const [isControlled, setIsControlled] = useState(value !== undefined)
 
   const container = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -175,27 +175,23 @@ const RotaryKnob = (props: KnobProps) => {
     return scale
   }
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    if (value == null) {
-      /**
-       * If the component is not controlled
-       * then the state variable uncontrolledValue
-       * will be used to store the current value
-       */
-      setIsControlled(false)
-      setState(prevState => ({
-        ...prevState,
-        uncontrolledValue: defaultValue,
-      }))
-    } else {
-      setIsControlled(true)
-    }
+    setIsControlled(value !== undefined)
+
+    setState(prevState => ({
+      ...prevState,
+      uncontrolledValue: value ?? defaultValue ?? 0,
+    }))
 
     if (container.current) {
-      setupDragging(select(container.current))
+      // Remove existing drag behavior
+      select(container.current).on('.drag', null)
+      // Only setup new drag if not disabled
+      if (!disabled) {
+        setupDragging(select(container.current))
+      }
     }
-  }, []) // Empty dependency array for componentDidMount behavior
+  }, [value, defaultValue, disabled])
 
   const saveRef = (elem: SVGElement) => {
     if (!state.svgRef) {
@@ -204,7 +200,6 @@ const RotaryKnob = (props: KnobProps) => {
   }
 
   const onAngleChanged = (angle: number) => {
-    // debugger // eslint-disable-line
     //Calculate domain value
     const domainValue = convertAngleToValue(angle)
     if (!isControlled) {
@@ -222,7 +217,7 @@ const RotaryKnob = (props: KnobProps) => {
    * Returns the current value (depending on controlled/uncontrolled mode)
    */
   const getValue = (): number =>
-    isControlled && value ? value : state.uncontrolledValue || 0
+    isControlled ? (value ?? 0) : (state.uncontrolledValue ?? 0)
 
   const setupDragging = (
     elem: Selection<HTMLDivElement, unknown, BaseType, unknown>,
@@ -242,25 +237,21 @@ const RotaryKnob = (props: KnobProps) => {
     let monitoring = false
 
     function started(event: D3DragEvent<HTMLDivElement, unknown, unknown>) {
-      if (!(event?.sourceEvent && node)) return
+      if (!event?.sourceEvent) return
+      if (!node) return
+
+      const currentValue = getValue()
+
       vbox = node.getBoundingClientRect()
       elem.classed('dragging', true)
       onStart()
 
       startPos = { x: event.x - cx, y: event.y - cy }
       startAngle = utils.getAngleForPoint(startPos.x, startPos.y)
-      initialAngle = startAngle
+      initialAngle = convertValueToAngle(currentValue)
       monitoring = false
 
-      setState(prevState => ({
-        ...prevState,
-        dragging: true,
-        dragDistance: 0,
-        mousePos: {
-          x: event.sourceEvent.clientX,
-          y: event.sourceEvent.clientY,
-        },
-      }))
+      // ...existing setState code...
     }
 
     function dragged(event: D3DragEvent<HTMLDivElement, unknown, unknown>) {
@@ -340,6 +331,8 @@ const RotaryKnob = (props: KnobProps) => {
         height: '50px',
         overflow: 'hidden',
         position: 'relative',
+        userSelect: 'none',
+        cursor: 'crosshair',
       },
       style,
     ),
