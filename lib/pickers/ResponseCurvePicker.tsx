@@ -1,9 +1,10 @@
 import { forwardRef, useCallback } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
-import DefaultTooltip, { type TooltipProps } from '../other/DefaultTooltip'
+import { type Curve, responseCurves } from '../midi/export'
+import { DefaultTooltip, type TooltipProps } from '../other/DefaultTooltip'
 import { findObj } from '../utils'
-import ResponseCurve, { type Curve, RESPONSE_CURVES } from './ResponseCurve'
-import Select from './Select'
+import { ResponseCurve } from './ResponseCurve'
+import { Select } from './Select'
 import type { Option, SelectProps } from './Select'
 
 type ResponseCurvePickerProps = SelectProps<Curve> & {
@@ -32,7 +33,7 @@ const ResponseCurvePicker = forwardRef<
   const Placeholder = useCallback(
     () => (
       <div className="singleValue">
-        {(findObj('value', value)(RESPONSE_CURVES) as Option<Curve>)?.label}
+        {(findObj('value', value)(responseCurves) as Option<Curve>)?.label}
       </div>
     ),
     [value],
@@ -69,6 +70,6 @@ const ResponseCurvePicker = forwardRef<
   )
 })
 
-export default ResponseCurvePicker
+export { ResponseCurvePicker }
 
 export type { ResponseCurvePickerProps, ResponseCurvePickerRef }

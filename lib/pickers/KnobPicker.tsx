@@ -1,8 +1,8 @@
 import { forwardRef, useMemo } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
 import { arraySequence } from '../utils'
-import Knob from './Knob'
-import Select from './Select'
+import { Knob } from './Knob'
+import { Select } from './Select'
 import type { Option, SelectProps } from './Select'
 
 type KnobPickerProps = SelectProps<number> & {
@@ -88,6 +88,6 @@ const KnobPicker = forwardRef<
   )
 })
 
-export default KnobPicker
+export { KnobPicker }
 
 export type { KnobPickerProps, KnobPickerRef }

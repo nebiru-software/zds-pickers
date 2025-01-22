@@ -4,21 +4,21 @@ import React from 'react'
 import type * as Soundfont from 'soundfont-player'
 import { getMapping } from 'zds-mappings'
 import { Statuses, statusOptions } from '../lib/midi/export'
-import OctavePlayer from '../lib/other/OctavePlayer'
-import CCPicker from '../lib/pickers/CCPicker'
-import ChannelMappingPicker from '../lib/pickers/ChannelMappingPicker'
-import ChannelPicker from '../lib/pickers/ChannelPicker'
-import Knob from '../lib/pickers/Knob'
-import KnobPicker from '../lib/pickers/KnobPicker'
-import LatchPicker from '../lib/pickers/LatchPicker'
-import MappingPicker from '../lib/pickers/MappingPicker'
-import NotePicker from '../lib/pickers/NotePicker'
-import PianoPicker from '../lib/pickers/PianoPicker'
-import PolarityPicker from '../lib/pickers/PolarityPicker'
-import ResponseCurve from '../lib/pickers/ResponseCurve'
-import ResponseCurvePicker from '../lib/pickers/ResponseCurvePicker'
-import StatusPicker from '../lib/pickers/StatusPicker'
-import ValuePicker from '../lib/pickers/ValuePicker'
+import { OctavePlayer } from '../lib/other/OctavePlayer'
+import { CCPicker } from '../lib/pickers/CCPicker'
+import { ChannelMappingPicker } from '../lib/pickers/ChannelMappingPicker'
+import { ChannelPicker } from '../lib/pickers/ChannelPicker'
+import { Knob } from '../lib/pickers/Knob'
+import { KnobPicker } from '../lib/pickers/KnobPicker'
+import { LatchPicker } from '../lib/pickers/LatchPicker'
+import { MappingPicker } from '../lib/pickers/MappingPicker'
+import { NotePicker } from '../lib/pickers/NotePicker'
+import { PianoPicker } from '../lib/pickers/PianoPicker'
+import { PolarityPicker } from '../lib/pickers/PolarityPicker'
+import { ResponseCurve } from '../lib/pickers/ResponseCurve'
+import { ResponseCurvePicker } from '../lib/pickers/ResponseCurvePicker'
+import { StatusPicker } from '../lib/pickers/StatusPicker'
+import { ValuePicker } from '../lib/pickers/ValuePicker'
 
 const meta: Meta = {
   title: 'Pickers',
@@ -155,16 +155,17 @@ const NotePickerStory3: StoryObj<typeof NotePicker> = {
     isMelodicMode: false,
     label: 'Action button',
     mapping: gmMapping,
-    // selectProps: {
-    //   actionButton: (
-    //     <button
-    //       onClick={e => {
-    //         window.alert('click')
-    //       }}>
-    //       ?
-    //     </button>
-    //   ),
-    // },
+    selectProps: {
+      actionButton: (
+        <button
+          type="button"
+          onClick={() => {
+            window.alert('click')
+          }}>
+          ?
+        </button>
+      ),
+    },
     shrinkLabel: false,
     value: 38,
   },

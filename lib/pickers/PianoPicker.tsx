@@ -1,6 +1,6 @@
 import { Piano as ReactPiano } from 'zds-react-piano'
 import type { WithProviderProps } from '../other/OctavePlayer'
-import SoundfontProvider from '../other/SoundFontProvider'
+import { SoundfontProvider } from '../other/SoundFontProvider'
 
 const firstNote = 21
 const lastNote = 108
@@ -16,7 +16,7 @@ type PianoProps = {
   width: number
 }
 
-const PianoPicker = ({ height, width, ...rest }: PianoProps) => {
+const BasePianoPicker = ({ height, width, ...rest }: PianoProps) => {
   const keyWidth = width / whiteNotes + 2
   const keyWidthToHeight = keyWidth / height
 
@@ -55,7 +55,7 @@ const WithProvider = ({
       soundfont,
     }}
     render={({ isLoading, playNote, stopNote }) => (
-      <PianoPicker
+      <BasePianoPicker
         disabled={isLoading}
         {...{
           height,
@@ -72,6 +72,6 @@ const WithProvider = ({
   />
 )
 
-export default WithProvider
+export { WithProvider as PianoPicker }
 
 export type { PianoProps }

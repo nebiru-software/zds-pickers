@@ -91,7 +91,7 @@ type TextProps = Partial<HTMLOrSVGElement> & {
   y?: number
 }
 
-const Text = (props: TextProps) => {
+const SvgText = (props: TextProps) => {
   const {
     className = '',
     dx = 0,
@@ -216,6 +216,6 @@ const Text = (props: TextProps) => {
   )
 }
 
-export default Text
+export { SvgText, MEASUREMENT_ELEMENT_ID }
 
-export { MEASUREMENT_ELEMENT_ID }
+export type { TextProps, WordWidths, WordsByLine }

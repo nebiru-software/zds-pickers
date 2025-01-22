@@ -38,4 +38,4 @@ class DrawCircle extends React.Component<DrawCircleProps> {
   }
 }
 
-export default DrawCircle
+export { DrawCircle }

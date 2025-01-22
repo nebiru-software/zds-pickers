@@ -40,4 +40,4 @@ class HelpersOverlay extends React.Component<HelpersOverlayProps> {
   }
 }
 
-export default HelpersOverlay
+export { HelpersOverlay }

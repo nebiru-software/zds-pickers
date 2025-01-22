@@ -8,9 +8,10 @@ const Statuses = {
   programChange: 12, // 1100
   channelPressure: 13, // 1101
   pitchWheel: 14, // 1110
-}
+} as const
 
-type Status = (typeof Statuses)[keyof typeof Statuses]
+// Define type as union of literal values
+type Status = 8 | 9 | 10 | 11 | 12 | 13 | 14
 
 const MASK_CHANNEL = 15 // 00001111
 const MASK_STATUS = 240 // 01110000
@@ -41,14 +42,69 @@ const extractStatusAndChannel = (
   channel: status & MASK_CHANNEL,
 })
 
+const RESPONSE_CURVE_0 = 0
+const RESPONSE_CURVE_1 = 1
+const RESPONSE_CURVE_2 = 2
+const RESPONSE_CURVE_3 = 3
+const RESPONSE_CURVE_4 = 4
+const RESPONSE_CURVE_5 = 5
+const RESPONSE_CURVE_6 = 6
+const RESPONSE_CURVE_7 = 7
+
+type Curve =
+  | typeof RESPONSE_CURVE_0
+  | typeof RESPONSE_CURVE_1
+  | typeof RESPONSE_CURVE_2
+  | typeof RESPONSE_CURVE_3
+  | typeof RESPONSE_CURVE_4
+  | typeof RESPONSE_CURVE_5
+  | typeof RESPONSE_CURVE_6
+  | typeof RESPONSE_CURVE_7
+
+const responseCurves: Option<Curve>[] = [
+  {
+    value: RESPONSE_CURVE_7,
+    label: 'Always maxed out.',
+  },
+  {
+    value: RESPONSE_CURVE_6,
+    label: 'Most sensitive.',
+  },
+  {
+    value: RESPONSE_CURVE_5,
+    label: 'Moderately sensitive.',
+  },
+  {
+    value: RESPONSE_CURVE_4,
+    label: 'A little sensitive.',
+  },
+  {
+    value: RESPONSE_CURVE_0,
+    label: 'Linear, no change.',
+  },
+  {
+    value: RESPONSE_CURVE_1,
+    label: 'A little less sensitive.',
+  },
+  {
+    value: RESPONSE_CURVE_2,
+    label: 'Even less sensitive.',
+  },
+  {
+    value: RESPONSE_CURVE_3,
+    label: 'Least sensitive.',
+  },
+]
+
 export {
   combineStatusWithChannel,
   extractStatusAndChannel,
   getStatusLabel,
   MASK_CHANNEL,
   MASK_STATUS,
-  statusOptions,
+  responseCurves,
   Statuses,
+  statusOptions,
 }
 
-export type { Status }
+export type { Curve, Status }

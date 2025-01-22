@@ -1,29 +1,13 @@
 import { useRef } from 'react'
 import useComponentSize from '../hooks/useComponentSize'
-import DefaultTooltip, { type TooltipProps } from '../other/DefaultTooltip'
-import SVGText from '../other/SVGText'
-import type { Option } from './Select'
+import {
+  type Curve,
+  responseCurves as origResponseCurves,
+} from '../midi/export'
+import { DefaultTooltip, type TooltipProps } from '../other/DefaultTooltip'
+import { SvgText } from '../other/SvgText'
 
-const RESPONSE_CURVE_0 = 0
-const RESPONSE_CURVE_1 = 1
-const RESPONSE_CURVE_2 = 2
-const RESPONSE_CURVE_3 = 3
-const RESPONSE_CURVE_4 = 4
-const RESPONSE_CURVE_5 = 5
-const RESPONSE_CURVE_6 = 6
-const RESPONSE_CURVE_7 = 7
-
-type Curve =
-  | typeof RESPONSE_CURVE_0
-  | typeof RESPONSE_CURVE_1
-  | typeof RESPONSE_CURVE_2
-  | typeof RESPONSE_CURVE_3
-  | typeof RESPONSE_CURVE_4
-  | typeof RESPONSE_CURVE_5
-  | typeof RESPONSE_CURVE_6
-  | typeof RESPONSE_CURVE_7
-
-type ResponseCurve = {
+type ResponseCurveType = {
   value: Curve
   label: React.ReactNode
   c1: number
@@ -35,41 +19,6 @@ type ResponseCurve = {
   labelX: number
   labelY: number
 }
-
-const RESPONSE_CURVES: Option<Curve>[] = [
-  {
-    value: RESPONSE_CURVE_7,
-    label: 'Always maxed out.',
-  },
-  {
-    value: RESPONSE_CURVE_6,
-    label: 'Most sensitive.',
-  },
-  {
-    value: RESPONSE_CURVE_5,
-    label: 'Moderately sensitive.',
-  },
-  {
-    value: RESPONSE_CURVE_4,
-    label: 'A little sensitive.',
-  },
-  {
-    value: RESPONSE_CURVE_0,
-    label: 'Linear, no change.',
-  },
-  {
-    value: RESPONSE_CURVE_1,
-    label: 'A little less sensitive.',
-  },
-  {
-    value: RESPONSE_CURVE_2,
-    label: 'Even less sensitive.',
-  },
-  {
-    value: RESPONSE_CURVE_3,
-    label: 'Least sensitive.',
-  },
-]
 
 // const width = 218
 // const height = 150
@@ -113,9 +62,9 @@ const ResponseCurve = (props: ResponseCurveProps) => {
 
   const svgProps = { ref: svgRef }
 
-  const responseCurves = RESPONSE_CURVES.map(
+  const responseCurves = origResponseCurves.map(
     // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: <explanation>
-    ({ value, label }): ResponseCurve => {
+    ({ value, label }): ResponseCurveType => {
       let c1 = 0
       let c2 = 0
       let x1 = axisX1
@@ -125,55 +74,55 @@ const ResponseCurve = (props: ResponseCurveProps) => {
       let labelX = xMid
       let labelY = yMid
       switch (value) {
-        case RESPONSE_CURVE_0:
+        case responseCurves[0].value:
           c1 = xMid
           c2 = yMid
           labelY += 3
 
           break
-        case RESPONSE_CURVE_1:
+        case responseCurves[1].value:
           c1 = inverted ? xMid + width * 0.13 : xMid - width * 0.13
           c2 = yMid - height * 0.13
           labelX = inverted ? xMid + width * 0.1 : xMid - width * 0.1
           labelY = yMid - height * 0.09
           break
 
-        case RESPONSE_CURVE_2:
+        case responseCurves[2].value:
           c1 = inverted ? xMid + width * 0.25 : xMid - width * 0.25
           c2 = yMid - height * 0.25
           labelX = inverted ? xMid + width * 0.2 : xMid - width * 0.2
           labelY = yMid - height * 0.17
           break
 
-        case RESPONSE_CURVE_3:
+        case responseCurves[3].value:
           c1 = inverted ? xMid + width * 0.35 : xMid - width * 0.35
           c2 = yMid - height * 0.35
           labelX = inverted ? xMid + width * 0.28 : xMid - width * 0.28
           labelY = yMid - height * 0.25
           break
 
-        case RESPONSE_CURVE_4:
+        case responseCurves[4].value:
           c1 = inverted ? xMid - width * 0.13 : xMid + width * 0.13
           c2 = yMid + height * 0.13
           labelX = inverted ? xMid - width * 0.1 : xMid + width * 0.1
           labelY = yMid + height * 0.1
           break
 
-        case RESPONSE_CURVE_5:
+        case responseCurves[5].value:
           c1 = inverted ? xMid - width * 0.25 : xMid + width * 0.25
           c2 = yMid + height * 0.25
           labelX = inverted ? xMid - width * 0.2 : xMid + width * 0.2
           labelY = yMid + height * 0.18
           break
 
-        case RESPONSE_CURVE_6:
+        case responseCurves[6].value:
           c1 = inverted ? xMid - width * 0.35 : xMid + width * 0.35
           c2 = yMid + height * 0.35
           labelX = inverted ? xMid - width * 0.28 : xMid + width * 0.28
           labelY = yMid + height * 0.25
           break
 
-        case RESPONSE_CURVE_7:
+        case responseCurves[7].value:
           x1 = inverted ? axisX1 : axisX2
           y1 = axisY1
           x2 = x1
@@ -217,7 +166,7 @@ const ResponseCurve = (props: ResponseCurveProps) => {
           y={0}
         />
 
-        <SVGText
+        <SvgText
           className="axis"
           textAnchor="middle"
           transform={`translate(${axisX1 - 14} ${height / 2}) rotate(90)`}
@@ -226,7 +175,7 @@ const ResponseCurve = (props: ResponseCurveProps) => {
           text="Applied force"
         />
 
-        <SVGText
+        <SvgText
           className="axis"
           textAnchor="middle"
           transform={`translate(${width / 2} ${axisY2 + 13})`}
@@ -297,8 +246,6 @@ const ResponseCurve = (props: ResponseCurveProps) => {
   )
 }
 
-export default ResponseCurve
+export { ResponseCurve }
 
-export { RESPONSE_CURVES }
-
-export type { Curve, ResponseCurve, ResponseCurveProps }
+export type { ResponseCurveType, ResponseCurveProps }

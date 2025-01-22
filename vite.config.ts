@@ -1,19 +1,9 @@
 import { resolve } from 'node:path'
 import react from '@vitejs/plugin-react-swc'
 import { defineConfig } from 'vite'
-import dts from 'vite-plugin-dts'
 
 export default defineConfig({
-  plugins: [
-    react(),
-    dts({
-      tsconfigPath: resolve(__dirname, 'tsconfig.json'),
-      include: ['lib'],
-      rollupTypes: true,
-      entryRoot: 'lib',
-      outDir: 'dist/types',
-    }),
-  ],
+  plugins: [react()],
   build: {
     lib: {
       entry: resolve(__dirname, 'lib/index'),
@@ -21,6 +11,7 @@ export default defineConfig({
       formats: ['es', 'cjs'],
       name: 'zds-pickers',
     },
+    outDir: 'dist',
     sourcemap: true,
     rollupOptions: {
       external: [
@@ -33,14 +24,7 @@ export default defineConfig({
         'd3-selection',
       ],
       output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-          'react-select': 'ReactSelect',
-          'd3-drag': 'd3',
-          'd3-scale': 'd3',
-          'd3-selection': 'd3',
-        },
+        exports: 'named',
       },
     },
     // minify: true,

@@ -40,4 +40,4 @@ class InternalInput extends React.Component<InternalInputProps> {
   }
 }
 
-export default InternalInput
+export { InternalInput }

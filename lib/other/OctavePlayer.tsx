@@ -2,7 +2,14 @@ import type Soundfont from 'soundfont-player'
 import { /* Midi, */ Note } from 'tonal'
 import { Piano as ReactPiano } from 'zds-react-piano'
 import type { TooltipProps } from './DefaultTooltip'
-import SoundfontProvider from './SoundFontProvider'
+import { SoundfontProvider } from './SoundFontProvider'
+
+type PianoMidiNote = {
+  accidental: boolean
+  left: number
+  midiNumber: number
+  width: number
+}
 
 const baseNotes = [
   'C',
@@ -38,7 +45,7 @@ type OctavePlayerProps = {
   width: number
 }
 
-const OctavePlayer = ({
+const BaseOctavePlayer = ({
   octave,
   height,
   width,
@@ -67,12 +74,12 @@ type WithProviderProps = {
   format?: 'mp3' | 'ogg'
   height: number
   hostname?: string
-  instrumentName: Soundfont.InstrumentName
+  instrumentName?: Soundfont.InstrumentName
   octave?: number
   onChange?: (note: number) => void
   onClick?: (note: number) => void
   onDoubleClick?: (note: number) => void
-  onKeyMouseEnter?: (note: number) => void
+  onKeyMouseEnter?: (note: PianoMidiNote) => void
   onKeyMouseLeave?: (note: number) => void
   soundfont?: 'MusyngKite' | 'FluidR3_GM'
   Tooltip?: TooltipProps
@@ -116,7 +123,7 @@ const WithProvider = ({
         <div>
           <h2>Octave: {octave}</h2>
         </div>
-        <OctavePlayer
+        <BaseOctavePlayer
           disabled={isLoading}
           {...{
             height,
@@ -136,6 +143,6 @@ const WithProvider = ({
   />
 )
 
-export default WithProvider
+export { WithProvider as OctavePlayer }
 
-export type { WithProviderProps }
+export type { OctavePlayerProps, PianoMidiNote, WithProviderProps }

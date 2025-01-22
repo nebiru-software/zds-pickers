@@ -1,6 +1,6 @@
 import type { Option } from '../pickers/Select'
 
-const CC_NAMES = [
+const changeControllerOptions = [
   'Bank Select',
   'Modulation Wheel',
   'Breath Controller',
@@ -136,4 +136,4 @@ const CC_NAMES = [
   }),
 )
 
-export default CC_NAMES
+export { changeControllerOptions }

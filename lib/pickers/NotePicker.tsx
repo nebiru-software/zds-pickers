@@ -4,7 +4,7 @@ import { Midi } from 'tonal'
 import { type MapItem, type Mapping, emptyMapping } from 'zds-mappings'
 import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
 import { assertRange } from '../utils'
-import Select from './Select'
+import { Select } from './Select'
 import type { Option, SelectProps } from './Select'
 
 const { midiToNoteName } = Midi
@@ -16,7 +16,7 @@ const formattedListEntry = (label: string, idx: number) => ({
   value: idx + 1,
 })
 
-type NotePickerProps = SelectProps<number> & {
+type NotePickerProps = Omit<SelectProps<number>, 'options'> & {
   channel: number
   disabled?: boolean
   isMelodicMode?: boolean
@@ -90,6 +90,6 @@ const NotePicker = forwardRef<
   )
 })
 
-export default NotePicker
+export { NotePicker }
 
 export type { NotePickerProps, NotePickerRef }

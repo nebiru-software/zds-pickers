@@ -11,7 +11,7 @@ type SoundfontProviderProps = {
   audioContext: AudioContext
   format?: 'mp3' | 'ogg'
   hostname?: string
-  instrumentName: Soundfont.InstrumentName
+  instrumentName?: Soundfont.InstrumentName
   onChange?: (midiNumber: number) => void
   render: (props: {
     isLoading: boolean
@@ -54,7 +54,7 @@ const SoundfontProvider = (props: SoundfontProviderProps) => {
         }).then(newInstrument => {
           setInstrument(newInstrument)
         })
-      } else if (isDefined(instrumentName)) {
+      } else if (instrumentName) {
         // the host app has already injected the soundfont into global space
         Soundfont.instrument(audioContext, instrumentName).then(
           newInstrument => {
@@ -70,7 +70,9 @@ const SoundfontProvider = (props: SoundfontProviderProps) => {
   )
 
   useEffect(() => {
-    loadInstrument(instrumentName)
+    if (instrumentName) {
+      loadInstrument(instrumentName)
+    }
   }, [instrumentName, loadInstrument])
 
   useEffect(() => {
@@ -127,4 +129,6 @@ const SoundfontProvider = (props: SoundfontProviderProps) => {
 // https://gleitz.github.io/midi-js-soundfonts/MusyngKite/acoustic_grand_piano-mp3.js
 // https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/.js
 
-export default SoundfontProvider
+export { SoundfontProvider }
+
+export type { SoundfontProviderProps }

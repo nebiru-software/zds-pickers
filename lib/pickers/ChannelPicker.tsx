@@ -2,7 +2,7 @@ import cl from 'classnames'
 import { forwardRef } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
 import { arraySequence } from '../utils'
-import Select from './Select'
+import { Select } from './Select'
 import type { Option, SelectProps } from './Select'
 
 type Channel =
@@ -27,7 +27,7 @@ interface FormatOptionLabelContext {
   context: 'menu' | 'value'
 }
 
-type ChannelPickerProps = SelectProps<Channel>
+type ChannelPickerProps = Omit<SelectProps<Channel>, 'options'>
 
 type ChannelPickerRef = SelectInstance<
   Option<Channel>,
@@ -71,6 +71,6 @@ const ChannelPicker = forwardRef<
   )
 })
 
-export default ChannelPicker
+export { ChannelPicker }
 
 export type { Channel, ChannelPickerProps, ChannelPickerRef }

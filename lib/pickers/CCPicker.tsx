@@ -1,10 +1,10 @@
 import { forwardRef } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
-import ccValues from '../midi/ccValues'
-import Select from './Select'
+import { changeControllerOptions } from '../midi/ccValues'
+import { Select } from './Select'
 import type { Option, SelectProps } from './Select'
 
-type CCPickerProps = SelectProps<number>
+type CCPickerProps = Omit<SelectProps<number>, 'options'>
 
 type CCPickerRef = SelectInstance<
   Option<number>,
@@ -18,11 +18,11 @@ const CCPicker = forwardRef<
 >((props, ref) => (
   <Select
     {...props}
-    options={ccValues}
+    options={changeControllerOptions}
     ref={ref}
   />
 ))
 
-export default CCPicker
+export { CCPicker }
 
 export type { CCPickerProps, CCPickerRef }

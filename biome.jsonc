@@ -93,7 +93,7 @@
       },
 
       "performance": {
-        "noReExportAll": "error",
+        "noReExportAll": "off",
         "useTopLevelRegex": "off",
         "noAccumulatingSpread": "error"
       },

@@ -102,7 +102,7 @@ function transformBoundingClientRectToDocument(box: DOMRect) {
   return { top: ttop, left: tleft, width: box.width, height: box.height }
 }
 
-export default {
+export {
   // toGlobalCoordinates,
   // toLocalCoordinates,
   toRadians,

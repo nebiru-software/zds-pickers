@@ -1,11 +1,11 @@
 import { forwardRef } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
-import Select from './Select'
+import { Select } from './Select'
 import type { Option, SelectProps } from './Select'
 
 type Polarity = 0 | 1
 
-type PolarityPickerProps = SelectProps<Polarity> & {
+type PolarityPickerProps = Omit<SelectProps<Polarity>, 'options'> & {
   labelOff?: string
   labelOn?: string
 }
@@ -34,6 +34,6 @@ const PolarityPicker = forwardRef<
   )
 })
 
-export default PolarityPicker
+export { PolarityPicker }
 
 export type { Polarity, PolarityPickerProps, PolarityPickerRef }

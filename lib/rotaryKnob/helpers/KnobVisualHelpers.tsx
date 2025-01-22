@@ -1,9 +1,9 @@
 import React from 'react'
 import type { Point } from '../Types'
-import utils from '../utils'
-import DrawCircle from './DrawCircle'
-import DrawLine from './DrawLine'
-import HelpersOverlay from './HelpersOverlay'
+import { toRadians } from '../utils'
+import { DrawCircle } from './DrawCircle'
+import { DrawLine } from './DrawLine'
+import { HelpersOverlay } from './HelpersOverlay'
 
 /** Precision visual helpers */
 
@@ -49,9 +49,9 @@ class KnobVisualHelpers extends React.Component<
     //Calculate current angle segment end point
     //Note: Not sure why we need to subtract 90 here
     const valueMarkerX =
-      props.radius * Math.cos(utils.toRadians(props.valueAngle - 90))
+      props.radius * Math.cos(toRadians(props.valueAngle - 90))
     const valueMarkerY =
-      props.radius * Math.sin(utils.toRadians(props.valueAngle - 90))
+      props.radius * Math.sin(toRadians(props.valueAngle - 90))
 
     return {
       ...state,

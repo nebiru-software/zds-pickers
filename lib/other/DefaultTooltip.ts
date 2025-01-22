@@ -9,6 +9,6 @@ type TooltipProps = {
 const DefaultTooltip = ({ children }: React.PropsWithoutRef<TooltipProps>) =>
   createElement(Fragment, null, children)
 
-export default DefaultTooltip
+export { DefaultTooltip }
 
 export type { TooltipProps }

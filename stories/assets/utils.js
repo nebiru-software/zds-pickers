@@ -4,4 +4,4 @@
 export const arraySequence = numberOfElements =>
   Array.from(new Array(numberOfElements).keys())
 
-export default arraySequence
+export { arraySequence }

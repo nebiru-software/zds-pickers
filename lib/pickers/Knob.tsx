@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
-import RotaryKnob from '../rotaryKnob'
+import { RotaryKnob } from '../rotaryKnob'
 import { assertRange } from '../utils'
-import knobSkin10 from './knobSkin10'
+import { knobSkin10 } from './knobSkin10'
 
 type KnobProps = {
   disabled?: boolean
@@ -88,6 +88,6 @@ const Knob = (props: KnobProps) => {
   )
 }
 
-export default Knob
+export { Knob }
 
 export type { KnobProps }

@@ -2,7 +2,7 @@ import cl from 'classnames'
 import { forwardRef, useCallback, useEffect, useState } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
 import { arraySequence } from '../utils'
-import Select from './Select'
+import { Select } from './Select'
 import type { Option, SelectProps } from './Select'
 
 type InternalValue = number | 'separator'
@@ -15,7 +15,8 @@ const defaultOptions: ChannelMappingOption[] = arraySequence(16).map(value => ({
   label: value,
 }))
 
-interface ChannelMappingPickerProps extends SelectProps<InternalValue> {
+interface ChannelMappingPickerProps
+  extends Omit<SelectProps<InternalValue>, 'options'> {
   channels: Option<number>[]
   className?: string
   filterOptions?: (
@@ -130,6 +131,10 @@ const ChannelMappingPicker = forwardRef<
   )
 })
 
-export default ChannelMappingPicker
+export { ChannelMappingPicker }
 
-export type { ChannelMappingPickerProps, ChannelMappingPickerRef }
+export type {
+  ChannelMappingOption,
+  ChannelMappingPickerProps,
+  ChannelMappingPickerRef,
+}

@@ -29,4 +29,4 @@ class DrawLine extends React.Component<DrawLineProps> {
   }
 }
 
-export default DrawLine
+export { DrawLine }

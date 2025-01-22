@@ -91,4 +91,4 @@ const knobSkin10 = {
   ],
 }
 
-export default knobSkin10
+export { knobSkin10 }

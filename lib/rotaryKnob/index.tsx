@@ -9,11 +9,11 @@ import { select } from 'd3-selection'
 import type { BaseType, Selection } from 'd3-selection'
 import { useEffect, useRef, useState } from 'react'
 import { SvgLoader, SvgProxy } from 'react-svgmt'
-import InternalInput from './InternalInput'
+import { InternalInput } from './InternalInput'
 import type { Point } from './Types'
 import { KnobVisualHelpers } from './helpers/KnobVisualHelpers'
 import defaultSkin from './knobdefaultskin'
-import utils from './utils'
+import { getAngleForPoint } from './utils'
 
 /**
  * type definition for the skin system attribute modification element
@@ -247,7 +247,7 @@ const RotaryKnob = (props: KnobProps) => {
       onStart()
 
       startPos = { x: event.x - cx, y: event.y - cy }
-      startAngle = utils.getAngleForPoint(startPos.x, startPos.y)
+      startAngle = getAngleForPoint(startPos.x, startPos.y)
       initialAngle = convertValueToAngle(currentValue)
       monitoring = false
 
@@ -263,14 +263,14 @@ const RotaryKnob = (props: KnobProps) => {
       if (preciseMode) {
         if (!monitoring && distanceFromCenter >= unlockDistance) {
           startPos = currentPos
-          startAngle = utils.getAngleForPoint(currentPos.x, currentPos.y)
+          startAngle = getAngleForPoint(currentPos.x, currentPos.y)
           monitoring = true
         }
       } else {
         monitoring = true
       }
 
-      const currentAngle = utils.getAngleForPoint(currentPos.x, currentPos.y)
+      const currentAngle = getAngleForPoint(currentPos.x, currentPos.y)
       const deltaAngle = currentAngle - startAngle
       let finalAngle = initialAngle + deltaAngle
       finalAngle = normalizeAngle(finalAngle)
@@ -414,4 +414,4 @@ const RotaryKnob = (props: KnobProps) => {
   )
 }
 
-export default RotaryKnob
+export { RotaryKnob }

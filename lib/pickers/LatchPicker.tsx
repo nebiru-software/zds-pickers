@@ -1,7 +1,7 @@
 import { forwardRef } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
 import type { Polarity } from './PolarityPicker'
-import Select from './Select'
+import { Select } from './Select'
 import type { Option, SelectProps } from './Select'
 
 const options: Option<Polarity>[] = [
@@ -9,7 +9,7 @@ const options: Option<Polarity>[] = [
   { value: 1, label: 'Latching' },
 ]
 
-type LatchPickerProps = SelectProps<Polarity>
+type LatchPickerProps = Omit<SelectProps<Polarity>, 'options'>
 
 type LatchPickerRef = SelectInstance<
   Option<Polarity>,
@@ -28,6 +28,6 @@ const LatchPicker = forwardRef<
   />
 ))
 
-export default LatchPicker
+export { LatchPicker }
 
 export type { LatchPickerProps, LatchPickerRef }

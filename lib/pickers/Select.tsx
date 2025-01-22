@@ -11,6 +11,7 @@ import ReactSelect, {
   type IndicatorsContainerProps,
   components as originalComponents,
   type PlaceholderProps,
+  type SelectComponentsConfig,
   type SelectInstance,
   type SingleValue,
   type StylesConfig,
@@ -20,6 +21,12 @@ import { omit } from '../utils'
 
 const { IndicatorsContainer, Placeholder, ValueContainer } = originalComponents
 
+type PassedSelectProps = {
+  actionButton?: React.ReactNode
+  inputValue?: string
+  placeholder?: React.ReactNode
+}
+
 type Option<T> = {
   label: React.ReactNode
   value: T
@@ -28,11 +35,8 @@ type Option<T> = {
 interface CustomIndicatorsContainerProps<T>
   extends Omit<IndicatorsContainerProps<Option<T>, false>, 'selectProps'> {
   children: React.ReactNode
-  selectProps: IndicatorsContainerProps<Option<T>, false>['selectProps'] & {
-    actionButton?: React.ReactNode
-    inputValue?: string
-    placeholder?: React.ReactNode
-  }
+  selectProps: IndicatorsContainerProps<Option<T>, false>['selectProps'] &
+    PassedSelectProps
 }
 
 const CustomIndicatorsContainer = <T,>({
@@ -83,7 +87,11 @@ const CustomValueContainer = <T,>({
   </ValueContainer>
 )
 
-type SelectProps<T> = {
+type SelectProps<T> = SelectComponentsConfig<
+  Option<T>,
+  false,
+  GroupBase<Option<T>>
+> & {
   className?: string
   components?: object
   disabled?: boolean
@@ -94,9 +102,13 @@ type SelectProps<T> = {
   ) => React.ReactNode
   isSearchable?: boolean
   label?: string
+  menuPortalTarget?: HTMLElement | null
+  menuPosition?: 'fixed' | 'absolute'
+  menuShouldScrollIntoView?: boolean
   onChange: (value: Option<T>['value']) => void
   options: Option<T>[] | { entries: Option<T>[] }[]
   preserveMenuWidth?: boolean
+  selectProps?: PassedSelectProps
   shrinkLabel?: boolean
   value: Option<T>['value']
 }
@@ -243,6 +255,6 @@ const Select = forwardRef(
   },
 ) => JSX.Element
 
-export default Select
+export { Select }
 
 export type { Option, SelectProps }
