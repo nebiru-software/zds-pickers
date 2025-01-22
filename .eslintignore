@@ -1,7 +1,0 @@
-build/
-coverage/
-node_modules
-**/*.svg.js
-**/*.scss
-**/*.css
-**/*.stories.mdx

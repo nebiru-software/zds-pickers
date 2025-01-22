@@ -235,6 +235,7 @@
     "Substates",
     "subvariant",
     "superstatic",
+    "svgmt",
     "svgr",
     "svgsprites",
     "swcrc",
@@ -292,12 +293,12 @@
   "editor.autoClosingQuotes": "beforeWhitespace",
   "editor.autoIndent": "full",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
   "editor.detectIndentation": false,
   "editor.formatOnPaste": false,
   "editor.formatOnType": false,
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "editor.formatOnSaveMode": "modifications",
   "editor.tabCompletion": "on",
   "emmet.excludeLanguages": ["markdown", "javascript"],
@@ -317,7 +318,12 @@
     "extensions": [".js", ".jsx", ".md", ".mdx", ".ts", ".tsx"]
   },
   "eslint.validate": [
-    "javascript", "javascriptreact", "markdown", "mdx", "typescript", "typescriptreact",
+    "javascript",
+    "javascriptreact",
+    "markdown",
+    "mdx",
+    "typescript",
+    "typescriptreact"
   ],
   "files.exclude": {
     "**/*.flow": true,
