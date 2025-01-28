@@ -22,6 +22,7 @@ type Channel =
   | 13
   | 14
   | 15
+  | undefined
 
 interface FormatOptionLabelContext {
   context: 'menu' | 'value'
@@ -58,14 +59,19 @@ const filterOptions = (option: Option<Channel>, input: string) => {
 const ChannelPicker = forwardRef<
   SelectInstance<Option<Channel>, false, GroupBase<Option<Channel>>>,
   ChannelPickerProps
->(({ className, ...rest }, ref) => {
+>(({ className, value = undefined, ...rest }, ref) => {
   return (
     <Select
       {...rest}
       className={cl(className, 'channel-picker')}
       filterOptions={filterOptions}
       formatOptionLabel={formatOptionLabel}
-      options={options}
+      options={
+        value === undefined
+          ? [...options, { value: undefined, label: '--' }]
+          : options
+      }
+      value={value}
       ref={ref}
     />
   )

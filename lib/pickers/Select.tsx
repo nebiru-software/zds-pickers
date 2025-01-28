@@ -39,10 +39,10 @@ interface CustomIndicatorsContainerProps<T>
     PassedSelectProps
 }
 
-const CustomIndicatorsContainer = <T,>({
-  children,
-  ...rest
-}: CustomIndicatorsContainerProps<T>) => {
+const CustomIndicatorsContainer = <T,>(
+  props: CustomIndicatorsContainerProps<T>,
+) => {
+  const { children, ...rest } = props
   const actionButton = rest.selectProps?.actionButton
 
   return (
@@ -92,6 +92,7 @@ type SelectProps<T> = SelectComponentsConfig<
   false,
   GroupBase<Option<T>>
 > & {
+  actionButton?: React.ReactNode
   className?: string
   components?: object
   disabled?: boolean
@@ -110,7 +111,7 @@ type SelectProps<T> = SelectComponentsConfig<
   preserveMenuWidth?: boolean
   selectProps?: PassedSelectProps
   shrinkLabel?: boolean
-  value: Option<T>['value']
+  value?: Option<T>['value']
 }
 
 const Select = forwardRef(
