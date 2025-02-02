@@ -1,9 +1,9 @@
 import cl from 'classnames'
-import { forwardRef } from 'react'
+import { forwardRef, useCallback } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
 import { arraySequence } from '../utils'
 import { Select } from './Select'
-import type { Option, SelectProps } from './Select'
+import { type Option, type SelectProps, noSelection } from './Select'
 
 type Channel =
   | 0
@@ -22,7 +22,7 @@ type Channel =
   | 13
   | 14
   | 15
-  | undefined
+  | typeof noSelection
 
 interface FormatOptionLabelContext {
   context: 'menu' | 'value'
@@ -41,12 +41,6 @@ const options: Option<Channel>[] = arraySequence(16).map(value => ({
   label: `Channel ${value + 1}`,
 }))
 
-const formatOptionLabel = (
-  option: Option<unknown>,
-  { context }: FormatOptionLabelContext,
-) =>
-  context === 'value' ? option.label : Number.parseInt(String(option.value)) + 1 // menu, e.g. the list of options
-
 const filterOptions = (option: Option<Channel>, input: string) => {
   // console.log(option, input)
 
@@ -59,18 +53,26 @@ const filterOptions = (option: Option<Channel>, input: string) => {
 const ChannelPicker = forwardRef<
   SelectInstance<Option<Channel>, false, GroupBase<Option<Channel>>>,
   ChannelPickerProps
->(({ className, value = undefined, ...rest }, ref) => {
+>(({ className, value = noSelection, ...rest }, ref) => {
+  const formatOptionLabel = useCallback(
+    (option: Option<unknown>, { context }: FormatOptionLabelContext) => {
+      if (value === undefined) {
+        return '--'
+      }
+      return context === 'value'
+        ? option.label
+        : Number.parseInt(String(option.value)) + 1 // menu, e.g. the list of options
+    },
+    [value],
+  )
+
   return (
     <Select
       {...rest}
       className={cl(className, 'channel-picker')}
       filterOptions={filterOptions}
       formatOptionLabel={formatOptionLabel}
-      options={
-        value === undefined
-          ? [...options, { value: undefined, label: '--' }]
-          : options
-      }
+      options={options}
       value={value}
       ref={ref}
     />

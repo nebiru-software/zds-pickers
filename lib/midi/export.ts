@@ -1,4 +1,4 @@
-import type { Option } from 'lib/pickers/Select'
+import type { Option, noSelection } from 'lib/pickers/Select'
 
 const Statuses = {
   noteOff: 8, // 1000
@@ -51,50 +51,27 @@ const RESPONSE_CURVE_5 = 5
 const RESPONSE_CURVE_6 = 6
 const RESPONSE_CURVE_7 = 7
 
-type Curve =
-  | typeof RESPONSE_CURVE_0
-  | typeof RESPONSE_CURVE_1
-  | typeof RESPONSE_CURVE_2
-  | typeof RESPONSE_CURVE_3
-  | typeof RESPONSE_CURVE_4
-  | typeof RESPONSE_CURVE_5
-  | typeof RESPONSE_CURVE_6
-  | typeof RESPONSE_CURVE_7
+const ResponseCurveLabels = {
+  [RESPONSE_CURVE_0]: 'Linear, no change',
+  [RESPONSE_CURVE_1]: 'A little less sensitive',
+  [RESPONSE_CURVE_2]: 'Even less sensitive',
+  [RESPONSE_CURVE_3]: 'Least sensitive',
+  [RESPONSE_CURVE_4]: 'A little sensitive',
+  [RESPONSE_CURVE_5]: 'Moderately sensitive',
+  [RESPONSE_CURVE_6]: 'Most sensitive',
+  [RESPONSE_CURVE_7]: 'Always maxed out',
+} as const
 
-const responseCurves: Option<Curve>[] = [
-  {
-    value: RESPONSE_CURVE_7,
-    label: 'Always maxed out.',
-  },
-  {
-    value: RESPONSE_CURVE_6,
-    label: 'Most sensitive.',
-  },
-  {
-    value: RESPONSE_CURVE_5,
-    label: 'Moderately sensitive.',
-  },
-  {
-    value: RESPONSE_CURVE_4,
-    label: 'A little sensitive.',
-  },
-  {
-    value: RESPONSE_CURVE_0,
-    label: 'Linear, no change.',
-  },
-  {
-    value: RESPONSE_CURVE_1,
-    label: 'A little less sensitive.',
-  },
-  {
-    value: RESPONSE_CURVE_2,
-    label: 'Even less sensitive.',
-  },
-  {
-    value: RESPONSE_CURVE_3,
-    label: 'Least sensitive.',
-  },
-]
+// type Curve = (typeof Items)[keyof typeof Items]
+
+type Curve = keyof typeof ResponseCurveLabels | typeof noSelection
+
+const responseCurves: Option<Curve>[] = Object.keys(ResponseCurveLabels)
+  .map(Number)
+  .map(key => ({
+    value: key as Curve,
+    label: ResponseCurveLabels[key as keyof typeof ResponseCurveLabels],
+  }))
 
 export {
   combineStatusWithChannel,
@@ -103,6 +80,7 @@ export {
   MASK_CHANNEL,
   MASK_STATUS,
   responseCurves,
+  ResponseCurveLabels,
   Statuses,
   statusOptions,
 }

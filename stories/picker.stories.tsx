@@ -17,6 +17,11 @@ import { PianoPicker } from '../lib/pickers/PianoPicker'
 import { PolarityPicker } from '../lib/pickers/PolarityPicker'
 import { ResponseCurve } from '../lib/pickers/ResponseCurve'
 import { ResponseCurvePicker } from '../lib/pickers/ResponseCurvePicker'
+import {
+  type Option,
+  noSelection,
+  noSelectionOption,
+} from '../lib/pickers/Select'
 import { StatusPicker } from '../lib/pickers/StatusPicker'
 import { ValuePicker } from '../lib/pickers/ValuePicker'
 
@@ -36,6 +41,16 @@ const CCPickerStory: StoryObj<typeof CCPicker> = {
   },
 }
 
+const CCPickerUndefinedStory: StoryObj<typeof CCPicker> = {
+  render: args => <CCPicker {...args} />,
+  args: {
+    disabled: false,
+    label: 'CC #',
+    shrinkLabel: false,
+    value: noSelection,
+  },
+}
+
 const ChannelPickerStory: StoryObj<typeof ChannelPicker> = {
   render: args => <ChannelPicker {...args} />,
   args: {
@@ -52,7 +67,7 @@ const ChannelPickerUndefinedStory: StoryObj<typeof ChannelPicker> = {
     disabled: false,
     label: 'Channel',
     shrinkLabel: false,
-    value: undefined,
+    value: noSelection,
   },
 }
 
@@ -81,6 +96,39 @@ const ChannelMappingPickerStory: StoryObj<typeof ChannelMappingPicker> = {
     label: 'Channel',
     shrinkLabel: false,
     value: 7,
+  },
+}
+
+const ChannelMappingPickerUndefinedStory: StoryObj<
+  typeof ChannelMappingPicker
+> = {
+  render: args => <ChannelMappingPicker {...args} />,
+  args: {
+    channels: [
+      ...[
+        '',
+        'No Mapping',
+        '',
+        'Alesis DM Pro',
+        '',
+        '',
+        '',
+        'BFD3',
+        '',
+        '',
+        'Roland TD-20',
+        'Roland TD-30 Perc 1 (Latin)',
+        '',
+        '',
+        '',
+        '',
+      ].map((label, value): Option<number> => ({ label, value })),
+      noSelectionOption,
+    ],
+    disabled: false,
+    label: 'Channel',
+    shrinkLabel: false,
+    value: noSelection,
   },
 }
 
@@ -226,6 +274,18 @@ const PolarityPickerStory: StoryObj<typeof PolarityPicker> = {
   },
 }
 
+const PolarityPickerUndefinedStory: StoryObj<typeof PolarityPicker> = {
+  render: args => <PolarityPicker {...args} />,
+  args: {
+    disabled: false,
+    label: 'Polarity',
+    labelOff: 'Normally Off',
+    labelOn: 'Normally On',
+    shrinkLabel: false,
+    value: noSelection,
+  },
+}
+
 const ResponseCurveStory: StoryObj<typeof ResponseCurve> = {
   render: args => <ResponseCurve {...args} />,
   args: {
@@ -246,6 +306,18 @@ const ResponseCurvePickerStory: StoryObj<typeof ResponseCurvePicker> = {
   },
 }
 
+const ResponseCurvePickerUndefinedStory: StoryObj<typeof ResponseCurvePicker> =
+  {
+    render: args => <ResponseCurvePicker {...args} />,
+    args: {
+      disabled: false,
+      inverted: false,
+      label: 'Response',
+      shrinkLabel: false,
+      value: noSelection,
+    },
+  }
+
 const StatusPickerStory: StoryObj<typeof StatusPicker> = {
   render: args => <StatusPicker {...args} />,
   args: {
@@ -254,6 +326,17 @@ const StatusPickerStory: StoryObj<typeof StatusPicker> = {
     shrinkLabel: false,
     statuses: statusOptions,
     value: Statuses.noteOn,
+  },
+}
+
+const StatusPickerUndefinedStory: StoryObj<typeof StatusPicker> = {
+  render: args => <StatusPicker {...args} />,
+  args: {
+    disabled: false,
+    label: 'Status Msg',
+    shrinkLabel: false,
+    statuses: statusOptions,
+    value: noSelection,
   },
 }
 
@@ -269,11 +352,26 @@ const ValuePickerStory: StoryObj<typeof ValuePicker> = {
   },
 }
 
+const ValuePickerUndefinedStory: StoryObj<typeof ValuePicker> = {
+  render: args => <ValuePicker {...args} />,
+  args: {
+    disabled: false,
+    highToLow: false,
+    label: 'Value',
+    max: 127,
+    min: 0,
+    shrinkLabel: false,
+    value: noSelection,
+  },
+}
+
 export {
   ChannelPickerStory as ChannelPicker,
   ChannelPickerUndefinedStory as ChannelPickerNoValue,
   ChannelMappingPickerStory as ChannelMappingPicker,
-  CCPickerStory as ContinuousChangePicker,
+  ChannelMappingPickerUndefinedStory as ChannelMappingPickerNoValue,
+  CCPickerStory as ChangeController,
+  CCPickerUndefinedStory as ChangeControllerNoValue,
   KnobStory as Knob,
   KnobPickerStory as KnobPicker,
   LatchPickerStory as LatchPicker,
@@ -285,10 +383,14 @@ export {
   OctavePlayerStory as OctavePlayer,
   PianoPickerStory as PianoPicker,
   PolarityPickerStory as PolarityPicker,
+  PolarityPickerUndefinedStory as PolarityPickerNoValue,
   ResponseCurveStory as ResponseCurve,
   ResponseCurvePickerStory as ResponseCurvePicker,
+  ResponseCurvePickerUndefinedStory as ResponseCurvePickerNoValue,
   StatusPickerStory as StatusPicker,
+  StatusPickerUndefinedStory as StatusPickerNoValue,
   ValuePickerStory as ValuePicker,
+  ValuePickerUndefinedStory as ValuePickerNoValue,
 }
 
 export default meta

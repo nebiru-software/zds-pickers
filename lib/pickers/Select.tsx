@@ -19,6 +19,8 @@ import ReactSelect, {
 } from 'react-select'
 import { omit } from '../utils'
 
+const noSelection = 255
+
 const { IndicatorsContainer, Placeholder, ValueContainer } = originalComponents
 
 type PassedSelectProps = {
@@ -30,6 +32,11 @@ type PassedSelectProps = {
 type Option<T> = {
   label: React.ReactNode
   value: T
+}
+
+const noSelectionOption: Option<number> = {
+  label: '--',
+  value: noSelection,
 }
 
 interface CustomIndicatorsContainerProps<T>
@@ -256,6 +263,6 @@ const Select = forwardRef(
   },
 ) => JSX.Element
 
-export { Select }
+export { noSelection, noSelectionOption, Select }
 
 export type { Option, SelectProps }

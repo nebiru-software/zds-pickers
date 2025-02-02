@@ -74,55 +74,55 @@ const ResponseCurve = (props: ResponseCurveProps) => {
       let labelX = xMid
       let labelY = yMid
       switch (value) {
-        case responseCurves[0].value:
+        case 0:
           c1 = xMid
           c2 = yMid
           labelY += 3
 
           break
-        case responseCurves[1].value:
+        case 1:
           c1 = inverted ? xMid + width * 0.13 : xMid - width * 0.13
           c2 = yMid - height * 0.13
           labelX = inverted ? xMid + width * 0.1 : xMid - width * 0.1
           labelY = yMid - height * 0.09
           break
 
-        case responseCurves[2].value:
+        case 2:
           c1 = inverted ? xMid + width * 0.25 : xMid - width * 0.25
           c2 = yMid - height * 0.25
           labelX = inverted ? xMid + width * 0.2 : xMid - width * 0.2
           labelY = yMid - height * 0.17
           break
 
-        case responseCurves[3].value:
+        case 3:
           c1 = inverted ? xMid + width * 0.35 : xMid - width * 0.35
           c2 = yMid - height * 0.35
           labelX = inverted ? xMid + width * 0.28 : xMid - width * 0.28
           labelY = yMid - height * 0.25
           break
 
-        case responseCurves[4].value:
+        case 4:
           c1 = inverted ? xMid - width * 0.13 : xMid + width * 0.13
           c2 = yMid + height * 0.13
           labelX = inverted ? xMid - width * 0.1 : xMid + width * 0.1
           labelY = yMid + height * 0.1
           break
 
-        case responseCurves[5].value:
+        case 5:
           c1 = inverted ? xMid - width * 0.25 : xMid + width * 0.25
           c2 = yMid + height * 0.25
           labelX = inverted ? xMid - width * 0.2 : xMid + width * 0.2
           labelY = yMid + height * 0.18
           break
 
-        case responseCurves[6].value:
+        case 6:
           c1 = inverted ? xMid - width * 0.35 : xMid + width * 0.35
           c2 = yMid + height * 0.35
           labelX = inverted ? xMid - width * 0.28 : xMid + width * 0.28
           labelY = yMid + height * 0.25
           break
 
-        case responseCurves[7].value:
+        case 7:
           x1 = inverted ? axisX1 : axisX2
           y1 = axisY1
           x2 = x1

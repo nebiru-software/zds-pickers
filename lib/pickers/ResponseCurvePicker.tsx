@@ -30,14 +30,14 @@ const ResponseCurvePicker = forwardRef<
     ...rest
   } = props
 
-  const Placeholder = useCallback(
-    () => (
-      <div className="singleValue">
-        {(findObj('value', value)(responseCurves) as Option<Curve>)?.label}
-      </div>
-    ),
-    [value],
-  )
+  const Placeholder = useCallback(() => {
+    const option = findObj('value', value)(responseCurves) as Option<Curve>
+    return option ? (
+      <div className="singleValue">{option.label}</div>
+    ) : (
+      <div className="zds-pickers__placeholder">Select...</div>
+    )
+  }, [value])
 
   const MenuList = useCallback(
     ({ setValue }: { setValue: (v: Curve) => void }) => (
