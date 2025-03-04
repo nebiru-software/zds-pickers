@@ -19,6 +19,8 @@ import ReactSelect, {
 } from 'react-select'
 import { omit } from '../utils'
 
+const noSelection = 255
+
 const { IndicatorsContainer, Placeholder, ValueContainer } = originalComponents
 
 type PassedSelectProps = {
@@ -32,6 +34,11 @@ type Option<T> = {
   value: T
 }
 
+const noSelectionOption: Option<number> = {
+  label: '--',
+  value: noSelection,
+}
+
 interface CustomIndicatorsContainerProps<T>
   extends Omit<IndicatorsContainerProps<Option<T>, false>, 'selectProps'> {
   children: React.ReactNode
@@ -39,10 +46,10 @@ interface CustomIndicatorsContainerProps<T>
     PassedSelectProps
 }
 
-const CustomIndicatorsContainer = <T,>({
-  children,
-  ...rest
-}: CustomIndicatorsContainerProps<T>) => {
+const CustomIndicatorsContainer = <T,>(
+  props: CustomIndicatorsContainerProps<T>,
+) => {
+  const { children, ...rest } = props
   const actionButton = rest.selectProps?.actionButton
 
   return (
@@ -92,6 +99,7 @@ type SelectProps<T> = SelectComponentsConfig<
   false,
   GroupBase<Option<T>>
 > & {
+  actionButton?: React.ReactNode
   className?: string
   components?: object
   disabled?: boolean
@@ -110,7 +118,7 @@ type SelectProps<T> = SelectComponentsConfig<
   preserveMenuWidth?: boolean
   selectProps?: PassedSelectProps
   shrinkLabel?: boolean
-  value: Option<T>['value']
+  value?: Option<T>['value']
 }
 
 const Select = forwardRef(
@@ -255,6 +263,6 @@ const Select = forwardRef(
   },
 ) => JSX.Element
 
-export { Select }
+export { noSelection, noSelectionOption, Select }
 
 export type { Option, SelectProps }

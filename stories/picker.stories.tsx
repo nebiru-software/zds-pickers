@@ -17,6 +17,11 @@ import { PianoPicker } from '../lib/pickers/PianoPicker'
 import { PolarityPicker } from '../lib/pickers/PolarityPicker'
 import { ResponseCurve } from '../lib/pickers/ResponseCurve'
 import { ResponseCurvePicker } from '../lib/pickers/ResponseCurvePicker'
+import {
+  type Option,
+  noSelection,
+  noSelectionOption,
+} from '../lib/pickers/Select'
 import { StatusPicker } from '../lib/pickers/StatusPicker'
 import { ValuePicker } from '../lib/pickers/ValuePicker'
 
@@ -36,6 +41,16 @@ const CCPickerStory: StoryObj<typeof CCPicker> = {
   },
 }
 
+const CCPickerUndefinedStory: StoryObj<typeof CCPicker> = {
+  render: args => <CCPicker {...args} />,
+  args: {
+    disabled: false,
+    label: 'CC #',
+    shrinkLabel: false,
+    value: noSelection,
+  },
+}
+
 const ChannelPickerStory: StoryObj<typeof ChannelPicker> = {
   render: args => <ChannelPicker {...args} />,
   args: {
@@ -43,6 +58,16 @@ const ChannelPickerStory: StoryObj<typeof ChannelPicker> = {
     label: 'Channel',
     shrinkLabel: false,
     value: 9,
+  },
+}
+
+const ChannelPickerUndefinedStory: StoryObj<typeof ChannelPicker> = {
+  render: args => <ChannelPicker {...args} />,
+  args: {
+    disabled: false,
+    label: 'Channel',
+    shrinkLabel: false,
+    value: noSelection,
   },
 }
 
@@ -71,6 +96,39 @@ const ChannelMappingPickerStory: StoryObj<typeof ChannelMappingPicker> = {
     label: 'Channel',
     shrinkLabel: false,
     value: 7,
+  },
+}
+
+const ChannelMappingPickerUndefinedStory: StoryObj<
+  typeof ChannelMappingPicker
+> = {
+  render: args => <ChannelMappingPicker {...args} />,
+  args: {
+    channels: [
+      ...[
+        '',
+        'No Mapping',
+        '',
+        'Alesis DM Pro',
+        '',
+        '',
+        '',
+        'BFD3',
+        '',
+        '',
+        'Roland TD-20',
+        'Roland TD-30 Perc 1 (Latin)',
+        '',
+        '',
+        '',
+        '',
+      ].map((label, value): Option<number> => ({ label, value })),
+      noSelectionOption,
+    ],
+    disabled: false,
+    label: 'Channel',
+    shrinkLabel: false,
+    value: noSelection,
   },
 }
 
@@ -155,19 +213,30 @@ const NotePickerStory3: StoryObj<typeof NotePicker> = {
     isMelodicMode: false,
     label: 'Action button',
     mapping: gmMapping,
-    selectProps: {
-      actionButton: (
-        <button
-          type="button"
-          onClick={() => {
-            window.alert('click')
-          }}>
-          ?
-        </button>
-      ),
-    },
+    actionButton: (
+      <button
+        type="button"
+        onClick={() => {
+          window.alert('click')
+        }}>
+        ?
+      </button>
+    ),
     shrinkLabel: false,
     value: 38,
+  },
+}
+
+const NotePickerStory4: StoryObj<typeof NotePicker> = {
+  render: args => <NotePicker {...args} />,
+  args: {
+    channel: 0,
+    disabled: false,
+    isMelodicMode: false,
+    label: 'Note #',
+    mapping: gmMapping,
+    shrinkLabel: false,
+    value: undefined,
   },
 }
 
@@ -183,49 +252,6 @@ const OctavePlayerStory: StoryObj<typeof OctavePlayer> = {
     octave: 4,
   },
 }
-
-// # NotePicker
-// <Canvas withToolbar>
-//   <Story
-//     height={120}
-//     name="NotePicker"
-//   >
-//     <NotePicker
-//       channel={number('channel', 0, 'NotePicker')}
-//       disabled={boolean('disabled', false, 'NotePicker')}
-//       isMelodicMode={boolean('isMelodicMode', false, 'NotePicker')}
-//       label={text('label', 'Note #', 'NotePicker')}
-//       mapping={gmMapping}
-//       onChange={action('handleChange')}
-//       shrinkLabel={boolean('shrinkLabel', false, 'NotePicker')}
-//       value={number('value', 38, {}, 'NotePicker')}
-//     />
-//     <br />
-//     <NotePicker
-//       channel={number('channel', 0, 'NotePicker2')}
-//       disabled={boolean('disabled', false, 'NotePicker2')}
-//       isMelodicMode={boolean('isMelodicMode', false, 'NotePicker2')}
-//       label="No mapping"
-//       onChange={action('handleChange2')}
-//       shrinkLabel={boolean('shrinkLabel', false, 'NotePicker')}
-//       value={number('value', 38, {}, 'NotePicker2')}
-//     />
-//     <br />
-//     <NotePicker
-//       channel={number('channel', 0, 'NotePicker3')}
-//       disabled={boolean('disabled', false, 'NotePicker3')}
-//       isMelodicMode={boolean('isMelodicMode', false, 'NotePicker3')}
-//       label="Action button"
-//       mapping={gmMapping}
-//       onChange={action('handleChange3')}
-//       selectProps={{actionButton:<button onClick={e=>{
-//         console.log('click')
-//         }}>?</button>}}
-//       shrinkLabel={boolean('shrinkLabel', false, 'NotePicker')}
-//       value={number('value', 38, {}, 'NotePicker3')}
-//     />
-//   </Story>
-// </Canvas>
 
 const PianoPickerStory: StoryObj<typeof PianoPicker> = {
   render: args => <PianoPicker {...args} />,
@@ -245,6 +271,18 @@ const PolarityPickerStory: StoryObj<typeof PolarityPicker> = {
     labelOn: 'Normally On',
     shrinkLabel: false,
     value: 0,
+  },
+}
+
+const PolarityPickerUndefinedStory: StoryObj<typeof PolarityPicker> = {
+  render: args => <PolarityPicker {...args} />,
+  args: {
+    disabled: false,
+    label: 'Polarity',
+    labelOff: 'Normally Off',
+    labelOn: 'Normally On',
+    shrinkLabel: false,
+    value: noSelection,
   },
 }
 
@@ -268,6 +306,18 @@ const ResponseCurvePickerStory: StoryObj<typeof ResponseCurvePicker> = {
   },
 }
 
+const ResponseCurvePickerUndefinedStory: StoryObj<typeof ResponseCurvePicker> =
+  {
+    render: args => <ResponseCurvePicker {...args} />,
+    args: {
+      disabled: false,
+      inverted: false,
+      label: 'Response',
+      shrinkLabel: false,
+      value: noSelection,
+    },
+  }
+
 const StatusPickerStory: StoryObj<typeof StatusPicker> = {
   render: args => <StatusPicker {...args} />,
   args: {
@@ -276,6 +326,17 @@ const StatusPickerStory: StoryObj<typeof StatusPicker> = {
     shrinkLabel: false,
     statuses: statusOptions,
     value: Statuses.noteOn,
+  },
+}
+
+const StatusPickerUndefinedStory: StoryObj<typeof StatusPicker> = {
+  render: args => <StatusPicker {...args} />,
+  args: {
+    disabled: false,
+    label: 'Status Msg',
+    shrinkLabel: false,
+    statuses: statusOptions,
+    value: noSelection,
   },
 }
 
@@ -291,10 +352,26 @@ const ValuePickerStory: StoryObj<typeof ValuePicker> = {
   },
 }
 
+const ValuePickerUndefinedStory: StoryObj<typeof ValuePicker> = {
+  render: args => <ValuePicker {...args} />,
+  args: {
+    disabled: false,
+    highToLow: false,
+    label: 'Value',
+    max: 127,
+    min: 0,
+    shrinkLabel: false,
+    value: noSelection,
+  },
+}
+
 export {
   ChannelPickerStory as ChannelPicker,
+  ChannelPickerUndefinedStory as ChannelPickerNoValue,
   ChannelMappingPickerStory as ChannelMappingPicker,
-  CCPickerStory as ContinuousChangePicker,
+  ChannelMappingPickerUndefinedStory as ChannelMappingPickerNoValue,
+  CCPickerStory as ChangeController,
+  CCPickerUndefinedStory as ChangeControllerNoValue,
   KnobStory as Knob,
   KnobPickerStory as KnobPicker,
   LatchPickerStory as LatchPicker,
@@ -302,13 +379,18 @@ export {
   NotePickerStory1 as NotePickerSimple,
   NotePickerStory2 as NotePickerNoMapping,
   NotePickerStory3 as NotePickerActionButton,
+  NotePickerStory4 as NotePickerNoValue,
   OctavePlayerStory as OctavePlayer,
   PianoPickerStory as PianoPicker,
   PolarityPickerStory as PolarityPicker,
+  PolarityPickerUndefinedStory as PolarityPickerNoValue,
   ResponseCurveStory as ResponseCurve,
   ResponseCurvePickerStory as ResponseCurvePicker,
+  ResponseCurvePickerUndefinedStory as ResponseCurvePickerNoValue,
   StatusPickerStory as StatusPicker,
+  StatusPickerUndefinedStory as StatusPickerNoValue,
   ValuePickerStory as ValuePicker,
+  ValuePickerUndefinedStory as ValuePickerNoValue,
 }
 
 export default meta

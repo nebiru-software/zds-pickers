@@ -1,9 +1,9 @@
 import { forwardRef } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
 import { Select } from './Select'
-import type { Option, SelectProps } from './Select'
+import type { Option, SelectProps, noSelection } from './Select'
 
-type Polarity = 0 | 1
+type Polarity = 0 | 1 | typeof noSelection
 
 type PolarityPickerProps = Omit<SelectProps<Polarity>, 'options'> & {
   labelOff?: string

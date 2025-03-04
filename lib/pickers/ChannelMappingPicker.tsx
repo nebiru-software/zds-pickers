@@ -2,7 +2,7 @@ import cl from 'classnames'
 import { forwardRef, useCallback, useEffect, useState } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
 import { arraySequence } from '../utils'
-import { Select } from './Select'
+import { Select, noSelection } from './Select'
 import type { Option, SelectProps } from './Select'
 
 type InternalValue = number | 'separator'
@@ -60,16 +60,24 @@ const ChannelMappingPicker = forwardRef<
       return mapping ? (
         <span className="mapping-entry">
           <b>
-            {value + 1}
-            {context === 'value' && ' -'}
+            {value !== noSelection && (
+              <>
+                {value + 1}
+                {context === 'value' && ' -'}
+              </>
+            )}
           </b>
           <span className="mapping-entry-label">{mapping.label}</span>
         </span>
       ) : (
         <span className="mapping-entry empty-mapping-entry">
           <b>
-            {value + 1}
-            {context === 'value' && ' -'}
+            {value !== noSelection && (
+              <>
+                {value + 1}
+                {context === 'value' && ' -'}
+              </>
+            )}
           </b>
           <span className="mapping-entry-label">no mapping</span>
         </span>
@@ -107,7 +115,9 @@ const ChannelMappingPicker = forwardRef<
     )
 
     const numFilled = result.filter(
-      ({ value }) => typeof value === 'number' && !!channels[value],
+      ({ value }) =>
+        (typeof value === 'number' && !!channels[value]) ||
+        value === noSelection,
     ).length
 
     const separatorExists = result.some(({ value }) => value === 'separator')
