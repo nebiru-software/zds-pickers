@@ -114,7 +114,7 @@ type SelectProps<T> = SelectComponentsConfig<
   menuPosition?: 'fixed' | 'absolute'
   menuShouldScrollIntoView?: boolean
   onChange: (value: Option<T>['value']) => void
-  options: Option<T>[] | { entries: Option<T>[] }[]
+  options: Option<T>[] | { options: Option<T>[] }[]
   preserveMenuWidth?: boolean
   selectProps?: PassedSelectProps
   shrinkLabel?: boolean
@@ -150,8 +150,8 @@ const Select = forwardRef(
     )
 
     const flatOptionsList = options.reduce<Option<T>[]>((acc, entry) => {
-      if ('entries' in entry) {
-        return acc.concat(entry.entries)
+      if ('options' in entry) {
+        return acc.concat(entry.options)
       }
       return acc.concat(entry)
     }, [])
