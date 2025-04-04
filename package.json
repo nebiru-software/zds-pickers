@@ -63,7 +63,7 @@
     "rc-slider": "11.1.8",
     "storybook": "8.6.3",
     "typescript": "5.8.2",
-    "vite": "6.2.0",
+    "vite": "6.2.5",
     "zds-mappings": "1.4.9"
   },
   "dependencies": {
