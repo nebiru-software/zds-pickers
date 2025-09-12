@@ -55,8 +55,26 @@ const knobSkin10 = {
               </g>
               <g id="knob" transform="translate(28.574244, 28.574244)">
                   <circle id="Oval-5" fill="#322E2E" cx="71.4356094" cy="71.4356094" r="71.4356094"/>
+
+                  <!-- Rotating indicator (existing) -->
                   <path d="M72.4209282,3.63066376 L88.6786876,16.869789 C81.585496,18.1548295 76.1662428,18.7973498 72.4209282,18.7973498 C68.6756135,18.7973498 63.2563604,18.1548295 56.1631688,16.869789 L72.4209282,3.63066376 Z" id="Rectangle" fill="#E6D7D7" transform="translate(72.420928, 11.214007) scale(1, -1) translate(-72.420928, -11.214007) "/>
               </g>
+
+              <!-- Fixed position marks (outside the rotating knob group) -->
+              <!-- 12:00 position mark (more prominent) -->
+              <line x1="100.0098534" y1="15" x2="100.0098534" y2="35" stroke="#CCCCCC" stroke-width="4" opacity="0.9"/>
+
+              <!-- Arc fill between end position marks -->
+             <!-- <path d="M 35 165 A 65 65 0 0 1 165 165" stroke="#666666" stroke-width="8" fill="none" opacity="0.3"/> -->
+
+              <!-- End position marks (0 and 127) -->
+              <!-- 0 position mark (40 degrees from top, clockwise) - at outer radius beyond knob edge -->
+              <!-- This should be at the bottom-left where the value indicator points when at 0 -->
+              <line x1="36" y1="164" x2="44" y2="156" stroke="#DDDDDD" stroke-width="4"/>
+
+              <!-- 127 position mark (320 degrees from top, clockwise) - at outer radius beyond knob edge -->
+              <!-- This should be at the bottom-right where the value indicator points when at 127 -->
+              <line x1="164" y1="164" x2="156" y2="156" stroke="#DDDDDD" stroke-width="4"/>
               <g id="label">
                   <g id="labeltext" fill-opacity="1" fill="#E6D7D7">
                       <text id="534f4e02-5541-3607-0966-af0b025d80e0" font-family="Helvetica" font-size="44" font-weight="normal" fill="#E6D7D7" class="text-7" filter="url(#12f618f7-e258-b597-3ed6-242484ddad8f)">

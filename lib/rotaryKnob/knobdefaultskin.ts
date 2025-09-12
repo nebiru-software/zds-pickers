@@ -46,6 +46,19 @@ export default {
                 </g>
                 <g id="knob" transform="translate(27.431373, 27.431373)">
                     <circle id="Oval-5" fill="#322E2E" cx="71" cy="71" r="71"></circle>
+
+                    <!-- Fixed position marks -->
+                    <!-- 12:00 position mark (less prominent) -->
+                    <line x1="71" y1="15" x2="71" y2="25" stroke="#666666" stroke-width="1" opacity="0.6"/>
+
+                    <!-- End position marks (0 and 127) -->
+                    <!-- 0 position mark (40 degrees from top, clockwise) -->
+                    <line x1="95.5" y1="45.5" x2="88.5" y2="52.5" stroke="#CCCCCC" stroke-width="2"/>
+
+                    <!-- 127 position mark (320 degrees from top, clockwise) -->
+                    <line x1="46.5" y1="45.5" x2="53.5" y2="52.5" stroke="#CCCCCC" stroke-width="2"/>
+
+                    <!-- Rotating indicator (existing) -->
                     <path d="M70.0686275,4.17063061 L86.5686275,65.2689929 C81.3642501,66.811221 75.8642501,67.5735686 70.0686275,67.5560356 C64.2730048,67.5385027 58.7730048,66.7761551 53.5686275,65.2689929 L70.0686275,4.17063061 Z" id="Rectangle-Copy" fill="#E6D7D7" transform="translate(70.068627, 35.863481) scale(1, -1) translate(-70.068627, -35.863481) "></path>
                 </g>
             </g>
