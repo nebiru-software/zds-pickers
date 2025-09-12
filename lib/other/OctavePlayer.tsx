@@ -3,6 +3,7 @@ import { /* Midi, */ Note } from 'tonal'
 import { Piano as ReactPiano } from 'zds-react-piano'
 import type { TooltipProps } from './DefaultTooltip'
 import { SoundfontProvider } from './SoundFontProvider'
+import type { PianoProps } from 'lib/pickers/PianoPicker'
 
 type PianoMidiNote = {
   accidental: boolean
@@ -38,7 +39,7 @@ const whiteNotes = numNotes * 0.7 // approx
 
 const audioContext = new window.AudioContext()
 
-type OctavePlayerProps = {
+type OctavePlayerProps = PianoProps & {
   disabled?: boolean
   height: number
   octave: number
@@ -70,7 +71,7 @@ const BaseOctavePlayer = ({
   )
 }
 
-type WithProviderProps = {
+type WithProviderProps = PianoProps & {
   format?: 'mp3' | 'ogg'
   height: number
   hostname?: string
@@ -110,35 +111,22 @@ const WithProvider = ({
       onChange,
       soundfont,
     }}
-    render={({
-      isLoading,
-      playNote,
-      stopNote,
-    }: {
-      isLoading: boolean
-      playNote: (midiNumber: number) => void
-      stopNote: (midiNumber: number) => void
-    }) => (
-      <>
-        <div>
-          <h2>Octave: {octave}</h2>
-        </div>
-        <BaseOctavePlayer
-          disabled={isLoading}
-          {...{
-            height,
-            octave,
-            onClick,
-            onDoubleClick,
-            onKeyMouseEnter,
-            onKeyMouseLeave,
-            playNote,
-            stopNote,
-            Tooltip,
-            width,
-          }}
-        />
-      </>
+    render={({ isLoading, playNote, stopNote }) => (
+      <BaseOctavePlayer
+        disabled={isLoading}
+        {...{
+          height,
+          octave,
+          onClick,
+          onDoubleClick,
+          onKeyMouseEnter,
+          onKeyMouseLeave,
+          playNote,
+          stopNote,
+          Tooltip,
+          width,
+        }}
+      />
     )}
   />
 )

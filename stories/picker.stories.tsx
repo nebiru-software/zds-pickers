@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 // biome-ignore lint/correctness/noUnusedImports: <explanation>
 import React from 'react'
-import type * as Soundfont from 'soundfont-player'
+// import type * as Soundfont from 'soundfont-player'
 import { getMapping } from 'zds-mappings'
 import { Statuses, statusOptions } from '../lib/midi/export'
 import { OctavePlayer } from '../lib/other/OctavePlayer'
@@ -16,6 +16,7 @@ import { NotePicker } from '../lib/pickers/NotePicker'
 import { PianoPicker } from '../lib/pickers/PianoPicker'
 import { PolarityPicker } from '../lib/pickers/PolarityPicker'
 import { ResponseCurve } from '../lib/pickers/ResponseCurve'
+import { KeyPicker } from '../lib/pickers/KeyPicker'
 import { ResponseCurvePicker } from '../lib/pickers/ResponseCurvePicker'
 import {
   type Option,
@@ -132,6 +133,17 @@ const ChannelMappingPickerUndefinedStory: StoryObj<
   },
 }
 
+const KeyPickerStory: StoryObj<typeof KeyPicker> = {
+  render: args => <KeyPicker {...args} />,
+  args: {
+    instrumentName: 'acoustic_grand_piano',
+    height: 100,
+    width: 200,
+    octave: 4,
+  },
+}
+
+
 const KnobStory: StoryObj<typeof Knob> = {
   render: args => <Knob {...args} />,
   args: {
@@ -243,10 +255,7 @@ const NotePickerStory4: StoryObj<typeof NotePicker> = {
 const OctavePlayerStory: StoryObj<typeof OctavePlayer> = {
   render: args => <OctavePlayer {...args} />,
   args: {
-    instrumentName: {
-      control: { type: 'select' },
-      options: [undefined, 'acoustic_grand_piano'],
-    } as unknown as Soundfont.InstrumentName,
+    instrumentName: 'acoustic_grand_piano',
     height: 100,
     width: 200,
     octave: 4,
@@ -372,6 +381,7 @@ export {
   ChannelMappingPickerUndefinedStory as ChannelMappingPickerNoValue,
   CCPickerStory as ChangeController,
   CCPickerUndefinedStory as ChangeControllerNoValue,
+  KeyPickerStory as KeyPicker,
   KnobStory as Knob,
   KnobPickerStory as KnobPicker,
   LatchPickerStory as LatchPicker,

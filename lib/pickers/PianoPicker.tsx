@@ -11,6 +11,7 @@ const whiteNotes = numNotes * 0.7 // approx
 const audioContext = new window.AudioContext()
 
 type PianoProps = {
+  activeNotes?: number[]
   disabled: boolean
   height: number
   width: number
