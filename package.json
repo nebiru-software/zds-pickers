@@ -1,6 +1,6 @@
 {
   "name": "zds-pickers",
-  "version": "4.0.25",
+  "version": "4.1.0",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
   "types": "./dist/types/index.d.ts",
@@ -62,7 +62,7 @@
     "react-svgmt": "2.0.2",
     "soundfont-player": "0.12.0",
     "tonal": "6.4.2",
-    "zds-react-piano": "4.0.10"
+    "zds-react-piano": "4.1.0"
   },
   "peerDependencies": {
     "classnames": ">=2.5.1",

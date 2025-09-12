@@ -347,3 +347,19 @@ body .response-curve-picker text.button-selected {
   color: #f8e8d5;
 }
 
+/*
+ * Styles of "selected" keys (persistent selection state)
+ */
+.ReactPiano__Key--selected {
+  background: #ff6b35;
+}
+
+.ReactPiano__Key--selected.ReactPiano__Key--accidental {
+  border: 1px solid #fff;
+  border-top: 1px solid #ff6b35;
+}
+
+.ReactPiano__Key--selected.ReactPiano__Key--natural {
+  border: 1px solid #ff6b35;
+}
+

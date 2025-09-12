@@ -134,17 +134,41 @@ const ChannelMappingPickerUndefinedStory: StoryObj<
 }
 
 const KeyPickerStory: StoryObj<typeof KeyPicker> = {
-  render: args => <KeyPicker {...args} />,
+  render: (args) => <KeyPicker {...args} />,
   args: {
     instrumentName: 'acoustic_grand_piano',
     height: 100,
     width: 200,
     octave: 4,
+    value: 65,
+  },
+}
+
+const KeyPickerUndefinedStory: StoryObj<typeof KeyPicker> = {
+  render: (args) => <KeyPicker {...args} />,
+  args: {
+    instrumentName: 'acoustic_grand_piano',
+    height: 100,
+    width: 200,
+    octave: 4,
+    value: noSelection,
+  },
+}
+
+const KeyPickerStartFromAStory: StoryObj<typeof KeyPicker> = {
+  render: (args) => <KeyPicker {...args} />,
+  args: {
+    instrumentName: 'acoustic_grand_piano',
+    height: 100,
+    width: 200,
+    octave: 4,
+    startNote: 'A',
+    value: 69, // A4
   },
 }
 
 const KnobStory: StoryObj<typeof Knob> = {
-  render: args => <Knob {...args} />,
+  render: (args) => <Knob {...args} />,
   args: {
     disabled: false,
     max: 127,
@@ -155,7 +179,7 @@ const KnobStory: StoryObj<typeof Knob> = {
 }
 
 const KnobPickerStory: StoryObj<typeof KnobPicker> = {
-  render: args => <KnobPicker {...args} />,
+  render: (args) => <KnobPicker {...args} />,
   args: {
     disabled: false,
     includePicker: true,
@@ -170,7 +194,7 @@ const KnobPickerStory: StoryObj<typeof KnobPicker> = {
 }
 
 const LatchPickerStory: StoryObj<typeof LatchPicker> = {
-  render: args => <LatchPicker {...args} />,
+  render: (args) => <LatchPicker {...args} />,
   args: {
     disabled: false,
     label: 'Mode',
@@ -180,7 +204,7 @@ const LatchPickerStory: StoryObj<typeof LatchPicker> = {
 }
 
 const MappingPickerStory: StoryObj<typeof MappingPicker> = {
-  render: args => <MappingPicker {...args} />,
+  render: (args) => <MappingPicker {...args} />,
   args: {
     allowClearing: true,
     disabled: false,
@@ -192,7 +216,7 @@ const MappingPickerStory: StoryObj<typeof MappingPicker> = {
 }
 
 const NotePickerStory1: StoryObj<typeof NotePicker> = {
-  render: args => <NotePicker {...args} />,
+  render: (args) => <NotePicker {...args} />,
   args: {
     channel: 0,
     disabled: false,
@@ -205,7 +229,7 @@ const NotePickerStory1: StoryObj<typeof NotePicker> = {
 }
 
 const NotePickerStory2: StoryObj<typeof NotePicker> = {
-  render: args => <NotePicker {...args} />,
+  render: (args) => <NotePicker {...args} />,
   args: {
     channel: 0,
     disabled: false,
@@ -217,7 +241,7 @@ const NotePickerStory2: StoryObj<typeof NotePicker> = {
 }
 
 const NotePickerStory3: StoryObj<typeof NotePicker> = {
-  render: args => <NotePicker {...args} />,
+  render: (args) => <NotePicker {...args} />,
   args: {
     channel: 0,
     disabled: false,
@@ -229,7 +253,8 @@ const NotePickerStory3: StoryObj<typeof NotePicker> = {
         type="button"
         onClick={() => {
           window.alert('click')
-        }}>
+        }}
+      >
         ?
       </button>
     ),
@@ -239,7 +264,7 @@ const NotePickerStory3: StoryObj<typeof NotePicker> = {
 }
 
 const NotePickerStory4: StoryObj<typeof NotePicker> = {
-  render: args => <NotePicker {...args} />,
+  render: (args) => <NotePicker {...args} />,
   args: {
     channel: 0,
     disabled: false,
@@ -252,7 +277,7 @@ const NotePickerStory4: StoryObj<typeof NotePicker> = {
 }
 
 const OctavePlayerStory: StoryObj<typeof OctavePlayer> = {
-  render: args => <OctavePlayer {...args} />,
+  render: (args) => <OctavePlayer {...args} />,
   args: {
     instrumentName: 'acoustic_grand_piano',
     height: 100,
@@ -262,16 +287,27 @@ const OctavePlayerStory: StoryObj<typeof OctavePlayer> = {
 }
 
 const PianoPickerStory: StoryObj<typeof PianoPicker> = {
-  render: args => <PianoPicker {...args} />,
+  render: (args) => <PianoPicker {...args} />,
   args: {
     instrumentName: 'acoustic_grand_piano',
     height: 100,
     width: 1000,
+    selectedNotes: [65], // F4 selected
+  },
+}
+
+const PianoPickerNoSelectionStory: StoryObj<typeof PianoPicker> = {
+  render: (args) => <PianoPicker {...args} />,
+  args: {
+    instrumentName: 'acoustic_grand_piano',
+    height: 100,
+    width: 1000,
+    selectedNotes: [], // No selection
   },
 }
 
 const PolarityPickerStory: StoryObj<typeof PolarityPicker> = {
-  render: args => <PolarityPicker {...args} />,
+  render: (args) => <PolarityPicker {...args} />,
   args: {
     disabled: false,
     label: 'Polarity',
@@ -283,7 +319,7 @@ const PolarityPickerStory: StoryObj<typeof PolarityPicker> = {
 }
 
 const PolarityPickerUndefinedStory: StoryObj<typeof PolarityPicker> = {
-  render: args => <PolarityPicker {...args} />,
+  render: (args) => <PolarityPicker {...args} />,
   args: {
     disabled: false,
     label: 'Polarity',
@@ -295,7 +331,7 @@ const PolarityPickerUndefinedStory: StoryObj<typeof PolarityPicker> = {
 }
 
 const ResponseCurveStory: StoryObj<typeof ResponseCurve> = {
-  render: args => <ResponseCurve {...args} />,
+  render: (args) => <ResponseCurve {...args} />,
   args: {
     disabled: false,
     inverted: false,
@@ -304,7 +340,7 @@ const ResponseCurveStory: StoryObj<typeof ResponseCurve> = {
 }
 
 const ResponseCurvePickerStory: StoryObj<typeof ResponseCurvePicker> = {
-  render: args => <ResponseCurvePicker {...args} />,
+  render: (args) => <ResponseCurvePicker {...args} />,
   args: {
     disabled: false,
     inverted: false,
@@ -316,7 +352,7 @@ const ResponseCurvePickerStory: StoryObj<typeof ResponseCurvePicker> = {
 
 const ResponseCurvePickerUndefinedStory: StoryObj<typeof ResponseCurvePicker> =
   {
-    render: args => <ResponseCurvePicker {...args} />,
+    render: (args) => <ResponseCurvePicker {...args} />,
     args: {
       disabled: false,
       inverted: false,
@@ -327,7 +363,7 @@ const ResponseCurvePickerUndefinedStory: StoryObj<typeof ResponseCurvePicker> =
   }
 
 const StatusPickerStory: StoryObj<typeof StatusPicker> = {
-  render: args => <StatusPicker {...args} />,
+  render: (args) => <StatusPicker {...args} />,
   args: {
     disabled: false,
     label: 'Status Msg',
@@ -338,7 +374,7 @@ const StatusPickerStory: StoryObj<typeof StatusPicker> = {
 }
 
 const StatusPickerUndefinedStory: StoryObj<typeof StatusPicker> = {
-  render: args => <StatusPicker {...args} />,
+  render: (args) => <StatusPicker {...args} />,
   args: {
     disabled: false,
     label: 'Status Msg',
@@ -349,7 +385,7 @@ const StatusPickerUndefinedStory: StoryObj<typeof StatusPicker> = {
 }
 
 const ValuePickerStory: StoryObj<typeof ValuePicker> = {
-  render: args => <ValuePicker {...args} />,
+  render: (args) => <ValuePicker {...args} />,
   args: {
     disabled: false,
     highToLow: false,
@@ -361,7 +397,7 @@ const ValuePickerStory: StoryObj<typeof ValuePicker> = {
 }
 
 const ValuePickerUndefinedStory: StoryObj<typeof ValuePicker> = {
-  render: args => <ValuePicker {...args} />,
+  render: (args) => <ValuePicker {...args} />,
   args: {
     disabled: false,
     highToLow: false,
@@ -381,6 +417,8 @@ export {
   CCPickerStory as ChangeController,
   CCPickerUndefinedStory as ChangeControllerNoValue,
   KeyPickerStory as KeyPicker,
+  KeyPickerUndefinedStory as KeyPickerNoValue,
+  KeyPickerStartFromAStory as KeyPickerStartFromA,
   KnobStory as Knob,
   KnobPickerStory as KnobPicker,
   LatchPickerStory as LatchPicker,
@@ -391,6 +429,7 @@ export {
   NotePickerStory4 as NotePickerNoValue,
   OctavePlayerStory as OctavePlayer,
   PianoPickerStory as PianoPicker,
+  PianoPickerNoSelectionStory as PianoPickerNoSelection,
   PolarityPickerStory as PolarityPicker,
   PolarityPickerUndefinedStory as PolarityPickerNoValue,
   ResponseCurveStory as ResponseCurve,

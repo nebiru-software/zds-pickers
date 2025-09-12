@@ -12,6 +12,7 @@ const audioContext = new window.AudioContext()
 
 type PianoProps = {
   activeNotes?: number[]
+  selectedNotes?: number[]
   disabled: boolean
   height: number
   width: number
@@ -43,6 +44,7 @@ const WithProvider = ({
   onDoubleClick,
   onKeyMouseEnter,
   onKeyMouseLeave,
+  selectedNotes,
   soundfont,
   width,
 }: WithProviderProps) => (
@@ -65,6 +67,7 @@ const WithProvider = ({
           onKeyMouseEnter,
           onKeyMouseLeave,
           playNote,
+          selectedNotes,
           stopNote,
           width,
         }}
