@@ -43,25 +43,11 @@ type OctavePlayerProps = PianoProps & {
   disabled?: boolean
   height: number
   octave: number
-  startNote?:
-    | 'C'
-    | 'C#'
-    | 'D'
-    | 'D#'
-    | 'E'
-    | 'F'
-    | 'F#'
-    | 'G'
-    | 'G#'
-    | 'A'
-    | 'A#'
-    | 'B'
   width: number
 }
 
 const BaseOctavePlayer = ({
   octave,
-  startNote = 'C',
   height,
   width,
   ...rest
@@ -69,10 +55,9 @@ const BaseOctavePlayer = ({
   const keyWidth = width / whiteNotes + 2
   const keyWidthToHeight = keyWidth / height
 
-  const startNoteIndex = baseNotes.indexOf(startNote)
-  const firstNote = Note.midi(baseNotes[startNoteIndex] + String(octave)) || 0
+  const firstNote = Note.midi(baseNotes[0] + String(octave)) || 0
   const lastNote =
-    Note.midi(baseNotes[(startNoteIndex + 11) % 12] + String(octave)) || 0
+    Note.midi(baseNotes[baseNotes.length - 1] + String(octave)) || 0
 
   return (
     <div>
@@ -99,19 +84,6 @@ type WithProviderProps = PianoProps & {
   onKeyMouseLeave?: (note: number) => void
   selectedNotes?: number[]
   soundfont?: 'MusyngKite' | 'FluidR3_GM'
-  startNote?:
-    | 'C'
-    | 'C#'
-    | 'D'
-    | 'D#'
-    | 'E'
-    | 'F'
-    | 'F#'
-    | 'G'
-    | 'G#'
-    | 'A'
-    | 'A#'
-    | 'B'
   Tooltip?: TooltipProps
   width: number
 }
@@ -129,7 +101,6 @@ const WithProvider = ({
   onKeyMouseLeave,
   selectedNotes,
   soundfont,
-  startNote,
   Tooltip,
   width,
 }: WithProviderProps) => (
@@ -154,7 +125,6 @@ const WithProvider = ({
           onKeyMouseLeave,
           playNote,
           selectedNotes,
-          startNote,
           stopNote,
           Tooltip,
           width,

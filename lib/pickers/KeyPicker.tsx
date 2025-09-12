@@ -9,19 +9,6 @@ type KeyPickerProps = Omit<OctavePlayerProps, 'selectedNotes' | 'onClick'> & {
   height?: number
   width?: number
   octave?: number
-  startNote?:
-    | 'C'
-    | 'C#'
-    | 'D'
-    | 'D#'
-    | 'E'
-    | 'F'
-    | 'F#'
-    | 'G'
-    | 'G#'
-    | 'A'
-    | 'A#'
-    | 'B'
 }
 
 const KeyPicker = (props: KeyPickerProps) => {
@@ -32,7 +19,6 @@ const KeyPicker = (props: KeyPickerProps) => {
     height = 100,
     width = 300,
     octave = 4,
-    startNote = 'C',
     ...rest
   } = props
 
@@ -45,23 +31,8 @@ const KeyPicker = (props: KeyPickerProps) => {
   )
 
   // Only highlight the note if it's a valid selection and within the octave range
-  // Calculate the actual range based on startNote
-  const baseNotes = [
-    'C',
-    'C#',
-    'D',
-    'D#',
-    'E',
-    'F',
-    'F#',
-    'G',
-    'G#',
-    'A',
-    'A#',
-    'B',
-  ]
-  const startNoteIndex = baseNotes.indexOf(startNote)
-  const octaveStart = 60 + (octave - 4) * 12 + startNoteIndex
+  // Octave 4 = C4 (60) to B4 (71)
+  const octaveStart = 60 + (octave - 4) * 12
   const octaveEnd = octaveStart + 11
   const shouldHighlight =
     value !== noSelection && value >= octaveStart && value <= octaveEnd
@@ -74,7 +45,6 @@ const KeyPicker = (props: KeyPickerProps) => {
       height={height}
       width={width}
       octave={octave}
-      startNote={startNote}
       onClick={handleKeyClick}
     />
   )

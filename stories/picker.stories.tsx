@@ -155,17 +155,6 @@ const KeyPickerUndefinedStory: StoryObj<typeof KeyPicker> = {
   },
 }
 
-const KeyPickerStartFromAStory: StoryObj<typeof KeyPicker> = {
-  render: (args) => <KeyPicker {...args} />,
-  args: {
-    instrumentName: 'acoustic_grand_piano',
-    height: 100,
-    width: 200,
-    octave: 4,
-    startNote: 'A',
-    value: 69, // A4
-  },
-}
 
 const KnobStory: StoryObj<typeof Knob> = {
   render: (args) => <Knob {...args} />,
@@ -418,7 +407,6 @@ export {
   CCPickerUndefinedStory as ChangeControllerNoValue,
   KeyPickerStory as KeyPicker,
   KeyPickerUndefinedStory as KeyPickerNoValue,
-  KeyPickerStartFromAStory as KeyPickerStartFromA,
   KnobStory as Knob,
   KnobPickerStory as KnobPicker,
   LatchPickerStory as LatchPicker,
