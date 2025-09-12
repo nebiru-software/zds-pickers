@@ -1,6 +1,6 @@
 {
   "name": "zds-pickers",
-  "version": "4.0.24",
+  "version": "4.0.25",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
   "types": "./dist/types/index.d.ts",
@@ -27,16 +27,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dkadrios/zds-pickers.git"
-  },
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build && tsc",
-    "build-storybook": "storybook build",
-    "lint": "biome check --write",
-    "preview": "vite preview",
-    "sb": "storybook dev --quiet -p 6006 --no-open",
-    "sb:watch": "nodemon --watch .storybook -e ts,tsx,js,jsx --exec 'npm run sb'",
-    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
@@ -71,7 +61,7 @@
     "d3-selection": "3.0.0",
     "react-svgmt": "2.0.2",
     "soundfont-player": "0.12.0",
-    "tonal": "6.4.0",
+    "tonal": "6.4.2",
     "zds-react-piano": "4.0.10"
   },
   "peerDependencies": {
@@ -80,5 +70,15 @@
     "react-dom": ">=18.0.0",
     "react-select": ">=5.10.0",
     "zds-mappings": "1.4.9"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && tsc",
+    "build-storybook": "storybook build",
+    "lint": "biome check --write",
+    "preview": "vite preview",
+    "sb": "storybook dev --quiet -p 6006 --no-open",
+    "sb:watch": "nodemon --watch .storybook -e ts,tsx,js,jsx --exec 'npm run sb'",
+    "prepublishOnly": "npm run build"
   }
 }

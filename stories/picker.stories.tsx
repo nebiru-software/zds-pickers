@@ -8,6 +8,7 @@ import { OctavePlayer } from '../lib/other/OctavePlayer'
 import { CCPicker } from '../lib/pickers/CCPicker'
 import { ChannelMappingPicker } from '../lib/pickers/ChannelMappingPicker'
 import { ChannelPicker } from '../lib/pickers/ChannelPicker'
+import { KeyPicker } from '../lib/pickers/KeyPicker'
 import { Knob } from '../lib/pickers/Knob'
 import { KnobPicker } from '../lib/pickers/KnobPicker'
 import { LatchPicker } from '../lib/pickers/LatchPicker'
@@ -16,7 +17,6 @@ import { NotePicker } from '../lib/pickers/NotePicker'
 import { PianoPicker } from '../lib/pickers/PianoPicker'
 import { PolarityPicker } from '../lib/pickers/PolarityPicker'
 import { ResponseCurve } from '../lib/pickers/ResponseCurve'
-import { KeyPicker } from '../lib/pickers/KeyPicker'
 import { ResponseCurvePicker } from '../lib/pickers/ResponseCurvePicker'
 import {
   type Option,
@@ -142,7 +142,6 @@ const KeyPickerStory: StoryObj<typeof KeyPicker> = {
     octave: 4,
   },
 }
-
 
 const KnobStory: StoryObj<typeof Knob> = {
   render: args => <Knob {...args} />,

@@ -6,9 +6,12 @@ type KeyPickerProps = OctavePlayerProps & {
 }
 
 const KeyPicker = (props: KeyPickerProps) => {
-  console.log('KeyPicker', props)
-
-  return <OctavePlayer {...props} activeNotes={[65]} />
+  return (
+    <OctavePlayer
+      {...props}
+      activeNotes={[65]}
+    />
+  )
 }
 
 KeyPicker.propTypes = {}

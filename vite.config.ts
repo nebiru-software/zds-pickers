@@ -14,17 +14,26 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: true,
     rollupOptions: {
-      external: [
-        'react',
-        'react-dom',
-        'react/jsx-runtime',
-        'react-select',
-        'd3-drag',
-        'd3-scale',
-        'd3-selection',
-      ],
+      external: id => {
+        return [
+          'react',
+          'react-dom',
+          'react/jsx-runtime',
+          'react-select',
+          'd3-drag',
+          'd3-scale',
+          'd3-selection',
+          'classnames',
+          'zds-mappings',
+        ].some(pkg => id === pkg || id.startsWith(`${pkg}/`))
+      },
       output: {
         exports: 'named',
+        globals: {
+          react: 'React',
+          'react-dom': 'ReactDOM',
+          'react-select': 'ReactSelect',
+        },
       },
     },
     // minify: true,
