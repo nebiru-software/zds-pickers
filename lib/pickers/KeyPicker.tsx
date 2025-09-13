@@ -46,11 +46,10 @@ const KeyPicker = (props: KeyPickerProps) => {
       width={width}
       octave={octave}
       onClick={handleKeyClick}
+      instrumentName="acoustic_grand_piano"
     />
   )
 }
-
-KeyPicker.propTypes = {}
 
 export { KeyPicker }
 export type { KeyPickerProps }

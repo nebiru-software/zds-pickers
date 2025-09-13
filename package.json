@@ -1,6 +1,6 @@
 {
   "name": "zds-pickers",
-  "version": "4.1.0",
+  "version": "4.1.4",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
   "types": "./dist/types/index.d.ts",
@@ -16,7 +16,14 @@
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "lib/soundfonts/*.js",
+    "dist/soundfonts/*.js"
+  ],
+  "files": [
+    "dist",
+    "lib/soundfonts"
+  ],
   "homepage": "https://github.com/dkadrios/zds-pickers#readme",
   "license": "MIT",
   "author": "Darin Kadrioski <dkadrios@gmail.com>",

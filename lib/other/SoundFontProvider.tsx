@@ -40,11 +40,12 @@ if (typeof global !== 'undefined') {
   }
 }
 
+// CRITICAL: Import at top level to ensure bundler processes it
 // Import bundled soundfont to avoid CSP issues in Electron apps
 // NOTE: This adds ~2.2MB to the bundle size. Currently all consumers need piano,
 // but if future web apps don't need audio, consider making this import conditional
 // or implementing lazy loading to reduce bundle size for audio-free use cases.
-import '../temp/acoustic_grand_piano-mp3'
+import '../soundfonts/acoustic_grand_piano-mp3'
 
 const isDefined = <T,>(item: T) =>
   item !== undefined && item !== null && !Number.isNaN(item)
@@ -93,7 +94,7 @@ const SoundfontProvider = (props: SoundfontProviderProps) => {
           soundfont,
           nameToUrl: (name: string, sf: string, fmt: string) =>
             `${hostname}/${sf}/${name}-${fmt}.js`,
-        }).then(newInstrument => {
+        }).then((newInstrument) => {
           setInstrument(newInstrument)
         })
       } else if (instrumentName) {
@@ -137,6 +138,7 @@ const SoundfontProvider = (props: SoundfontProviderProps) => {
             },
           }
           setInstrument(player as Soundfont.Player)
+          setIsLoading(false)
         } else {
           setIsLoading(false)
         }
@@ -164,7 +166,7 @@ const SoundfontProvider = (props: SoundfontProviderProps) => {
     if (instrument) {
       audioContext.resume().then(() => {
         const audioNode = instrument.play(String(midiNumber))
-        setActiveAudioNodes(prev => ({ ...prev, [midiNumber]: audioNode }))
+        setActiveAudioNodes((prev) => ({ ...prev, [midiNumber]: audioNode }))
       })
     }
   }
@@ -176,7 +178,7 @@ const SoundfontProvider = (props: SoundfontProviderProps) => {
       }
       const audioNode = activeAudioNodes[midiNumber]
       audioNode.stop()
-      setActiveAudioNodes(prev => {
+      setActiveAudioNodes((prev) => {
         const { [midiNumber]: _, ...rest } = prev
         return rest
       })
