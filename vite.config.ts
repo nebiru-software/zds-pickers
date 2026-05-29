@@ -33,10 +33,9 @@ export default defineConfig({
         try {
           if (statSync(srcDir).isDirectory()) {
             copyDir(srcDir, destDir)
-            console.log('✅ Copied soundfonts directory to dist')
           }
-        } catch (error) {
-          console.warn('⚠️  Could not copy soundfonts directory:', error)
+        } catch {
+          // soundfont copy is best-effort; bundled audio still ships in the JS chunk
         }
       },
     },
@@ -44,14 +43,14 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'lib/index'),
-      fileName: (format) => `index.${format}.js`,
+      fileName: format => `index.${format}.js`,
       formats: ['es', 'cjs'],
       name: 'zds-pickers',
     },
     outDir: 'dist',
     sourcemap: true,
     rollupOptions: {
-      external: (id) => {
+      external: id => {
         // Don't externalize soundfont files - bundle them directly
         if (id.includes('soundfonts/acoustic_grand_piano-mp3')) {
           return false
@@ -67,7 +66,7 @@ export default defineConfig({
           'd3-selection',
           'classnames',
           'zds-mappings',
-        ].some((pkg) => id === pkg || id.startsWith(`${pkg}/`))
+        ].some(pkg => id === pkg || id.startsWith(`${pkg}/`))
       },
       output: {
         exports: 'named',

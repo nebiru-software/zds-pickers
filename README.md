@@ -27,8 +27,10 @@ The library is organized into several key areas:
 ## Quick Start
 
 ```bash
-npm install zds-pickers
+npm install zds-pickers react-select
 ```
+
+Peer dependencies (`react`, `react-dom`, `react-select`, `classnames`, `zds-mappings`) must be installed in the host app. `react-select` was moved out of the package bundle in 4.1.x — add it explicitly if you use `Select`-based pickers.
 
 ```tsx
 import { PianoPicker, KnobPicker, NotePicker } from 'zds-pickers'
@@ -69,7 +71,7 @@ Run `npm run sb` to access the interactive component playground with:
 **🎵 Music & Audio**
 - `PianoPicker` - Full piano keyboard with soundfont integration
 - `OctavePlayer` - Single octave piano interface
-- `KeyPicker` - Octave-based key selection (in development)
+- `KeyPicker` - Octave-based MIDI note selection with highlighted key state
 
 **🎛️ Controls**
 - `KnobPicker` - Draggable knob with label and value display
@@ -141,10 +143,22 @@ The library builds to both CommonJS and ES modules:
 - `dist/index.es.js` - ES module build
 - `dist/types/` - TypeScript definitions
 
+## Peer dependencies
+
+Install these in your application (they are not bundled with `zds-pickers`):
+
+| Package | Version |
+|---------|---------|
+| `react` | >=18.0.0 |
+| `react-dom` | >=18.0.0 |
+| `react-select` | >=5.10.0 |
+| `classnames` | >=2.5.1 |
+| `zds-mappings` | 1.4.9 |
+
 ## Dependencies
 
 ### Core Dependencies
-- **React 18+** - Component framework
+- **React 18+** - Component framework (peer)
 - **TypeScript** - Type safety
 - **D3.js** - Drag interactions and scaling
 - **soundfont-player** - Audio playback

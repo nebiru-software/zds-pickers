@@ -1,16 +1,11 @@
-import type { PianoProps } from 'lib/pickers/PianoPicker'
-import type Soundfont from 'soundfont-player'
 import { /* Midi, */ Note } from 'tonal'
 import { Piano as ReactPiano } from 'zds-react-piano'
-import type { TooltipProps } from './DefaultTooltip'
 import { SoundfontProvider } from './SoundFontProvider'
-
-type PianoMidiNote = {
-  accidental: boolean
-  left: number
-  midiNumber: number
-  width: number
-}
+import type {
+  OctavePlayerProps,
+  PianoMidiNote,
+  PianoProviderProps,
+} from './pianoTypes'
 
 const baseNotes = [
   'C',
@@ -27,24 +22,11 @@ const baseNotes = [
   'B',
 ]
 
-// const { midiToFreq, midiToNoteName } = Midi
-
-// console.log(Note.names(), Note.midi('C4'))
-
-// const firstNote = 21
-// const lastNote = 108
 const numNotes = 12
 
 const whiteNotes = numNotes * 0.7 // approx
 
 const audioContext = new window.AudioContext()
-
-type OctavePlayerProps = PianoProps & {
-  disabled?: boolean
-  height: number
-  octave: number
-  width: number
-}
 
 const BaseOctavePlayer = ({
   octave,
@@ -71,23 +53,6 @@ const BaseOctavePlayer = ({
   )
 }
 
-type WithProviderProps = PianoProps & {
-  format?: 'mp3' | 'ogg'
-  height: number
-  hostname?: string
-  instrumentName?: Soundfont.InstrumentName
-  octave?: number
-  onChange?: (note: number) => void
-  onClick?: (note: number) => void
-  onDoubleClick?: (note: number) => void
-  onKeyMouseEnter?: (note: PianoMidiNote) => void
-  onKeyMouseLeave?: (note: number) => void
-  selectedNotes?: number[]
-  soundfont?: 'MusyngKite' | 'FluidR3_GM'
-  Tooltip?: TooltipProps
-  width: number
-}
-
 const WithProvider = ({
   format,
   height,
@@ -103,7 +68,7 @@ const WithProvider = ({
   soundfont,
   Tooltip,
   width,
-}: WithProviderProps) => (
+}: PianoProviderProps) => (
   <SoundfontProvider
     {...{
       audioContext,
@@ -136,4 +101,7 @@ const WithProvider = ({
 
 export { WithProvider as OctavePlayer }
 
-export type { OctavePlayerProps, PianoMidiNote, WithProviderProps }
+export type { OctavePlayerProps, PianoMidiNote, PianoProviderProps }
+
+/** @deprecated Use PianoProviderProps */
+export type WithProviderProps = PianoProviderProps

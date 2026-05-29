@@ -16,14 +16,8 @@
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
-  "sideEffects": [
-    "lib/soundfonts/*.js",
-    "dist/soundfonts/*.js"
-  ],
-  "files": [
-    "dist",
-    "lib/soundfonts"
-  ],
+  "sideEffects": ["lib/soundfonts/*.js", "dist/soundfonts/*.js"],
+  "files": ["dist", "lib/soundfonts"],
   "homepage": "https://github.com/dkadrios/zds-pickers#readme",
   "license": "MIT",
   "author": "Darin Kadrioski <dkadrios@gmail.com>",
@@ -37,13 +31,12 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@storybook/addon-actions": "8.6.3",
-    "@storybook/addon-docs": "8.6.3",
-    "@storybook/addon-essentials": "8.6.3",
-    "@storybook/addon-links": "8.6.3",
-    "@storybook/builder-vite": "8.6.3",
-    "@storybook/react": "8.6.3",
-    "@storybook/react-vite": "8.6.3",
+    "@storybook/addon-docs": "8.6.18",
+    "@storybook/addon-essentials": "8.6.18",
+    "@storybook/addon-links": "8.6.18",
+    "@storybook/builder-vite": "8.6.18",
+    "@storybook/react": "8.6.18",
+    "@storybook/react-vite": "8.6.18",
     "@types/d3-drag": "3.0.7",
     "@types/d3-scale": "4.0.9",
     "@types/d3-selection": "3.0.11",
@@ -56,7 +49,10 @@
     "nodemon": "3.1.9",
     "prop-types": "15.8.1",
     "rc-slider": "11.1.8",
-    "storybook": "8.6.3",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-select": "5.10.1",
+    "storybook": "8.6.18",
     "typescript": "5.8.2",
     "vite": "^6.3.6",
     "zds-mappings": "1.4.9"

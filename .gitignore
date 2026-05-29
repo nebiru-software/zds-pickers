@@ -2,6 +2,7 @@
 node_modules/
 /npm-debug.log
 /db
+/storybook-static
 
 build
 dist

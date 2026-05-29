@@ -26,18 +26,12 @@ if (typeof window !== 'undefined') {
   }
 }
 
-// Also ensure it's available globally (not just on window)
-if (typeof globalThis !== 'undefined') {
-  if (!globalThis.MIDI) {
-    globalThis.MIDI = window.MIDI || { Soundfont: {} }
-  }
-}
-
-// Also set it on the global object for Node.js compatibility
-if (typeof global !== 'undefined') {
-  if (!global.MIDI) {
-    global.MIDI = window.MIDI || { Soundfont: {} }
-  }
+// Also ensure it's on globalThis (browser sync + Node/SSR; avoid bare `global`)
+if (typeof globalThis !== 'undefined' && !globalThis.MIDI) {
+  globalThis.MIDI =
+    typeof window !== 'undefined' && window.MIDI
+      ? window.MIDI
+      : { Soundfont: {} }
 }
 
 // CRITICAL: Import at top level to ensure bundler processes it
@@ -49,6 +43,73 @@ import '../soundfonts/acoustic_grand_piano-mp3'
 
 const isDefined = <T,>(item: T) =>
   item !== undefined && item !== null && !Number.isNaN(item)
+
+const midiToNoteName = (midiNumber: number | string): string => {
+  const num =
+    typeof midiNumber === 'string'
+      ? Number.parseInt(midiNumber, 10)
+      : midiNumber
+  return Note.fromMidi(num)
+}
+
+const createBundledPlayer = (
+  soundfontData: Record<string, string>,
+): Soundfont.Player => {
+  const player = {
+    play: (note: string | number, velocity?: number) => {
+      const noteName = midiToNoteName(note)
+      const noteData = soundfontData[noteName]
+      if (!noteData) {
+        return { stop: () => {} } as Soundfont.Player
+      }
+
+      const audio = new Audio(noteData)
+      audio.volume = (velocity ?? 127) / 127
+      audio.play()
+
+      return {
+        stop: () => {
+          audio.pause()
+          audio.currentTime = 0
+        },
+      } as Soundfont.Player
+    },
+    stop: () => [] as AudioNode[],
+  }
+  return player as Soundfont.Player
+}
+
+const loadBundledOrRemoteInstrument = (
+  audioContext: AudioContext,
+  instrumentName: Soundfont.InstrumentName,
+  format: SoundfontProviderProps['format'],
+  soundfont: SoundfontProviderProps['soundfont'],
+  hostname: string | undefined,
+): Promise<Soundfont.Player> => {
+  const soundfontData = window.MIDI?.Soundfont?.[instrumentName]
+  if (soundfontData) {
+    return Promise.resolve(createBundledPlayer(soundfontData))
+  }
+
+  // biome-ignore lint/suspicious/noConsole: intentional diagnostics for missing bundled soundfont
+  console.warn(
+    `[zds-pickers] Bundled soundfont "${instrumentName}" not found; falling back to remote load.`,
+  )
+
+  if (isDefined(hostname)) {
+    return Soundfont.instrument(audioContext, instrumentName, {
+      format,
+      soundfont,
+      nameToUrl: (name: string, sf: string, fmt: string) =>
+        `${hostname}/${sf}/${name}-${fmt}.js`,
+    })
+  }
+
+  return Soundfont.instrument(audioContext, instrumentName, {
+    format,
+    soundfont,
+  })
+}
 
 type SoundfontProviderProps = {
   audioContext: AudioContext
@@ -84,68 +145,53 @@ const SoundfontProvider = (props: SoundfontProviderProps) => {
 
   const loadInstrument = useCallback(
     (nm: Soundfont.InstrumentName) => {
-      // Re-trigger loading state
       setInstrument(null)
+      setIsLoading(true)
+
+      if (!instrumentName) {
+        setIsLoading(false)
+        return
+      }
 
       if (isDefined(hostname)) {
-        // pull from an url
         Soundfont.instrument(audioContext, nm, {
           format,
           soundfont,
           nameToUrl: (name: string, sf: string, fmt: string) =>
             `${hostname}/${sf}/${name}-${fmt}.js`,
-        }).then((newInstrument) => {
+        })
+          .then(newInstrument => {
+            setInstrument(newInstrument)
+          })
+          .catch(error => {
+            // biome-ignore lint/suspicious/noConsole: intentional diagnostics for load failures
+            console.error(
+              `[zds-pickers] Failed to load soundfont "${nm}" from ${hostname}:`,
+              error,
+            )
+            setIsLoading(false)
+          })
+        return
+      }
+
+      loadBundledOrRemoteInstrument(
+        audioContext,
+        nm,
+        format,
+        soundfont,
+        hostname,
+      )
+        .then(newInstrument => {
           setInstrument(newInstrument)
         })
-      } else if (instrumentName) {
-        // the host app has already injected the soundfont into global space
-        // Try to create a player directly from our bundled soundfont data
-        const soundfontData = window.MIDI?.Soundfont?.[instrumentName]
-        if (soundfontData) {
-          // MIDI note number to note name conversion using Tonal
-          const midiToNoteName = (midiNumber: number | string): string => {
-            const num =
-              typeof midiNumber === 'string'
-                ? Number.parseInt(midiNumber, 10)
-                : midiNumber
-            return Note.fromMidi(num)
-          }
-
-          // Create a simple player that can play notes from our bundled data
-          const player = {
-            play: (note: string | number, velocity?: number) => {
-              // Convert MIDI note number to note name if needed
-              const noteName = midiToNoteName(note)
-              const noteData = soundfontData[noteName]
-              if (noteData) {
-                // Create audio from the data URL
-                const audio = new Audio(noteData)
-                audio.volume = (velocity || 127) / 127
-                audio.play()
-
-                // Return a compatible object with stop method
-                return {
-                  stop: () => {
-                    audio.pause()
-                    audio.currentTime = 0
-                  },
-                }
-              }
-              return null
-            },
-            stop: () => {
-              // Simple stop implementation
-            },
-          }
-          setInstrument(player as Soundfont.Player)
+        .catch(error => {
+          // biome-ignore lint/suspicious/noConsole: intentional diagnostics for load failures
+          console.error(
+            `[zds-pickers] Failed to load soundfont "${nm}":`,
+            error,
+          )
           setIsLoading(false)
-        } else {
-          setIsLoading(false)
-        }
-      } else {
-        // sound must be disabled
-        setIsLoading(false)
-      }
+        })
     },
     [audioContext, format, hostname, instrumentName, soundfont],
   )
@@ -166,7 +212,7 @@ const SoundfontProvider = (props: SoundfontProviderProps) => {
     if (instrument) {
       audioContext.resume().then(() => {
         const audioNode = instrument.play(String(midiNumber))
-        setActiveAudioNodes((prev) => ({ ...prev, [midiNumber]: audioNode }))
+        setActiveAudioNodes(prev => ({ ...prev, [midiNumber]: audioNode }))
       })
     }
   }
@@ -178,7 +224,7 @@ const SoundfontProvider = (props: SoundfontProviderProps) => {
       }
       const audioNode = activeAudioNodes[midiNumber]
       audioNode.stop()
-      setActiveAudioNodes((prev) => {
+      setActiveAudioNodes(prev => {
         const { [midiNumber]: _, ...rest } = prev
         return rest
       })
@@ -195,7 +241,7 @@ const SoundfontProvider = (props: SoundfontProviderProps) => {
           node.stop()
         }
       }
-      setActiveAudioNodes(nodes)
+      setActiveAudioNodes({})
     })
   }
 
