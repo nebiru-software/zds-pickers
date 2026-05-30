@@ -1,7 +1,8 @@
 import classNames from 'classnames'
 import { useCallback } from 'react'
 import { Note } from 'tonal'
-import { OctavePlayer, type OctavePlayerProps } from '../other/OctavePlayer'
+import { OctavePlayer } from '../other/OctavePlayer'
+import type { PianoProviderProps } from '../other/pianoTypes'
 import type { NoteLabelRenderProps } from '../other/pianoTypes'
 import { noSelection } from './Select'
 
@@ -41,8 +42,13 @@ const noteNameLabelRenderer = ({
 }
 
 type KeyPickerProps = Omit<
-  OctavePlayerProps,
-  'className' | 'onClick' | 'renderNoteLabel' | 'selectedNotes'
+  PianoProviderProps,
+  | 'className'
+  | 'instrumentName'
+  | 'octave'
+  | 'onClick'
+  | 'renderNoteLabel'
+  | 'selectedNotes'
 > & {
   value: number
   onChange: (value: number) => void
