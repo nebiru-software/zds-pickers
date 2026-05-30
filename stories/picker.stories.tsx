@@ -1,13 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react'
 // biome-ignore lint/correctness/noUnusedImports: <explanation>
 import React from 'react'
-import type * as Soundfont from 'soundfont-player'
+// import type * as Soundfont from 'soundfont-player'
 import { getMapping } from 'zds-mappings'
 import { Statuses, statusOptions } from '../lib/midi/export'
 import { OctavePlayer } from '../lib/other/OctavePlayer'
 import { CCPicker } from '../lib/pickers/CCPicker'
 import { ChannelMappingPicker } from '../lib/pickers/ChannelMappingPicker'
 import { ChannelPicker } from '../lib/pickers/ChannelPicker'
+import { KeyPicker } from '../lib/pickers/KeyPicker'
 import { Knob } from '../lib/pickers/Knob'
 import { KnobPicker } from '../lib/pickers/KnobPicker'
 import { LatchPicker } from '../lib/pickers/LatchPicker'
@@ -132,6 +133,29 @@ const ChannelMappingPickerUndefinedStory: StoryObj<
   },
 }
 
+const KeyPickerStory: StoryObj<typeof KeyPicker> = {
+  render: args => <KeyPicker {...args} />,
+  args: {
+    instrumentName: 'acoustic_grand_piano',
+    height: 100,
+    showNoteNames: false,
+    width: 200,
+    octave: 4,
+    value: 65,
+  },
+}
+
+const KeyPickerUndefinedStory: StoryObj<typeof KeyPicker> = {
+  render: args => <KeyPicker {...args} />,
+  args: {
+    instrumentName: 'acoustic_grand_piano',
+    height: 100,
+    width: 200,
+    octave: 4,
+    value: noSelection,
+  },
+}
+
 const KnobStory: StoryObj<typeof Knob> = {
   render: args => <Knob {...args} />,
   args: {
@@ -243,10 +267,7 @@ const NotePickerStory4: StoryObj<typeof NotePicker> = {
 const OctavePlayerStory: StoryObj<typeof OctavePlayer> = {
   render: args => <OctavePlayer {...args} />,
   args: {
-    instrumentName: {
-      control: { type: 'select' },
-      options: [undefined, 'acoustic_grand_piano'],
-    } as unknown as Soundfont.InstrumentName,
+    instrumentName: 'acoustic_grand_piano',
     height: 100,
     width: 200,
     octave: 4,
@@ -259,6 +280,17 @@ const PianoPickerStory: StoryObj<typeof PianoPicker> = {
     instrumentName: 'acoustic_grand_piano',
     height: 100,
     width: 1000,
+    selectedNotes: [65], // F4 selected
+  },
+}
+
+const PianoPickerNoSelectionStory: StoryObj<typeof PianoPicker> = {
+  render: args => <PianoPicker {...args} />,
+  args: {
+    instrumentName: 'acoustic_grand_piano',
+    height: 100,
+    width: 1000,
+    selectedNotes: [], // No selection
   },
 }
 
@@ -372,6 +404,8 @@ export {
   ChannelMappingPickerUndefinedStory as ChannelMappingPickerNoValue,
   CCPickerStory as ChangeController,
   CCPickerUndefinedStory as ChangeControllerNoValue,
+  KeyPickerStory as KeyPicker,
+  KeyPickerUndefinedStory as KeyPickerNoValue,
   KnobStory as Knob,
   KnobPickerStory as KnobPicker,
   LatchPickerStory as LatchPicker,
@@ -382,6 +416,7 @@ export {
   NotePickerStory4 as NotePickerNoValue,
   OctavePlayerStory as OctavePlayer,
   PianoPickerStory as PianoPicker,
+  PianoPickerNoSelectionStory as PianoPickerNoSelection,
   PolarityPickerStory as PolarityPicker,
   PolarityPickerUndefinedStory as PolarityPickerNoValue,
   ResponseCurveStory as ResponseCurve,
