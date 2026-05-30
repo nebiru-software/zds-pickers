@@ -294,6 +294,11 @@ body .response-curve-picker text.button-selected {
   height: 98%;
 }
 
+.ReactPiano__Key--selected.ReactPiano__Key--natural {
+  background: #ff6b35;
+  border: 1px solid #ff6b35;
+}
+
 .ReactPiano__Key--middleC > div::before {
   content: "◆";
   position: absolute;
@@ -345,4 +350,72 @@ body .response-curve-picker text.button-selected {
 
 .ReactPiano__NoteLabel--natural.ReactPiano__NoteLabel--active {
   color: #f8e8d5;
+}
+
+.ReactPiano--showNoteNames .ReactPiano__Key--natural {
+  min-width: 0;
+}
+
+.ReactPiano--showNoteNames .ReactPiano__NoteLabelContainer {
+  align-self: flex-start;
+  flex: 1 1 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 12%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.ReactPiano--showNoteNames .ReactPiano__NoteLabel--noteName {
+  margin: 0;
+  font-size: 10px;
+  line-height: 1;
+  pointer-events: none;
+  text-align: center;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.ReactPiano--showNoteNames
+  .ReactPiano__NoteLabel--noteName.ReactPiano__NoteLabel--natural {
+  color: #333;
+  position: relative;
+}
+
+/* Center natural labels in unobstructed white area (black keys overlap one side) */
+.ReactPiano--showNoteNames
+  .ReactPiano__NoteLabel--noteName.ReactPiano__NoteLabel--natural.ReactPiano__NoteLabel--nudgeLeft {
+  left: -16%;
+}
+
+.ReactPiano--showNoteNames
+  .ReactPiano__NoteLabel--noteName.ReactPiano__NoteLabel--natural.ReactPiano__NoteLabel--nudgeRight {
+  left: 16%;
+}
+
+.ReactPiano--showNoteNames
+  .ReactPiano__NoteLabel--noteName.ReactPiano__NoteLabel--accidental {
+  color: #fff;
+}
+
+.ReactPiano--showNoteNames
+  .ReactPiano__NoteLabel--noteName.ReactPiano__NoteLabel--natural.ReactPiano__NoteLabel--active {
+  color: #333;
+}
+
+.ReactPiano--showNoteNames
+  .ReactPiano__Key--active
+  .ReactPiano__NoteLabel--noteName.ReactPiano__NoteLabel--natural,
+.ReactPiano--showNoteNames
+  .ReactPiano__Key--selected
+  .ReactPiano__NoteLabel--noteName.ReactPiano__NoteLabel--natural,
+.ReactPiano--showNoteNames
+  .ReactPiano__Key--middleC
+  .ReactPiano__NoteLabel--noteName {
+  color: #fff;
+}
+
+.ReactPiano--showNoteNames .ReactPiano__Key--middleC > div::before {
+  content: none;
 }

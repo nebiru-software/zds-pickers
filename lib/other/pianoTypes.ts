@@ -1,5 +1,13 @@
+import type { ReactNode } from 'react'
 import type Soundfont from 'soundfont-player'
 import type { TooltipProps } from './DefaultTooltip'
+
+type NoteLabelRenderProps = {
+  isAccidental: boolean
+  isActive: boolean
+  keyboardShortcut?: string | null
+  midiNumber: number
+}
 
 type PianoMidiNote = {
   accidental: boolean
@@ -9,8 +17,10 @@ type PianoMidiNote = {
 }
 
 type PianoProps = {
+  className?: string
   disabled?: boolean
   height: number
+  renderNoteLabel?: (props: NoteLabelRenderProps) => ReactNode
   selectedNotes?: number[]
   width: number
 }
@@ -33,4 +43,10 @@ type OctavePlayerProps = PianoProps & {
   octave: number
 }
 
-export type { OctavePlayerProps, PianoMidiNote, PianoProps, PianoProviderProps }
+export type {
+  NoteLabelRenderProps,
+  OctavePlayerProps,
+  PianoMidiNote,
+  PianoProps,
+  PianoProviderProps,
+}

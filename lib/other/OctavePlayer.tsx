@@ -29,8 +29,10 @@ const whiteNotes = numNotes * 0.7 // approx
 const audioContext = new window.AudioContext()
 
 const BaseOctavePlayer = ({
+  className,
   octave,
   height,
+  renderNoteLabel,
   width,
   ...rest
 }: OctavePlayerProps) => {
@@ -44,8 +46,10 @@ const BaseOctavePlayer = ({
   return (
     <div>
       <ReactPiano
+        className={className}
         keyWidthToHeight={keyWidthToHeight}
         noteRange={{ first: firstNote, last: lastNote }}
+        renderNoteLabel={renderNoteLabel}
         width={width}
         {...rest}
       />
@@ -54,6 +58,7 @@ const BaseOctavePlayer = ({
 }
 
 const WithProvider = ({
+  className,
   format,
   height,
   hostname,
@@ -64,6 +69,7 @@ const WithProvider = ({
   onDoubleClick,
   onKeyMouseEnter,
   onKeyMouseLeave,
+  renderNoteLabel,
   selectedNotes,
   soundfont,
   Tooltip,
@@ -82,6 +88,7 @@ const WithProvider = ({
       <BaseOctavePlayer
         disabled={isLoading}
         {...{
+          className,
           height,
           octave,
           onClick,
@@ -89,6 +96,7 @@ const WithProvider = ({
           onKeyMouseEnter,
           onKeyMouseLeave,
           playNote,
+          renderNoteLabel,
           selectedNotes,
           stopNote,
           Tooltip,

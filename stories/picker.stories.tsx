@@ -138,6 +138,7 @@ const KeyPickerStory: StoryObj<typeof KeyPicker> = {
   args: {
     instrumentName: 'acoustic_grand_piano',
     height: 100,
+    showNoteNames: false,
     width: 200,
     octave: 4,
     value: 65,
