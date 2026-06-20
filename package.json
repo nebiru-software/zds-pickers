@@ -9,6 +9,9 @@
       "types": "./dist/types/index.d.ts",
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs.js"
+    },
+    "./dist/soundfonts/acoustic_grand_piano-mp3": {
+      "default": "./dist/soundfonts/acoustic_grand_piano-mp3.js"
     }
   },
   "private": false,

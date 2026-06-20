@@ -409,10 +409,7 @@ body .response-curve-picker text.button-selected {
   .ReactPiano__NoteLabel--noteName.ReactPiano__NoteLabel--natural,
 .ReactPiano--showNoteNames
   .ReactPiano__Key--selected
-  .ReactPiano__NoteLabel--noteName.ReactPiano__NoteLabel--natural,
-.ReactPiano--showNoteNames
-  .ReactPiano__Key--middleC
-  .ReactPiano__NoteLabel--noteName {
+  .ReactPiano__NoteLabel--noteName.ReactPiano__NoteLabel--natural {
   color: #fff;
 }
 
