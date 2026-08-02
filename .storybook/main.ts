@@ -20,12 +20,14 @@ const config: StorybookConfig = {
   },
 
   viteFinal(config) {
+    // Merge — replacing whole config sections here wipes out Storybook's own
+    // vite settings (e.g. its optimizeDeps include list, without which the
+    // dev server hands raw CJS react-dom to the browser: "Can't find
+    // variable: require").
     return {
       ...config,
-      optimizeDeps: {
-        exclude: ['storybook-dark-mode'],
-      },
       css: {
+        ...config.css,
         postcss: {},
         modules: {
           localsConvention: 'camelCase',
