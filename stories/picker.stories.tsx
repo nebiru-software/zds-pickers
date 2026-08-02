@@ -182,6 +182,19 @@ const KnobPickerStory: StoryObj<typeof KnobPicker> = {
   },
 }
 
+/** Bipolar arc: fills from 12 o'clock toward the value in either direction. */
+const CenteredKnobStory: StoryObj<typeof Knob> = {
+  render: args => <Knob {...args} />,
+  args: {
+    centered: true,
+    disabled: false,
+    max: 63,
+    min: -63,
+    value: -30,
+    wheelEnabled: false,
+  },
+}
+
 const LatchPickerStory: StoryObj<typeof LatchPicker> = {
   render: args => <LatchPicker {...args} />,
   args: {
@@ -406,6 +419,7 @@ export {
   CCPickerUndefinedStory as ChangeControllerNoValue,
   KeyPickerStory as KeyPicker,
   KeyPickerUndefinedStory as KeyPickerNoValue,
+  CenteredKnobStory as CenteredKnob,
   KnobStory as Knob,
   KnobPickerStory as KnobPicker,
   LatchPickerStory as LatchPicker,

@@ -15,32 +15,8 @@ import { KnobVisualHelpers } from './helpers/KnobVisualHelpers'
 import defaultSkin from './knobdefaultskin'
 import { getAngleForPoint } from './utils'
 
-/**
- * type definition for the skin system attribute modification element
- */
-type AttributeSetValue = {
-  name: string
-  value: (props: unknown, value: unknown) => string
-}
-
-/**
- * Type definition for the skin element manipulation block
- */
-
-interface UpdateElement {
-  element: string
-  content: (_props: React.CSSProperties, value: number) => string
-  attrs: AttributeSetValue[]
-}
-
-interface Skin {
-  svg: string
-  knobX: number
-  knobY: number
-  updateAttributes: UpdateElement[]
-}
-
 type KnobProps = Omit<React.ComponentProps<'div'>, 'onChange'> & {
+  centered?: boolean
   clampMax?: number
   clampMin?: number
   defaultValue?: number
@@ -58,6 +34,33 @@ type KnobProps = Omit<React.ComponentProps<'div'>, 'onChange'> & {
   style: React.CSSProperties
   unlockDistance?: number
   value?: number
+}
+
+/**
+ * type definition for the skin system attribute modification element.
+ * Skins receive the knob's full props (min/max/centered/clamp*, etc.) plus
+ * the current value, so they can derive geometry like the value arc.
+ */
+type AttributeSetValue = {
+  name: string
+  value: (props: KnobProps, value: number) => string
+}
+
+/**
+ * Type definition for the skin element manipulation block
+ */
+
+interface UpdateElement {
+  element: string
+  content?: (props: KnobProps, value: number) => string
+  attrs: AttributeSetValue[]
+}
+
+interface Skin {
+  svg: string
+  knobX: number
+  knobY: number
+  updateAttributes: UpdateElement[]
 }
 
 type KnobState = {
@@ -84,6 +87,9 @@ type KnobState = {
  */
 const RotaryKnob = (props: KnobProps) => {
   const {
+    // Consumed by skins via updateAttributes; destructured so it doesn't
+    // leak onto the container <div> through ...rest.
+    centered: _centered,
     clampMax = 360,
     clampMin = 0,
     defaultValue = 0,
@@ -415,3 +421,4 @@ const RotaryKnob = (props: KnobProps) => {
 }
 
 export { RotaryKnob }
+export type { KnobProps as RotaryKnobProps, Skin, UpdateElement }

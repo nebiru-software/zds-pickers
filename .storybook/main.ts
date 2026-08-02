@@ -3,7 +3,7 @@ import type { StorybookConfig } from '@storybook/react-vite'
 const config: StorybookConfig = {
   stories: ['../stories/*.stories.tsx'],
 
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
+  addons: ['@storybook/addon-links'],
 
   framework: {
     name: '@storybook/react-vite',
@@ -13,10 +13,6 @@ const config: StorybookConfig = {
   core: {
     disableTelemetry: true,
     builder: '@storybook/builder-vite',
-  },
-
-  docs: {
-    autodocs: false,
   },
 
   typescript: {
