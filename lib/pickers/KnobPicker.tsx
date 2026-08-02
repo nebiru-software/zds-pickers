@@ -2,14 +2,16 @@ import { forwardRef, useMemo } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
 import { arraySequence } from '../utils'
 import { Knob } from './Knob'
+import type { KnobProps } from './Knob'
 import { Select } from './Select'
 import type { Option, SelectProps } from './Select'
 
 type KnobPickerProps = SelectProps<number> & {
+  centered?: boolean
   highToLow?: boolean
   includeLabel?: boolean
   includePicker?: boolean
-  knobProps?: Partial<KnobPickerProps>
+  knobProps?: Partial<KnobProps>
   max?: number
   min?: number
   wheelEnabled?: boolean
@@ -28,6 +30,7 @@ const KnobPicker = forwardRef<
   KnobPickerProps
 >((props, ref) => {
   const {
+    centered,
     disabled,
     highToLow,
     includeLabel,
@@ -73,6 +76,7 @@ const KnobPicker = forwardRef<
 
         <Knob
           {...{
+            centered,
             disabled,
             max,
             min,

@@ -1,3 +1,12 @@
+import type { RotaryKnobProps } from '../rotaryKnob'
+import { buildValueArcPath } from '../rotaryKnob/arcPath'
+
+/** Value-arc geometry in the skin's fixed group: knob center and a radius in
+ * the dark bezel ring between the face plate (r≈86) and outer edge (r≈99). */
+const ARC_CX = 100
+const ARC_CY = 100
+const ARC_R = 93
+
 const knobSkin10 = {
   knobX: 71.44,
   knobY: 71.44,
@@ -60,12 +69,14 @@ const knobSkin10 = {
                   <path d="M72.4209282,3.63066376 L88.6786876,16.869789 C81.585496,18.1548295 76.1662428,18.7973498 72.4209282,18.7973498 C68.6756135,18.7973498 63.2563604,18.1548295 56.1631688,16.869789 L72.4209282,3.63066376 Z" id="Rectangle" fill="#E6D7D7" transform="translate(72.420928, 11.214007) scale(1, -1) translate(-72.420928, -11.214007) "/>
               </g>
 
+              <!-- Value arc: anchor->value fill in the bezel ring; path data is
+                   computed per-render via updateAttributes (see below).
+                   Consumers can restyle it via the knob-value-arc class. -->
+              <path id="valueArc" class="knob-value-arc" d="" stroke="#35619F" stroke-width="7" fill="none" opacity="0.85" stroke-linecap="round" pointer-events="none"/>
+
               <!-- Fixed position marks (outside the rotating knob group) -->
               <!-- 12:00 position mark (more prominent) -->
               <line x1="100.0098534" y1="15" x2="100.0098534" y2="35" stroke="#CCCCCC" stroke-width="4" opacity="0.9"/>
-
-              <!-- Arc fill between end position marks -->
-             <!-- <path d="M 35 165 A 65 65 0 0 1 165 165" stroke="#666666" stroke-width="8" fill="none" opacity="0.3"/> -->
 
               <!-- End position marks (0 and 127) -->
               <!-- 0 position mark (40 degrees from top, clockwise) - at outer radius beyond knob edge -->
@@ -94,7 +105,7 @@ const knobSkin10 = {
   updateAttributes: [
     {
       element: '#labeltext text tspan',
-      content: (_props: React.CSSProperties, value: number) => value.toFixed(0),
+      content: (_props: RotaryKnobProps, value: number) => value.toFixed(0),
       attrs: [
         {
           name: 'text-anchor',
@@ -103,6 +114,27 @@ const knobSkin10 = {
         {
           name: 'x',
           value: (/* props, value */) => '100',
+        },
+      ],
+    },
+    {
+      element: '#valueArc',
+      attrs: [
+        {
+          name: 'd',
+          value: (props: RotaryKnobProps, value: number) =>
+            buildValueArcPath({
+              value,
+              min: props.min ?? 0,
+              max: props.max ?? 127,
+              centered: props.centered ?? false,
+              cx: ARC_CX,
+              cy: ARC_CY,
+              r: ARC_R,
+              clampMin: props.clampMin ?? 40,
+              clampMax: props.clampMax ?? 320,
+              rotateDegrees: props.rotateDegrees ?? 180,
+            }),
         },
       ],
     },

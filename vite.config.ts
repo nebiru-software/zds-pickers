@@ -66,6 +66,13 @@ export default defineConfig({
           'd3-selection',
           'classnames',
           'zds-mappings',
+          // CJS packages must stay external: vite 8 (rolldown) leaves their
+          // internal require() calls as runtime shims when bundled into the
+          // ES output, which throws in consumers ("Calling `require` for
+          // 'react'..."). As declared dependencies, consumers resolve and
+          // interop them natively.
+          'react-svgmt',
+          'soundfont-player',
         ].some(pkg => id === pkg || id.startsWith(`${pkg}/`))
       },
       output: {

@@ -5,6 +5,8 @@ import { assertRange } from '../utils'
 import { knobSkin10 } from './knobSkin10'
 
 type KnobProps = {
+  /** Anchor the value arc at 12 o'clock (bipolar display) instead of min. */
+  centered?: boolean
   disabled?: boolean
   max?: number
   min?: number
@@ -16,6 +18,7 @@ type KnobProps = {
 
 const Knob = (props: KnobProps) => {
   const {
+    centered = false,
     disabled = false,
     max = 127,
     min = 0,
@@ -65,6 +68,7 @@ const Knob = (props: KnobProps) => {
 
   return (
     <RotaryKnob
+      centered={centered}
       clampMax={320}
       clampMin={40}
       className="zds-pickers__knob-container"
