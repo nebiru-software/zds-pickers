@@ -2,6 +2,46 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 const MEASUREMENT_ELEMENT_ID = '__react_svg_text_measurement_id'
 
+/**
+ * The only computed properties that affect measured text geometry. Copying
+ * the full computed style (~300 properties) onto the measurement node per
+ * instance forced a style flush that dominated initial render in hosts
+ * with many SvgText instances.
+ */
+const FONT_PROPERTIES = [
+  'font-family',
+  'font-feature-settings',
+  'font-kerning',
+  'font-size',
+  'font-stretch',
+  'font-style',
+  'font-variant',
+  'font-weight',
+  'letter-spacing',
+  'text-transform',
+  'word-spacing',
+] as const
+
+const fontSignature = (style: CSSStyleDeclaration): string =>
+  FONT_PROPERTIES.map(key => style.getPropertyValue(key)).join('|')
+
+type FontMetrics = {
+  widths: Map<string, number>
+  spaceWidth: number
+  lineHeight: number
+}
+
+/**
+ * Word widths only depend on the word and the font it renders in, so they
+ * are cached module-wide by font signature. Text that repeats across
+ * instances (labels, numbers) measures once per font, ever.
+ */
+const fontMetricsCache = new Map<string, FontMetrics>()
+
+const __resetFontMetricsCacheForTests = (): void => {
+  fontMetricsCache.clear()
+}
+
 type WordsByLine = {
   words: string[]
   width: number
@@ -50,29 +90,51 @@ const calculateWordWidths = (
   text?: string,
 ): WordWidths | undefined => {
   if (style && textNode) {
-    // biome-ignore lint/complexity/noForEach: <explanation>
-    Array.from(style).forEach(key =>
-      textNode.style.setProperty(
-        key,
-        style.getPropertyValue(key),
-        style.getPropertyPriority(key),
-      ),
-    )
+    const signature = fontSignature(style)
+    let metrics = fontMetricsCache.get(signature)
+
     const wordArray = [...new Set(String(text).split(/\s+/))]
-    const wordsWithComputedWidth = wordArray.reduce((wordMap, word) => {
-      textNode.textContent = word
-      // biome-ignore lint/performance/noAccumulatingSpread: <explanation>
-      return { ...wordMap, [word]: textNode.getBBox().width }
-    }, {})
+    const knownWidths = metrics?.widths
+    const missingWords = knownWidths
+      ? wordArray.filter(word => !knownWidths.has(word))
+      : wordArray
 
-    textNode.textContent = '\u00A0'
+    if (!metrics || missingWords.length) {
+      for (const key of FONT_PROPERTIES) {
+        textNode.style.setProperty(
+          key,
+          style.getPropertyValue(key),
+          style.getPropertyPriority(key),
+        )
+      }
 
-    const spaceWidth =
-      (textNode as SVGTextContentElement)?.getComputedTextLength?.() || 8
-    const lineHeight = textNode.getBBox().height
+      if (!metrics) {
+        textNode.textContent = '\u00A0'
+        const spaceWidth =
+          (textNode as SVGTextContentElement)?.getComputedTextLength?.() || 8
+        const lineHeight = textNode.getBBox().height
+        metrics = { widths: new Map(), spaceWidth, lineHeight }
+        fontMetricsCache.set(signature, metrics)
+      }
 
-    textNode.setAttribute('style', '')
-    return { wordsWithComputedWidth, spaceWidth, lineHeight }
+      for (const word of missingWords) {
+        textNode.textContent = word
+        metrics.widths.set(word, textNode.getBBox().width)
+      }
+
+      textNode.setAttribute('style', '')
+    }
+
+    const wordsWithComputedWidth: Record<string, number> = {}
+    for (const word of wordArray) {
+      wordsWithComputedWidth[word] = metrics.widths.get(word) ?? 0
+    }
+
+    return {
+      wordsWithComputedWidth,
+      spaceWidth: metrics.spaceWidth,
+      lineHeight: metrics.lineHeight,
+    }
   }
   return undefined
 }
@@ -109,7 +171,9 @@ const SvgText = (props: TextProps) => {
   const [wordWidths, setWordWidths] = useState<WordWidths>()
   const [textLines, setTextLines] = useState<WordsByLine[]>([])
   const [style, setComputedStyle] = useState<CSSStyleDeclaration>()
-  const measureRef = useRef<SVGSVGElement | HTMLElement>({} as HTMLElement)
+  const measureRef = useRef<SVGGraphicsElement | HTMLElement>(
+    {} as HTMLElement,
+  )
 
   const displayedLines: WordsByLine[] = useMemo(() => {
     const result = textLines.filter(({ showLine }) => showLine)
@@ -134,16 +198,31 @@ const SvgText = (props: TextProps) => {
     if (el === null) {
       const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
       svg.setAttribute('id', MEASUREMENT_ELEMENT_ID)
-      document.body.appendChild(svg)
-      svg.appendChild(
-        document.createElementNS('http://www.w3.org/2000/svg', 'text'),
+      svg.setAttribute('aria-hidden', 'true')
+      // Rendered but invisible: getBBox returns zeros under display:none,
+      // so park it offscreen instead. Being outside any host SVG also
+      // keeps per-word getBBox from forcing layout of live content.
+      svg.style.position = 'fixed'
+      svg.style.left = '-9999px'
+      svg.style.top = '0'
+      const textEl = document.createElementNS(
+        'http://www.w3.org/2000/svg',
+        'text',
       )
-      measureRef.current = svg
-      return () => {
-        document.body.removeChild(svg)
-      }
+      svg.appendChild(textEl)
+      document.body.appendChild(svg)
+      // Measure against the <text> child — pointing at the <svg> container
+      // made every measurement return the svg's own box.
+      measureRef.current = textEl
+      // Deliberately no cleanup: the element is a shared singleton and
+      // other mounted instances may still hold it as their measure target.
+      return
     }
-    measureRef.current = el
+    // Hosts may provide either the <text> itself or a container around one.
+    measureRef.current =
+      el.tagName.toLowerCase() === 'text'
+        ? el
+        : ((el.querySelector('text') ?? el) as HTMLElement)
   }, [])
 
   useEffect(() => {
@@ -216,6 +295,12 @@ const SvgText = (props: TextProps) => {
   )
 }
 
-export { SvgText, MEASUREMENT_ELEMENT_ID }
+export {
+  __resetFontMetricsCacheForTests,
+  calculateWordsByLines,
+  calculateWordWidths,
+  MEASUREMENT_ELEMENT_ID,
+  SvgText,
+}
 
 export type { TextProps, WordWidths, WordsByLine }
