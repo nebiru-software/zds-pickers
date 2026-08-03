@@ -171,9 +171,7 @@ const SvgText = (props: TextProps) => {
   const [wordWidths, setWordWidths] = useState<WordWidths>()
   const [textLines, setTextLines] = useState<WordsByLine[]>([])
   const [style, setComputedStyle] = useState<CSSStyleDeclaration>()
-  const measureRef = useRef<SVGGraphicsElement | HTMLElement>(
-    {} as HTMLElement,
-  )
+  const measureRef = useRef<SVGGraphicsElement | HTMLElement>({} as HTMLElement)
 
   const displayedLines: WordsByLine[] = useMemo(() => {
     const result = textLines.filter(({ showLine }) => showLine)

@@ -19,14 +19,8 @@
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
-  "sideEffects": [
-    "lib/soundfonts/*.js",
-    "dist/soundfonts/*.js"
-  ],
-  "files": [
-    "dist",
-    "lib/soundfonts"
-  ],
+  "sideEffects": ["lib/soundfonts/*.js", "dist/soundfonts/*.js"],
+  "files": ["dist", "lib/soundfonts"],
   "homepage": "https://github.com/nebiru-software/zds-pickers#readme",
   "license": "MIT",
   "author": "Darin Kadrioski <dkadrios@gmail.com>",
