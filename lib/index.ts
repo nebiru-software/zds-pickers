@@ -4,6 +4,7 @@ export * from './midi/ccValues'
 export * from './midi/export'
 
 export * from './other/DefaultTooltip'
+export * from './other/noteNames'
 export * from './other/OctavePlayer'
 export * from './other/SvgText'
 

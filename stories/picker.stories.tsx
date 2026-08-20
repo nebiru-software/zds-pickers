@@ -145,6 +145,36 @@ const KeyPickerStory: StoryObj<typeof KeyPicker> = {
   },
 }
 
+// Key-aware spelling: G melodic minor needs B♭ and F♯ at once, which no
+// single sharps/flats flag can express.
+const G_MELODIC_MINOR_LABELS = [
+  'C',
+  'D♭',
+  'D',
+  'E♭',
+  'E',
+  'F',
+  'F♯',
+  'G',
+  'A♭',
+  'A',
+  'B♭',
+  'B',
+]
+
+const KeyPickerCustomLabelsStory: StoryObj<typeof KeyPicker> = {
+  render: args => <KeyPicker {...args} />,
+  args: {
+    instrumentName: 'acoustic_grand_piano',
+    height: 100,
+    noteLabels: G_MELODIC_MINOR_LABELS,
+    showNoteNames: true,
+    width: 200,
+    octave: 4,
+    value: 67,
+  },
+}
+
 const KeyPickerUndefinedStory: StoryObj<typeof KeyPicker> = {
   render: args => <KeyPicker {...args} />,
   args: {
@@ -418,6 +448,7 @@ export {
   CCPickerStory as ChangeController,
   CCPickerUndefinedStory as ChangeControllerNoValue,
   KeyPickerStory as KeyPicker,
+  KeyPickerCustomLabelsStory as KeyPickerCustomLabels,
   KeyPickerUndefinedStory as KeyPickerNoValue,
   CenteredKnobStory as CenteredKnob,
   KnobStory as Knob,
