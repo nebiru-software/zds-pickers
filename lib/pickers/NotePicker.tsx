@@ -1,13 +1,11 @@
 import { forwardRef, useCallback, useMemo } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
-import { Midi } from 'tonal'
 import { type MapItem, type Mapping, emptyMapping } from 'zds-mappings'
 import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
+import { midiNoteLabel } from '../other/noteNames'
 import { assertRange } from '../utils'
 import { Select } from './Select'
 import type { Option, SelectProps } from './Select'
-
-const { midiToNoteName } = Midi
 
 const formattedMapEntry = ({ note, name }: MapItem) =>
   `${note} ${name.length ? '-' : ''} ${name}`
@@ -47,12 +45,7 @@ const NotePicker = forwardRef<
   const options = useMemo(() => {
     if (isMelodicMode) {
       return emptyMapping()
-        .map(({ note }) => {
-          const midiNoteName = midiToNoteName(note, { sharps: false })
-            .replace('b', '♭')
-            .replace('#', '♯')
-          return `${midiNoteName} (#${note})`
-        })
+        .map(({ note }) => `${midiNoteLabel(note)} (#${note})`)
         .map(formattedListEntry)
     }
 

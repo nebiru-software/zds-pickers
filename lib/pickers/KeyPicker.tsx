@@ -1,45 +1,44 @@
 import classNames from 'classnames'
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 import { Note } from 'tonal'
 import { OctavePlayer } from '../other/OctavePlayer'
+import { pitchClassLabel } from '../other/noteNames'
 import type { PianoProviderProps } from '../other/pianoTypes'
 import type { NoteLabelRenderProps } from '../other/pianoTypes'
 import { noSelection } from './Select'
 
-const formatPitchName = (pitchClass: string) =>
-  pitchClass.replace(/([A-G])b/g, '$1\u266D')
-
 const NATURAL_LABEL_NUDGE_LEFT = new Set(['C', 'F'])
 const NATURAL_LABEL_NUDGE_RIGHT = new Set(['E', 'B'])
 
-const noteNameLabelRenderer = ({
-  isAccidental,
-  isActive,
-  midiNumber,
-}: NoteLabelRenderProps) => {
-  const pitchClass = Note.pitchClass(Note.fromMidi(midiNumber) ?? '')
-  const pitchName = formatPitchName(pitchClass)
-  if (!pitchName) return null
+const makeNoteNameLabelRenderer =
+  (noteLabels?: readonly string[]) =>
+  ({ isAccidental, isActive, midiNumber }: NoteLabelRenderProps) => {
+    // Nudge classes key off the natural letter, which never varies with the
+    // caller's spelling choice, so they read the default name rather than the
+    // (possibly overridden) label.
+    const pitchClass = Note.pitchClass(Note.fromMidi(midiNumber) ?? '')
+    const pitchName = pitchClassLabel(midiNumber, noteLabels)
+    if (!pitchName) return null
 
-  return (
-    <div
-      className={classNames(
-        'ReactPiano__NoteLabel',
-        'ReactPiano__NoteLabel--noteName',
-        {
-          'ReactPiano__NoteLabel--active': isActive,
-          'ReactPiano__NoteLabel--accidental': isAccidental,
-          'ReactPiano__NoteLabel--natural': !isAccidental,
-          'ReactPiano__NoteLabel--nudgeLeft':
-            !isAccidental && NATURAL_LABEL_NUDGE_LEFT.has(pitchClass),
-          'ReactPiano__NoteLabel--nudgeRight':
-            !isAccidental && NATURAL_LABEL_NUDGE_RIGHT.has(pitchClass),
-        },
-      )}>
-      {pitchName}
-    </div>
-  )
-}
+    return (
+      <div
+        className={classNames(
+          'ReactPiano__NoteLabel',
+          'ReactPiano__NoteLabel--noteName',
+          {
+            'ReactPiano__NoteLabel--active': isActive,
+            'ReactPiano__NoteLabel--accidental': isAccidental,
+            'ReactPiano__NoteLabel--natural': !isAccidental,
+            'ReactPiano__NoteLabel--nudgeLeft':
+              !isAccidental && NATURAL_LABEL_NUDGE_LEFT.has(pitchClass),
+            'ReactPiano__NoteLabel--nudgeRight':
+              !isAccidental && NATURAL_LABEL_NUDGE_RIGHT.has(pitchClass),
+          },
+        )}>
+        {pitchName}
+      </div>
+    )
+  }
 
 type KeyPickerProps = Omit<
   PianoProviderProps,
@@ -54,6 +53,12 @@ type KeyPickerProps = Omit<
   onChange: (value: number) => void
   disabled?: boolean
   height?: number
+  /**
+   * Chroma-indexed note names (index 0 = C) overriding the default flat
+   * spelling — lets a caller label keys for a specific key/scale, where both
+   * sharps and flats can be correct at once. Missing entries fall back.
+   */
+  noteLabels?: readonly string[]
   showNoteNames?: boolean
   width?: number
   octave?: number
@@ -65,11 +70,17 @@ const KeyPicker = (props: KeyPickerProps) => {
     onChange,
     disabled = false,
     height = 100,
+    noteLabels,
     showNoteNames = false,
     width = 300,
     octave = 4,
     ...rest
   } = props
+
+  const renderNoteLabel = useMemo(
+    () => makeNoteNameLabelRenderer(noteLabels),
+    [noteLabels],
+  )
 
   const handleKeyClick = useCallback(
     (note: number) => {
@@ -93,7 +104,7 @@ const KeyPicker = (props: KeyPickerProps) => {
       selectedNotes={shouldHighlight ? [value] : []}
       disabled={disabled}
       height={height}
-      renderNoteLabel={showNoteNames ? noteNameLabelRenderer : undefined}
+      renderNoteLabel={showNoteNames ? renderNoteLabel : undefined}
       width={width}
       octave={octave}
       onClick={handleKeyClick}
