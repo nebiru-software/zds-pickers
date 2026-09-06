@@ -55,6 +55,7 @@
     "react-dom": "18.3.1",
     "react-select": "5.10.1",
     "storybook": "10.5.5",
+    "tonal": "6.4.3",
     "typescript": "5.8.2",
     "vite": "^8.0.16",
     "vitest": "4.1.10",
@@ -66,7 +67,6 @@
     "d3-selection": "3.0.0",
     "react-svgmt": "2.0.2",
     "soundfont-player": "0.12.0",
-    "tonal": "6.4.2",
     "zds-react-piano": "4.1.0"
   },
   "peerDependencies": {
@@ -74,6 +74,7 @@
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
     "react-select": ">=5.10.0",
+    "tonal": ">=6.4.2",
     "zds-mappings": "^1.4.9"
   },
   "scripts": {
