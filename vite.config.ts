@@ -65,6 +65,9 @@ export default defineConfig({
           'd3-scale',
           'd3-selection',
           'classnames',
+          // Peer, not bundled: the consumer's own tonal is the only copy, so
+          // Note/Midi here and in the app resolve to the same module.
+          'tonal',
           'zds-mappings',
           // CJS packages must stay external: vite 8 (rolldown) leaves their
           // internal require() calls as runtime shims when bundled into the
