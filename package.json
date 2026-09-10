@@ -58,7 +58,7 @@
     "tonal": "6.4.3",
     "typescript": "5.8.2",
     "vite": "^8.0.16",
-    "vitest": "4.1.10",
+    "vitest": "4.1.11",
     "zds-mappings": "1.4.9"
   },
   "dependencies": {
