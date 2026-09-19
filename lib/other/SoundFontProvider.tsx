@@ -137,7 +137,9 @@ const SoundfontProvider = (props: SoundfontProviderProps) => {
     soundfont,
   } = props
 
-  const [isLoading, setIsLoading] = useState(true)
+  // No instrument means silent, not loading — starting true would leave a
+  // muted keyboard disabled forever, since nothing ever loads to clear it.
+  const [isLoading, setIsLoading] = useState(Boolean(instrumentName))
   const [activeAudioNodes, setActiveAudioNodes] = useState<
     Record<number, Soundfont.Player>
   >({})
@@ -199,7 +201,11 @@ const SoundfontProvider = (props: SoundfontProviderProps) => {
   useEffect(() => {
     if (instrumentName) {
       loadInstrument(instrumentName)
+      return
     }
+    // Unset after a load (muting): drop the loaded player so playNote no-ops.
+    setInstrument(null)
+    setIsLoading(false)
   }, [instrumentName, loadInstrument])
 
   useEffect(() => {
