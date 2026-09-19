@@ -136,7 +136,7 @@ const ChannelMappingPickerUndefinedStory: StoryObj<
 const KeyPickerStory: StoryObj<typeof KeyPicker> = {
   render: args => <KeyPicker {...args} />,
   args: {
-    instrumentName: 'acoustic_grand_piano',
+    muted: false,
     height: 100,
     showNoteNames: false,
     width: 200,
@@ -165,7 +165,7 @@ const G_MELODIC_MINOR_LABELS = [
 const KeyPickerCustomLabelsStory: StoryObj<typeof KeyPicker> = {
   render: args => <KeyPicker {...args} />,
   args: {
-    instrumentName: 'acoustic_grand_piano',
+    muted: false,
     height: 100,
     noteLabels: G_MELODIC_MINOR_LABELS,
     showNoteNames: true,
@@ -178,7 +178,7 @@ const KeyPickerCustomLabelsStory: StoryObj<typeof KeyPicker> = {
 const KeyPickerUndefinedStory: StoryObj<typeof KeyPicker> = {
   render: args => <KeyPicker {...args} />,
   args: {
-    instrumentName: 'acoustic_grand_piano',
+    muted: false,
     height: 100,
     width: 200,
     octave: 4,

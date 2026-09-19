@@ -52,7 +52,19 @@ const midiToNoteName = (midiNumber: number | string): string => {
   return Note.fromMidi(num)
 }
 
+/**
+ * Key-up release, in seconds — the same 0.3 s soundfont-player's own envelope
+ * uses on the remote path. Pausing the element outright cut the sample
+ * mid-waveform, which clicked on every key-up and made a glissando sound
+ * like a row of switches.
+ */
+const RELEASE_SECONDS = 0.3
+// setTargetAtTime is exponential, so it needs a time constant rather than a
+// duration: five of them leave <1% of the level by the time the element stops.
+const RELEASE_TIME_CONSTANT = RELEASE_SECONDS / 5
+
 const createBundledPlayer = (
+  audioContext: AudioContext,
   soundfontData: Record<string, string>,
 ): Soundfont.Player => {
   const player = {
@@ -63,14 +75,32 @@ const createBundledPlayer = (
         return { stop: () => {} } as Soundfont.Player
       }
 
+      // Still streamed by an <audio> element — no decode, so no first-note
+      // latency — but routed through a gain node so the release can ramp.
       const audio = new Audio(noteData)
-      audio.volume = (velocity ?? 127) / 127
+      const source = audioContext.createMediaElementSource(audio)
+      const gain = audioContext.createGain()
+      gain.gain.value = (velocity ?? 127) / 127
+      source.connect(gain).connect(audioContext.destination)
       audio.play()
+
+      let stopped = false
 
       return {
         stop: () => {
-          audio.pause()
-          audio.currentTime = 0
+          if (stopped) return
+          stopped = true
+
+          const now = audioContext.currentTime
+          gain.gain.cancelScheduledValues(now)
+          gain.gain.setValueAtTime(gain.gain.value, now)
+          gain.gain.setTargetAtTime(0, now, RELEASE_TIME_CONSTANT)
+
+          window.setTimeout(() => {
+            audio.pause()
+            source.disconnect()
+            gain.disconnect()
+          }, RELEASE_SECONDS * 1000)
         },
       } as Soundfont.Player
     },
@@ -88,7 +118,7 @@ const loadBundledOrRemoteInstrument = (
 ): Promise<Soundfont.Player> => {
   const soundfontData = window.MIDI?.Soundfont?.[instrumentName]
   if (soundfontData) {
-    return Promise.resolve(createBundledPlayer(soundfontData))
+    return Promise.resolve(createBundledPlayer(audioContext, soundfontData))
   }
 
   // biome-ignore lint/suspicious/noConsole: intentional diagnostics for missing bundled soundfont
@@ -137,7 +167,9 @@ const SoundfontProvider = (props: SoundfontProviderProps) => {
     soundfont,
   } = props
 
-  const [isLoading, setIsLoading] = useState(true)
+  // No instrument means silent, not loading — starting true would leave a
+  // muted keyboard disabled forever, since nothing ever loads to clear it.
+  const [isLoading, setIsLoading] = useState(Boolean(instrumentName))
   const [activeAudioNodes, setActiveAudioNodes] = useState<
     Record<number, Soundfont.Player>
   >({})
@@ -199,7 +231,11 @@ const SoundfontProvider = (props: SoundfontProviderProps) => {
   useEffect(() => {
     if (instrumentName) {
       loadInstrument(instrumentName)
+      return
     }
+    // Unset after a load (muting): drop the loaded player so playNote no-ops.
+    setInstrument(null)
+    setIsLoading(false)
   }, [instrumentName, loadInstrument])
 
   useEffect(() => {

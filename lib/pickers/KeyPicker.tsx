@@ -53,6 +53,8 @@ type KeyPickerProps = Omit<
   onChange: (value: number) => void
   disabled?: boolean
   height?: number
+  /** Silences the piano sample a key click otherwise plays. */
+  muted?: boolean
   /**
    * Chroma-indexed note names (index 0 = C) overriding the default flat
    * spelling — lets a caller label keys for a specific key/scale, where both
@@ -70,6 +72,7 @@ const KeyPicker = (props: KeyPickerProps) => {
     onChange,
     disabled = false,
     height = 100,
+    muted = false,
     noteLabels,
     showNoteNames = false,
     width = 300,
@@ -108,7 +111,7 @@ const KeyPicker = (props: KeyPickerProps) => {
       width={width}
       octave={octave}
       onClick={handleKeyClick}
-      instrumentName="acoustic_grand_piano"
+      instrumentName={muted ? undefined : 'acoustic_grand_piano'}
     />
   )
 }
