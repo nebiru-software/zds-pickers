@@ -156,8 +156,11 @@ const Select = forwardRef(
       return acc.concat(entry)
     }, [])
 
+    // null, not undefined: react-select reads an undefined value as
+    // "uncontrolled" and keeps showing whatever option it showed last, so a
+    // value with no matching option would display the previous one's label.
     const selectedOption =
-      flatOptionsList.find(option => value === option.value) || undefined
+      flatOptionsList.find(option => value === option.value) ?? null
 
     const styles: unknown = useMemo(() => {
       const base = preserveMenuWidth
