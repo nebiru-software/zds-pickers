@@ -1,4 +1,9 @@
 import { forwardRef, useCallback } from 'react'
+import type {
+  ForwardRefExoticComponent,
+  PropsWithoutRef,
+  RefAttributes,
+} from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
 import { type Curve, responseCurves } from '../midi/export'
 import { DefaultTooltip, type TooltipProps } from '../other/DefaultTooltip'
@@ -18,57 +23,61 @@ type ResponseCurvePickerRef = SelectInstance<
   GroupBase<Option<Curve>>
 >
 
-const ResponseCurvePicker = forwardRef<
-  SelectInstance<Option<Curve>, false, GroupBase<Option<Curve>>>,
-  ResponseCurvePickerProps
->((props, ref) => {
-  const {
-    Tooltip = DefaultTooltip,
-    inverted = false,
-    onChange,
-    value,
-    ...rest
-  } = props
+// Annotated because the inferred type reaches into react-select's internal
+// declarations (SelectComponents), which TypeScript 7 refuses to emit.
+const ResponseCurvePicker: ForwardRefExoticComponent<
+  PropsWithoutRef<ResponseCurvePickerProps> &
+    RefAttributes<ResponseCurvePickerRef>
+> = forwardRef<ResponseCurvePickerRef, ResponseCurvePickerProps>(
+  (props, ref) => {
+    const {
+      Tooltip = DefaultTooltip,
+      inverted = false,
+      onChange,
+      value,
+      ...rest
+    } = props
 
-  const Placeholder = useCallback(() => {
-    const option = findObj('value', value)(responseCurves) as Option<Curve>
-    return option ? (
-      <div className="singleValue">{option.label}</div>
-    ) : (
-      <div className="zds-pickers__placeholder">Select...</div>
+    const Placeholder = useCallback(() => {
+      const option = findObj('value', value)(responseCurves) as Option<Curve>
+      return option ? (
+        <div className="singleValue">{option.label}</div>
+      ) : (
+        <div className="zds-pickers__placeholder">Select...</div>
+      )
+    }, [value])
+
+    const MenuList = useCallback(
+      ({ setValue }: { setValue: (v: Curve) => void }) => (
+        <ResponseCurve
+          autosize
+          inverted={inverted}
+          onChange={({ target: { value: v } }) => {
+            setValue(v)
+            onChange(v)
+          }}
+          Tooltip={Tooltip}
+          value={Number.parseInt(String(value)) as Curve}
+        />
+      ),
+      [Tooltip, inverted, onChange, value],
     )
-  }, [value])
 
-  const MenuList = useCallback(
-    ({ setValue }: { setValue: (v: Curve) => void }) => (
-      <ResponseCurve
-        autosize
-        inverted={inverted}
-        onChange={({ target: { value: v } }) => {
-          setValue(v)
-          onChange(v)
+    return (
+      <Select
+        {...rest}
+        components={{
+          Placeholder,
+          MenuList,
         }}
-        Tooltip={Tooltip}
-        value={Number.parseInt(String(value)) as Curve}
+        isSearchable={false}
+        onChange={f => f}
+        ref={ref}
+        value={value}
       />
-    ),
-    [Tooltip, inverted, onChange, value],
-  )
-
-  return (
-    <Select
-      {...rest}
-      components={{
-        Placeholder,
-        MenuList,
-      }}
-      isSearchable={false}
-      onChange={f => f}
-      ref={ref}
-      value={value}
-    />
-  )
-})
+    )
+  },
+)
 
 export { ResponseCurvePicker }
 

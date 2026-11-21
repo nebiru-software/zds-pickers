@@ -1,4 +1,9 @@
 import { forwardRef, useMemo } from 'react'
+import type {
+  ForwardRefExoticComponent,
+  PropsWithoutRef,
+  RefAttributes,
+} from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
 import { arraySequence } from '../utils'
 import { Knob } from './Knob'
@@ -25,10 +30,11 @@ type KnobPickerRef = SelectInstance<
   GroupBase<Option<number>>
 >
 
-const KnobPicker = forwardRef<
-  SelectInstance<Option<number>, false, GroupBase<Option<number>>>,
-  KnobPickerProps
->((props, ref) => {
+// Annotated because the inferred type reaches into react-select's internal
+// declarations (SelectComponents), which TypeScript 7 refuses to emit.
+const KnobPicker: ForwardRefExoticComponent<
+  PropsWithoutRef<KnobPickerProps> & RefAttributes<KnobPickerRef>
+> = forwardRef<KnobPickerRef, KnobPickerProps>((props, ref) => {
   const {
     centered,
     disabled,

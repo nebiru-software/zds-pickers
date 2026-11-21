@@ -1,6 +1,6 @@
-import type { Status } from 'lib/midi/export'
 import { forwardRef } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
+import type { Status } from '../midi/export'
 import { Select } from './Select'
 import type { Option, SelectProps } from './Select'
 

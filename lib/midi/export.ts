@@ -1,4 +1,4 @@
-import type { Option, noSelection } from 'lib/pickers/Select'
+import type { Option, noSelection } from '../pickers/Select'
 
 const Statuses = {
   noteOff: 8, // 1000
