@@ -1,8 +1,8 @@
 import {
   Children,
-  type JSX,
   forwardRef,
   isValidElement,
+  type JSX,
   useCallback,
   useMemo,
 } from 'react'
@@ -266,6 +266,5 @@ const Select = forwardRef(
   },
 ) => JSX.Element
 
-export { noSelection, noSelectionOption, Select }
-
 export type { Option, SelectProps }
+export { noSelection, noSelectionOption, Select }

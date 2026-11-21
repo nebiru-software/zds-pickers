@@ -5,14 +5,14 @@
 
 import { type D3DragEvent, drag } from 'd3-drag'
 import { type ScaleLinear, scaleLinear } from 'd3-scale'
-import { select } from 'd3-selection'
 import type { BaseType, Selection } from 'd3-selection'
+import { select } from 'd3-selection'
 import { useEffect, useRef, useState } from 'react'
 import { SvgLoader, SvgProxy } from 'react-svgmt'
-import { InternalInput } from './InternalInput'
-import type { Point } from './Types'
 import { KnobVisualHelpers } from './helpers/KnobVisualHelpers'
+import { InternalInput } from './InternalInput'
 import defaultSkin from './knobdefaultskin'
+import type { Point } from './Types'
 import { getAngleForPoint } from './utils'
 
 type KnobProps = Omit<React.ComponentProps<'div'>, 'onChange'> & {
@@ -181,6 +181,7 @@ const RotaryKnob = (props: KnobProps) => {
     return scale
   }
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: setupDragging is redeclared every render; listing it would rebind the d3 drag handler on each one
   useEffect(() => {
     setIsControlled(value !== undefined)
 
@@ -420,5 +421,5 @@ const RotaryKnob = (props: KnobProps) => {
   )
 }
 
-export { RotaryKnob }
 export type { KnobProps as RotaryKnobProps, Skin, UpdateElement }
+export { RotaryKnob }

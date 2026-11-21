@@ -1,8 +1,8 @@
 import { forwardRef } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
 import { changeControllerOptions } from '../midi/ccValues'
-import { Select } from './Select'
 import type { Option, SelectProps } from './Select'
+import { Select } from './Select'
 
 type CCPickerProps = Omit<SelectProps<number>, 'options'>
 
@@ -23,6 +23,5 @@ const CCPicker = forwardRef<
   />
 ))
 
-export { CCPicker }
-
 export type { CCPickerProps, CCPickerRef }
+export { CCPicker }

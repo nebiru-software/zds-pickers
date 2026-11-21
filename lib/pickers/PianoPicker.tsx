@@ -1,6 +1,6 @@
 import { Piano as ReactPiano } from 'zds-react-piano'
-import { SoundfontProvider } from '../other/SoundFontProvider'
 import type { PianoProps, PianoProviderProps } from '../other/pianoTypes'
+import { SoundfontProvider } from '../other/SoundFontProvider'
 
 const firstNote = 21
 const lastNote = 108
@@ -68,6 +68,5 @@ const WithProvider = ({
   />
 )
 
-export { WithProvider as PianoPicker }
-
 export type { PianoProps }
+export { WithProvider as PianoPicker }

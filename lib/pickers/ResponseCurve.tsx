@@ -221,7 +221,10 @@ const ResponseCurve = (props: ResponseCurveProps) => {
                       : () =>
                           onChange({
                             target: {
-                              value: Number.parseInt(String(value)) as Curve,
+                              value: Number.parseInt(
+                                String(value),
+                                10,
+                              ) as Curve,
                             },
                           })
                   }
@@ -246,6 +249,5 @@ const ResponseCurve = (props: ResponseCurveProps) => {
   )
 }
 
+export type { ResponseCurveProps, ResponseCurveType }
 export { ResponseCurve }
-
-export type { ResponseCurveType, ResponseCurveProps }

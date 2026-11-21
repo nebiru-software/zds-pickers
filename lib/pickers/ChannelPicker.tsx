@@ -2,8 +2,7 @@ import cl from 'classnames'
 import { forwardRef, useCallback } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
 import { arraySequence } from '../utils'
-import { Select } from './Select'
-import { type Option, type SelectProps, noSelection } from './Select'
+import { noSelection, type Option, Select, type SelectProps } from './Select'
 
 type Channel =
   | 0
@@ -61,7 +60,7 @@ const ChannelPicker = forwardRef<
       }
       return context === 'value'
         ? option.label
-        : Number.parseInt(String(option.value)) + 1 // menu, e.g. the list of options
+        : Number.parseInt(String(option.value), 10) + 1 // menu, e.g. the list of options
     },
     [value],
   )
@@ -79,6 +78,5 @@ const ChannelPicker = forwardRef<
   )
 })
 
-export { ChannelPicker }
-
 export type { Channel, ChannelPickerProps, ChannelPickerRef }
+export { ChannelPicker }

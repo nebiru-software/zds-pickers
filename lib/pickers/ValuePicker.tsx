@@ -2,8 +2,8 @@ import { forwardRef, useCallback, useMemo } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
 import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
 import { arraySequence, assertRange } from '../utils'
-import { Select } from './Select'
 import type { Option, SelectProps } from './Select'
+import { Select } from './Select'
 
 type ValuePickerProps = Omit<SelectProps<number>, 'options'> & {
   highToLow?: boolean
@@ -62,6 +62,5 @@ const ValuePicker = forwardRef<
   )
 })
 
-export { ValuePicker }
-
 export type { ValuePickerProps, ValuePickerRef }
+export { ValuePicker }

@@ -92,6 +92,5 @@ const Knob = (props: KnobProps) => {
   )
 }
 
-export { Knob }
-
 export type { KnobProps }
+export { Knob }

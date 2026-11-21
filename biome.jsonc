@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.3/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.6.7/schema.json",
   "vcs": {
     "enabled": true,
     "clientKind": "git",
@@ -7,23 +7,19 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "include": [
-      //
-      "**/*.[tj]s*"
-    ],
-    "ignore": [
-      //
-      "**/dist",
-      "**/storybook-static",
-      "**/playwright-report",
-      "**/coverage",
-      "**/e2e-results",
-      "**/e2e/__config__/sessions",
-      "**/.storybook/site",
-      "**/__mocks__",
-      "**/__config__",
-      "*.spec.*",
-      "acoustic_grand_piano-mp3.js"
+    "includes": [
+      "**/*.{ts,tsx,js,jsx,json,jsonc}",
+      "!**/dist",
+      "!**/storybook-static",
+      "!**/playwright-report",
+      "!**/coverage",
+      "!**/e2e-results",
+      "!**/e2e/__config__/sessions",
+      "!**/.storybook/site",
+      "!**/__mocks__",
+      "!**/__config__",
+      "!**/*.spec.*",
+      "!**/acoustic_grand_piano-mp3.js"
     ]
   },
   "formatter": {
@@ -31,24 +27,22 @@
 
     "attributePosition": "multiline",
     "formatWithErrors": true,
-    "ignore": [],
+    "includes": ["**"],
     "indentStyle": "space",
     "indentWidth": 2,
     "lineWidth": 80,
     "useEditorconfig": true
   },
-  "organizeImports": {
-    "enabled": true,
-    "ignore": []
-  },
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "linter": {
     "enabled": true,
-    "ignore": [],
+    "includes": ["**"],
     "rules": {
-      "recommended": true,
+      "preset": "recommended",
 
       "a11y": {
         "noLabelWithoutControl": "off",
+        "noStaticElementInteractions": "off",
         "noSvgWithoutTitle": "off",
         "useFocusableInteractive": "off",
         "useKeyWithClickEvents": "off",
@@ -71,8 +65,6 @@
       },
 
       "correctness": {
-        "noInvalidNewBuiltin": "error",
-        "noNewSymbol": "error",
         "noNodejsModules": "off",
         // fails for aliases atm
         // "noUndeclaredDependencies": "error",
@@ -90,7 +82,8 @@
           "level": "error",
           "fix": "none"
         },
-        "useHookAtTopLevel": "error"
+        "useHookAtTopLevel": "error",
+        "noInvalidBuiltinInstantiation": "error"
       },
 
       "performance": {
@@ -111,7 +104,6 @@
         "useDefaultSwitchClause": "error",
         "useForOf": "warn",
         "useFragmentSyntax": "error",
-        "useShorthandArrayType": "error",
         "useShorthandAssign": "error",
         "useThrowNewError": "error",
         "useThrowOnlyError": "error"

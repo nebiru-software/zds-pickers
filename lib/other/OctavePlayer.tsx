@@ -1,11 +1,11 @@
 import { /* Midi, */ Note } from 'tonal'
 import { Piano as ReactPiano } from 'zds-react-piano'
-import { SoundfontProvider } from './SoundFontProvider'
 import type {
   OctavePlayerProps,
   PianoMidiNote,
   PianoProviderProps,
 } from './pianoTypes'
+import { SoundfontProvider } from './SoundFontProvider'
 
 const baseNotes = [
   'C',
@@ -107,9 +107,8 @@ const WithProvider = ({
   />
 )
 
-export { WithProvider as OctavePlayer }
-
 export type { OctavePlayerProps, PianoMidiNote, PianoProviderProps }
+export { WithProvider as OctavePlayer }
 
 /** @deprecated Use PianoProviderProps */
 export type WithProviderProps = PianoProviderProps

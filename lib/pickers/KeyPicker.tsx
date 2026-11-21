@@ -1,10 +1,12 @@
 import classNames from 'classnames'
 import { useCallback, useMemo } from 'react'
 import { Note } from 'tonal'
-import { OctavePlayer } from '../other/OctavePlayer'
 import { pitchClassLabel } from '../other/noteNames'
-import type { PianoProviderProps } from '../other/pianoTypes'
-import type { NoteLabelRenderProps } from '../other/pianoTypes'
+import { OctavePlayer } from '../other/OctavePlayer'
+import type {
+  NoteLabelRenderProps,
+  PianoProviderProps,
+} from '../other/pianoTypes'
 import { noSelection } from './Select'
 
 const NATURAL_LABEL_NUDGE_LEFT = new Set(['C', 'F'])
@@ -116,5 +118,5 @@ const KeyPicker = (props: KeyPickerProps) => {
   )
 }
 
-export { KeyPicker }
 export type { KeyPickerProps }
+export { KeyPicker }

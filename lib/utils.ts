@@ -9,7 +9,7 @@ const assertRange = (value: number | string, max = 127, min = 0) => {
   if (Number.isNaN(result) || result === null) {
     result = min
   }
-  return result >= min ? (result <= max ? result : max) : min
+  return result >= min ? Math.min(result, max) : min
 }
 
 const findObj =

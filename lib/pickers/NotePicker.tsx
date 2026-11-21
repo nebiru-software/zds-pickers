@@ -1,11 +1,11 @@
 import { forwardRef, useCallback, useMemo } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
-import { type MapItem, type Mapping, emptyMapping } from 'zds-mappings'
+import { emptyMapping, type MapItem, type Mapping } from 'zds-mappings'
 import useStateWithDynamicDefault from '../hooks/useStateWithDynamicDefault'
 import { midiNoteLabel } from '../other/noteNames'
 import { assertRange } from '../utils'
-import { Select } from './Select'
 import type { Option, SelectProps } from './Select'
+import { Select } from './Select'
 
 const formattedMapEntry = ({ note, name }: MapItem) =>
   `${note} ${name.length ? '-' : ''} ${name}`
@@ -83,6 +83,5 @@ const NotePicker = forwardRef<
   )
 })
 
-export { NotePicker }
-
 export type { NotePickerProps, NotePickerRef }
+export { NotePicker }

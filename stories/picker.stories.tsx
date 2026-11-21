@@ -19,9 +19,9 @@ import { PolarityPicker } from '../lib/pickers/PolarityPicker'
 import { ResponseCurve } from '../lib/pickers/ResponseCurve'
 import { ResponseCurvePicker } from '../lib/pickers/ResponseCurvePicker'
 import {
-  type Option,
   noSelection,
   noSelectionOption,
+  type Option,
 } from '../lib/pickers/Select'
 import { StatusPicker } from '../lib/pickers/StatusPicker'
 import { ValuePicker } from '../lib/pickers/ValuePicker'
@@ -441,18 +441,18 @@ const ValuePickerUndefinedStory: StoryObj<typeof ValuePicker> = {
 }
 
 export {
-  ChannelPickerStory as ChannelPicker,
-  ChannelPickerUndefinedStory as ChannelPickerNoValue,
-  ChannelMappingPickerStory as ChannelMappingPicker,
-  ChannelMappingPickerUndefinedStory as ChannelMappingPickerNoValue,
   CCPickerStory as ChangeController,
   CCPickerUndefinedStory as ChangeControllerNoValue,
-  KeyPickerStory as KeyPicker,
-  KeyPickerCustomLabelsStory as KeyPickerCustomLabels,
-  KeyPickerUndefinedStory as KeyPickerNoValue,
   CenteredKnobStory as CenteredKnob,
-  KnobStory as Knob,
+  ChannelMappingPickerStory as ChannelMappingPicker,
+  ChannelMappingPickerUndefinedStory as ChannelMappingPickerNoValue,
+  ChannelPickerStory as ChannelPicker,
+  ChannelPickerUndefinedStory as ChannelPickerNoValue,
+  KeyPickerCustomLabelsStory as KeyPickerCustomLabels,
+  KeyPickerStory as KeyPicker,
+  KeyPickerUndefinedStory as KeyPickerNoValue,
   KnobPickerStory as KnobPicker,
+  KnobStory as Knob,
   LatchPickerStory as LatchPicker,
   MappingPickerStory as MappingPicker,
   NotePickerStory1 as NotePickerSimple,
@@ -460,13 +460,13 @@ export {
   NotePickerStory3 as NotePickerActionButton,
   NotePickerStory4 as NotePickerNoValue,
   OctavePlayerStory as OctavePlayer,
-  PianoPickerStory as PianoPicker,
   PianoPickerNoSelectionStory as PianoPickerNoSelection,
+  PianoPickerStory as PianoPicker,
   PolarityPickerStory as PolarityPicker,
   PolarityPickerUndefinedStory as PolarityPickerNoValue,
-  ResponseCurveStory as ResponseCurve,
   ResponseCurvePickerStory as ResponseCurvePicker,
   ResponseCurvePickerUndefinedStory as ResponseCurvePickerNoValue,
+  ResponseCurveStory as ResponseCurve,
   StatusPickerStory as StatusPicker,
   StatusPickerUndefinedStory as StatusPickerNoValue,
   ValuePickerStory as ValuePicker,

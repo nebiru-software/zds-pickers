@@ -103,10 +103,10 @@ function transformBoundingClientRectToDocument(box: DOMRect) {
 }
 
 export {
+  getAngleForPoint,
+  getQuadrant,
   // toGlobalCoordinates,
   // toLocalCoordinates,
   toRadians,
-  getQuadrant,
-  getAngleForPoint,
   transformBoundingClientRectToDocument,
 }
