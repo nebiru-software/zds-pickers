@@ -73,7 +73,7 @@
     "d3-drag": "3.0.1",
     "d3-scale": "4.0.3",
     "d3-selection": "3.0.1",
-    "react-svgmt": "2.0.2",
+    "react-svgmt": "3.0.0",
     "soundfont-player": "0.12.0",
     "zds-react-piano": "4.1.0"
   },
