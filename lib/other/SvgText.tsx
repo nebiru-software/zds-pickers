@@ -185,7 +185,7 @@ const SvgText = (props: TextProps) => {
   const ref: React.LegacyRef<SVGTextElement> = useCallback(
     (node: SVGTextElement | null) => {
       setComputedStyle(
-        node !== null ? window.getComputedStyle(node) : undefined,
+        node === null ? undefined : window.getComputedStyle(node),
       )
     },
     [],
@@ -293,6 +293,7 @@ const SvgText = (props: TextProps) => {
   )
 }
 
+export type { TextProps, WordsByLine, WordWidths }
 export {
   __resetFontMetricsCacheForTests,
   calculateWordsByLines,
@@ -300,5 +301,3 @@ export {
   MEASUREMENT_ELEMENT_ID,
   SvgText,
 }
-
-export type { TextProps, WordWidths, WordsByLine }

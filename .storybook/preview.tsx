@@ -1,7 +1,6 @@
 import type { Preview, StoryContext, StoryFn } from '@storybook/react'
 // biome-ignore lint/correctness/noUnusedImports: <explanation>
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import 'zds-react-piano/dist/styles.css'
 import '../stories/assets/sampleStyles.css'
 

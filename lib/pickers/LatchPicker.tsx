@@ -1,8 +1,8 @@
 import { forwardRef } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
 import type { Polarity } from './PolarityPicker'
-import { Select } from './Select'
 import type { Option, SelectProps } from './Select'
+import { Select } from './Select'
 
 const options: Option<Polarity>[] = [
   { value: 0, label: 'Momentary' },
@@ -28,6 +28,5 @@ const LatchPicker = forwardRef<
   />
 ))
 
-export { LatchPicker }
-
 export type { LatchPickerProps, LatchPickerRef }
+export { LatchPicker }

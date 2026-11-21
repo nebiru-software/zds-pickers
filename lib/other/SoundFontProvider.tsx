@@ -292,6 +292,5 @@ const SoundfontProvider = (props: SoundfontProviderProps) => {
 // https://gleitz.github.io/midi-js-soundfonts/MusyngKite/acoustic_grand_piano-mp3.js
 // https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/.js
 
-export { SoundfontProvider }
-
 export type { SoundfontProviderProps }
+export { SoundfontProvider }

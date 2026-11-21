@@ -1,8 +1,8 @@
 import { forwardRef, useMemo } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
 import { getStockNames, getUserMappingNames } from 'zds-mappings'
-import { Select } from './Select'
 import type { Option, SelectProps } from './Select'
+import { Select } from './Select'
 
 type MappingPickerProps = Omit<SelectProps<string>, 'options'> & {
   allowClearing: boolean
@@ -63,6 +63,5 @@ const MappingPicker = forwardRef<
   )
 })
 
-export { MappingPicker }
-
 export type { MappingPickerProps, MappingPickerRef }
+export { MappingPicker }

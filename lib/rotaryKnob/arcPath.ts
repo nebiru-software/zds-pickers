@@ -76,5 +76,5 @@ const buildValueArcPath = ({
   return `M ${fmt(x1)} ${fmt(y1)} A ${fmt(r)} ${fmt(r)} 0 ${largeArc} ${sweepFlag} ${fmt(x2)} ${fmt(y2)}`
 }
 
-export { buildValueArcPath }
 export type { ValueArcOptions }
+export { buildValueArcPath }

@@ -1,15 +1,15 @@
-import { forwardRef, useMemo } from 'react'
 import type {
   ForwardRefExoticComponent,
   PropsWithoutRef,
   RefAttributes,
 } from 'react'
+import { forwardRef, useMemo } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
 import { arraySequence } from '../utils'
-import { Knob } from './Knob'
 import type { KnobProps } from './Knob'
-import { Select } from './Select'
+import { Knob } from './Knob'
 import type { Option, SelectProps } from './Select'
+import { Select } from './Select'
 
 type KnobPickerProps = SelectProps<number> & {
   centered?: boolean
@@ -98,6 +98,5 @@ const KnobPicker: ForwardRefExoticComponent<
   )
 })
 
-export { KnobPicker }
-
 export type { KnobPickerProps, KnobPickerRef }
+export { KnobPicker }

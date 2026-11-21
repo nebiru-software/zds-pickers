@@ -34,11 +34,12 @@ declare module 'zds-mappings' {
 
   type Mapping = MapItem[]
 
+  export type { MapItem, Mapping }
   export {
     cloneMapping,
     createUserMapping,
-    emptyMapping,
     editUserMapping,
+    emptyMapping,
     getAvailableGroups,
     getMapping,
     getNextAvailableMappingName,
@@ -50,6 +51,4 @@ declare module 'zds-mappings' {
     storeMapping,
     validateContent,
   }
-
-  export type { MapItem, Mapping }
 }

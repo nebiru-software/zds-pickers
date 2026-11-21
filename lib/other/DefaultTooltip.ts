@@ -1,4 +1,4 @@
-import { Fragment, createElement } from 'react'
+import { createElement, Fragment } from 'react'
 
 type TooltipProps = {
   children?: React.ReactNode
@@ -9,6 +9,5 @@ type TooltipProps = {
 const DefaultTooltip = ({ children }: React.PropsWithoutRef<TooltipProps>) =>
   createElement(Fragment, null, children)
 
-export { DefaultTooltip }
-
 export type { TooltipProps }
+export { DefaultTooltip }

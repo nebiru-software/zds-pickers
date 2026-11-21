@@ -1,4 +1,4 @@
-import type { Option, noSelection } from '../pickers/Select'
+import type { noSelection, Option } from '../pickers/Select'
 
 const Statuses = {
   noteOff: 8, // 1000
@@ -73,16 +73,15 @@ const responseCurves: Option<Curve>[] = Object.keys(ResponseCurveLabels)
     label: ResponseCurveLabels[key as keyof typeof ResponseCurveLabels],
   }))
 
+export type { Curve, Status }
 export {
   combineStatusWithChannel,
   extractStatusAndChannel,
   getStatusLabel,
   MASK_CHANNEL,
   MASK_STATUS,
-  responseCurves,
   ResponseCurveLabels,
+  responseCurves,
   Statuses,
   statusOptions,
 }
-
-export type { Curve, Status }

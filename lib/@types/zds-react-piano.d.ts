@@ -34,7 +34,6 @@ declare module 'zds-react-piano' {
     width: number
   }>
 
-  export { ReactPiano as Piano }
-
   export type { NoteLabelRenderProps, NoteRange }
+  export { ReactPiano as Piano }
 }

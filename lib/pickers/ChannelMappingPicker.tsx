@@ -2,8 +2,8 @@ import cl from 'classnames'
 import { forwardRef, useCallback, useEffect, useState } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
 import { arraySequence } from '../utils'
-import { Select, noSelection } from './Select'
 import type { Option, SelectProps } from './Select'
+import { noSelection, Select } from './Select'
 
 type InternalValue = number | 'separator'
 // type ExternalValue = number
@@ -141,10 +141,9 @@ const ChannelMappingPicker = forwardRef<
   )
 })
 
-export { ChannelMappingPicker }
-
 export type {
   ChannelMappingOption,
   ChannelMappingPickerProps,
   ChannelMappingPickerRef,
 }
+export { ChannelMappingPicker }

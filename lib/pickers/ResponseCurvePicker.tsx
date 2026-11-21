@@ -1,16 +1,16 @@
-import { forwardRef, useCallback } from 'react'
 import type {
   ForwardRefExoticComponent,
   PropsWithoutRef,
   RefAttributes,
 } from 'react'
+import { forwardRef, useCallback } from 'react'
 import type { GroupBase, SelectInstance } from 'react-select'
 import { type Curve, responseCurves } from '../midi/export'
 import { DefaultTooltip, type TooltipProps } from '../other/DefaultTooltip'
 import { findObj } from '../utils'
 import { ResponseCurve } from './ResponseCurve'
-import { Select } from './Select'
 import type { Option, SelectProps } from './Select'
+import { Select } from './Select'
 
 type ResponseCurvePickerProps = SelectProps<Curve> & {
   inverted?: boolean
@@ -57,7 +57,7 @@ const ResponseCurvePicker: ForwardRefExoticComponent<
             onChange(v)
           }}
           Tooltip={Tooltip}
-          value={Number.parseInt(String(value)) as Curve}
+          value={Number.parseInt(String(value), 10) as Curve}
         />
       ),
       [Tooltip, inverted, onChange, value],
@@ -79,6 +79,5 @@ const ResponseCurvePicker: ForwardRefExoticComponent<
   },
 )
 
-export { ResponseCurvePicker }
-
 export type { ResponseCurvePickerProps, ResponseCurvePickerRef }
+export { ResponseCurvePicker }
