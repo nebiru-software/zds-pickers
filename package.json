@@ -97,6 +97,10 @@
     "lint:ci": "biome check",
     "test": "vitest run"
   },
+  "overrides": {
+    "glob": "14.0.6",
+    "minimatch": "11.0.9"
+  },
   "engines": {
     "node": "^22.22.2 || >=24.15.0"
   }
